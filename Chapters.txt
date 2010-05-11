@@ -1,0 +1,80 @@
+Chapter 1
+% An Introduction
+
+\chapter{The Neutrino and neutrinoless double-beta decay}
+
+**********************************
+
+Chapter 2
+% This chapter will serve as an introduction to dark-matter physics
+
+\chapter{Dark matter}
+
+
+**********************************
+
+Chapter 3
+% This chapter will focus on reductions in background at the 0nu Q-value.
+% In particular, it will list advantages of using this type of geometry.
+% Results from Digitizer tests (direct comparisons) will be presented here.
+% Possible to do an analysis of SSTC (68Ge) cuts using CoGeNT data?
+
+\chapter{Background reduction with point-contact p-type germanium detectors}
+
+**********************************
+
+Chapter 4
+% In this chapter, I will describe the techniques used to characterize the BeGe detectors,
+% including tests involving e.g. resolution, noise, charge collection, multi-site rejection.
+%
+% Results of the tests will be presented
+%
+% It is also possible to present some of my hardware/software development work here
+% since this is relevant to the characterization studies.  I imagine these
+% will occupy appendices.
+
+\chapter{Characterization studies of BeGe Detectors}
+
+**********************************
+
+Chapter 5
+% In this chapter, I will tabulate and explain expected backgrounds
+% in the low-energy region (<50keV).  Results from estimations
+% and simulations of these backgrounds will be presented.  
+% Is it possible to present results from CoGeNT?  That is, 
+% they will have data that will be relevant to \MJ and so 
+% it would be useful to perform an analysis on this data looking
+% for and establishing these backgrounds.  
+
+\chapter{Low-Energy Backgrounds in the \MJ~Experiment}
+
+**********************************
+
+Chapter 6
+% In this chapter, I will perform calculations to determine
+% sensitivity of Majorana, given the backgrounds discussed
+% in the previous chapter, to dark matter and low-energy
+% physics.  A number of different models of dark matter will be covered
+
+\chapter{Sensitivity of \MJ~to low-energy physics}
+
+**********************************
+
+Appendix A
+% Here, focus on the development of MGDO (waveform processing
+% framework, data objects), OrcaROOT, and other tools 
+
+\chapter{Waveform processing toolkit for \MJ}
+
+**********************************
+
+Appendix B
+% Discuss some of the hardware-related work done
+% Touch on development of the Gretina card, SBC,
+% ORCA, etc.
+
+\chapter{Development of Digitizer Hardware for \MJ}
+
+**********************************
+
+

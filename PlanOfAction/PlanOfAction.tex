@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{ifpdf}
+\ifpdf
+    % we are typesetting using pdftex
+    \usepackage[pdftex]{graphicx}
+    %\usepackage{epstopdf}
+
+\else
+    % normal tex
+    \usepackage{graphicx}
+\fi
+
+\begin{document}
+
+  The following is my plan of action from the general exam.
+
+  \begin{itemize}
+    \item Develop, test, and deploy data acquisition hardware for the P-PC array 
+    \item Develop detector characterization tests and employ these on the array 
+    \item Help in the construction/deployment of the module 
+    \item Develop analysis tools including PSA algorithms for the P-PC detectors 
+    \item Analyze data and generate initial conclusions regarding the physics reach of this R\&D array as well as future arrays
+    
+  \end{itemize}
+
+  Chapters:
+
+  \begin{itemize}
+    \item Introduction to Majorana (double-beta decay), introduction to Dark Matter, low-energy physics
+    \item Introduction to P-PC, BeGe detectors
+    \item Digital readout of BeGe/PPC detectors 
+    \begin{itemize}
+      \item PPC-II
+          \item Description of system
+          \item Performance of digital DAQ
+              \item Trigger Efficiency
+              \item Plots of 
+          \item Conclusions  
+          \item Slow Pulses (Intro here?)
+      \item BeGe/MALBEK, deployment of SIS3302
+          \item Trigger efficiency, demonstration of low-energy triggering
+          \item Deadtime demonstration 
+      \item Demonstration of low-energy threshold
+      \item Demonstration of resolution at 2MeV, charge collection, multi-site rejection 
+    \end{itemize}
+
+    \item Background reduction from P-PC detectors 
+    \begin{itemize}
+      \item Discuss multi-site rejection, 
+                results from digitizer tests (direct comparison between digitizers)
+      \item SSTC analysis on 68Ge using PPC-II/BeGe data: construction of likelihood model.
+      \item Slow Pulses
+    \end{itemize}
+    \item Sensitivity of Majorana to low-energy physics 
+    \begin{itemize}
+      \item Listing of low-energy backgrounds
+      \item Estimation/Simulation of these backgrounds (focus on only a few here?)
+      \item Compare to demonstrated background of CoGeNT? 
+      \item Calculation of sensitivity of Majorana for a variety of dark matter models 
+      \item Calculation of sensitivity to oscillation signal for Majorana. 
+    \end{itemize}
+
+    \item Appendices
+    \begin{itemize}
+      \item Waveform processing framework (MGDO, OrcaROOT)
+      \item Neutrons in MaGe
+      \item Generic Surface Sampler
+      \item Hardware development of Gretina digitizer/SBC/
+    \end{itemize}
+  \end{itemize}
+
+  TODO:
+  \begin{itemize}
+    \item Characterization of BeGe detectors
+    \item Estimation of low-energy background (verification with CoGeNT data?)
+    \item Estimation of sensitivity for Majorana
+    \begin{itemize}
+      \item Simulations, based upon past results, etc.
+      \item actual data, can we estimate using CoGeNT data?
+      \item data from BeGe detectors?
+    \end{itemize} 
+    
+  \end{itemize} 
+
+\end{document}
+

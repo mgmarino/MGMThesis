@@ -1,0 +1,22 @@
+This is source and documentation for the latex thesis package
+at the University of Washington, Seattle, WA, USA. 
+Retrieve all three files (uwthesis.tex, uwthesis.bib, and uwthesis.cls).
+
+The tex file is both a thesis template and the documentation,
+format it for the documentation; e.g.
+
+  $ latex uwthesis
+  $ bibtex uwthesis
+  $ latex uwthesis
+  $ latex uwthesis
+
+and print the resulting dvi file.  
+
+Jim Fox
+
+April 15, 2008
+
+http://staff.washington.edu/fox/
+fox@washington.edu
+
+
