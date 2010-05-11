@@ -1,5 +1,14 @@
-*.pdf
+*converted-to.pdf
 *.log
 *.aux
 *.synctex.gz
 *.out
+*.bbl
+*.blg
+*.log
+*.lof
+*.lot
+*.toc
+MGM_BreakoutChapter.pdf
+MGM_Thesis.pdf
+PlanOfAction.pdf
