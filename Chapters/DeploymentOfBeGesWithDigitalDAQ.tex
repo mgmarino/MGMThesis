@@ -11,7 +11,8 @@
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.6\textwidth]{PPC2DesignSchematicShield}
-				\caption{Engineering drawing of the setup including inner and outer Cu and Pb shields.
+				\caption[Engineering drawing of PPC2 deployment]
+				{Engineering drawing of the setup including inner and outer Cu and Pb shields.
 				Graphic courtesy of J.~Orrell and E.~Fuller.}
 				\label{fig:PPC2OnlyShield}
 			\end{figure}
@@ -19,7 +20,8 @@
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{PPC2DesignSchematicAll}
-				\caption{Engineering drawing of the setup including inner and outer Cu and Pb shields, Rn exclusion box, 
+				\caption[Engineering drawing of PPC2 deployment, detailing outer components]
+				{Engineering drawing of the setup including inner and outer Cu and Pb shields, Rn exclusion box, 
 				and outer neutron moderator.  Graphic courtesy of J.~Orrell and E.~Fuller.}
 				\label{fig:PPC2Shield}
 			\end{figure}
@@ -36,7 +38,8 @@
 					\hline
 					\hline
 				\end{tabular}
-				\caption{PPC2 detector characteristics.  }
+				\caption[PPC2 detector characteristics]
+				{PPC2 detector characteristics.  }
 				\label{tab:PPC2Characteristics}
 			\end{table}
 	
@@ -71,7 +74,8 @@
 					\hline
 					\hline
 				\end{tabular}
-				\caption{Channel summary for the Gretina digitizer card.  }
+				\caption[Channel summary for the Gretina digitizer card]
+				{Channel summary for the Gretina digitizer card.  }
 				\label{tab:PPC2DAQChannelInfo}
 			\end{table}	     
 	
@@ -79,7 +83,8 @@
 			\begin{sidewaysfigure}
 				\centering
 				\includegraphics[width=0.95\textwidth]{PPC2DAQSchematic}
-				\caption{Simplified schematic of DAQ setup.  Lines with arrows denote signal flow.}
+				\caption[Simplified schematic of DAQ setup] 
+				{Simplified schematic of DAQ setup.  Lines with arrows denote signal flow.}
 				\label{fig:PPC2DAQSetup}
 			\end{sidewaysfigure}
 		     			
@@ -122,7 +127,8 @@
 						   383.85 	  &    8.94 \% \\
 						\hline
 					\end{tabular}
-					\caption{Selected gamma lines used for calibration in the $^{133}$Ba spectrum, 
+					\caption[Selected gamma lines used for calibration in the $^{133}$Ba spectrum]
+					{Selected gamma lines used for calibration in the $^{133}$Ba spectrum, 
 					data adapted from~\cite{Rab1995491}.}
 					\label{tab:Ba133Peaks}
 				\end{table}	
@@ -137,7 +143,8 @@
 						\includegraphics[width=0.9\textwidth]{HighEnergyCal}
 						\label{fig:PPC2CalHigh}
 					}
-					\caption{Calibration of the channels.}
+					\caption[Calibration of the high- and low-gain channels]
+					{Calibration of the high- and low-gain channels.}
 					\label{fig:PPC2Calibration}
 				\end{figure}
 
@@ -182,7 +189,8 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.7\textwidth]{EfficiencyExample}
-					\caption{Triggering efficiency measurement example.  Line is a fit to 
+					\caption[Triggering efficiency measurement example]
+					{Triggering efficiency measurement example.  Line is a fit to 
 					Equation~\ref{eqn:TriggerEfficiency}.}
 					\label{fig:PPC2TriggeringEfficiencyExample}
 				\end{figure}
@@ -206,7 +214,8 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.95\textwidth]{AllPlotComparisons}
-					\caption{Comparison of various parameters for a subset of runs.  See text for details.}
+					\caption[Comparison of various parameters versus time for a subset of runs]
+					{Comparison of various parameters versus time for a subset of runs.  See text for details.}
 					\label{fig:PPC2AllPlotCompare}
 				\end{figure}
 	
@@ -228,7 +237,8 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 						    Scaling, $s$ &  $-3.666\pm0.044$ (keV$^{-1}$) \\						    						    
 						\hline
 					\end{tabular}
-					\caption{Average parameters for trigger efficiency and electronic noise.}
+					\caption[Average parameters for trigger efficiency and electronic noise]
+					{Average parameters for trigger efficiency and electronic noise.}
 					\label{tab:PPC2AvgPars}
 				\end{table}	
 	    	\subsection{Cuts}
@@ -250,7 +260,8 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.7\textwidth]{BaselineExample}
-					\caption{An example of a fit to the baseline for one hour-long run.  Line is a gaussian fit to the data.}
+					\caption[An example of a fit to the baseline for one hour-long run]
+					{An example of a fit to the baseline for one hour-long run.  Line is a gaussian fit to the data.}
 					\label{fig:PPC2BaselineCuts}
 				\end{figure}
 
@@ -259,7 +270,8 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.7\textwidth]{LowROINoiseFit}
-					\caption{Calculation of cut based upon the number of events in the energy window 0.6-10~keV per run.  
+					\caption[Calculation of noise cuts]
+					{Calculation of cut based upon the number of events in the energy window 0.6-10~keV per run.  
 					The line is a fit to a Poisson distribution.  }
 					\label{fig:PPC2NoiseCuts}
 				\end{figure}
@@ -288,7 +300,9 @@ At low energy in the high-gain channel, one does not expect to see a significant
 						\includegraphics[width=0.8\textwidth]{RiseTimeVsEnergyChannel8}
 						\label{fig:PPC2RisetimeCalculationsHigh}
 					}	
-					\caption{Risetime measurements for both high- and low-gain channels given in time from 10\%$\to$90\% pulse amplitude.}
+					\caption[Rise-time measurements for high- and low-gain channels]
+					{Risetime measurements for both high- and low-gain channels given in time from 10\%$\to$90\% 
+					pulse amplitude.}
 					\label{fig:PPC2RisetimeCalculations}
 				\end{figure}		
 	
@@ -302,7 +316,8 @@ At low energy in the high-gain channel, one does not expect to see a significant
 						\includegraphics[width=0.45\textwidth]{slow_pulse_example}
 						\label{fig:PPC2PulseExampleSlow}
 					}					
-					\caption{Examples of slow and fast rise-time pulses}
+					\caption[Examples of slow and fast rise-time pulses]
+					{Examples of slow and fast rise-time pulses.}
 					\label{fig:PPC2RisetimeExamplePulses}
 				\end{figure}		
 			
@@ -326,7 +341,8 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 						\includegraphics[width=0.8\textwidth]{HighEnergySpec}
 						\label{fig:PPC2EnergySpecHigh}
 					}
-					\caption{Energy spectra of the PPC2.}
+					\caption[Energy spectra of PPC2]
+					{Energy spectra of PPC2.}
 					\label{fig:PPC2EnergySpectra}
 				\end{figure}	
 	
@@ -390,7 +406,8 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 					\end{tabular}
 
 				
-					\caption{Selection of gamma lines in the high-energy channel of PPC2.  Table courtesy A.~Schubert.}
+					\caption[Selection of gamma lines in the high-energy channel of PPC2]
+					{Selection of gamma lines in the high-energy channel of PPC2.  Table courtesy A.~Schubert.}
 					\label{tab:PPC2HighEnergyGammaLines}
 				\end{table}
 	
@@ -410,7 +427,8 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 						$^{(214)}$Ba K$_{\alpha1}$ & 77.107& $77.11\pm1.9\times10^{-2}$ & $163 \pm 19.7$ \\				
 						\hline																
 					\end{tabular}
-					\caption{Lines in the low-energy channel of PPC2}
+					\caption[Lines in the low-energy channel of PPC2]
+					{Lines in the low-energy channel of PPC2.}
 					\label{tab:PPCLowEnergyLines}
 				\end{table}
 
@@ -430,7 +448,8 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 					     M-capture & $1.92\pm0.08$\% & $\sim$0.1 \\
 					\hline
 				\end{tabular}
-				\caption{Decay information of\ \gersixeight.  Capture probabilities are adapted from 
+				\caption[Decay information of\ \gersixeight]
+				{Decay information of\ \gersixeight.  Capture probabilities are adapted from 
 				reference~\cite{Schonfeld1994955}, characteristic energies from~\cite{Bea67}.}
 				\label{tab:GE68decayinfo}
 			\end{table}	
@@ -445,7 +464,8 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 					\path[draw,->] (ga68) -- node[above] {\scriptsize $\epsilon$, T$_{1/2}=$68~m, Q=2921~keV} (zn68);
 					\draw (ga68) node[draw, rectangle, color=red, minimum height=0.1\textheight, minimum width=0.9\textwidth] {};
 		 		\end{tikzpicture}
-				\caption{Decay chain of $^{68}$Ge.}
+				\caption[Decay chain of $^{68}$Ge]
+				{Decay chain of $^{68}$Ge.}
 				\label{fig:GE68Decay}
 			\end{figure}
 			      
@@ -475,22 +495,26 @@ with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), an
 					$\chi^{2}$/NDF & 32.3/45 \\					
 					\hline
 				\end{tabular}
-				\caption{Fit information for \gersixeight~analysis.}
+				\caption[Fit information for \gersixeight~analysis]
+				{Fit information for \gersixeight~analysis.}
 				\label{tab:Ge68FitResults}	
 			\end{table}	
 			
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.7\textwidth]{G68_results}
-				\caption{Estimation of $^{68}$Ge production at the surface.  Data and fit for two regions:
-				(1) 10$\to$10.73~keV, fit to exponential + constant (circles); and (2) 11$\to$14~keV, fit to constant (triangles).  See text
-				for fit details.}
+				\caption[Estimation of $^{68}$Ge production at the surface]
+				{Estimation of $^{68}$Ge production at the surface.  Data and fit for two regions:
+				(1) 10$\to$10.73~keV, fit to exponential + constant (circles); and (2) 11$\to$14~keV, 
+				fit to constant (triangles).  See text for fit details.}
 				\label{fig:GE68Production}
 			\end{figure}			
 			
 	          
 	          	\begin{table}
-				\caption{A summary of previous estimates of \gersixeight~surface activation rates, adapted from~\cite{Elliott:2009cw}.}
+				\caption[Summary of previous estimates of \gersixeight~surface activation rates]
+				{A summary of previous estimates of \gersixeight~surface activation rates, 
+				adapted from~\cite{Elliott:2009cw}.}
 				\label{tab:Ge68PreviousResults}
 	          	\end{table}			
 			

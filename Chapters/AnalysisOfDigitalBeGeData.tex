@@ -3,6 +3,20 @@
 % Results from Digitizer tests (direct comparisons) will be presented here.
 % Possible to do an analysis of SSTC (68Ge) cuts using CoGeNT/PPC data?
 
+To do:
+
+- Flesh out trigger efficiency
+
+- Flesh out measurement of widths of gaussians
+
+- Explain microphonics cuts, fleshing out the details of exactly what is done here, and how the efficiencies are estimated.  
+
+- Flesh out low-energy features, discuss from where these might arise, how one might actually test such hypotheses, and how we got around it for this stage.
+
+- Discuss the final data sets, the calculation of the total efficiencies, discuss how these may be used (point to the next chapter).  
+  
+- Discuss possible moves forward in the future, i.e. how to generate a better data set, what sort of data you'd like to take, (measurements), etc.  
+
 \chapter{Analysis of a low-background BEGe detector}
 \label{chap:AnalysisBeGe}
 	\section{Experimental setup}
@@ -41,7 +55,8 @@ The muon veto was composed of 10~flat panels situated around the outside of the 
 		5 & Low-gain, AC-coupled preamp trace (unshaped) \\
 		\hline
 	\end{tabular}
-	\caption{DAQ Channel readout characteristics. }
+	\caption[DAQ Channel readout characteristics]
+	{DAQ Channel readout characteristics. }
 	\label{tab:SoudanDAQTable}
 \end{table}
 
@@ -68,7 +83,7 @@ The unshaped channels (4 and 5) were processed to extract information on the cha
 		\subsection{Muon-veto channel}
 		\label{sec:MuonProc}
 
-The muon-veto channel digitized the logic output from a muon veto.  To process these waveforms, all the regions of each trace were found when the veto was logic positive.  Saving this information enabled any cut based upon the muon veto to be performed further down the analysis chain, avoiding the hard-coding of parameters of the cut.  However, due to the high count rate of the muon veto, it was decided to not use any cuts from this channel in the analysis.
+The muon-veto channel digitized the logic output from a muon veto.  To process these waveforms, all the regions of each trace were found when the veto was logic positive.  Saving this information enabled any cut based upon the muon veto to be performed further down the analysis chain, retaining flexibility in determining parameters for such a cut.  However, due to the high count rate of the muon veto and therefore the reduction in live-time any cut from this veto would create, it was decided to not use any cuts based upon results from this channel in the analysis.
 
 
 	\section{Data analysis}
@@ -85,7 +100,8 @@ where $V$ is in volts.  This yielded the results: $\sigma = 7.137\times10^{-3}\p
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{energy_efficiency_bege}
-				\caption{Triggering efficiency measured with a pulser.  Error bars are binomial.}
+				\caption[BeGe triggering efficiency measured with a pulser]
+				{BeGe triggering efficiency measured with a pulser.  Error bars are binomial.}
 				\label{fig:BeGeTriggeringEfficiency}
 			\end{figure}
 
@@ -103,7 +119,9 @@ to measure the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fano 
 			\begin{figure}
 				\centering
 				%\includegraphics[width=0.8\textwidth]{Figures/resolution_plot1}
-				\caption{Resolution plot.  Red is measured and fit intrinsic electronic noise.  Black points are measured resolution from x-ray lines, black line is a fit to 
+				\caption[BeGe resolution versus energy]
+				{BeGe resolution versus energy.  Red is measured and fit intrinsic electronic noise, 
+				black points are measured resolution from x-ray lines, black line is a fit to 
 				Eqn.~\ref{eqn:SigmaEqn}.}
 				\label{fig:BeGeResPlot}
 			\end{figure}
@@ -131,7 +149,8 @@ with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.
 			\begin{figure}
 				\centering
 				%\includegraphics[width=0.9\textwidth]{PPC2DesignSchematicAll}
-				\caption{Microphonics cuts using the ratio of outputs from two different spectroscopy amplifiers.}
+				\caption[BeGe microphonics cuts]
+				{Microphonics cuts using the ratio of outputs from two different spectroscopy amplifiers.}
 				\label{fig:RatioOfShapedChannels}
 			\end{figure}
 
@@ -168,7 +187,9 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.95\textwidth]{ExampleWavelet}
-					\caption{Wavelet decomposition of pulse in Figure~\ref{fig:RisetimeCutsExampleOfPulse}.  A$_{1}$ denotes the first-level
+					\caption[Example wavelet decomposition of pulse]
+					{Example wavelet decomposition of pulse in Figure~\ref{fig:RisetimeCutsExampleOfPulse}.  
+					A$_{1}$ denotes the first-level
 					 approximation coefficients, the D$_{n}$ denote the detail coefficients at the $n$th level of the 6-level stationary wavelet 
 					 transformation.  Dashed lines indicate the thresholding used for each set of detail coefficients.}
 					\label{fig:RisetimeCutsWaveletDecompositionOfPulse}
@@ -181,10 +202,11 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.9\textwidth]{ExampleWaveform0}
-					\caption{Example of rise-time calculation technique applied to a preamp trace.  
-					The top shows the raw and denoised waveforms, and the vertical dashed lines represent the result of the rise-time
-					calculation.  The bottom plot shows the smoothed derivative of the trace calculated using a Savitzky-Golay 
-					filter~\cite{Sav64aa} of degree~2, width~6.}
+					\caption[Example of rise-time calculation technique applied to a preamp trace]
+					{Example of rise-time calculation technique applied to a preamp trace.  
+					The top shows the raw and denoised waveforms, and the vertical dashed lines represent the result 
+					of the rise-time calculation.  The bottom plot shows the smoothed derivative of the trace calculated 
+					using a Savitzky-Golay filter~\cite{Sav64aa} of degree~2, width~6.}
 					\label{fig:RisetimeCutsExampleOfPulse}
 				\end{figure}					
 
@@ -200,7 +222,8 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\begin{figure}
 						\centering
 						\includegraphics[width=0.9\textwidth]{chan4amplitude_vs_chan1}
-						\caption{Comparison between the amplitudes in the unshaped channel 4 and shaped channel 1.  
+						\caption[Comparison between the amplitudes in the unshaped and shaped BeGe channels]
+						{Comparison between the amplitudes in the unshaped channel 4 and shaped channel 1.  
 						The line is a linear fit to the data.}
 						\label{fig:Risetimechan2vschan4}.
 					\end{figure}
@@ -208,8 +231,9 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\begin{figure}
 						\centering
 						\includegraphics[width=0.9\textwidth]{start_pulse_vs_energy}
-						\caption{Comparison between the start of the preamp pulse rise-time and the amplitude of the shaped channel.  
-						The line is a fourth-order polynomial fit which is used to parameterize this relationship.}
+						\caption[Comparison between the start of the preamp pulse rise-time and the amplitude of the shaped channel for the BeGe]
+						{Comparison between the start of the preamp pulse rise-time and the amplitude of the shaped
+						 channel.  The line is a fourth-order polynomial fit which is used to parameterize this relationship.}
 						\label{fig:TriggerPositionDependence}.
 					\end{figure}					
 	
@@ -218,7 +242,8 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.9\textwidth]{risetime_cut_chan5_nice}
-					\caption{Simulation of calculated rise-time for the low-gain channel of the BeGe.}
+					\caption[Simulation of calculated rise-time for the low-gain channel of the BeGe]
+					{Simulation of calculated rise-time for the low-gain channel of the BeGe.}
 					\label{fig:RisetimeSimulation}
 				\end{figure}	
 	
@@ -265,7 +290,8 @@ These fits were performed for both high-energy and low-energy channels, an examp
 							\hline
 							\hline
 						\end{tabular}	
-						\caption{Summary of prominent x-ray lines in the data set.}
+						\caption[Summary of prominent x-ray lines in the BeGe data set]
+						{Summary of prominent x-ray lines in the data set.}
 						\label{tab:XRayLines}
 					\end{table}
 
@@ -293,7 +319,8 @@ The results for the low-gain channel are given in Figure~\ref{fig:RTSimLowGainRe
 								\includegraphics[width=0.46\textheight]{BackgroundComponents}
 								\label{fig:RTLowGainBkgd}						
 							}														
-							\caption{Simulation results for low-gain channel.}
+							\caption[Simulation results for low-gain BeGe channel]
+							{Simulation results for low-gain channel.}
 							\label{fig:RTSimLowGainResults}
 						\end{sidewaysfigure}
 
@@ -316,7 +343,8 @@ Results for the low-energy channel are shown in Figure~\ref{fig:RTSimHighGainRes
 								\includegraphics[width=0.46\textheight]{LowBackgroundComponents}
 								\label{fig:RTHighGainBkgd}						
 							}														
-							\caption{Simulation results for high-gain channel.}
+							\caption[Simulation results for high-gain BeGe channel]
+							{Simulation results for high-gain channel.}
 							\label{fig:RTSimHighGainResults}
 						\end{sidewaysfigure}
 
