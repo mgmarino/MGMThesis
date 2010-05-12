@@ -150,7 +150,7 @@ A summary of the parameters used is given in Table~\ref{tab:BeGeFitParameters}. 
 				\end{tabular}	
 				 \begin{tablenotes}
 				       \item[a] {The smaller mass value is used when rise-time cuts are applied, see 
-				       Section~\ref{sec:RTCuts}.}
+				       Section~\ref{sec:RisetimeCuts}.}
 			     	\end{tablenotes}
 			\end{threeparttable}
 		\end{table}
@@ -237,7 +237,7 @@ In essence, this is a guess-and-check test: one initially `assumes' that the pro
 	\subsection{Data and model}
 	\label{sec:LimitsDataAndModel}	
 
-The likelihood fitting was performed using the RooFit~\footnote{See \url{http://roofit.sourceforge.net/}.} framework developed by Wouter Verkerke and David Kirkby within the ROOT analysis package~\cite{Bru97}.  RooFit provides an abstract framework to perform different types of fitting, including both binned and unbinned maximum likelihood as well as chi-square minimization.  The package includes a set of pdfs from which one can construct more complex models and enables the user to generate his or her own models which could not have otherwise been constructed from the provided building blocks.  A toolkit extension was built within the RooFit framework including several pdfs of WIMP interactions.  More information on this constructed WIMP fitting framework can be found in Appendix~\ref{app:pyWIMP}.  RooFit takes the built pdf models, automatically normalizes them, and constructs the appropriate negative log-likelihood or $\chi^{2}$ function which can then be minimized using numerical algorithms (i.e.~Minuit~\cite{James:1975dr}).
+The likelihood fitting was performed using the RooFit~\footnote{See \url{http://roofit.sourceforge.net/}.} framework developed by Wouter Verkerke and David Kirkby within the ROOT analysis package~\cite{Bru97}.  RooFit provides an abstract framework to perform different types of fitting, including both binned and unbinned maximum likelihood as well as chi-square minimization.  The package includes a set of pdfs from which one can construct more complex models and enables the user to generate his or her own models which could not have otherwise been constructed from the provided building blocks.  A toolkit extension was built within the RooFit framework including several pdfs of WIMP interactions.  More information on this constructed WIMP fitting framework can be found in Section~\ref{sec:WIMPPDFs}.  RooFit takes the built pdf models, automatically normalizes them, and constructs the appropriate negative log-likelihood or $\chi^{2}$ function which can then be minimized using numerical algorithms (i.e.~Minuit~\cite{James:1975dr}).
 
 %FixME: Something about weights and efficiencies
 The likelihood function for the fit was constructed from the following pdfs (normalization not shown):	

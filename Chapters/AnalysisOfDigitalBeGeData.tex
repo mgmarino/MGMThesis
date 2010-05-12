@@ -11,6 +11,11 @@ To do:
 
 - Explain microphonics cuts, fleshing out the details of exactly what is done here, and how the efficiencies are estimated.  
 
+- Add figure for fig:BeGeFitExample, which will have an example of fits used to estimate rise-time 
+- Add discussion on Rise-time cuts regarding its interpretation as a fiducial volume cut and the estimate of the mass difference that went along with this.
+
+- Add figure showing what is cut out for each cut.
+
 - Flesh out low-energy features, discuss from where these might arise, how one might actually test such hypotheses, and how we got around it for this stage.
 
 - Discuss the final data sets, the calculation of the total efficiencies, discuss how these may be used (point to the next chapter).  
@@ -171,7 +176,7 @@ with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.
 				\end{enumerate}
 	In this particular application it is necessary to use a translation-invariant version of the wavelet transformation called a Stationary Wavelet Transformation (SWT) (see~\cite{Coif95aa,Naso95aa}).  The SWT performs transformations at all possible translations for a given data set and basis wavelet.  A subsequent inverse SWT effectively averages these together, avoiding artifacts induced by any chosen origin.  
 	
-	For this wavelet analysis, the python package PyWavelets~\cite{PyWave} was used.  Since an implementation of the inverse SWT was missing from this distribution, the necessary extension to the package was written~\ref{app:MGDOWavelets}.  A Haar wavelet was chosen as a basis wavelet due to its simplicity and asymmetry.  Thresholds for each set of detail coefficients were calculated using a pure-noise waveform training set of length $j$.  For each noise waveform $x^{(i)}$, a 6-level SWT was used to generate $D_{n}^{(i)}$ and the thresholds were calculated for each level $n$ according to the equation proposed by Donoho and Johnston~\cite{Don95ad}:
+	For this wavelet analysis, the python package PyWavelets~\cite{PyWave} was used.  Since an implementation of the inverse SWT was missing from this distribution, the necessary extension to the package was written (see Section~\ref{sec:WaveformProcMGDO}.  A Haar wavelet was chosen as a basis wavelet due to its simplicity and asymmetry.  Thresholds for each set of detail coefficients were calculated using a pure-noise waveform training set of length $j$.  For each noise waveform $x^{(i)}$, a 6-level SWT was used to generate $D_{n}^{(i)}$ and the thresholds were calculated for each level $n$ according to the equation proposed by Donoho and Johnston~\cite{Don95ad}:
 	
 				\begin{equation}			
 					\tau_{n}^{(i)} = \sigma_{n}^{(i)} \sqrt{2 \log N^{(i)}}
@@ -237,7 +242,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 						\label{fig:TriggerPositionDependence}.
 					\end{figure}					
 	
-	Once the simulated pulses were generated, they were run through the same analysis chain as the waveforms from the detector, in particular through the rise-time calculation algorithms described earlier in this section.  The amplitude of the pulses was sampled according to the triggering efficiency measured in Section~\ref{sec:FixME}.  Two simulations were run, one for each the high- and low-gain set of channels, for $\sim$5M events.  These results were then used to calculate contours of particular acceptances, 40, 50, 60, 70, 80, 90, 95, and 99\%.  Results of the simulation for the low-gain channel are shown in Figure~\ref{fig:RisetimeSimulation} along with a calculated 99\% acceptance contour.  The acceptance region defined as all waveforms having a calculated rise-time less than or equal to the calculated contour.  
+	Once the simulated pulses were generated, they were run through the same analysis chain as the waveforms from the detector, in particular through the rise-time calculation algorithms described earlier in this section.  The amplitude of the pulses was sampled according to the triggering efficiency measured in Section~\ref{sec:BeGeTrigEff}.  Two simulations were run, one for each the high- and low-gain set of channels, for $\sim$5M events.  These results were then used to calculate contours of particular acceptances, 40, 50, 60, 70, 80, 90, 95, and 99\%.  Results of the simulation for the low-gain channel are shown in Figure~\ref{fig:RisetimeSimulation} along with a calculated 99\% acceptance contour.  The acceptance region defined as all waveforms having a calculated rise-time less than or equal to the calculated contour.  
 					
 				\begin{figure}
 					\centering
@@ -269,6 +274,20 @@ These fits were performed for data sets with the entire set of cuts, including:
 					\end{enumerate}
 
 These fits were performed for both high-energy and low-energy channels, an example of a fit for each channel is given in Figure~\ref{fig:BeGeFitExample}.  A calculation of the relative percentage remaining for each component was made using the cut LN-fills-plus-microphonics as a reference.  This calculation gives a metric for determining the validity of each cut; for example, a rise-time cut with a calculated 70\% acceptance efficiency should retain 70\% of the counts in the x-ray lines and remove an unknown but larger percentage of the counts in the background components (flat plus exponential).  Additionally, the extracted fit value for the exponential constant, $c_{1}$, of the background provides a test of the cut model and can act as a probe of the shape of the background distribution.  
+	
+					\begin{figure}
+						\centering
+						\subfigure[Low-gain channel] {
+							%\includegraphics[width=0.9\textwidth]{risetime_cut_chan5_nice}					
+						}
+						\subfigure[High-gain channel] {
+							%\includegraphics[width=0.9\textwidth]{risetime_cut_chan5_nice}
+						}
+						
+						\caption[Example of fits performed to estimate amount cut by rise-time cuts]
+						{Example of fits performed to estimate amount cut by rise-time cuts.}
+						\label{fig:BeGeFitExample}
+					\end{figure}
 	
 					\begin{table}
 					\centering
