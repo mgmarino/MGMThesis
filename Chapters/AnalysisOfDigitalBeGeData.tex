@@ -1,27 +1,3 @@
-% This chapter will focus on reductions in background at the 0nu Q-value.
-% In particular, it will list advantages of using this type of geometry.
-% Results from Digitizer tests (direct comparisons) will be presented here.
-% Possible to do an analysis of SSTC (68Ge) cuts using CoGeNT/PPC data?
-
-To do:
-
-- Flesh out trigger efficiency
-
-- Flesh out measurement of widths of gaussians
-
-- Explain microphonics cuts, fleshing out the details of exactly what is done here, and how the efficiencies are estimated.  
-
-- Add figure for fig:BeGeFitExample, which will have an example of fits used to estimate rise-time 
-- Add discussion on Rise-time cuts regarding its interpretation as a fiducial volume cut and the estimate of the mass difference that went along with this.
-
-- Add figure showing what is cut out for each cut.
-
-- Flesh out low-energy features, discuss from where these might arise, how one might actually test such hypotheses, and how we got around it for this stage.
-
-- Discuss the final data sets, the calculation of the total efficiencies, discuss how these may be used (point to the next chapter).  
-  
-- Discuss possible moves forward in the future, i.e. how to generate a better data set, what sort of data you'd like to take, (measurements), etc.  
-
 \chapter{Analysis of a low-background BEGe detector}
 \label{chap:AnalysisBeGe}
 	\section{Experimental setup}
@@ -96,6 +72,8 @@ The muon-veto channel digitized the logic output from a muon veto.  To process t
 		\subsection{Triggering efficiency}
 		\label{sec:BeGeTrigEff}
 
+FixME - Flesh out trigger efficiency
+
 The trigger efficiency of the DAQ system was measured by scanning a pulser of known amplitude through the threshold.  The data was then fit to the function:
 			\[
 			1 - \frac{\operatorname{erf} \left(s(V-\sigma)\right)}{2}
@@ -111,6 +89,8 @@ where $V$ is in volts.  This yielded the results: $\sigma = 7.137\times10^{-3}\p
 			\end{figure}
 
 		\subsection{Resolution of results}
+
+FixME - Flesh out measurement of widths of gaussians
 
 The inherent noise was measured using a pulser as well as x-ray lines.  The results of these measurements were folded into the following equation:
 
@@ -146,6 +126,8 @@ with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.
 	
 	\section{Microphonics and Noise Cuts}
      	\label{sec:MicroCuts}	
+
+FixME - Explain microphonics cuts, fleshing out the details of exactly what is done here, and how the efficiencies are estimated.  
 
 	Vibrations in detector components, such as the cryostat, cold-finger, or crystal mount, can induce electronic signals due to the changing capacitance created by the movement of components.  These electronic deviations can generate extra noise at low energies (threshold to a few keV) possibly obscuring signal in that region.  Morales et al.~developed a technique to mitigate this class of events, taking advantage of the fact that microphonics tend to have characteristics (e.g.~rise-time, fall-time, baseline shift) significantly different from events arising from charge collection in the crystal~\cite{Morales1992410}.  This procedure analyzes the ratio of amplitudes from two signal channels with different shaping times  and accepts or rejects events based upon their deviation from the expected ratio.  This expectation can be determined by using a source or a pulser at low amplitudes.  
 	
@@ -367,15 +349,28 @@ Results for the low-energy channel are shown in Figure~\ref{fig:RTSimHighGainRes
 							\label{fig:RTSimHighGainResults}
 						\end{sidewaysfigure}
 
+FixME - Add discussion on Rise-time cuts regarding its interpretation as a fiducial volume cut and the estimate of the mass difference that went along with this.
+
 
 	\section{Low-energy features}
 	\label{sec:BeGeLowEnergyFeatures}
 	
 	Here, we discuss how the investigation of several parameters in the low-energy region to try and obtain an idea of from where they might arise.
 
+FixME - Flesh out low-energy features, discuss from where these might arise, how one might actually test such hypotheses, and how we got around it for this stage.
+
+	\section{Cuts discussion}
+	\label{sec:BeGeCutsDiscussion}
+
+FixME - Add figure showing what is cut out for each cut.
 
 	\section{Conclusions}
-     	\label{sec:CutConclusions}				
+     	\label{sec:CutConclusions}		
+	
+
+FixME - Discuss the final data sets, the calculation of the total efficiencies, discuss how these may be used (point to the next chapter).  
+  
+FixME - Discuss possible moves forward in the future, i.e. how to generate a better data set, what sort of data you'd like to take, (measurements), etc.  			
 	% At this point, go through and discuss how each of the systematic of each of these cuts must be tested.
 	% Discuss how this methodology is later applied to a real dat set.  
 	% Discuss other possibilities for reduction in noise, especially with respect to preamp traces.
