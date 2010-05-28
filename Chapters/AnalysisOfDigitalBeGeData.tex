@@ -3,9 +3,11 @@
 	\section{Experimental setup}
 	\label{sec:BeGeExperimentalSetup}
 
-A custom 440~g PPC \textbf{B}road-\textbf{E}nergy \textbf{G}ermanium (BEGe) detector manufactured by Canberra Industries was deployed underground on 24~August~2009 in the Soudan Underground Laboratory in Soudan, MN.  The purpose of the deployment of this detector was to obtain low-threshold, low-background counting data to seek improved limits on WIMPs in the low-mass range ($\lesssim10$~GeV).  The design of this detector included several modifications to address backgrounds seen with a previous PPC used to obtain dark matter limits~\cite{Aalseth:2008aa}, including several internal mounting components replaced by ones constructed with cleaner materials by J.~Collar at the University of Chicago.  The detector was placed in the same shield as described in Section~\ref{sec:DeploymentPPC2SoudanIntro} with a few small changes.  The inner OFHC copper shield was replaced by old Pb bricks from the University of Chicago and a different PMT-based muon veto was placed around the external borated polyethylene shield.  %FixME contamination of bricks?
+A custom 440~g PPC \textbf{B}road-\textbf{E}nergy \textbf{G}ermanium (BEGe) detector manufactured by Canberra Industries was deployed underground on 24~August~2009 in the Soudan Underground Laboratory in Soudan, MN.  The purpose of the deployment of this detector was to obtain low-threshold, low-background counting data to seek improved limits on WIMPs in the low-mass range ($\lesssim10$~GeV).  The design of this detector included several modifications to address backgrounds seen with a previous PPC used to obtain dark matter limits~\cite{Aalseth:2008aa}, including several internal mounting components replaced by ones constructed with cleaner materials by J.~Collar at the University of Chicago.  
+% Additionally, the outer cryostat was not made of typical aluminum but rather of copper.  True?
+The detector was placed in the same shield as described in Section~\ref{sec:DeploymentPPC2SoudanIntro} with a few small changes.  The inner OFHC copper shield was replaced by old Pb bricks from the University of Chicago and a different PMT-based muon veto was placed around the external borated polyethylene shield.   %FixME contamination of bricks?
 
-This chapter presents results from data taken with the BeGE detector underground from the time period beginning 4 December 2009 through 31 January 2010 for a total live-time of 54.375 days.  Results from a parallel analysis have been presented in~\cite{Aalseth:2010aa}.
+This chapter presents results from data taken with the BeGE detector underground from the time period beginning 4 December 2009 until 15 May 2010 for a total live-time of 150.6~days.  During this time, there were two main gaps in run time, including a roughly 5-day shutdown period during a planned power outage at the lab and another 6-day period during which parameter settings for the DAQ were modified.  Results from a analysis of a previous subset of the data occupying about 2 months of live-time have been presented in~\cite{Aalseth:2010aa}.
 
 	\section{Data acquisition and processing}
 	\label{sec:BeGeDAQProcessing}
@@ -59,26 +61,25 @@ The shaped channels (0, 1, and 2) were processed to extract amplitude informatio
 		\subsection{Unshaped channel processing}
 		\label{sec:UnshapedWFProc}
 
-The unshaped channels (4 and 5) were processed to extract information on the characteristics of the waveform, including baseline, extrema values, and rise-time information.  No bandpass frequency filter was used on the unshaped pulses to avoid removing the high-frequency components of the rising edge of the pulse.  The baseline was calculated using the first 5600 samples and the maximum and minimum were found for each pulse.  Calculating the rise-time of each pulse required de-noising using a time-invariant stationary wavelet transformation (SWT).  This process is described later in Section~\ref{sec:RisetimeCuts}.
+The unshaped channels (4 and 5) were processed to extract information on the characteristics of the waveform, including baseline, extrema values, and rise-time information.    The baseline was calculated using the first 5600 samples and the maximum and minimum were found for each pulse.  Calculating the rise-time of each pulse required de-noising using a time-invariant stationary wavelet transformation (SWT).  This process is described later in Section~\ref{sec:RisetimeCuts}.  Extracting the extrema values -- the maximum and minimum of the waveform -- required running the waveform through a 100~kHz low-bandpass filter.  The filter was run on an unmodified waveform and \emph{not} after any other de-noising was done.  After the application of this filter, the maximum and minimum values and positions were recorded.  
 
 		\subsection{Muon-veto channel}
 		\label{sec:MuonProc}
 
-The muon-veto channel digitized the logic output from a muon veto.  To process these waveforms, all the regions of each trace were found when the veto was logic positive.  Saving this information enabled any cut based upon the muon veto to be performed further down the analysis chain, retaining flexibility in determining parameters for such a cut.  However, due to the high count rate of the muon veto and therefore the reduction in live-time any cut from this veto would create, it was decided to not use any cuts based upon results from this channel in the analysis.
+The muon-veto channel digitized the logic output from a muon veto.  To process these waveforms, all the regions of each trace were found when the veto was logic positive.  Saving this information enabled any cut based upon the muon veto to be performed further down the analysis chain, retaining flexibility in determining parameters for such a cut.  However, due to the high count rate of the muon veto and therefore the reduction in live-time any cut from this veto would create, it was decided to not use any cuts based upon results from this channel in the analysis.  
 
 
 	\section{Data analysis}
 	\label{sec:BeGeDataAnalysis}
+	
 		\subsection{Triggering efficiency}
 		\label{sec:BeGeTrigEff}
 
-FixME - Flesh out trigger efficiency
-
-The trigger efficiency of the DAQ system was measured by scanning a pulser of known amplitude through the threshold.  The data was then fit to the function:
+The trigger efficiency of the DAQ system was measured by scanning a pulser of known amplitude through the threshold.  This measurement determined the ability of the DAQ electronics to trigger at certain signal amplitude given the noise characteristics of the preamplifier and the readout electronics.  The data was then fit to the function:
 			\[
 			1 - \frac{\operatorname{erf} \left(s(V-\sigma)\right)}{2}
 			\]
-where $V$ is in volts.  This yielded the results: $\sigma = 7.137\times10^{-3}\pm8\times10^{-6}$ and $s = -1.772\times10^{3}\pm28$.  Results are shown in Figure~\ref{fig:BeGeTriggeringEfficiency}.
+where $V$ is in volts, $s$ is a scaling parameter and $\sigma$ is a position parameter.  This yielded the results: $\sigma = 7.137\times10^{-3}\pm8\times10^{-6}$ and $s = -1.772\times10^{3}\pm28$.  Results are shown in Figure~\ref{fig:BeGeTriggeringEfficiency}.  This study was done during initial deployment and not throughout the experiment due to concerns that noise or stray signals from the pulser could negatively affect the performance of the detector.  However, results from the previous deployment of a PPC detector and the monitoring of detector parameters versus time (Section~\ref{sec:PPC2DetParsVsTime}) suggested that other parameters could provide information to probe whether or not the trigger efficiency changed over time.  Such parameters include waveform characteristics (baseline, extrema) and triggering rates and these are discussed in Section~\ref{sec:BeGeTimeCorrelations}.
 
 			\begin{figure}
 				\centering
@@ -113,19 +114,23 @@ to measure the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fano 
 
 		\subsection{Energy calibration}
 
-The energy calibration was determined by fitting the high-energy channel simultaneously to the peaks listed in Table~\ref{tab:XRayLines} yielding a linear equation:
+Energy calibration at low energies is complicated due to several factors.  In particular, low-energy x-ray peaks (<10~keV) from any source will be heavily attenuated by the source itself as well as materials between the source and the crystal, including the outer cryostat, mounting components, and the crystal dead layer.  Higher energy x-rays have a larger probability to interact in the crystal, but these are unsuitable for calibration because of their distance from the signal region which, in the case of dark matter, is close to threshold.  However, internal cosmogenic isotopes provide excellent candidates for calibration since there are several with characteristic lines near or below 10~keV.  Therefore, the energy calibration was determined by fitting the high-energy channel simultaneously to the peaks listed in Table~\ref{tab:XRayLines} yielding a linear equation:
 
 			\[
 			E_{ion} (keV) = a V + b
 			\]  
 
-with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.
-
-
+with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.  These results were applied to both the low- and high-energy channels.  
+	\section{Data cleaning and cuts}
+	\label{sec:BeGeCuts}	
 	
+		\subsection{Electronics cuts}
+		\label{sec:BeGeElecCuts}
 	
-	\section{Microphonics and Noise Cuts}
-     	\label{sec:MicroCuts}	
+	Detail - baseline cut, negative going pulse cut, ad-hoc cut to remove pulses that were perhaps microphonics?  
+	
+		\subsection{Microphonics and Noise Cuts}
+	     	\label{sec:MicroCuts}	
 
 FixME - Explain microphonics cuts, fleshing out the details of exactly what is done here, and how the efficiencies are estimated.  
 
@@ -142,11 +147,11 @@ FixME - Explain microphonics cuts, fleshing out the details of exactly what is d
 			\end{figure}
 
 
-	\section{Risetime cuts}
-     	\label{sec:RisetimeCuts}	
+		\subsection{Risetime cuts}
+	     	\label{sec:RisetimeCuts}	
 
-		\subsection{Wavelet denoising}
-	     	\label{sec:RisetimeCutsWaveletDenoise}
+			\subsubsection{Wavelet denoising}
+		     	\label{sec:RisetimeCutsWaveletDenoise}
 					
 	As the amplitude-to-noise ratio of waveforms shrinks at low energies, calculating the rise-time becomes more sensitive to the magnitude of the noise.   Denoising via a simple bandpass filter is undesirable when both signal and noise are distributed across similar frequency bands as the signal-to-noise ratio will not be enhanced by removing particular frequencies.  When calculating the rise-time of a pulse, a bandpass filter can greatly attenuate the high frequencies present in the rising edge of the pulse.  Wavelet shrinkage provides methodology to reduce noise on a generic function (see e.g.~\cite{Don95aa,Don95bb}) when the function and and noise occupy the same frequency space.  The algorithm follows:
 				\begin{enumerate}
@@ -182,8 +187,8 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\label{fig:RisetimeCutsWaveletDecompositionOfPulse}
 				\end{figure}					
 
-		\subsection{Risetime calculation}
-		\label{sec:RisetimeCalculation}
+			\subsubsection{Risetime calculation}
+			\label{sec:RisetimeCalculation}
 	The denoising process ensured that the waveforms be ready for rise-time calculations.  After de-noising, the smoothed derivative of the waveform was generated using a Savitzky-Golay derivative filter~\cite{Sav64aa}.  The extremum of the derivative - in this case the minimum since the pulse was negative-going - was then found and used to determine the middle of the rising edge, $p_{m}$.  The full-width at half maximum (FWHM) was calculated and used to estimate the beginning and end of the rise of the waveform: the beginning, $p_{b} = p_{m} - 1.5\times$FWHM and the end, $p_{e} = p_{m} + 1.5\times$FWHM.  The baseline and amplitude of the pulse were each found by averaging over 1~$\mu$s (20~samples) beginning at $p_{b} - (1~\mu$s) and $p_{e}$, respectively.  These values were used to estimate the amount of time it took the pulse to rise 10\%$\to$90\% in amplitude.  Linear interpolation was used to refine the time values which came between digitization points.  An example of this calculation, using the same pulse as in Figure~\ref{fig:RisetimeCutsWaveletDecompositionOfPulse}, is shown in Figure~\ref{fig:RisetimeCutsExampleOfPulse}.  
 		
 				\begin{figure}
@@ -197,7 +202,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\label{fig:RisetimeCutsExampleOfPulse}
 				\end{figure}					
 
-			\subsection{Risetime simulation}
+			\subsubsection{Risetime simulation}
 			\label{sec:RisetimeSimulation}
 	
 	To investigate how a cut based upon rise-time affected the spectrum, it was necessary to perform a simulation of the rise-time calculation on waveforms similar to the data.  The idea was to produce waveforms with similar characteristics (i.e. rise-time, noise) as seen in the detector and run them through the same algorithm used to analyze the detector data.  The waveform was generated by taking a tail pulse of 0~rise-time and running it through a digital low-pass RC filter.  The RC constant in the filter was tuned to reproduce the rise-time of ``fast'' pulses seen in the data.  In general this would not precisely reproduce all the characteristics of the detected pulses, but since the only parameter of interest was the rise-time it was reasonable to choose such a simple pulse construction.  Later systematic tests (Section~\ref{sec:RisetimeSystematicTests}) verified that it was sufficient.  
@@ -234,7 +239,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\label{fig:RisetimeSimulation}
 				\end{figure}	
 	
-		\subsection{Risetime systematic tests}
+		\subsubsection{Risetime systematic tests}
 		\label{sec:RisetimeSystematicTests}	
 	
 	Systematic tests of the cuts were performed to verify the simulation performed adequately and that the cuts behaved as expected.  To do this, cuts of different acceptance were applied to the data set, and an unbinned maximum likelihood fit of the cut data set was performed to measure how the cut affected the different features in the data.  This fit included all x-ray lines (see Table~\ref{tab:XRayLines}) and a background with a flat component and an exponential component.  The fit equation was then:
@@ -349,9 +354,314 @@ Results for the low-energy channel are shown in Figure~\ref{fig:RTSimHighGainRes
 							\label{fig:RTSimHighGainResults}
 						\end{sidewaysfigure}
 
+		\subsubsection{Conclusions}
+		\label{sec:RTBeGeConclusions}
+		
 FixME - Add discussion on Rise-time cuts regarding its interpretation as a fiducial volume cut and the estimate of the mass difference that went along with this.
 
+	\section{Time correlations and systematics}
+	\label{sec:BeGeTimeCorrelations}
 
+	Searching for time dependence of parameters and any possible time correlation of events provides a powerful systematic test of the data.  Small deviations in detector health (e.g.~noise, baseline shifting, etc.) can have a more marked effect on events near threshold.  For example, a change in noise or a shift in baseline could affect the triggering efficiency, modifying the collection probability for events near threshold.  Additionally, searching for time correlations provides a metric for ensuring that data collection is behaving appropriately and as expected.  In addition to tracking detector health parameters, it is important to analyze event rates and times between events to look for any deviation from Poisson statistics.  Such a deviation could arise from environmental changes or events.  For example, nearby work in the experimental hall generating additional vibration could increase microphonics events, or an introduction of a hot source in the shared lab space could increase count rates.  Finally, it is possible to perform tests in combined energy-time space looking to see if classes of events (e.g.~events in a certain energy range) have correlations \emph{outside} their class region.  An obvious example of this is a decay chain, in which an initial energy deposition from a parent is correlated in time with another event at different energies from the decay of the daughter.  Whereas these types of correlations between decay chains should show up in the data, the discovery of other correlations of unknown origin could point to a potential source of event contamination.  
+	
+		\subsection{Detector health versus time}
+		\label{sec:BeGeParsVsTime}
+
+	
+		\subsection{Rates in energy regions}
+		\label{sec:BeGeRate}	
+		
+		Several tests can be performed to analyze the Poisson nature of the data: (1) event rate in an energy region; (2) time difference between events in an energy region; and (3) forward and backward time difference between events occurring in an energy region and \emph{any} other events.  All of these tests should be made with different cuts applied (see Section~\ref{sec:BeGeCuts} for a description of the cuts) since an analysis cut may preferentially remove a portion or an entire population of correlated events.  Therefore, for these tests several cuts were used including the minimal cut (LN fill cut), Microphonics cuts and Rise-time cuts of varying acceptances.  To perform all these tests, events were selected in particular energy regions: $0.45\to0.55$ keV, $0.5\to1$ keV, $1\to2$ keV, $3\to8$ keV, and $10\to10.76$ keV.  The first two regions were to test around and just above threshold, the next two to provide test regions not significantly populated with $\epsilon$ decays, and the final as a test region symmetric around the Ge K-capture x-ray (10.367~keV).
+		
+	During LN fills, all events are vetoed and this could, in principal, generate a significant distortion to any calculated poisson rates.  However, since the amount of time vetoed during an LN fill is small compared to the measurement time this has little effect on the results.  This can be seen by considering that the probability that one or more events will happen in a certain time period, $\tau$, is $1 - \exp(-\lambda_{\tau})$, where $\lambda_{\tau}$ is the average count rate over that time period.  If we consider that the time vetoed during an LN fill is $\sim15$~minutes, and these fills happen once every two days, the expected number of times one or more events occurs during the roughly 160 day run period is $\sim80 (1 - \exp(-\lambda_{\tau}) )$.  Additionally, the percentage of events affected (events affected/events expected) is given by $\frac{1}{192 \lambda}\left(1 - \exp(-\lambda)\right)$.  The total rate for any of this regions is less than 1 count per 15 minutes, meaning that the percentage of events affected is less than 0.5\%.  Since all other cuts (microphonics and rise-time cuts) should have no time dependence, it is expected that rates calculated from data with these cuts applied should be slower, but still Poisson in nature.  
+	
+	The first test involves analyzing the event rates in a given energy window.  The data was windowed in 8-hour bins and the number of counts in the different energy regions was calculated for each of these 8 hours.  Any 8-hour time periods with less than 100\% live-time (i.e.~8 hour runs during which an LN fill occurred) were removed from the data set.  The number-of-counts-seen was histogrammed and fit with a Poisson distribution to extract the rate.  Examples of these fits are shown in	Figure~\ref{fig:BeGeRateFits} and a summary of the fits, including extracted rate and goodness-of-fit, is given in Table~\ref{tab:BeGeFitRates}.  These results indicate that the regions selected behave as expected, demonstrating count rates that follow Poisson distributions.  Additionally, as expected the count rates reduced with the introduction of cuts while retaining a Poisson shape.  
+	
+			\begin{table}
+				\centering
+				\begin{tabular}{r@{$~\to~$}l| r@{$~\pm~$}l | c | c | c} 
+					\multicolumn{2}{c|}{Range (keV)} & \multicolumn{2}{c|}{$\lambda$ (cts / hr)} & $\chi^2$ & NDF & P-Value \\
+					\hline
+					\multicolumn{7}{l}{LN} \\
+					\hline					
+					0.45 & 0.55 & 0.046 & 0.004 & 6.08296 & 2 & 0.0477643 \\
+					0.5 & 1 & 0.158 & 0.006 & 2.73425 & 5 & 0.740876 \\
+					1 & 2 & 0.262 & 0.010 & 4.34057 & 7 & 0.73982 \\
+					3 & 8 & 0.373 & 0.010 & 4.94593 & 9 & 0.838996 \\
+					10 & 10.76 & 0.609 & 0.016 & 15.5406 & 12 & 0.213196 \\
+					\hline
+					\multicolumn{7}{l}{LN + Microphonics} \\
+					\hline
+					0.45 & 0.55 & 0.041 & 0.004 & 1.78836 & 2 & 0.408943 \\
+					0.5 & 1 & 0.143 & 0.006 & 3.82657 & 5 & 0.574646 \\
+					1 & 2 & 0.204 & 0.008 & 1.40094 & 6 & 0.965801 \\
+					3 & 8 & 0.341 & 0.010 & 7.37705 & 8 & 0.496551 \\
+					10 & 10.76 & 0.563 & 0.016 & 14.9226 & 11 & 0.186068 \\
+					\hline					
+					\multicolumn{7}{l}{LN + Microphonics + 99\% Rise-time cuts} \\
+					\hline
+					0.45 & 0.55 & 0.038 & 0.004 & 2.57558 & 2 & 0.27588 \\
+					0.5 & 1 & 0.124 & 0.006 & 6.25875 & 5 & 0.281849 \\
+					1 & 2 & 0.139 & 0.006 & 3.6481 & 5 & 0.601106 \\
+					3 & 8 & 0.221 & 0.008 & 2.73918 & 6 & 0.840798 \\
+					10 & 10.76 & 0.544 & 0.015 & 15.0561 & 11 & 0.179943 \\
+					\hline
+				\end{tabular}
+				\caption[Count rates in 8-hour time periods for selected energy ranges]
+				{Count rates in 8-hour time periods for selected energy ranges.  Results from data with LN, LN+microphonics, and LN+microphonics+99\% 
+				rise-time cut are included.  $\lambda$ is normalized to counts per hour.  The P-Value is the probability of observing this $\chi^{2}$ value or greater
+				given the numbers-of-degrees-of-freedom (NDF).}
+				\label{tab:BeGeFitRates}
+			\end{table}
+
+			\begin{sidewaysfigure}
+				\centering
+				\def\figwidth{0.3\textheight}
+				\def\plotname{LN_Poisson_Region}
+				\subfigure[$0.45\to0.55$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_0.45_0.55}
+					\label{fig:\plotname45to55}
+				}			
+				\subfigure[$0.5\to1$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_0.5_1}
+					\label{fig:\plotname5to1}
+				}
+				\subfigure[$1\to2$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_1_2}
+					\label{fig:\plotname1to2}
+				}								
+				\subfigure[$3\to8$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_3_8}
+					\label{fig:\plotname3to8}
+				}
+				\subfigure[$10\to20.76$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_10_10.76}
+					\label{fig:\plotname10to1076}
+				}								
+				\caption[Fits to count rates in 8-hour time periods for selected energy ranges]
+				{An example of fits to count rates in 8-hour time periods for selected energy ranges.  LN cuts were applied to the data.}
+				\label{fig:BeGeRateFits}
+			\end{sidewaysfigure}
+
+	The time between adjacent events was calculated for events in selected energy regions.  The differences were then binned and the result fit to an exponential to extract the decay parameter, $\lambda$, which is equivalent to the parameter extracted in the previous test.  Because of this, analyzing the time-difference is essentially equivalent to the analyzing the event rate, but it can have different sensitivities since it is not confined to a particular time range.  In particular, the previous test is not sensitive to correlations beyond 8 hours, whereas a time-difference test is not limited to a specific time range.  Results of this test are presented as before, with examples of fits to LN-cut data given in Figure~\ref{fig:BeGeExpFits} and extracted parameters given in Table~\ref{tab:BeGeFitExp}.  It is clear that the P-value of the fit for $10 \to 10.76$~keV region is low, or rather close to one of the bounds (0 or 1) and, in contrast to the other regions, does not significantly change as one would expect with the application of different cuts.  No corrections for LN fills have been introduced for these tests because doing so would require assuming an underlying Poisson distribution.  However, since the count rate in the \gersixeight ~region is higher than in the other regions, it is possible that this has distorted the distribution enough to increase the $\chi^{2}$.  Despite this, all the rate values calculated using this method are consistent with the rates calculated using the previous method, lending confidence to the conclusion that the count rates are behaving as Poisson variables.
+
+			\begin{table}
+				\centering
+				\begin{tabular}{r@{$~\to~$}l  r@{$~\pm~$}l   c  c  c} 
+					\multicolumn{2}{c}{Range (keV)} & \multicolumn{2}{c}{$\lambda$ (cts)} & $\chi^2$ & NDF & P-Value \\
+					\hline
+					\multicolumn{7}{l}{LN} \\
+					\hline
+					0.45 & 0.55 & 0.061 & 0.008 & 23.9883 & 27 & 0.630963 \\
+					0.5 & 1 & 0.172 & 0.007 & 22.3103 & 16 & 0.133452 \\
+					1 & 2 & 0.266 & 0.009 & 5.42462 & 13 & 0.964619 \\
+					3 & 8 & 0.380 & 0.010 & 13.4823 & 15 & 0.5651 \\
+					10 & 10.76 & 0.638 & 0.016 & 24.603 & 12 & 0.0168202 \\
+					\hline
+					\multicolumn{7}{l}{LN + Microphonics} \\
+					\hline
+					0.45 & 0.55 & 0.049 & 0.008 & 20.021 & 27 & 0.829872 \\
+					0.5 & 1 & 0.152 & 0.007 & 15.6124 & 18 & 0.61958 \\
+					1 & 2 & 0.207 & 0.008 & 7.90211 & 13 & 0.849919 \\
+					3 & 8 & 0.353 & 0.010 & 12.2548 & 19 & 0.874449 \\
+					10 & 10.76 & 0.593 & 0.015 & 24.9871 & 13 & 0.0231737 \\
+					\hline
+					\multicolumn{7}{l}{LN + Microphonics + 99\% Rise-time cuts} \\
+					\hline
+					0.45 & 0.55 & 0.045 & 0.009 & 23.0667 & 26 & 0.62917 \\
+					0.5 & 1 & 0.133 & 0.007 & 14.4484 & 19 & 0.756952 \\
+					1 & 2 & 0.139 & 0.008 & 16.5919 & 16 & 0.412466 \\
+					3 & 8 & 0.231 & 0.010 & 12.3232 & 20 & 0.904504 \\
+					10 & 10.76 & 0.577 & 0.015 & 27.4457 & 14 & 0.0168382 \\
+					\hline
+				\end{tabular}
+				\caption[Results of fits to time differences between events in selected energy ranges]
+				{Results of fits to time differences between events in selected energy ranges.  Results from data with LN, LN+microphonics, and LN+microphonics+99\% 
+				rise-time cut are included.  $\lambda$ is measured in counts per \emph{hour}, in contrast to results in Table~\ref{tab:BeGeFitRates}. 
+				The P-Value is the probability of observing this $\chi^{2}$ value or greater given the NDF.}
+				\label{tab:BeGeFitExp}
+			\end{table}
+
+			\begin{sidewaysfigure}
+				\centering
+				\def\figwidth{0.3\textheight}
+				\def\plotname{LNExponential}
+				\subfigure[$0.45\to0.55$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_0.45_0.55}
+					\label{fig:\plotname45to55}
+				}			
+				\subfigure[$0.5\to1$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_0.5_1}
+					\label{fig:\plotname5to1}
+				}
+				\subfigure[$1\to2$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_1_2}
+					\label{fig:\plotname1to2}
+				}								
+				\subfigure[$3\to8$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_3_8}
+					\label{fig:\plotname3to8}
+				}
+				\subfigure[$10\to20.76$~keV]{
+					\includegraphics[width=\figwidth]{\plotname_10_10.76}
+					\label{fig:\plotname10to1076}
+				}									
+				
+				\caption[Fits to time differences between events in selected energy ranges]
+				{An example of fits to time differences between events in selected energy ranges.  LN cuts were applied to the data.}
+				\label{fig:BeGeExpFits}
+			\end{sidewaysfigure}
+			
+	The final test described in this section involves selecting events in a given energy region and calculating the time differences to the events at \emph{any} energy (below 14~keV) both immediately previous and immediately following.  These time differences are then binned and fit to an exponential to extract the rate.  The purpose of this test is to search for correlations between events occurring in the selected region and any other events, looking for any possible `memory' either forwards or backwards in time.  In other words, the rates calculated for both forward and backward events and for different energy regions should all be consistent and the calculated rate should be the average data rate given a set of cuts.  
+	
+	Also, by applying it to data with different cuts, it is possible to test the gross efficiency of these cuts since it is essentially a measurement of the count rate.  For example, the rate calculated for data with 70\% rise-time cut applied should be $0.7/0.99\times$ the rate calculated for a 99\% rise-time cut, assuming that the majority of background from slow pulses has been removed.  Results from this test are show in Figure~\ref{fig:BeGeForBack}.  The line in the figure is an expectation of the calculated rate value, determined by taking the average, $\rho$, of the forward and backward rates for the $2\to8$~keV region for the 99\% rise-time-cut data and extrapolating to the lower efficiencies.  That is, the values at other rise-time efficiencies,  $\epsilon$, are calculated by $\frac{\epsilon}{0.99}\rho$.  The results indicate that the forward and backward rates are consistent amongst the three regions tested and that the reduction in rate follows the correct trend.  The scatter of the rate measured for the $0.5\to1$~keV is higher due to the fewer triggers seen in this region.
+	
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\textwidth]{BeforeAndAfterEvents}
+				\caption[Rates calculated from the time difference between events in selected regions]
+				{Rates calculated from the time difference between events in selected regions and events outside that region.  The rates were calculated both forward
+				in time (squares) and backwards in time (triangles) for different cut types.  The line drawn is an estimate of the expected efficiency of the rise-time cuts, 
+				see text for details.}
+				\label{fig:BeGeForBack}
+			\end{figure}	
+			
+			\begin{table} \scriptsize
+				\centering
+				\renewcommand{\arraystretch}{0.75}
+				\begin{tabular}{l  c  c  c  r@{$~\pm~$}l  c  c  c } 
+					Cut & Range (keV) & Triggers & Direction & \multicolumn{2}{c}{Rate (cts/hr)} & $\chi^2$ & NDF & P-value  \\
+					\hline
+				\multirow{6}{*}{Risetime 50\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{166}	& B & -1.10 & 0.10 & 4.77 & 7 & 0.689\\
+					& & & F & -0.98 & 0.09 & 2.81 & 7 & 0.902\\
+				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{651}	& B & -1.03 & 0.05 & 19.10 & 18 & 0.386\\
+					& & & F & -0.98 & 0.04 & 13.48 & 20 & 0.856\\
+				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1158}	& B & -1.07 & 0.03 & 39.84 & 45 & 0.690\\
+					& & & F & -1.07 & 0.03 & 26.00 & 39 & 0.945\\
+				\hline
+				
+				\multirow{6}{*}{Risetime 60\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{205}	& B & -1.20 & 0.10 & 7.52 & 6 & 0.275\\
+					& & & F & -1.06 & 0.09 & 2.80 & 7 & 0.902\\
+				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{711}	& B & -1.20 & 0.05 & 23.24 & 18 & 0.182\\
+					& & & F & -1.15 & 0.05 & 30.70 & 19 & 0.044\\
+				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1292}	& B & -1.13 & 0.03 & 28.50 & 39 & 0.892\\
+					& & & F & -1.18 & 0.04 & 19.85 & 36 & 0.987\\
+				\hline
+				
+				\multirow{6}{*}{Risetime 70\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{242}	& B & -1.30 & 0.10 & 7.04 & 6 & 0.317\\
+					& & & F & -1.17 & 0.09 & 3.23 & 7 & 0.863\\
+				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{769}	& B & -1.32 & 0.05 & 14.98 & 17 & 0.597\\
+					& & & F & -1.24 & 0.05 & 24.93 & 18 & 0.127\\
+				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1482}	& B & -1.28 & 0.03 & 31.32 & 36 & 0.691\\
+					& & & F & -1.31 & 0.04 & 28.13 & 36 & 0.823\\
+				\hline
+				
+				\multirow{6}{*}{Risetime 80\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{293}	& B & -1.31 & 0.10 & 3.56 & 5 & 0.615\\
+					& & & F & -1.29 & 0.09 & 4.38 & 8 & 0.821\\
+				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{824}	& B & -1.43 & 0.05 & 11.13 & 15 & 0.744\\
+					& & & F & -1.38 & 0.06 & 22.71 & 16 & 0.122\\
+				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1628}	& B & -1.42 & 0.04 & 37.31 & 34 & 0.319\\
+					& & & F & -1.44 & 0.04 & 26.58 & 34 & 0.814\\
+				\hline
+				
+				\multirow{6}{*}{Risetime 90\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{350}	& B & -1.54 & 0.10 & 1.89 & 4 & 0.756\\
+					& & & F & -1.46 & 0.09 & 4.15 & 7 & 0.762\\
+				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{884}	& B & -1.60 & 0.06 & 9.95 & 15 & 0.823\\
+					& & & F & -1.52 & 0.06 & 27.90 & 15 & 0.022\\
+				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1779}	& B & -1.54 & 0.04 & 33.90 & 32 & 0.376\\
+					& & & F & -1.59 & 0.04 & 24.89 & 30 & 0.730\\
+				\hline
+				
+				\multirow{6}{*}{Risetime 95\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{402}	& B & -1.69 & 0.09 & 2.74 & 4 & 0.602\\
+					& & & F & -1.56 & 0.09 & 3.80 & 6 & 0.704\\
+				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{914}	& B & -1.70 & 0.06 & 10.25 & 14 & 0.744\\
+					& & & F & -1.62 & 0.07 & 30.54 & 15 & 0.010\\
+				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1872}	& B & -1.62 & 0.04 & 28.90 & 32 & 0.624\\
+					& & & F & -1.69 & 0.04 & 23.45 & 27 & 0.661\\
+				\hline
+				
+				\multirow{6}{*}{Risetime 99\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{457}	& B & -1.94 & 0.10 & 5.89 & 4 & 0.207\\
+					& & & F & -1.69 & 0.09 & 1.94 & 5 & 0.858\\
+				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{976}	& B & -1.84 & 0.06 & 11.25 & 13 & 0.590\\
+					& & & F & -1.77 & 0.07 & 24.01 & 14 & 0.046\\
+				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1982}	& B & -1.74 & 0.04 & 24.28 & 28 & 0.666\\
+					& & & F & -1.90 & 0.05 & 32.06 & 27 & 0.230\\
+				\hline
+				
+				\multirow{6}{*}{LN + micro}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{526}	& B & -2.37 & 0.11 & 8.35 & 4 & 0.080\\
+					& & & F & -2.11 & 0.10 & 1.92 & 4 & 0.751\\
+				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{1564}	& B & -2.10 & 0.06 & 11.87 & 11 & 0.374\\
+					& & & F & -2.13 & 0.06 & 23.39 & 10 & 0.009\\
+				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{2054}	& B & -2.14 & 0.05 & 26.70 & 24 & 0.319\\
+					& & & F & -2.29 & 0.05 & 29.52 & 22 & 0.131\\
+				\hline
+				
+					\hline
+				\end{tabular}
+
+
+				\caption[Results of fits to time differences for events in selected energy ranges with different cuts]
+				{Results of fits to time differences between events in selected energy ranges with different cuts.  
+				The P-Value is the probability of observing this $\chi^{2}$ value or greater given the NDF.}
+				\label{tab:BeGeForBackTable}			
+			\end{table}
+
+		\subsection{Time-energy correlations}
+		\label{sec:BeGeTimeEnergyCor}
+
+	Two-dimensional energy-time correlations were calculated by analyzing a time window around events occurring in a selected region.  As before, a set of events were selected within an energy range to be used as `trigger' events.  Given the time of a trigger event as a reference point, a two-dimensional energy vs.~time histogram was generated for all events occurring within a time window forwards and backwards around the reference.  The 2-d histograms for each trigger were then added together, producing a final intensity plot.  Any strong correlation between events in energy-time space should show up as having significant intensity in these figures.  The data used for this analysis had only LN fill cuts applied to avoid removing correlating events from the data set.
+	
+	To give an example of how this calculation works, the time-energy correlation between the \gersixeight~and \galsixeight~decays was analyzed.  The details of this decay chain are discussed in Section~\ref{sec:Ge68ProdPPC}, but a summary of the relevant points is given:  \gersixeight~internal to the crystal decays to \galsixeight, depositing 10.36~keV of energy $\sim90\%$ of the time via x-rays and Auger electrons.  \galsixeight~has a 68~minute half-life and decays via electron-capture $\sim10$\% of the time; 90\% of these decays are K-line captures and deposit 9.7~keV into the crystal.  We can therefore look for a time correlation by choosing the trigger region $10\to10.76$~keV and looking forwards and backward in time around the 9.7~keV decay region of \galsixeight~\cite{Schonfeld1994955}.  Results for 2211~triggers are shown in Figure~\ref{fig:BeGeGeCorrelation} where the intensity of the daughter decay is clear between 0 and 2~hours post trigger.  The rough expected count rate for the Ga K-capture decay is about $0.09\times2211 \sim 200$ which agrees with the results of the plot.  
+	
+
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\textwidth]{GeCorrelationHighEnergy4}
+				\caption[Time-energy correlation triggering on \gersixeight~decays.]
+				{Time-energy correlation triggering on \gersixeight~decays (2211~triggers), z-axis is in counts.  The region intensity centered at 9.7~keV between 0 and 2~hours post trigger arises from the K-capture decay of the 
+				\galsixeight~daughter.}
+				\label{fig:BeGeGeCorrelation}
+			\end{figure}	
+
+	This analysis was applied to other trigger regions, including a region against threshold, $0.5\to1$~keV (, and away from cosmogenic peaks, $2\to6$~keV.  The results are presented in Figure~\ref{fig:BeGeTimeEnergyCor} for an energy window from 0.5 to 8~keV, avoiding higher energies where the count rates from the \znsixfive~and \gersixeight~dominate the intensities.  The only apparent features in these plots are intensities at around 1.3~keV which correspond to random coincidences with the \gersixeight~L-capture decay.  It is possible to integrate these 2-dimensional histograms along the time axis, producing an average energy spectrum around a trigger in the designated region.  By dividing by the number of triggers and the time of integration, one can compare the spectra from different trigger regions to identify any particular discrepancies.  This was done for all three regions presented in this section, integrating over $\pm12$~hours for the lower energy regions and $\pm3$~hours for the \gersixeight~K-capture region.  The results of this integration are shown in Figure~\ref{fig:BeGeIntegratedTimeEnergyCor}.  All of the trigger regions are consistent, except that the $10\to10.76$~keV trigger region demonstrates an enhancement in the \galsixeight~K-capture line.  This is to be expected since the average rate of the Ga decay should be higher centered on a trigger from the parent decay.
+
+			\begin{figure}
+				\centering
+				\def\figwidth{0.44\textwidth}
+				\def\plotname{CorrelationHighEnergy}	
+				\subfigure[$0.5\to1$~keV]{
+					\includegraphics[width=\figwidth]{NearTrigger\plotname2}
+					\label{fig:\plotname5to1}
+				}							
+				\subfigure[$2\to6$~keV]{
+					\includegraphics[width=\figwidth]{Test\plotname1}
+					\label{fig:\plotname2to6}
+				}			
+				
+				\caption[Time-energy correlations in selected regions.]
+				{Time-energy correlations in selected regions with 575 triggers in the $0.5\to1$~keV region, 1200 in $2\to6$~keV.  The z-axis is in counts}
+				\label{fig:BeGeTimeEnergyCor}
+			\end{figure}
+	
+	
+			\begin{figure}
+				\centering
+				\def\figwidth{0.44\textwidth}
+				\def\plotname{EnergyProjection0}	
+				\subfigure[Low energy]{
+					\includegraphics[width=\figwidth]{Low\plotname}
+					\label{fig:Low\plotname}
+				}							
+				\subfigure[High energy]{
+					\includegraphics[width=\figwidth]{High\plotname}
+					\label{fig:High\plotname}
+				}			
+				
+				\caption[Average energy spectra around triggers in selected energy regions.]
+				{Average energy spectra around triggers in selected energy regions.  The $0.5\to1$ and $2\to6$~keV regions were integrated $\pm12$~hours around a trigger, the $10\to10.76$~keV region
+				$\pm3$~hours.  As expected, there is a slight enhancement in the \galsixeight~K-capture peak for triggers in the \gersixeight~region.}
+				\label{fig:BeGeIntegratedTimeEnergyCor}
+			\end{figure}	
 	\section{Low-energy features}
 	\label{sec:BeGeLowEnergyFeatures}
 	
