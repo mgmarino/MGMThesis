@@ -171,11 +171,41 @@ Describe the baseline versus energy and the features we see in the data set.
 		\subsection{Electronics cuts}
 		\label{sec:BeGeElecCuts}
 	
-	The class of cuts intended to remove events coming from spurious electronic events which were distinctly not signal events.  Only two electronics cuts were applied: the first to remove events arising from uncaught reset events in the preamp and negative-going pulses, the second to remove noise pulses that arrived during a particular interval of the run time.  
+	The class of cuts intended to remove events coming from spurious electronic events which were distinctly not signal events.  Only two electronics cuts were applied: the first to remove events arising from uncaught reset events in the preamp and negative-going pulses, the second to remove noise pulses that arrived during a particular interval of the run time between 15 February 2010 and 15 March 2010.  
 	
-	The first cut removed events with a minimum in the shape channel below a certain voltage value chosen to be -0.02~V.  The population of events excluded by this cut included uncaught reset pulse events, negative-going events, and large energy depositions resulting in significant undershoot on the baseline.  Most of these events also saturated the digitizer positively, but many of the negative-going events did not.  A full explanation for these events was not determined though it is likely that they arise from breakdowns 
-	Detail - baseline cut, negative going pulse cut, ad-hoc cut to remove pulses that were perhaps microphonics?  
+	The first cut removed events with a minimum in the shape channel below a certain voltage value chosen to be -0.02~V.  The population of events excluded by this cut included uncaught reset pulse events, negative-going events, and large energy depositions resulting in significant undershoot on the baseline.  Most of these events also saturated the digitizer positively, but many of the negative-going events did not.  A full explanation for these events was not determined though it is possible that they arise from breakdowns 
 	
+	While running tests analyzing the rates of events in different energy regions (see Section~\ref{sec:BeGeRate}), a class of events of unknown origin was found that occurred only during a sub-interval of the run time from 15 February 2010 until 15 March 2010.  These events were distinctive from true events, but were problematic because they populated the spectrum near threshold around 0.5~keV.   An example of such a pulse is given in Figure~\ref{fig:OddPulseExample}.  There were distinguishable by comparing the difference between the extrema (maximum - minimum) of the unshaped waveforms.  A plot of this parameter versus energy is given in Figure~\ref{fig:OddPulseCut} where the dashed line denotes the region of parameter space populated by these pulses.  
+	
+	To study the origin of the pulses, a rate analysis similar to that performed in Section~\ref{sec:BeGeRate} was applied to the subset of events.  The time between these events was histogrammed and fit to an exponential; the results are included in Figure~\ref{fig:OddPulseRate}.  This revealed that the events arrived not with a defined frequency, but rather in a Poisson fashion with a rate estimated from the fit as $2.97 \pm 0.1$ counts/hour.  This can be compared to the normal rate for this energy region $0.5\to1$~keV of $\sim0.124$ counts/hour (see Section~\ref{sec:BeGeRate}).  The detector was removed from high voltage during a power-down period of Soudan Lab (15 March -- 19 March 2010) and when bias was reapplied the noise pulses were no longer present.  It is not known what specifically changed during this period of time, though it is not expected that these pulses arose from any breakdown of the crystal.  Instead, the structure of the pulse suggests an induced signal possibly coming from a noise source capacitively-coupled to the signal lines.  This class of events was entirely removed using the discriminating line in Figure~\ref{fig:OddPulseCut}.
+	
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.8\textwidth]{ExampleOddPulse}
+				\caption[Example of noise pulse of unknown origin]
+				{Example of noise pulse of unknown origin.  Energy specified is the energy this event is decoded as, indicating that these events can populate
+				 near threshold.}
+				\label{fig:OddPulseExample}
+			\end{figure}	
+
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.8\textwidth]{Channel_5_Max_-_Min__V__vs_}
+				\caption[Difference in unshaped waveform extrema versus energy]
+				{Difference in unshaped waveform extrema (maximum - minimum) versus energy.  The dashed line is an indication of the cut used to exclude the 
+				noise events removing all events within the selected region. }
+				\label{fig:OddPulseCut}
+			\end{figure}
+
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.8\textwidth]{odd_pulsesExponential_0.4_1}
+				\caption[Time between noises pulses]
+				{Time between noises pulses, the line is a fit to an exponential.  The events at longer time intervals are `contaminations' from true events arriving at a
+				much slower rate.}
+				\label{fig:OddPulseRate}
+			\end{figure}
+				
 		\subsection{Risetime cuts}
 	     	\label{sec:RisetimeCuts}	
 
