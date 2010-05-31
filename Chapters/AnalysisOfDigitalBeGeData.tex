@@ -121,32 +121,61 @@ Energy calibration at low energies is complicated due to several factors.  In pa
 			\]  
 
 with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.  These results were applied to both the low- and high-energy channels.  
+
+		\subsection{Baseline versus energy}
+		\label{sec:BeGeBaseline}
+
+Describe the baseline versus energy and the features we see in the data set.
+
+
 	\section{Data cleaning and cuts}
 	\label{sec:BeGeCuts}	
+	
+	Several cuts were employed to clean the data, removing spurious events from electronics noise or microphonics.  Additionally, other cuts were employed to remove events with slow rise-time.  This section discusses the implementation and results of \emph{all} cuts performed on the data set.  
+	
+		\subsection{Microphonics and Noise Cuts}
+	     	\label{sec:MicroCuts}	
+	
+	Vibrations in detector components, such as the cryostat, cold-finger, or crystal mount, can induce electronic signals due to the changing capacitance created by the movement of components.  These electronic deviations can generate extra noise at low energies (threshold to a few keV) possibly obscuring signal in that region.  During LN filling of the dewar, it is possible to generate a significant amount of microphonics noise from vibration caused by the influx of new liquid nitrogen.  Therefore, during these filling procedures, a flag was set in the data to enable later removal of events occurring during a fill.  This flag was then lowered 5~minutes after the fill completed, resulting in a veto time of $\sim$15~minutes.  
+		
+	For microphonics induced from other sources, another cut was made.  Morales et al.~developed a technique to mitigate this class of events, taking advantage of the fact that microphonics tend to have characteristics (e.g.~rise-time, fall-time, baseline shift) significantly different from events arising from charge collection in the crystal~\cite{Morales1992410}.  This procedure analyzes the ratio of amplitudes from two signal channels with different shaping times  and accepts or rejects events based upon their deviation from the expected ratio.  This expectation can be determined by using a source or a pulser at low amplitudes and in a setup where the amplification of the two shaped channels is nearly equivalent the expectation value of the ratio is close to 1.  
+	
+	In this application, a pulser was used to train the microphonics cut by taking high-statistics pulser runs at several discrete amplitudes near the threshold.  At these discrete amplitudes, the ratios of the two channels were histogrammed and fit to a gaussian.  The cut points were then determined by taking the values $\mu \pm 3 \sigma$ to accept 99.7\% of the events.  Since these cut points were estimated at discrete amplitudes, a 4th-order polynomial was fit to them to interpolate between the points.  The results of this are shown in Figure~\ref{fig:RatioOfShapedChannels}.  To avoid errors from the interpolation, the cut was softened forcing the upper limit to be no less than 1, and the lower limit to be no less than 0.8.  The final cut is then shown in Figure~\ref{fig:RatioOfShapedChannelsFinal} which shows an overlay of the calculated cut on data from a scanned pulser run (Figure~\ref{fig:RatioScannedPulser} and from the run data (Figure~\ref{fig:RatioData}).  Interesting to note is how the run data and the scanned pulser data follow a different distribution at energies above 1~keV, in particular that the scanned pulser data is centered around a ratio of 0.9 and the run data is centered at a lower value.  This suggests that the difference between a pulser and an actual crystal event become more significant at these energies.
+
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.8\textwidth]{Pulser_cut6}
+				\caption[Calculation of microphonics cuts]
+				{Calculation of microphonics cuts using the ratio of outputs from two different spectroscopy amplifiers with an input pulser at discrete amplitudes.  Line is 
+				an estimate of the cut, see text for details.}
+				\label{fig:RatioOfShapedChannels}
+			\end{figure}
+
+			\begin{figure}
+				\centering
+				\subfigure[Scanned pulser run]{
+					\includegraphics[width=0.46\textheight]{pulser_scan_with_cuts1}
+					\label{fig:RatioScannedPulser}						
+				}												
+				\subfigure[Data]{
+					\includegraphics[width=0.46\textheight]{Ratio_of_amplitudes__Chan_0_Chan_1__vs_Energy__keV_}
+					\label{fig:RatioData}						
+				}				
+				\caption[Microphonics cuts on data and scanned pulser runs]
+				{Ratio of two shaped channels versus energy for a scanned pulser run and for run data.  The drawn line is the cut at 99.7\% efficiency, calculated using
+				high-statistics pulser runs.}
+				\label{fig:RatioOfShapedChannelsFinal}
+			\end{figure}
+	
 	
 		\subsection{Electronics cuts}
 		\label{sec:BeGeElecCuts}
 	
+	The class of cuts intended to remove events coming from spurious electronic events which were distinctly not signal events.  Only two electronics cuts were applied: the first to remove events arising from uncaught reset events in the preamp and negative-going pulses, the second to remove noise pulses that arrived during a particular interval of the run time.  
+	
+	The first cut removed events with a minimum in the shape channel below a certain voltage value chosen to be -0.02~V.  The population of events excluded by this cut included uncaught reset pulse events, negative-going events, and large energy depositions resulting in significant undershoot on the baseline.  Most of these events also saturated the digitizer positively, but many of the negative-going events did not.  A full explanation for these events was not determined though it is likely that they arise from breakdowns 
 	Detail - baseline cut, negative going pulse cut, ad-hoc cut to remove pulses that were perhaps microphonics?  
 	
-		\subsection{Microphonics and Noise Cuts}
-	     	\label{sec:MicroCuts}	
-
-FixME - Explain microphonics cuts, fleshing out the details of exactly what is done here, and how the efficiencies are estimated.  
-
-	Vibrations in detector components, such as the cryostat, cold-finger, or crystal mount, can induce electronic signals due to the changing capacitance created by the movement of components.  These electronic deviations can generate extra noise at low energies (threshold to a few keV) possibly obscuring signal in that region.  Morales et al.~developed a technique to mitigate this class of events, taking advantage of the fact that microphonics tend to have characteristics (e.g.~rise-time, fall-time, baseline shift) significantly different from events arising from charge collection in the crystal~\cite{Morales1992410}.  This procedure analyzes the ratio of amplitudes from two signal channels with different shaping times  and accepts or rejects events based upon their deviation from the expected ratio.  This expectation can be determined by using a source or a pulser at low amplitudes.  
-	
-	In this application, the ratio of two 
-
-			\begin{figure}
-				\centering
-				%\includegraphics[width=0.9\textwidth]{PPC2DesignSchematicAll}
-				\caption[BeGe microphonics cuts]
-				{Microphonics cuts using the ratio of outputs from two different spectroscopy amplifiers.}
-				\label{fig:RatioOfShapedChannels}
-			\end{figure}
-
-
 		\subsection{Risetime cuts}
 	     	\label{sec:RisetimeCuts}	
 
@@ -367,6 +396,34 @@ FixME - Add discussion on Rise-time cuts regarding its interpretation as a fiduc
 		\subsection{Detector health versus time}
 		\label{sec:BeGeParsVsTime}
 
+	In contrast to the previous data run with PPC2, fewer parameters were tracked during the lifetime of the experiment (see Section~\ref{sec:PPC2DetParsVsTime}).  In particular, due to limited channels in the DAQ electronics the trigger efficiency was not monitored with automated tests nor was the rate of the reset electronics recorded.  In general, both these parameters are important to catalogue since they could affect the signal region near threshold.  However, due to the strong correlation of the reset rate on  the measured baseline in unshaped pulses seen in the results of Section~\ref{sec:PPC2DetParsVsTime},  this suggested that the baseline could be used as a proxy to ensure that the reset rate did not change significantly.  Similarly, it was possible to monitor the noise by using the measured RMS of the baseline to determine whether it changed significantly over time.  
+	
+	The baseline of two channels was tracked, channel 1 (shaped) and channel 5 (unshaped preamp trace).  For every day of run-time, the calculated baselines were binned and fit to a gaussian.  As discussed before in Section~\ref{sec:BeGeBaseline}, the binned baseline data included outliers in one direction which were attributed to having come from the return of the baseline to its nominal value following a reset event in the preamplifier.  Since these outliers were a low percentage of the total events, only one gaussian was fit to the binned baseline data.  From these fits, the mean and $\sigma$ values were extracted and the relationship of these parameters versus time are plotted in Figure~\ref{fig:BeGeBaselineData}.  An inspection of the results reveals that the $\sigma$ values from both unshaped and shaped channels were insensitive to variation.  In contrast, the mean value of the baseline in the unshaped channel demonstrates variation, but this is not mirrored exactly in the mean of the baseline calculated from the shaped channel.  This is likely due to baseline restoration electronics in the spectroscopy amplifier which render the baseline of the output less sensitive to baseline modulation of the input.  Regardless, it is evident that the noise of the baseline does not change significantly in either the shaped or unshaped channels over the time range of the experiment.  This suggests that the trigger efficiency and electronic noise remained similarly unchanged throughout the time of the experiment.  
+
+			\begin{sidewaysfigure}
+				\centering
+				\def\figwidth{0.45\textheight}
+				\newcommand{\plotname}[2]{Baseline#1haped#2}			
+				\subfigure[Unshaped channel, mean]{
+					\includegraphics[width=\figwidth]{\plotname{Un}{Mean}}
+					\label{fig:\plotname{Un}{Mean}}
+				}				
+				\subfigure[Unshaped channel, $\sigma$]{
+					\includegraphics[width=\figwidth]{\plotname{Un}{Sigma}}
+					\label{fig:\plotname{Un}{Sigma}}
+				}
+				\subfigure[Shaped channel, mean]{
+					\includegraphics[width=\figwidth]{\plotname{S}{Mean0}}
+					\label{fig:\plotname{S}{Mean}}
+				}				
+				\subfigure[Shaped channel, $\sigma$]{
+					\includegraphics[width=\figwidth]{\plotname{S}{Sigma0}}
+					\label{fig:\plotname{S}{Sigma}}
+				}		
+				\caption[Baseline mean and $\sigma$ versus time]
+				{Baseline mean and $\sigma$ versus run time for both shaped and unshaped preamp traces.}
+				\label{fig:BeGeBaselineData}
+			\end{sidewaysfigure}
 	
 		\subsection{Rates in energy regions}
 		\label{sec:BeGeRate}	
@@ -662,6 +719,10 @@ FixME - Add discussion on Rise-time cuts regarding its interpretation as a fiduc
 				$\pm3$~hours.  As expected, there is a slight enhancement in the \galsixeight~K-capture peak for triggers in the \gersixeight~region.}
 				\label{fig:BeGeIntegratedTimeEnergyCor}
 			\end{figure}	
+			
+		\subsection{Conclusions}
+		\label{sec:BeGeTimeConclusions}			
+		
 	\section{Low-energy features}
 	\label{sec:BeGeLowEnergyFeatures}
 	
