@@ -100,11 +100,11 @@ The inherent noise was measured using a pulser as well as x-ray lines.  The resu
 				\label{eqn:SigmaEqn}
 			\end{equation}
 
-to measure the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fano factor $F$.  $E$ is the energy in keV, $\eta$ the amount of energy required to generate an electron-hole pair (2.96 eV).  $\sigma_{elec}$ was found to be $70.48\pm0.54$~eV and $F$ was estimated as $0.166\pm0.014$.  Results are shown in Figure~\ref{fig:BeGeResPlot}.
+to measure the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fano factor $F$.  $E$ is the energy in keV, $\eta$ the amount of energy required to generate an electron-hole pair (2.96 eV).  $\sigma_{elec}$ was found to be $70.48\pm0.54$~eV and $F$ was estimated as $0.241\pm0.013$.  Results are shown in Figure~\ref{fig:BeGeResPlot}.
 
 			\begin{figure}
 				\centering
-				%\includegraphics[width=0.8\textwidth]{Figures/resolution_plot1}
+				\includegraphics[width=0.8\textwidth]{resolution_plot}
 				\caption[BeGe resolution versus energy]
 				{BeGe resolution versus energy.  Red is measured and fit intrinsic electronic noise, 
 				black points are measured resolution from x-ray lines, black line is a fit to 
@@ -175,7 +175,7 @@ Describe the baseline versus energy and the features we see in the data set.  Ma
 	
 	The first cut removed events with a minimum in the shape channel below a certain voltage value chosen to be -0.02~V.  The population of events excluded by this cut included uncaught reset pulse events, negative-going events, and large energy depositions resulting in significant undershoot on the baseline.  Most of these events also saturated the digitizer positively, but many of the negative-going events did not.  A full explanation for these events was not determined though it is possible that they arise from breakdowns 
 	
-	While running tests analyzing the rates of events in different energy regions (see Section~\ref{sec:BeGeRate}), a class of events of unknown origin was found that occurred only during a sub-interval of the run time from 15 February 2010 until 15 March 2010.  These events were distinctive from true events, but were problematic because they populated the spectrum near threshold around 0.5~keV.   An example of such a pulse is given in Figure~\ref{fig:OddPulseExample}.  There were distinguishable by comparing the difference between the extrema (maximum - minimum) of the unshaped waveforms.  A plot of this parameter versus energy is given in Figure~\ref{fig:OddPulseCut} where the dashed line denotes the region of parameter space populated by these pulses.  
+	While running tests analyzing the rates of events in different energy regions (see Section~\ref{sec:BeGeRate}), a class of events of unknown origin was found that occurred only during a sub-interval of the run time from 15 February 2010 until 15 March 2010.  These events were distinctive from true events, but were problematic because they populated the spectrum near threshold around 0.5~keV.   An example of such a pulse is given in Figure~\ref{fig:OddPulseExample}.  These were distinguishable by comparing the difference between the extrema (maximum - minimum) of the unshaped waveforms.  A plot of this parameter versus energy is given in Figure~\ref{fig:OddPulseCut} where the dashed line denotes the region of parameter space populated by these pulses.  
 	
 	To study the origin of the pulses, a rate analysis similar to that performed in Section~\ref{sec:BeGeRate} was applied to the subset of events.  The time between these events was histogrammed and fit to an exponential; the results are included in Figure~\ref{fig:OddPulseRate}.  This revealed that the events arrived not with a defined frequency, but rather in a Poisson fashion with a rate estimated from the fit as $2.97 \pm 0.1$ counts/hour.  This can be compared to the normal rate for this energy region $0.5\to1$~keV of $\sim0.124$ counts/hour (see Section~\ref{sec:BeGeRate}).  The detector was removed from high voltage during a power-down period of Soudan Lab (15 March -- 19 March 2010) and when bias was reapplied the noise pulses were no longer present.  It is not known what specifically changed during this period of time, though it is not expected that these pulses arose from any breakdown of the crystal.  Instead, the structure of the pulse suggests an induced signal possibly coming from a noise source capacitively-coupled to the signal lines.  This class of events was entirely removed using the discriminating line in Figure~\ref{fig:OddPulseCut}.
 	
@@ -209,7 +209,7 @@ Describe the baseline versus energy and the features we see in the data set.  Ma
 		\subsection{Risetime cuts}
 	     	\label{sec:RisetimeCuts}	
 
-	Pulses of slow rise-time were found during the deployment of PPC2 (see Section~\ref{sec:DeploymentPPC2SoudanAnalysisRisetime}).  These pulses were predominately at low energy near threshold which meant that they could compose a possible background to any signal in this region.  This section studies the methods developed to measure the rise-times at low signal-to-noise ratios against threshold and explores systematics related to a cut on this quantity.  Additionally, the likely origin of these pulses and future tests for for further exploration are discussed. 
+	Pulses of slow rise-time were found during the deployment of PPC2 (see Section~\ref{sec:DeploymentPPC2SoudanAnalysisRisetime}).  These pulses were predominately at low energy near threshold which meant that they could compose a possible background to any signal in this region.  This section studies the methods developed to measure the rise-times at low signal-to-noise ratios against threshold and explores systematics related to a cut on this quantity.  Additionally, the likely origin of these pulses and possible tests for further exploration are discussed. 
 	
 			\subsubsection{Wavelet denoising}
 		     	\label{sec:RisetimeCutsWaveletDenoise}
@@ -302,7 +302,12 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 	
 				\begin{figure}
 					\centering
-					%\includegraphics[width=0.9\textwidth]{risetime_cut_chan5_nice}
+					\subfigure[High-gain channel] {
+						\includegraphics[width=0.9\textwidth]{lowrisetime}
+					}
+					\subfigure[Low-gain channel] {
+						\includegraphics[width=0.9\textwidth]{highrisetime}
+					}
 					\caption[Measured rise-time versus energy with a calculated rise-time cut of 99\% acceptance]
 					{Measured rise-time versus energy.  The line is a calculated rise-time cut of 99\% acceptance, removing events that fall above the line.}
 					\label{fig:RisetimeDataVsCut}
@@ -348,23 +353,17 @@ Fits were performed for both high-energy and low-energy channels, an example of 
 	
 					\begin{table}
 					\centering
-						\begin{tabular}{l|r}
+						\begin{tabular}{l r}
+							\toprule
 							Isotope & Energy \\
-							\hline
-							\hline
+							\midrule
 							$^{65}$Zn L-capture & 1.1~keV \\
-							\hline
 							$^{68,71}$Ge L-capture & 1.299~keV \\
-							\hline
 							$^{65}$Zn K-capture & 8.979~keV \\
-							\hline
 							$^{68,71}$Ga K-capture & 9.659~keV \\
-							\hline
 							$^{68,71}$Ge K-capture & 10.367~keV \\
-							\hline
 							$^{73,74}$As K-capture & 11.103~keV \\
-							\hline
-							\hline
+							\bottomrule
 						\end{tabular}	
 						\caption[Summary of prominent x-ray lines in the BeGe data set]
 						{Summary of prominent x-ray lines in the data set.}
@@ -402,25 +401,26 @@ The results for the low-gain channel are given in Figure~\ref{fig:RTSimLowGainRe
 						
 						\begin{sidewaystable}
 							\centering
+							\footnotesize
 							\begin{tabular}{l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  }
-								\toprule 
-								& \multicolumn{14}{c}{Components (counts)} \\
-								\cmidrule[1pt]{2-14} 
-								Cut & \multicolumn{2}{c}{$^{65}$Zn (8.98 keV)} & \multicolumn{2}{c}{$^{68}$Ga (9.66 keV)} & \multicolumn{2}{c}{$^{68}$Ge (10.37 keV)} & \multicolumn{2}{c}{$^{73}$As (11.1 keV)} & \multicolumn{2}{c}{Erf bkgd} & \multicolumn{2}{c}{Exp bkgd} & \multicolumn{2}{c}{Flat bkgd}  \\
-								\midrule
-							        	 Risetime 20\% & 517.2 & 45.4 & 517.2 & 45.4 & 517.2 & 45.4 & 517.2 & 45.4 & 517.2 & 45.4 & 517.2 & 45.4 & 517.2 & 45.4  \\
-								 Risetime 30\% & 559.9 & 47.8 & 559.9 & 47.8 & 559.9 & 47.8 & 559.9 & 47.8 & 559.9 & 47.8 & 559.9 & 47.8 & 559.9 & 47.8  \\
-								 Risetime 40\% & 609.1 & 50.1 & 609.1 & 50.1 & 609.1 & 50.1 & 609.1 & 50.1 & 609.1 & 50.1 & 609.1 & 50.1 & 609.1 & 50.1  \\
-								 Risetime 50\% & 634.5 & 50.9 & 634.5 & 50.9 & 634.5 & 50.9 & 634.5 & 50.9 & 634.5 & 50.9 & 634.5 & 50.9 & 634.5 & 50.9  \\
-								 Risetime 60\% & 667.3 & 51.9 & 667.3 & 51.9 & 667.3 & 51.9 & 667.3 & 51.9 & 667.3 & 51.9 & 667.3 & 51.9 & 667.3 & 51.9  \\
-								 Risetime 70\% & 670.8 & 52.7 & 670.8 & 52.7 & 670.8 & 52.7 & 670.8 & 52.7 & 670.8 & 52.7 & 670.8 & 52.7 & 670.8 & 52.7  \\
-								 Risetime 80\% & 701.7 & 54.0 & 701.7 & 54.0 & 701.7 & 54.0 & 701.7 & 54.0 & 701.7 & 54.0 & 701.7 & 54.0 & 701.7 & 54.0  \\
-								 Risetime 90\% & 715.2 & 56.1 & 715.2 & 56.1 & 715.2 & 56.1 & 715.2 & 56.1 & 715.2 & 56.1 & 715.2 & 56.1 & 715.2 & 56.1  \\
-								 Risetime 95\% & 726.4 & 55.9 & 726.4 & 55.9 & 726.4 & 55.9 & 726.4 & 55.9 & 726.4 & 55.9 & 726.4 & 55.9 & 726.4 & 55.9  \\
-								 Risetime 99\% & 737.0 & 57.7 & 737.0 & 57.7 & 737.0 & 57.7 & 737.0 & 57.7 & 737.0 & 57.7 & 737.0 & 57.7 & 737.0 & 57.7  \\
-								 LN + micro & 1139.9 & 71.8 & 1139.9 & 71.8 & 1139.9 & 71.8 & 1139.9 & 71.8 & 1139.9 & 71.8 & 1139.9 & 71.8 & 1139.9 & 71.8  \\
-								 
-								\bottomrule
+							\toprule 
+							& \multicolumn{14}{c}{Components (counts)} \\
+							\cmidrule[1pt]{2-14} 
+							Cut & \multicolumn{2}{c}{$^{65}$Zn (8.98 keV)} & \multicolumn{2}{c}{$^{68}$Ga (9.66 keV)} & \multicolumn{2}{c}{$^{68}$Ge (10.37 keV)} & \multicolumn{2}{c}{$^{73}$As (11.1 keV)} & \multicolumn{2}{c}{Erf bkgd} & \multicolumn{2}{c}{Exp bkgd} & \multicolumn{2}{c}{Flat bkgd}  \\
+							\midrule
+						        	 Risetime 20\% & 266.6 & 17.9 & 52.7 & 8.8 & 681.2 & 26.7 & 30.4 & 6.9 & 303.0 & 43.3 & 30.5 & 11.7 & 517.2 & 45.4  \\
+								 Risetime 30\% & 347.5 & 20.3 & 82.1 & 10.7 & 829.6 & 29.5 & 37.8 & 7.7 & 420.9 & 46.7 & 63.5 & 14.2 & 559.9 & 47.8  \\
+								 Risetime 40\% & 415.2 & 22.1 & 89.9 & 11.3 & 977.4 & 32.0 & 43.2 & 8.3 & 505.5 & 49.4 & 101.3 & 16.6 & 609.1 & 50.1  \\
+								 Risetime 50\% & 468.0 & 23.3 & 102.9 & 12.0 & 1103.4 & 33.9 & 47.0 & 8.5 & 569.5 & 51.0 & 134.4 & 19.1 & 634.5 & 50.9  \\
+								 Risetime 60\% & 540.2 & 25.0 & 114.5 & 12.6 & 1232.8 & 35.8 & 53.5 & 8.8 & 636.9 & 52.7 & 172.2 & 21.0 & 667.3 & 51.9  \\
+								 Risetime 70\% & 586.4 & 26.0 & 125.5 & 13.1 & 1418.6 & 38.4 & 58.5 & 9.5 & 723.8 & 54.1 & 208.4 & 22.6 & 670.8 & 52.7  \\
+								 Risetime 80\% & 668.5 & 27.7 & 140.0 & 13.8 & 1559.8 & 40.2 & 64.0 & 9.9 & 790.8 & 55.7 & 255.3 & 24.2 & 701.7 & 54.0  \\
+								 Risetime 90\% & 701.0 & 28.4 & 153.3 & 14.4 & 1706.5 & 42.1 & 73.0 & 10.9 & 873.9 & 58.0 & 324.6 & 27.6 & 715.2 & 56.1  \\
+								 Risetime 95\% & 727.5 & 28.9 & 162.0 & 14.8 & 1797.0 & 43.1 & 73.8 & 10.8 & 913.8 & 58.5 & 389.5 & 30.0 & 726.4 & 55.9  \\
+								 Risetime 99\% & 751.9 & 29.4 & 168.3 & 15.1 & 1903.3 & 44.4 & 79.7 & 11.6 & 993.8 & 61.0 & 475.4 & 34.6 & 737.0 & 57.7  \\
+								 LN + micro & 749.1 & 30.3 & 170.0 & 15.9 & 1933.7 & 45.1 & 87.5 & 13.2 & 1446.4 & 84.6 & 814.7 & 57.1 & 1139.9 & 71.8  \\
+							 
+							\bottomrule
 							\end{tabular}
 							\caption[Behavior of fit components after cuts for low-gain BeGe channel]
 							{Behavior of fit components after cuts for low-gain channel.  Components are given in total counts.}
@@ -457,23 +457,23 @@ Results for the low-energy channel are shown in Figure~\ref{fig:RTSimHighGainRes
 								\toprule 
 								& \multicolumn{8}{c}{Components (counts)} \\
 								\cmidrule[1pt]{2-8} 
-								Cut & \multicolumn{2}{c}{$^{65}$Zn (1.1 keV)} & \multicolumn{2}{c}{$^{68}$Ge (1.3 keV)} & \multicolumn{2}{c}{Exp bkgd} &
-																 \multicolumn{2}{c}{Flat bkgd}  \\
-										\midrule
-						        	 	Risetime 20\% & 166.7 & 17.6 & 166.7 & 17.6 & 166.7 & 17.6 & 166.7 & 17.6  \\
-								Risetime 30\% & 203.8 & 19.1 & 203.8 & 19.1 & 203.8 & 19.1 & 203.8 & 19.1  \\
-								 Risetime 40\% & 234.6 & 20.5 & 234.6 & 20.5 & 234.6 & 20.5 & 234.6 & 20.5  \\
-								 Risetime 50\% & 264.0 & 21.9 & 264.0 & 21.9 & 264.0 & 21.9 & 264.0 & 21.9  \\
-								 Risetime 60\% & 283.8 & 22.7 & 283.8 & 22.7 & 283.8 & 22.7 & 283.8 & 22.7  \\
-								 Risetime 70\% & 308.7 & 23.8 & 308.7 & 23.8 & 308.7 & 23.8 & 308.7 & 23.8  \\
-								 Risetime 80\% & 337.5 & 24.5 & 337.5 & 24.5 & 337.5 & 24.5 & 337.5 & 24.5  \\
-								 Risetime 90\% & 367.7 & 26.1 & 367.7 & 26.1 & 367.7 & 26.1 & 367.7 & 26.1  \\
-								 Risetime 95\% & 379.0 & 26.7 & 379.0 & 26.7 & 379.0 & 26.7 & 379.0 & 26.7  \\
-								 Risetime 99\% & 419.4 & 29.6 & 419.4 & 29.6 & 419.4 & 29.6 & 419.4 & 29.6  \\
-								 LN + micro & 777.4 & 63.8 & 777.4 & 63.8 & 777.4 & 63.8 & 777.4 & 63.8  \\
+								Cut & \multicolumn{2}{c}{$^{65}$Zn (1.1 keV)} & \multicolumn{2}{c}{$^{68}$Ge (1.3 keV)} & \multicolumn{2}{c}{Exp bkgd} & \multicolumn{2}{c}{Flat bkgd}  \\
+								\midrule
+							        	 Risetime 20\% & 18.4 & 7.7 & 21.2 & 7.4 & 70.3 & 21.9 & 138.1 & 22.0  \\
+									 Risetime 30\% & 34.7 & 9.8 & 42.8 & 9.3 & 67.7 & 17.1 & 203.8 & 19.1  \\
+									 Risetime 40\% & 45.4 & 11.0 & 70.7 & 11.1 & 103.3 & 19.1 & 234.6 & 20.5  \\
+									 Risetime 50\% & 47.4 & 11.9 & 104.1 & 12.9 & 132.4 & 21.5 & 264.0 & 22.0  \\
+									 Risetime 60\% & 47.8 & 12.5 & 133.5 & 14.3 & 170.8 & 23.2 & 283.8 & 22.7  \\
+									 Risetime 70\% & 63.9 & 13.8 & 157.3 & 15.4 & 205.1 & 25.0 & 308.6 & 23.8  \\
+									 Risetime 80\% & 75.5 & 14.7 & 174.3 & 16.2 & 249.6 & 26.2 & 337.5 & 24.5  \\
+									 Risetime 90\% & 80.2 & 15.8 & 187.2 & 17.1 & 315.0 & 29.5 & 367.7 & 26.1  \\
+									 Risetime 95\% & 78.2 & 16.2 & 201.0 & 17.7 & 377.7 & 31.7 & 379.1 & 26.7  \\
+									 Risetime 99\% & 81.9 & 17.2 & 205.3 & 18.4 & 450.4 & 36.5 & 419.4 & 29.6  \\
+									 LN + micro & 80.5 & 19.4 & 206.5 & 21.2 & 568.9 & 74.7 & 777.2 & 63.9  \\
 								 
 								\bottomrule
 							\end{tabular}
+
 							\caption[Behavior of fit components after cuts for high-gain BeGe channel]
 							{Behavior of fit components after cuts for high-gain channel.  Components are given in total counts.}
 							\label{tab:RTHighGainResults}
@@ -490,9 +490,9 @@ Another measurement performed using a separate, similar PPC detector~\cite{BarbT
 
 Whereas it is likely that a component of these slow-pulses is arising from charge deposition near the crystal outer contact, it is important to determine other possible sources of these events.  For example, surface channel effects, i.e.~distortion of crystal fields through charge collection on the passivated surface, might produce similar results.  One could use the extreme sensitivity of the surface channel to temperature detailed in~\cite{Hull1995488} to determine if the population of slow-rise-time events changes with temperature.  Additionally, characterization measurements using a low-energy gamma source must be performed for several other PPC detectors to determine how sensitive the distribution of slow-rise-time events is to manufacturing and geometry differences.  
 
-Whatever the origin of these slow-pulse events, it is clear that they can produce a background to low-energy signals.  If the majority of these slow pulses arise from energy deposition near the outer surface, a cut on rise-time would effectively generate a cut on the fiducial volume and mass of the detector.  Understanding the active fiducial volume of the detector is critical for experiments sensitive to mass exposure times, such as those searching for $\nonubb$ or dark matter.  Even though $\qval$ is around 2~MeV, the decay is internal to the detector and energy is deposited by two electrons summing to $\qval$.  The range of these electrons is on the order of 1~mm, so it is expected that this could still have an effect on $\nonubb$ results.  
+Whatever the origin of these slow-pulse events, it is clear that they can produce a background to low-energy signals.  If the majority of these slow pulses arise from energy deposition near the outer surface, a cut on rise-time would effectively generate a cut on the fiducial volume and mass of the detector.  Understanding the active fiducial volume of the detector is critical for experiments sensitive to mass exposure times, such as those searching for $\nonubb$ or dark matter.  Even though $\qval$ is around 2~MeV, the decay is internal to the detector and energy is deposited by two electrons summing to $\qval$.  The range of electrons at this energy is on the order of 1~mm, so it is expected that this could still have an effect on $\nonubb$ results.  
 
-For this analysis and for the purpose of generating exclusion plots, we assume that rise-time events 
+For this analysis and for the purpose of estimating the mass of the detector, we assume that either all or a significant majority of slow-rise-time events are coming from energy deposition near the surface.  Therefore, a rise-time cut will effect a fiducial volume cut.  We can estimate the fiducial mass by using the results of these rise-time systematic tests described earlier.  In particular, if we assume a majority of the events in the 
 
 	\section{Time correlations and systematics}
 	\label{sec:BeGeTimeCorrelations}
@@ -542,11 +542,12 @@ For this analysis and for the purpose of generating exclusion plots, we assume t
 	
 			\begin{table}
 				\centering
-				\begin{tabular}{r@{$~\to~$}l| r@{$~\pm~$}l | c | c | c} 
-					\multicolumn{2}{c|}{Range (keV)} & \multicolumn{2}{c|}{$\lambda$ (cts / hr)} & $\chi^2$ & NDF & P-Value \\
-					\hline
+				\begin{tabular}{r@{$~\to~$}l r@{$~\pm~$}l  c  c  c} 
+					\toprule 				
+					\multicolumn{2}{c}{Range (keV)} & \multicolumn{2}{c}{$\lambda$ (cts / hr)} & $\chi^2$ & NDF & P-Value \\
+					\midrule
 					\multicolumn{7}{l}{LN} \\
-					\hline					
+					\midrule
 					0.45 & 0.55 & 0.046 & 0.004 & 6.08296 & 2 & 0.0477643 \\
 					0.5 & 1 & 0.158 & 0.006 & 2.73425 & 5 & 0.740876 \\
 					1 & 2 & 0.262 & 0.010 & 4.34057 & 7 & 0.73982 \\
@@ -568,7 +569,7 @@ For this analysis and for the purpose of generating exclusion plots, we assume t
 					1 & 2 & 0.139 & 0.006 & 3.6481 & 5 & 0.601106 \\
 					3 & 8 & 0.221 & 0.008 & 2.73918 & 6 & 0.840798 \\
 					10 & 10.76 & 0.544 & 0.015 & 15.0561 & 11 & 0.179943 \\
-					\hline
+					\bottomrule
 				\end{tabular}
 				\caption[Count rates in 8-hour time periods for selected energy ranges]
 				{Count rates in 8-hour time periods for selected energy ranges.  Results from data with LN, LN+microphonics, and LN+microphonics+99\% 
@@ -765,7 +766,8 @@ For this analysis and for the purpose of generating exclusion plots, we assume t
 
 				\caption[Results of fits to time differences for events in selected energy ranges with different cuts]
 				{Results of fits to time differences between events in selected energy ranges with different cuts.  
-				The P-Value is the probability of observing this $\chi^{2}$ value or greater given the NDF.}
+				The P-Value is the probability of observing this $\chi^{2}$ value or greater given the NDF. `B' and `F' correspond to backwards
+				and forwards time differences, respectively.}
 				\label{tab:BeGeForBackTable}			
 			\end{table}
 
