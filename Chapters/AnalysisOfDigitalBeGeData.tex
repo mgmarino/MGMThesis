@@ -3,9 +3,25 @@
 	\section{Experimental setup}
 	\label{sec:BeGeExperimentalSetup}
 
-A custom 440~g PPC \textbf{B}road-\textbf{E}nergy \textbf{G}ermanium (BEGe) detector manufactured by Canberra Industries was deployed underground on 24~August~2009 in the Soudan Underground Laboratory in Soudan, MN.  The purpose of the deployment of this detector was to obtain low-threshold, low-background counting data to seek improved limits on WIMPs in the low-mass range ($\lesssim10$~GeV).  The design of this detector included several modifications to address backgrounds seen with a previous PPC used to obtain dark matter limits~\cite{Aalseth:2008aa}, including several internal mounting components replaced by ones constructed with cleaner materials by J.~Collar at the University of Chicago.  
+A custom 440~g PPC \textbf{B}road-\textbf{E}nergy \textbf{G}ermanium (BEGe) detector manufactured by Canberra Industries was deployed underground on 24~August~2009 in the Soudan Underground Laboratory in Soudan, MN.  The purpose of the deployment of this detector was to obtain low-threshold, low-background counting data to seek improved limits on WIMPs in the low-mass range ($\lesssim10$~GeV).  The design of this detector included several modifications to address backgrounds seen with a previous PPC used to obtain dark matter limits~\cite{Aalseth:2008aa}, including several internal mounting components replaced by ones constructed with cleaner materials by J.~Collar at the University of Chicago.  A summary of relevant geometrical aspects of the detector is provided in Table~\ref{tab:BEGeCharacteristics}.
 % Additionally, the outer cryostat was not made of typical aluminum but rather of copper.  True?
 The detector was placed in the same shield as described in Section~\ref{sec:DeploymentPPC2SoudanIntro} with a few small changes.  The inner OFHC copper shield was replaced by old Pb bricks from the University of Chicago and a different PMT-based muon veto was placed around the external borated polyethylene shield.   %FixME contamination of bricks?
+
+			\begin{table}
+				\centering
+				\begin{tabular}{l r}
+					\toprule
+					Property & Value \\
+					\midrule
+					Mass & 440 g \\
+					Outer diameter &  \\
+					Length &  \\
+					\bottomrule
+				\end{tabular}
+				\caption[BEGe detector characteristics]
+				{BEGe detector characteristics.  }
+				\label{tab:BEGeCharacteristics}
+			\end{table}
 
 This chapter presents results from data taken with the BeGE detector underground from the time period beginning 4 December 2009 until 15 May 2010 for a total live-time of 150.6~days.  During this time, there were two main gaps in run time, including a roughly 5-day shutdown period during a planned power outage at the lab and another 6-day period during which parameter settings for the DAQ were modified.  Results from a analysis of a previous subset of the data occupying about 2 months of live-time have been presented in~\cite{Aalseth:2010aa}.
 
@@ -20,23 +36,17 @@ The muon veto was composed of 10~flat panels situated around the outside of the 
 
 	\begin{table}
 		\centering
-		\begin{tabular}{|l|c|}
-			\hline
+		\begin{tabular}{l c}
+			\toprule
 			Channel & Characteristics \\
-			\hline
-			\hline
+			\midrule
 			0 & High-gain (0-3.5~keV), 6$\mu$s shaping \\
-			\hline
 			1 & High-gain (0-3.5~keV), 10$\mu$s shaping, triggering \\
-			\hline
 			2 & Low-gain (0-14~keV), 10$\mu$s shaping \\
-			\hline
 			3 & Muon-veto \\
-			\hline
 			4 & High-gain, AC-coupled preamp trace (unshaped) \\
-			\hline
 			5 & Low-gain, AC-coupled preamp trace (unshaped) \\
-			\hline
+			\bottomrule
 		\end{tabular}
 		\caption[DAQ Channel readout characteristics]
 		{DAQ Channel readout characteristics. }
@@ -72,6 +82,47 @@ The muon-veto channel digitized the logic output from a muon veto.  To process t
 	\section{Data analysis}
 	\label{sec:BeGeDataAnalysis}
 	
+	The results of several key measurements were used throughout the analysis process, in particular energy calibration, the resolution of the detector versus energy, and the efficiency of the trigger.  Additionally, the fitting of the energy spectrum was key to the extraction of several parameters of interest.  These results and procedures are detailed in the coming section and referred to throughout the remainder of the chapter.
+	
+		\subsection{Fitting energy spectra}
+		\label{sec:BeGeSpecFit}	
+
+	Many of the analysis results required fitting the energy spectrum of the data to measure a particular parameter or set of values.  To accomplish this, the RooFit toolkit~\cite{ver03aa} was used to develop a general PDF which could be consistently used.  The RooFit toolkit has the advantage of allowing the creation of general PDFs which may be fit to data using both binned and unbinned maximum likelihood fits, or by the minimization of the $\chi^{2}$ function.  However, all the spectral fitting was performed using either binned or unbinned maximum likelihood.  The general PDF for the data was constructed:
+	
+			\begin{equation}
+				b_{1} \exp\left(c_{1} E\right) + b_{2} + \frac{b_{3}}{2}\operatorname{erfc}\left( \frac{E - \mu_{Ge}}{\sqrt{2} \sigma_{Ge}}\right) + 
+					\sum^{xrays}_{i} \frac{a_{i}}{\sigma_{i}\sqrt{2 \pi}} 
+					\exp\left(-\frac{(E - \mu_{i})^{2}}{2 \sigma_{i}^{2}}\right)
+				\label{eqn:InitialFitEqn}
+			\end{equation}
+
+where $b_{1}$, $b_{2}$ and $b_{3}$are the exponential, flat, and low-energy (erf) flat background amplitudes respectively, $c_{1}$ is the exponential constant and the sum is over the xray lines present in the fit (see Table~\ref{tab:XRayLines} for a list).  The amplitudes of all components ($a_{i}$, $b_{1}$, $b_{2}$, $b_{3}$) and the exponential constant were allowed to float independently.  This equation does not explicitly include normalization terms, but each component was appropriately automatically normalized by RooFit so that the amplitudes corresponded to counts present in each component.  The parameters ($\mu_{i}$ and $\sigma_{i}$) of the x-ray lines were allowed to float in a small range around their expected values.   
+
+The error function parameterizes the `plateau' below the Ge K-capture peak present in the data due to partial charge collection as indicated by previous results~\cite{BarbThesis}.  To summarize, another measurement using a PPC watched  the decay of \gersevenone~(11.4~day half-life) focused on three main regions: the Ge K-capture line (10.367~keV), the Ge L-capture line (1.3~keV), and the flat region in between ($2\to6$~keV).  The results found that the decay of count rate in the flat region matched the decays of count rates in the L- and K-capture regions, suggesting partial energy deposition from the \gersevenone~decay below 10.367~keV.  In general, sets of these error functions should be included for each prominent x-ray line, but since the Ge K-capture line dominates, only one error function centered on the Ge K-capture line was included.  The parameters for the error function, $\mu_{Ge}$ and $\sigma_{Ge}$, were defined as 10.367~keV and 0.1~keV, respectively.  
+
+The exponential function was included in the fit function because the data exhibited a general exponential shape.  Essentially, this shape parameterizes the measurement of counts near threshold.  A discussion of the origin of this shape in the data follows in Section~\ref{sec:BeGeLowEnergyFeatures}.  
+
+Since some applications of this PDF would not require a fit over the entire entire range, the function was updated appropriately, adding or removing components as necessary.  Additionally, the state of a variable could fluctuate, for example, by either being set to constant or allowed to float over a wider range than normal.  Any deviations from the prescription outline here used in a particular analysis will be noted.  
+
+			\begin{table}
+			\centering
+				\begin{tabular}{l r}
+					\toprule
+					Isotope & Energy \\
+					\midrule
+					$^{65}$Zn L-capture & 1.1~keV \\
+					$^{68,71}$Ge L-capture & 1.299~keV \\
+					$^{65}$Zn K-capture & 8.979~keV \\
+					$^{68,71}$Ga K-capture & 9.659~keV \\
+					$^{68,71}$Ge K-capture & 10.367~keV \\
+					$^{73,74}$As K-capture & 11.103~keV \\
+					\bottomrule
+				\end{tabular}	
+				\caption[Summary of prominent x-ray lines in the BeGe data set]
+				{Summary of prominent x-ray lines in the data set.}
+				\label{tab:XRayLines}
+			\end{table}	
+	
 		\subsection{Triggering efficiency}
 		\label{sec:BeGeTrigEff}
 
@@ -89,38 +140,44 @@ where $V$ is in volts, $s$ is a scaling parameter and $\sigma$ is a position par
 				\label{fig:BeGeTriggeringEfficiency}
 			\end{figure}
 
+		\subsection{Energy calibration}
+
+Energy calibration at low energies is complicated due to several factors.  In particular, low-energy x-ray peaks ($<10$~keV) from any source will be heavily attenuated by the source itself as well as materials between the source and the crystal, including the outer cryostat, mounting components, and the crystal dead layer.  Higher energy x-rays have a larger probability to interact in the crystal, but these are unsuitable for calibration because of their distance from the signal region which, in the case of dark matter, is close to threshold.  However, internal cosmogenic isotopes provide excellent candidates for calibration since there are several with characteristic lines near or below 11~keV.  Therefore, the energy calibration was determined by fitting the high-energy channel simultaneously to the peaks listed in Table~\ref{tab:XRayLines} yielding a linear equation:
+
+			\[
+			E_{ion} (keV) = a V + b
+			\]  
+
+with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.  These results were applied to both the low- and high-energy channels.  An example of a fit spectrum is given later in the section in Figure~\ref{fig:ExampleFitSpectrum}.
+
 		\subsection{Resolution of results}
 
-FixME - Flesh out measurement of widths of gaussians
-
-The inherent noise was measured using a pulser as well as x-ray lines.  The results of these measurements were folded into the following equation:
+The resolution of the detector was determined by measuring the intrinsic electronic noise using a pulser and by measuring the widths of x-ray lines.  These widths are measured by performing a simultaneous fit to prominent x-ray lines.  The fitting function is a combination of gaussians for each x-ray line, a flat background component, and a second `plateau' background component below the x-ray lines parameterized by an error function.  The fitting function is equivalent to Equation~\ref{eqn:InitialFitEqn} described later in Section~\ref{sec:RisetimeSystematicTests}.  The fit is shown in Figure~\ref{fig:BeGeResFit}.  
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.8\textwidth]{FitResolutionPlot}
+				\caption[Estimate of BEGe resolution]
+				{Fit to estimate the resolution of the BEGe, including gaussian fits to prominent lines listed in Table~\ref{tab:XRayLines}.}
+				\label{fig:BeGeResFit}
+			\end{figure}
+The results of these measurements were folded into the following equation:
 
 			\begin{equation}
 				\sigma = \sqrt{\sigma_{elec}^{2} + E \eta F}
 				\label{eqn:SigmaEqn}
 			\end{equation}
 
-to measure the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fano factor $F$.  $E$ is the energy in keV, $\eta$ the amount of energy required to generate an electron-hole pair (2.96 eV).  $\sigma_{elec}$ was found to be $70.48\pm0.54$~eV and $F$ was estimated as $0.241\pm0.013$.  Results are shown in Figure~\ref{fig:BeGeResPlot}.
+to determine the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fano factor $F$.  $E$ is the energy in keV, $\eta$ the amount of energy required to generate an electron-hole pair (2.96 eV).  $\sigma_{elec}$ was found to be $70.48\pm0.54$~eV and $F$ was estimated as $0.241\pm0.013$.  Results are shown in Figure~\ref{fig:BeGeResPlot}.  As expected, the electronic noise measured with a pulser is independent of energy.  The scatter of the x-ray measurements is larger than statistically expected, in particular the \znsixfive~and \galsixeight~exhibit $\sigma$s well away from the best-fit line.  This is most likely due to insufficient bit depth of the digitizer and that this resolution is not properly included in the error bars.  As describe earlier, the low-gain channel has an intrinsic resolution of 1.95~mV/ADC, or $\sim125$~eV/ADC.  The actual resolution of the measurements estimating the amplitudes of pulses is better due to the fact that many samples are averaged together for that calculation.  However, the main purpose of this equation is to estimate the resolution of the x-ray lines at low-energy, around 1~keV, and it is clear that small deviations to this measurement do not significantly affect results in this region.
 
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.8\textwidth]{resolution_plot}
 				\caption[BeGe resolution versus energy]
-				{BeGe resolution versus energy.  Red is measured and fit intrinsic electronic noise, 
-				black points are measured resolution from x-ray lines, black line is a fit to 
-				Eqn.~\ref{eqn:SigmaEqn}.}
+				{BEGe resolution versus energy.  Red dashed line is measured and fit intrinsic electronic noise, 
+				black points are measured resolution from x-ray lines, black line is a fit to Eqn.~\ref{eqn:SigmaEqn}.}
 				\label{fig:BeGeResPlot}
 			\end{figure}
 
-		\subsection{Energy calibration}
-
-Energy calibration at low energies is complicated due to several factors.  In particular, low-energy x-ray peaks (<10~keV) from any source will be heavily attenuated by the source itself as well as materials between the source and the crystal, including the outer cryostat, mounting components, and the crystal dead layer.  Higher energy x-rays have a larger probability to interact in the crystal, but these are unsuitable for calibration because of their distance from the signal region which, in the case of dark matter, is close to threshold.  However, internal cosmogenic isotopes provide excellent candidates for calibration since there are several with characteristic lines near or below 10~keV.  Therefore, the energy calibration was determined by fitting the high-energy channel simultaneously to the peaks listed in Table~\ref{tab:XRayLines} yielding a linear equation:
-
-			\[
-			E_{ion} (keV) = a V + b
-			\]  
-
-with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.  These results were applied to both the low- and high-energy channels.  
 
 		\subsection{Baseline versus energy}
 		\label{sec:BeGeBaseline}
@@ -290,7 +347,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 						\label{fig:TriggerPositionDependence}.
 					\end{figure}					
 	
-	Once the simulated pulses were generated, they were run through the same analysis chain as the waveforms from the detector, in particular through the rise-time calculation algorithms described earlier in this section.  The amplitude of the pulses was sampled according to the triggering efficiency measured in Section~\ref{sec:BeGeTrigEff}.  Two simulations were run, one for each the high- and low-gain set of channels, for $\sim$5M events.  These results were then used to calculate contours of particular acceptances, 40, 50, 60, 70, 80, 90, 95, and 99\%.  Results of the simulation for the low-gain channel are shown in Figure~\ref{fig:RisetimeSimulation} along with a calculated 99\% acceptance contour.  The acceptance region defined as all waveforms having a calculated rise-time less than or equal to the calculated contour.  
+	Once the simulated pulses were generated, they were run through the same analysis chain as the waveforms from the detector, in particular through the rise-time calculation algorithms described earlier in this section.  The amplitude of the pulses was sampled according to the triggering efficiency measured in Section~\ref{sec:BeGeTrigEff}.  Two simulations were run, one for each the high- and low-gain set of channels, for $\sim$5M events.  These results were then used to calculate contours of particular acceptances, 20, 30, 40, 50, 60, 70, 80, 90, 95, and 99\%.  Results of the simulation for the low-gain channel are shown in Figure~\ref{fig:RisetimeSimulation} along with a calculated 99\% acceptance contour.  The acceptance region defined as all waveforms having a calculated rise-time less than or equal to the calculated contour.  A comparison of the calculated line to data for both high- and low-gain channels appears in Figure~\ref{fig:RisetimeDataVsCut}.  The acceptance lines shown in both of these plots exhibit an increase as the energy nears threshold due to the reduction of the signal-to-noise making it more difficult to measure rise-time.
 					
 				\begin{figure}
 					\centering
@@ -302,11 +359,14 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 	
 				\begin{figure}
 					\centering
+					\def\plotwidth{0.8\textwidth}					
 					\subfigure[High-gain channel] {
-						\includegraphics[width=0.9\textwidth]{lowrisetime}
+						\includegraphics[width=\plotwidth]{lowrisetime}
+						\label{fig:RisetimeDataVsCutHighGain}
 					}
 					\subfigure[Low-gain channel] {
-						\includegraphics[width=0.9\textwidth]{highrisetime}
+						\includegraphics[width=\plotwidth]{highrisetime}
+						\label{fig:RisetimeDataVsCutLowGain}						
 					}
 					\caption[Measured rise-time versus energy with a calculated rise-time cut of 99\% acceptance]
 					{Measured rise-time versus energy.  The line is a calculated rise-time cut of 99\% acceptance, removing events that fall above the line.}
@@ -316,112 +376,103 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 		\subsubsection{Risetime systematic tests}
 		\label{sec:RisetimeSystematicTests}	
 	
-	Systematic tests of the cuts were performed to verify the simulation performed adequately and that the cuts behaved as expected.  To do this, cuts of different acceptance were applied to the data set, and an unbinned maximum likelihood fit of the cut data set was performed to measure how the cut affected the different features in the data.  This fit included all x-ray lines (see Table~\ref{tab:XRayLines}) and a background with a flat component and an exponential component.  The fit equation was then:
-
-					\begin{equation}
-						b_{1} \exp\left(c_{1} E\right) + b_{2} + \frac{b_{3}}{2}\operatorname{erfc}\left( \frac{E - \mu_{Ge}}{\sqrt{2} \sigma_{Ge}}\right) + 
-							\sum^{xrays}_{i} \frac{a_{i}}{\sigma_{i}\sqrt{2 \pi}} 
-							\exp\left(-\frac{(E - \mu_{i})^{2}}{2 \sigma_{i}^{2}}\right)
-						\label{eqn:InitialFitEqn}
-					\end{equation}
-
-where $b_{1}$, $b_{2}$ and $b_{3}$are the exponential, flat, and low-energy (erf) flat background amplitudes respectively, $c_{1}$ is the exponential constant and the sum is over the xray lines present in the fit.  The amplitudes of all components ($a_{i}$, $b_{1}$, $b_{2}$, $b_{3}$) and the exponential constant were allowed to float independently.  This equation does not explicitly include normalization terms, but each component was normalized so that the amplitudes corresponded to counts in for each component.  The parameters ($\mu_{i}$ and $\sigma_{i}$) of the x-ray lines were allowed to float in a small range around their expected values, but the parameters for the error function, $\mu_{Ge}$ and $\sigma_{Ge}$, were defined as 10.367~keV and 0.1~keV, respectively.  The error function parameterizes the `plateau' below the Ge K-capture peak due to partial charge collection.  In general, sets of these error functions should be included for each prominent x-ray line, but since the Ge K-capture line dominates, only one error function centered on the Ge K-capture line was included.
-
-These fits were performed for data sets with the entire set of cuts, including:
+	Systematic tests of the cuts were performed to verify the simulation performed adequately and that the cuts behaved as expected.  To do this, cuts of different acceptance were applied to the data set, and an unbinned extended maximum likelihood fit of the cut data set was performed to measure how the cut affected the different features in the data.  The fit function used in this analysis is described earlier in Section~\ref{sec:BeGeSpecFit}.  These fits were performed for data sets with the entire set of cuts, including:
 
 					\begin{enumerate}
 						\item only LN fills
 						\item LN fills and microphonics cuts
-						\item LN fills, microphonics cuts, and risetime cuts varying between 40\% and 99\%.
+						\item LN fills, microphonics cuts, and risetime cuts varying between 20\% and 99\%.
 					\end{enumerate}
 
-Fits were performed for both high-energy and low-energy channels, an example of a fit for each channel is given in Figure~\ref{fig:BeGeFitExample}.  A calculation of the relative percentage remaining for each component was made using the cut LN-fills-plus-microphonics as a reference.  This calculation gives a metric for determining the validity of each cut; for example, a rise-time cut with a calculated 70\% acceptance efficiency should retain 70\% of the counts in the x-ray lines and remove an unknown but larger percentage of the counts in the background components (flat plus exponential).  Additionally, the extracted fit value for the exponential constant, $c_{1}$, of the background provides a test of the cut model and can act as a probe of the shape of the background distribution.  
+Fits were performed for both low- and high-gain channels, an example of a fit for each channel is given in Figure~\ref{fig:BeGeFitExample}.  A calculation of the relative percentage remaining for each component was made using the cut LN-fills-plus-microphonics as a reference.  This calculation gives a metric for determining the validity of each cut; for example, a rise-time cut with a calculated 70\% acceptance efficiency should retain 70\% of the counts in the x-ray lines and remove an unknown but larger percentage of the counts in the background components (exponential plus two flat components).  To make this simpler to compare to the expected value, the expected efficiency (e.g.~0.7 in the case of a 70\% rise-time acceptance cut) was divided from the relative percentage.  Therefore, the presentation of the results of this section is as follows: for each component of the fit, the quantity (relative percentage)/(expected efficiency) -- denoted as \releff-- is calculated and plotted versus the cut applied to the data.  Additionally, the extracted fit value for the exponential constant, $c_{1}$, of the background provides a test of the cut model and can act as a probe of the shape of the background distribution.  
 	
 					\begin{figure}
 						\centering
+						\def\plotwidth{0.75\textwidth}
 						\subfigure[Low-gain channel] {
-							\includegraphics[width=0.9\textwidth]{HighEnergyFitRun_all_99}					
+							\includegraphics[width=\plotwidth]{HighEnergyFitRun_all_99}					
 						}
 						\subfigure[High-gain channel] {
-							\includegraphics[width=0.9\textwidth]{LowEnergyFitRun_all_99}
+							\includegraphics[width=\plotwidth]{LowEnergyFitRun_all_99}
 						}
 						
 						\caption[Example of fits performed to estimate amount cut by rise-time cuts]
-						{Example of fits performed to estimate amount cut by rise-time cuts.  These data had the 99\% rise-time cut applied.}
+						{Example of fits performed to estimate amount cut by rise-time cuts.  These data had the 99\% rise-time cut applied.  The low-gain channel 
+						plot includes the error function component of the fit, seen as a dashed line below the x-ray lines.}
 						\label{fig:BeGeFitExample}
 					\end{figure}
-	
-					\begin{table}
-					\centering
-						\begin{tabular}{l r}
-							\toprule
-							Isotope & Energy \\
-							\midrule
-							$^{65}$Zn L-capture & 1.1~keV \\
-							$^{68,71}$Ge L-capture & 1.299~keV \\
-							$^{65}$Zn K-capture & 8.979~keV \\
-							$^{68,71}$Ga K-capture & 9.659~keV \\
-							$^{68,71}$Ge K-capture & 10.367~keV \\
-							$^{73,74}$As K-capture & 11.103~keV \\
-							\bottomrule
-						\end{tabular}	
-						\caption[Summary of prominent x-ray lines in the BeGe data set]
-						{Summary of prominent x-ray lines in the data set.}
-						\label{tab:XRayLines}
-					\end{table}
 
 
-					\paragraph{High-energy results}
+					\paragraph{Low-gain channel results}
 
-The results for the low-gain channel are given in Figure~\ref{fig:RTSimLowGainResults}.  The higher-energy x-rays ($>8$~keV) behave well at the higher acceptance percentages ($\ge$90\%), though the agreement becomes worse at lower acceptances as the lines tend to retain a larger percentage of counts than expected.  The lower-energy L-capture lines of \gersixeight~and \znsixfive~follow the general trend, but the wide error bars due to the large covariance of the parameters of these lines makes it difficult to conclude anything more specific.  This large covariance is due to the lack of resolution of the low-gain channel at these low energies, so the high-gain channel is required to test this cut.  The amplitudes of the background components also behave as expected, showing a reduction significantly greater than 99\% for a 99\%-acceptance risetime cut.  The fit exponential constant, $c_{1}$, demonstrates a marked shift when the rise-time cut is initially implemented, but is consistent between the different rise-time cuts (see Figure~\ref{fig:RTLowGainExpConstant}).  This suggests that the calculated acceptance contours are consistent near threshold.  
+The results for the low-gain channel are given in Figure~\ref{fig:RTSimLowGainResults} and in Table~\ref{tab:RTLowGainResults}.  The higher-energy x-rays ($>8$~keV) behave well at the higher acceptance percentages ($\ge$90\%), though the agreement becomes worse at lower acceptances as the lines tend to retain a larger percentage of counts than expected.  This is evident in the figure as the points begin to increase for rise-time cuts of lower efficiency.  The lower-energy L-capture line from \gersixeight~behaves similarly to the higher-energy lines, but it is clear the amplitude of \znsixfive~L-capture line fluctuates significantly.  This is due to the lack of resolution at low energy for this channel, and so the high-gain channel is required to test this cut more precisely.  
+
+The amplitudes of the background components behave generally as expected, showing a reduction significantly greater than 99\% for a 99\%-acceptance risetime cut.  This suggests that slow-pulses comprise a significant portion of the background in the exponential and two flat components.  The slopes of these lines can give us an idea of the relative composition of slow pulse and fast pulse in each component.  For example, if slow pulses are completely removed using the 99\% acceptance cut, then one expects that the quantity \releff~should remain roughly the same for cuts of lower acceptance. This is true for the flat components (`Flat' and `Erfc') for larger acceptance percentages ($\ge90$\%) but the value starts increasing similarly to the results from the high-energy x-ray lines.  This is expected, since the results from the x-ray lines indicate that the cuts retain a larger percentage of events than expected.  However, the two components do not behave consistently at lower rise-time cut acceptances, though this is due to a strong correlation between the error function and flat backgrounds.  For example, for low-acceptance very few events remain in the data set and the error function and flat function become indistinguishable.  Despite this, the fact that the \releff~is statisically equivalent for the two background components at higher rise-time acceptances suggests that the cut behaves correctly there.  % FixME, remake graph?
+
+The exponential background component exhibits the opposite behavior from the flat background components, decreasing as the rise-time acceptance percentage reduces.  This suggests that slow pulses still remain in this region after rise-time cuts are applied.  However, as noted before, the resolution of this channel is insufficient to test this properly and so this must be verified with the high-gain channel.  Finally, the fit exponential constant, $c_{1}$, demonstrates a marked shift when the rise-time cut is initially implemented, but is consistent between the different rise-time cuts (see Figure~\ref{fig:RTLowGainExpConstant}).  This suggests that the calculated acceptance contours are consistent near threshold.  
+
+It is possible that the same mechanism which generates the partial charge collection in the `plateau' discussed in Section~\ref{sec:BeGeSpecFit} is related to or the same as that which gives rise to slow-rise-time pulses.  If this were true, we would expect the rise-time cut to significantly reduce or completely remove the contributions to the background from the error function.  The rise-time cut leaves a remaining contribution in the plateau, but this could also be due to deviations between the fit PDF and the data.  One can clearly see this in Figure~\ref{fig:RTLowGainCompResults} comparing two fits to data with a rise-time cut of 95\% and another set with only microphonics cuts.  The significant deviation from the best-fit line of data in the `plateau' region of the spectrum indicates the presence of unaccounted-for backgrounds, in particular possibly other electron-capture cosmogenic species.  The presence of this background does pull the contribution from the error function up.  
 
 
 						\begin{sidewaysfigure}
 							\centering
-							\subfigure[Exponential Constant, $c_{1}$l]{
-								\includegraphics[width=0.46\textheight]{ExpConstant3}
-								\label{fig:RTLowGainExpConstant}
-							}
 							\subfigure[X-rays]{
-								\includegraphics[width=0.46\textheight]{GammaLines6}
+								\includegraphics[width=0.46\textheight]{GammaLines}
 								\label{fig:RTLowGainXrays}						
 							}
 							\subfigure[Low x-rays]{
-								\includegraphics[width=0.46\textheight]{LowHighGammaLines0}
+								\includegraphics[width=0.46\textheight]{LowHighGammaLines}
 								\label{fig:RTLowGainLowXrays}						
 							}												
 							\subfigure[Background components]{
-								\includegraphics[width=0.46\textheight]{BackgroundComponents6}
+								\includegraphics[width=0.46\textheight]{BackgroundComponents}
 								\label{fig:RTLowGainBkgd}						
-							}														
+							}
+							\subfigure[Exponential Constant, $c_{1}$l]{
+								\includegraphics[width=0.46\textheight]{ExpConstant}
+								\label{fig:RTLowGainExpConstant}
+							}																					
 							\caption[Behavior of fit components after cuts for low-gain channel]
 							{Behavior of fit components after cuts for low-gain channel.}
 							\label{fig:RTSimLowGainResults}
+						\end{sidewaysfigure}
+
+						\begin{sidewaysfigure}
+							\centering
+							\includegraphics[width=0.9\textheight]{BeGeFitExample}									
+							\caption[Comparison of fit to data with 99\% rise-time cut applied and data with only microphonics cuts applied]
+							{Comparison of fit to data with 99\% rise-time cut applied (left) and data with only microphonics cuts applied (right).  
+							Components from the flat background (red, dotted) and the error function background 
+							(blue, dashed) to the overall fit (blue, solid) are shown.  To note is the 
+							reduction in flat regions including the `plateau' below the Ge K-capture line.  However, several significant deviations of data from fit remain,
+							suggesting the presence of additional background possible from other electron capture species.  See text for details.}
+							\label{fig:RTLowGainCompResults}
 						\end{sidewaysfigure}
 						
 						\begin{sidewaystable}
 							\centering
 							\footnotesize
 							\begin{tabular}{l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  r@{$~\pm~$}l  }
-							\toprule 
-							& \multicolumn{14}{c}{Components (counts)} \\
-							\cmidrule[1pt]{2-14} 
-							Cut & \multicolumn{2}{c}{$^{65}$Zn (8.98 keV)} & \multicolumn{2}{c}{$^{68}$Ga (9.66 keV)} & \multicolumn{2}{c}{$^{68}$Ge (10.37 keV)} & \multicolumn{2}{c}{$^{73}$As (11.1 keV)} & \multicolumn{2}{c}{Erf bkgd} & \multicolumn{2}{c}{Exp bkgd} & \multicolumn{2}{c}{Flat bkgd}  \\
-							\midrule
-						        	 Risetime 20\% & 266.6 & 17.9 & 52.7 & 8.8 & 681.2 & 26.7 & 30.4 & 6.9 & 303.0 & 43.3 & 30.5 & 11.7 & 517.2 & 45.4  \\
-								 Risetime 30\% & 347.5 & 20.3 & 82.1 & 10.7 & 829.6 & 29.5 & 37.8 & 7.7 & 420.9 & 46.7 & 63.5 & 14.2 & 559.9 & 47.8  \\
-								 Risetime 40\% & 415.2 & 22.1 & 89.9 & 11.3 & 977.4 & 32.0 & 43.2 & 8.3 & 505.5 & 49.4 & 101.3 & 16.6 & 609.1 & 50.1  \\
-								 Risetime 50\% & 468.0 & 23.3 & 102.9 & 12.0 & 1103.4 & 33.9 & 47.0 & 8.5 & 569.5 & 51.0 & 134.4 & 19.1 & 634.5 & 50.9  \\
-								 Risetime 60\% & 540.2 & 25.0 & 114.5 & 12.6 & 1232.8 & 35.8 & 53.5 & 8.8 & 636.9 & 52.7 & 172.2 & 21.0 & 667.3 & 51.9  \\
-								 Risetime 70\% & 586.4 & 26.0 & 125.5 & 13.1 & 1418.6 & 38.4 & 58.5 & 9.5 & 723.8 & 54.1 & 208.4 & 22.6 & 670.8 & 52.7  \\
-								 Risetime 80\% & 668.5 & 27.7 & 140.0 & 13.8 & 1559.8 & 40.2 & 64.0 & 9.9 & 790.8 & 55.7 & 255.3 & 24.2 & 701.7 & 54.0  \\
-								 Risetime 90\% & 701.0 & 28.4 & 153.3 & 14.4 & 1706.5 & 42.1 & 73.0 & 10.9 & 873.9 & 58.0 & 324.6 & 27.6 & 715.2 & 56.1  \\
-								 Risetime 95\% & 727.5 & 28.9 & 162.0 & 14.8 & 1797.0 & 43.1 & 73.8 & 10.8 & 913.8 & 58.5 & 389.5 & 30.0 & 726.4 & 55.9  \\
-								 Risetime 99\% & 751.9 & 29.4 & 168.3 & 15.1 & 1903.3 & 44.4 & 79.7 & 11.6 & 993.8 & 61.0 & 475.4 & 34.6 & 737.0 & 57.7  \\
-								 LN + micro & 749.1 & 30.3 & 170.0 & 15.9 & 1933.7 & 45.1 & 87.5 & 13.2 & 1446.4 & 84.6 & 814.7 & 57.1 & 1139.9 & 71.8  \\
-							 
-							\bottomrule
+								\toprule 
+								& \multicolumn{14}{c}{Components (counts)} \\
+								\cmidrule[1pt]{2-14} 
+								Cut & \multicolumn{2}{c}{$^{65}$Zn (8.98 keV)} & \multicolumn{2}{c}{$^{68}$Ga (9.66 keV)} & \multicolumn{2}{c}{$^{68}$Ge (10.37 keV)} & \multicolumn{2}{c}{$^{73}$As (11.1 keV)} & \multicolumn{2}{c}{Erf bkgd} & \multicolumn{2}{c}{Exp bkgd} & \multicolumn{2}{c}{Flat bkgd}  \\
+								\midrule
+							        	 Risetime 20\% & 264.9 & 17.9 & 52.8 & 8.9 & 681.3 & 26.8 & 29.9 & 7.9 & 302.9 & 44.7 & 31.8 & 12.1 & 520.1 & 47.8  \\
+									 Risetime 30\% & 345.9 & 20.3 & 82.4 & 10.9 & 828.9 & 29.5 & 39.8 & 9.8 & 425.5 & 48.8 & 69.1 & 15.3 & 555.8 & 51.7  \\
+									 Risetime 40\% & 413.2 & 22.1 & 90.4 & 11.5 & 976.0 & 32.0 & 45.7 & 10.5 & 510.3 & 51.9 & 109.1 & 17.7 & 604.1 & 54.6  \\
+									 Risetime 50\% & 465.6 & 23.4 & 103.2 & 12.2 & 1102.8 & 34.0 & 49.6 & 9.5 & 573.9 & 52.1 & 145.3 & 20.5 & 628.9 & 52.7  \\
+									 Risetime 60\% & 537.4 & 25.0 & 115.2 & 13.0 & 1232.4 & 35.9 & 55.1 & 9.8 & 638.9 & 53.8 & 183.9 & 22.3 & 665.0 & 53.8  \\
+									 Risetime 70\% & 583.8 & 26.1 & 125.9 & 13.5 & 1417.7 & 38.4 & 61.3 & 10.7 & 728.9 & 55.6 & 219.5 & 23.8 & 664.9 & 55.3  \\
+									 Risetime 80\% & 666.0 & 27.7 & 140.7 & 14.2 & 1559.8 & 40.3 & 66.2 & 10.8 & 793.1 & 57.2 & 268.5 & 25.6 & 697.3 & 56.3  \\
+									 Risetime 90\% & 698.2 & 28.4 & 153.9 & 14.8 & 1706.7 & 42.1 & 76.0 & 11.7 & 877.5 & 59.2 & 340.1 & 29.1 & 707.8 & 57.7  \\
+									 Risetime 95\% & 724.7 & 28.9 & 162.5 & 15.1 & 1796.9 & 43.2 & 77.0 & 11.6 & 919.0 & 59.6 & 403.3 & 31.2 & 718.2 & 57.3  \\
+									 Risetime 99\% & 749.8 & 29.5 & 168.7 & 15.5 & 1903.4 & 44.4 & 84.2 & 12.2 & 999.9 & 61.9 & 491.2 & 35.5 & 724.2 & 58.6  \\
+									 LN + micro & 745.1 & 30.4 & 167.6 & 16.3 & 1935.5 & 45.2 & 95.9 & 14.2 & 1467.7 & 85.7 & 818.1 & 57.2 & 1112.4 & 72.9  \\
+								 
+								\bottomrule
 							\end{tabular}
+
 							\caption[Behavior of fit components after cuts for low-gain BeGe channel]
 							{Behavior of fit components after cuts for low-gain channel.  Components are given in total counts.}
 							\label{tab:RTLowGainResults}
@@ -429,21 +480,23 @@ The results for the low-gain channel are given in Figure~\ref{fig:RTSimLowGainRe
 
 					\paragraph{Low-energy results}
 
-Results for the low-energy channel are shown in Figure~\ref{fig:RTSimHighGainResults}. The conclusions for this channel set are similar to the high-energy channel set.  The enhanced resolution of the high-gain channel has reduced the size of the error bars for the L-capture lines and the reduction of the amplitudes of the lines is consistent with the expected acceptances.  The amplitudes of the different background components agree with the amplitudes calculated for the high-energy channel.  The larger error bars on both the background components are because the flat component has fewer constraints: the size of the flat region is significantly smaller in the high-gain channel than in the low-gain channel.  
+Results for the low-energy channel are shown in Figure~\ref{fig:RTSimHighGainResults}. The conclusions for this channel set are similar to the high-energy channel set.  The enhanced resolution of the high-gain channel has reduced the size of the error bars for the L-capture lines and \releff~behaves very similarly to the low-gain channel for higher rise-time acceptances .  Additionally, the behavior of the exponential constant is consistent in this channel as with the low-gain channel except with the 20\% rise-time cut data.  In this particular instance, the fit actually fails and runs up against the parameter limit for the exponential constant.  This failure occurred due to insufficient counts remaining in the data set resulting in the two background components looking too much alike.
 
+In this channel, only two background components, flat and exponential, remained since the energy range did not exceed 3.5~keV.  \releff~with 20\% rise-time cut data is distorted because the two background components look alike, rendering results from this data set incomparable to the other sets.  The \releff~of the flat component behaves well at higher rise-time acceptances, remaining flat for acceptances $\ge80$\%.  However, for the exponential component, \releff~reduces with decreasing rise-time acceptance, possibly indicating the cut does not \emph{fully} remove background from slow-rise-time pulses.  If one considers the measured rise-time distribution for the high-gain channel in Figure~\ref{fig:RisetimeDataVsCutHighGain} with an included 99\% cut line, it is clear that the cut begins to break down near threshold.  
+This is not unexpected, since as the signal-to-noise of the pulse reduces denoising will have less and less of an effect and the ability to measure the rise-time of pulses effectively will diminish.
 
 						\begin{sidewaysfigure}
 							\centering
 							\subfigure[Exponential Constant, $c_{1}$l]{
-								\includegraphics[width=0.46\textheight]{LowExpConstant1}
+								\includegraphics[width=0.46\textheight]{LowExpConstant}
 								\label{fig:RTHighGainExpConstant}
 							}
 							\subfigure[X-rays]{
-								\includegraphics[width=0.46\textheight]{LowGammaLines3}
+								\includegraphics[width=0.46\textheight]{LowGammaLines}
 								\label{fig:RTHighGainXrays}						
 							}		
 							\subfigure[Background components]{
-								\includegraphics[width=0.46\textheight]{LowBackgroundComponents3}
+								\includegraphics[width=0.46\textheight]{LowBackgroundComponents}
 								\label{fig:RTHighGainBkgd}						
 							}														
 							\caption[Behavior of fit components after cuts for high-gain BeGe channel]
@@ -459,41 +512,58 @@ Results for the low-energy channel are shown in Figure~\ref{fig:RTSimHighGainRes
 								\cmidrule[1pt]{2-8} 
 								Cut & \multicolumn{2}{c}{$^{65}$Zn (1.1 keV)} & \multicolumn{2}{c}{$^{68}$Ge (1.3 keV)} & \multicolumn{2}{c}{Exp bkgd} & \multicolumn{2}{c}{Flat bkgd}  \\
 								\midrule
-							        	 Risetime 20\% & 18.4 & 7.7 & 21.2 & 7.4 & 70.3 & 21.9 & 138.1 & 22.0  \\
+							        	 Risetime 20\% & 18.3 & 7.7 & 21.0 & 7.4 & 83.2 & 26.4 & 125.5 & 25.3  \\
 									 Risetime 30\% & 34.7 & 9.8 & 42.8 & 9.3 & 67.7 & 17.1 & 203.8 & 19.1  \\
-									 Risetime 40\% & 45.4 & 11.0 & 70.7 & 11.1 & 103.3 & 19.1 & 234.6 & 20.5  \\
-									 Risetime 50\% & 47.4 & 11.9 & 104.1 & 12.9 & 132.4 & 21.5 & 264.0 & 22.0  \\
-									 Risetime 60\% & 47.8 & 12.5 & 133.5 & 14.3 & 170.8 & 23.2 & 283.8 & 22.7  \\
-									 Risetime 70\% & 63.9 & 13.8 & 157.3 & 15.4 & 205.1 & 25.0 & 308.6 & 23.8  \\
-									 Risetime 80\% & 75.5 & 14.7 & 174.3 & 16.2 & 249.6 & 26.2 & 337.5 & 24.5  \\
-									 Risetime 90\% & 80.2 & 15.8 & 187.2 & 17.1 & 315.0 & 29.5 & 367.7 & 26.1  \\
-									 Risetime 95\% & 78.2 & 16.2 & 201.0 & 17.7 & 377.7 & 31.7 & 379.1 & 26.7  \\
-									 Risetime 99\% & 81.9 & 17.2 & 205.3 & 18.4 & 450.4 & 36.5 & 419.4 & 29.6  \\
-									 LN + micro & 80.5 & 19.4 & 206.5 & 21.2 & 568.9 & 74.7 & 777.2 & 63.9  \\
+									 Risetime 40\% & 45.4 & 11.0 & 70.7 & 11.1 & 103.3 & 19.1 & 234.5 & 20.5  \\
+									 Risetime 50\% & 47.5 & 11.9 & 104.1 & 12.9 & 132.5 & 21.5 & 263.9 & 21.9  \\
+									 Risetime 60\% & 47.7 & 12.5 & 133.6 & 14.3 & 170.8 & 23.2 & 283.8 & 22.7  \\
+									 Risetime 70\% & 64.0 & 13.8 & 157.2 & 15.4 & 205.1 & 25.0 & 308.7 & 23.8  \\
+									 Risetime 80\% & 75.5 & 14.7 & 174.3 & 16.2 & 249.7 & 26.2 & 337.5 & 24.5  \\
+									 Risetime 90\% & 80.2 & 15.8 & 187.1 & 17.1 & 315.0 & 29.5 & 367.7 & 26.1  \\
+									 Risetime 95\% & 78.2 & 16.2 & 201.1 & 17.7 & 377.7 & 31.7 & 379.0 & 26.7  \\
+									 Risetime 99\% & 81.9 & 17.2 & 205.4 & 18.4 & 450.5 & 36.5 & 419.3 & 29.6  \\
+									 LN + micro & 80.6 & 19.4 & 206.7 & 21.2 & 568.4 & 74.5 & 777.7 & 63.7  \\
 								 
 								\bottomrule
 							\end{tabular}
+
 
 							\caption[Behavior of fit components after cuts for high-gain BeGe channel]
 							{Behavior of fit components after cuts for high-gain channel.  Components are given in total counts.}
 							\label{tab:RTHighGainResults}
 						\end{sidewaystable}
 
-		\subsubsection{Conclusions}
+		\subsubsection{Conclusions and discussion}
 		\label{sec:RTBeGeConclusions}
 		
-FixME - Add discussion on Rise-time cuts regarding its interpretation as a fiducial volume cut and the estimate of the mass difference that went along with this.
+Evidence in past results from~\cite{Strauss196780,Sakai:1971ff} and in recent results presented in~\cite{Aalseth:2010aa} suggest that slow pulses can arise due to poor charge collection from weak electric fields in the dead layer of the n$^{+}$ Li contact.  These results also suggest that energy information of the initiating event is lost so that these slow pulses can comprise a background at low energy, though one of not-precisely-determined distribution.  These conclusions were determined by scanning a source of low-energy gammas (\amtwofourone, 59.5~keV gamma) around the outside n$^{+}$ and determining the distribution of rise-times for recorded events.  The low energy of the americium source ensured that a majority of the gammas deposited energy in or near the outer contact.  The resulting rise-time measurements demonstrated a substantial distribution of slow rise-time pulses, supporting the conclusion that at least a component of these slow-rise-time events come from energy deposition at or near the outer contact.  
 
-Evidence in past results from~\cite{Strauss196780,Sakai:1971ff} and in recent results presented in~\cite{Aalseth:2010aa} suggest that slow pulses can arise due to poor charge collection from weak electric fields in the dead layer of the n$^{+}$ Li contact.  These results also suggest that energy information of the initiating event is lost so that these slow pulses can comprise a background at low energy, though one of not-precisely-determined distribution.	 These conclusions were determined by scanning a source of low-energy gammas (\amtwofourone, 59.5~keV gamma) around the outside n$^{+}$ and determining the distribution of rise-times for recorded events.  The low energy of the americium source ensured that a majority of the gammas deposited energy in or near the outer contact.  The resulting rise-time measurements demonstrated a substantial distribution of slow rise-time pulses, supporting the conclusion that at least a component of these slow-rise-time events come from energy deposition at or near the outer contact.  
-
-Another measurement performed using a separate, similar PPC detector~\cite{BarbThesis} measured the rate versus time at low energies in several energy regions, watching the decay of \gersevenone~(11.4~day half-life).  This measurement focused on three main regions: the Ge K-capture line (10.367~keV), the Ge L-capture line (1.3~keV), and the flat region in between ($2\to6$~keV).  The results found that the decay of counts in the flat region matched the decays of counts in the L- and K-capture regions, suggesting partial energy deposition from the \gersevenone~decay below 10.367~keV.  It is likely that this result is related to the slow-rise-time pulses, in particular that decays of \gersevenone~near the outer contact resulted in both slow pulses and partial charge collection, but no preamp traces were taken during this measurement.  To firmly establish the equivalency of these results, it is essential to measure the rise-time of the preamplifier traces, remove slow-pulses, and produce the resulting counts vs.~time for the region between the L- and K-capture lines.  If partial energy deposition is arising in the same process producing the slow-pulses, the removal of slow-pulse events should result in the flattening of the counts vs.~time curve for the energy region between the capture lines.  Unfortunately, for this analysis preamplifier traces were only recorded following the decay of the majority of \gersevenone~and the slow decay of \gersixeight~(271~days) yields insufficient statistics over a short period of time to measure this well.  The relative content of \gersevenone~in the detector can be increased through activation by either bringing the detector to the surface or introducing an neutron source, but such a test cannot be performed until the conclusion of the counting runs.  
+Another measurement performed using a separate, similar PPC detector~\cite{BarbThesis} measured the rate versus time at low energies in several energy regions, watching the decay of \gersevenone~(11.4~day half-life).  This measurement focused on three main regions: the Ge K-capture line (10.367~keV), the Ge L-capture line (1.3~keV), and the flat region in between ($2\to6$~keV).  The results found that the decay of counts in the flat region matched the decays of counts in the L- and K-capture regions, suggesting partial energy deposition from the \gersevenone~decay below 10.367~keV.  It is possible that this result is related to the slow-rise-time pulses, in particular that decays of \gersevenone~near the outer contact resulted in both slow pulses and partial charge collection, but no preamp traces were taken during this measurement.  To firmly establish the equivalency of these results, it is essential to measure the rise-time of the preamplifier traces, remove slow-pulses, and produce the resulting counts vs.~time for the region between the L- and K-capture lines.  If partial energy deposition is arising in the same process producing the slow-pulses, the removal of slow-pulse events should result in the flattening of the counts vs.~time curve for the energy region between the capture lines.  Unfortunately, for this analysis preamplifier traces were only recorded following the decay of the majority of \gersevenone~and the slow decay of \gersixeight~(271~days) yields insufficient statistics over a short period of time to measure this well.  The relative content of \gersevenone~in the detector can be increased through activation by either bringing the detector to the surface or introducing an neutron source, but such a test cannot be performed until the conclusion of the counting runs.  
 
 Whereas it is likely that a component of these slow-pulses is arising from charge deposition near the crystal outer contact, it is important to determine other possible sources of these events.  For example, surface channel effects, i.e.~distortion of crystal fields through charge collection on the passivated surface, might produce similar results.  One could use the extreme sensitivity of the surface channel to temperature detailed in~\cite{Hull1995488} to determine if the population of slow-rise-time events changes with temperature.  Additionally, characterization measurements using a low-energy gamma source must be performed for several other PPC detectors to determine how sensitive the distribution of slow-rise-time events is to manufacturing and geometry differences.  
 
-Whatever the origin of these slow-pulse events, it is clear that they can produce a background to low-energy signals.  If the majority of these slow pulses arise from energy deposition near the outer surface, a cut on rise-time would effectively generate a cut on the fiducial volume and mass of the detector.  Understanding the active fiducial volume of the detector is critical for experiments sensitive to mass exposure times, such as those searching for $\nonubb$ or dark matter.  Even though $\qval$ is around 2~MeV, the decay is internal to the detector and energy is deposited by two electrons summing to $\qval$.  The range of electrons at this energy is on the order of 1~mm, so it is expected that this could still have an effect on $\nonubb$ results.  
+Whatever the origin of these slow-pulse events, it is clear that they can produce a background to low-energy signals.  If the majority of these slow pulses arise from energy deposition near the outer surface, a cut on rise-time would effectively generate a cut on the fiducial volume and mass of the detector.  Understanding the active fiducial volume of the detector is critical for experiments sensitive to mass exposure times, such as those searching for $\nonubb$ or dark matter.  For double-beta decay, even though $\qval$ is around 2~MeV, the decay is internal to the detector and energy is deposited by two electrons summing to $\qval$.  The range of electrons at this energy is on the order of 1~mm, so it is expected that poor charge collection in an outer layer of the detector could still have an effect on a fiducial mass for $\nonubb$ results.  
 
-For this analysis and for the purpose of estimating the mass of the detector, we assume that either all or a significant majority of slow-rise-time events are coming from energy deposition near the surface.  Therefore, a rise-time cut will effect a fiducial volume cut.  We can estimate the fiducial mass by using the results of these rise-time systematic tests described earlier.  In particular, if we assume a majority of the events in the 
 
+	\subsection{Extracting or looking for signals in cut data}
+	\label{sec:BeGeLowEnergyFeatures}
+	
+	The ultimate goal of introducing a cut to a data set is to remove events to enhance the signal-to-noise ratio of the data set.  In this particular analysis, work focused on removing `noise' events that might populate the energy region near threshold because this energy region is critical for deriving exclusion limits for dark matter.  With many analyses, it is common to study cuts by choosing in parameter space a background region or set of regions and a background+signal region, preferably bookending the background+signal area with background-only regions to avoid any sort of boundary effects.   This analysis explored rise-time cuts in a similar manner, adopting a guess-and-check method: calculate what you should see when you take a cut and see if the result matches your expectations and for higher-rise-time-cut acceptances, the calculation proved a sufficient model.  
+	
+	Understanding the data at low energies proves difficult for several reasons: (1) we do not know the exact energy distribution of slow-pulses; (2) the most critical region, energies near threshold, is inherently a boundary region; and (3) a complete interpretation of slow pulses and their origin in this particular detector is missing.  Addressing these points is important to using this data for physical interpretation:
+	
+	\begin{enumerate}
+		\item Whereas the exact energy distribution of slow-pulses for this detector is unknown, we can infer something about the population through the systematic results.  In particular, the flat background components of the data essentially parameterizing the range $1.5\to14.5$~keV, behaved as one would expect if \emph{all} slow pulses were cut using the 99\% rise-time cut.  In contrast, the exponential component, parameterizing the population from threshold to $\sim$1.5~keV, behaved as if the 99\% rise-time cut did not remove all slow-pulse events.  
+		\item Near threshold, the two x-ray lines at 1.1 and 1.3~keV provide a test of the validity of the model, and these lines behaved well with the cuts.  Additionally, the insensitivity of the exponential constant to different rise-time cuts implies that the calculated cut lines at different acceptance percentages were consistent until the threshold.  However, it does \emph{not} necessarily imply that slow-rise pulses were fully removed.  The same result can be expected if slow and fast pulses occupy a similar rise-time distribution in this energy region due to a breakdown of the rise-time calculation at low signal-to-noise ratios.
+		\item Evidence suggests that at least a portion of these slow-pulses arise from energy deposition near the outer contact.  Since a rise-time cut would require a reduction in fiducial mass, even if not all slow pulses are generated by this mechanism the assumption that they are is considered conservative.  
+	\end{enumerate}
+	
+	Points 1 and 2 relate to one another and both suggest that the region near threshold could still be contaminated with slow-rise-time pulses.  The presence of additional uncut events here could explain the general exponential shape seen in the data especially considering that the calculated acceptance line necessarily increases as it nears threshold (see Figure~\ref{fig:RisetimeDataVsCut}).  Other explanations of this feature could be considered as well: (1) a population of events arising from a modulation of noise; (2) uncut microphonics; and (3) presence of an exponential signal from, for example, a WIMP source or some other unknown background.  The first two possibilities should exhibit characteristic time signatures in events near threshold; in particular, they should arrive with a rate that varies with time.  The presence of time variation in the data is explored in the following section (Section~\ref{sec:BeGeTimeCorrelations}).  The last explanation coupled with the understanding that slow-rise-time pulses could still populate near threshold suggests that any analysis including this region must treat it with care, conservatively foregoing any claims other than exclusion limits.  The extraction of a limit on a signal in the presence of unknown background is explored in the following chapter, in particular Section~\ref{sec:LimitsUnknownBackgroundML}.  
+	
+	Following point 3, for this analysis and for the purpose of estimating the mass of the detector we assume that either all or a significant majority of slow-rise-time events are coming from energy deposition near the surface.  We therefore assume that the detector includes an outer dead layer within the outer Li contact, followed by a transition layer with weak electric fields.  We can calculate the width of this transition region through two methods and compare, in particular using the results of the rise-time systematic tests described earlier as well as another calculation presented in~\cite{Aalseth:2010aa}.  If we assume a majority of the slow-rise events in the `plateau' beneath the Ge K-capture line come from partial charge collection of the energy deposited from these electron-capture decays, then the percentage of volume of the detector in which these slow-pulse events occur may be estimated as follows:  calculate the sum of events in the prominent x-ray lines at high energy, $ y = \sum_{i} N_{i}$ where $i$ includes \gersixeight, \galsixeight, \znsixfive, and \asseventhree, and then calculate the difference in counts, $\Delta x$, between events in error function distribution before and after a 99\% rise-time cut, properly adjusting for the expected efficiency of the cut (99\%).  The value, $\frac{\Delta x}{\Delta x + y}$ is then the fraction of volume affected by slow-pulse generation with respect to the total active volume of the detector.  The values $\Delta x$ and $y$ were measured as $457.7\pm105.9$ and $3401.8\pm121.3$, respectively, yielding an affected fraction of active volume of $0.135\pm0.031$.  The active volume can be estimated by assuming an outer dead layer of 1~mm, reducing the 0.44~kg total mass to an active mass of 0.4~kg.  Therefore, the final fiducial mass after rise-time cuts may be assumed to be $0.346\pm0.0124$~kg.
+
+	We may compare this to a separate estimation presented in~\cite{Aalseth:2010aa}.  This particular measurement coupled a source scan with \amtwofourone~with a simulation to estimate the dead layer plus transition region in a different but similar PPC detector.  The results of this measurement suggested an outer dead layer or 1~mm, plus a transition layer of 1~mm yielding a total active volume of 0.33~kg.  This measurement agrees with the above estimation and to remain conservative the smaller value will be used in the later presented analyses.
+	
 	\section{Time correlations and systematics}
 	\label{sec:BeGeTimeCorrelations}
 
@@ -546,24 +616,21 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 					\toprule 				
 					\multicolumn{2}{c}{Range (keV)} & \multicolumn{2}{c}{$\lambda$ (cts / hr)} & $\chi^2$ & NDF & P-Value \\
 					\midrule
-					\multicolumn{7}{l}{LN} \\
-					\midrule
+					\multicolumn{7}{l}{\emph{LN}} \\
 					0.45 & 0.55 & 0.046 & 0.004 & 6.08296 & 2 & 0.0477643 \\
 					0.5 & 1 & 0.158 & 0.006 & 2.73425 & 5 & 0.740876 \\
 					1 & 2 & 0.262 & 0.010 & 4.34057 & 7 & 0.73982 \\
 					3 & 8 & 0.373 & 0.010 & 4.94593 & 9 & 0.838996 \\
 					10 & 10.76 & 0.609 & 0.016 & 15.5406 & 12 & 0.213196 \\
-					\hline
-					\multicolumn{7}{l}{LN + Microphonics} \\
-					\hline
+					\midrule
+					\multicolumn{7}{l}{\emph{LN + Microphonics}} \\
 					0.45 & 0.55 & 0.041 & 0.004 & 1.78836 & 2 & 0.408943 \\
 					0.5 & 1 & 0.143 & 0.006 & 3.82657 & 5 & 0.574646 \\
 					1 & 2 & 0.204 & 0.008 & 1.40094 & 6 & 0.965801 \\
 					3 & 8 & 0.341 & 0.010 & 7.37705 & 8 & 0.496551 \\
 					10 & 10.76 & 0.563 & 0.016 & 14.9226 & 11 & 0.186068 \\
-					\hline					
-					\multicolumn{7}{l}{LN + Microphonics + 99\% Rise-time cuts} \\
-					\hline
+					\midrule					
+					\multicolumn{7}{l}{\emph{LN + Microphonics + 99\% Rise-time cuts}} \\
 					0.45 & 0.55 & 0.038 & 0.004 & 2.57558 & 2 & 0.27588 \\
 					0.5 & 1 & 0.124 & 0.006 & 6.25875 & 5 & 0.281849 \\
 					1 & 2 & 0.139 & 0.006 & 3.6481 & 5 & 0.601106 \\
@@ -612,32 +679,30 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 			\begin{table}
 				\centering
 				\begin{tabular}{r@{$~\to~$}l  r@{$~\pm~$}l   c  c  c} 
+					\toprule
 					\multicolumn{2}{c}{Range (keV)} & \multicolumn{2}{c}{$\lambda$ (cts)} & $\chi^2$ & NDF & P-Value \\
-					\hline
-					\multicolumn{7}{l}{LN} \\
-					\hline
+					\midrule
+					\multicolumn{7}{l}{\emph{LN}} \\ 
 					0.45 & 0.55 & 0.061 & 0.008 & 23.9883 & 27 & 0.630963 \\
 					0.5 & 1 & 0.172 & 0.007 & 22.3103 & 16 & 0.133452 \\
 					1 & 2 & 0.266 & 0.009 & 5.42462 & 13 & 0.964619 \\
 					3 & 8 & 0.380 & 0.010 & 13.4823 & 15 & 0.5651 \\
 					10 & 10.76 & 0.638 & 0.016 & 24.603 & 12 & 0.0168202 \\
-					\hline
-					\multicolumn{7}{l}{LN + Microphonics} \\
-					\hline
+					\midrule
+					\multicolumn{7}{l}{\emph{LN + Microphonics}} \\
 					0.45 & 0.55 & 0.049 & 0.008 & 20.021 & 27 & 0.829872 \\
 					0.5 & 1 & 0.152 & 0.007 & 15.6124 & 18 & 0.61958 \\
 					1 & 2 & 0.207 & 0.008 & 7.90211 & 13 & 0.849919 \\
 					3 & 8 & 0.353 & 0.010 & 12.2548 & 19 & 0.874449 \\
 					10 & 10.76 & 0.593 & 0.015 & 24.9871 & 13 & 0.0231737 \\
-					\hline
-					\multicolumn{7}{l}{LN + Microphonics + 99\% Rise-time cuts} \\
-					\hline
+					\midrule
+					\multicolumn{7}{l}{\emph{LN + Microphonics + 99\% Rise-time cuts}} \\ 
 					0.45 & 0.55 & 0.045 & 0.009 & 23.0667 & 26 & 0.62917 \\
 					0.5 & 1 & 0.133 & 0.007 & 14.4484 & 19 & 0.756952 \\
 					1 & 2 & 0.139 & 0.008 & 16.5919 & 16 & 0.412466 \\
 					3 & 8 & 0.231 & 0.010 & 12.3232 & 20 & 0.904504 \\
 					10 & 10.76 & 0.577 & 0.015 & 27.4457 & 14 & 0.0168382 \\
-					\hline
+					\bottomrule
 				\end{tabular}
 				\caption[Results of fits to time differences between events in selected energy ranges]
 				{Results of fits to time differences between events in selected energy ranges.  Results from data with LN, LN+microphonics, and LN+microphonics+99\% 
@@ -694,15 +759,16 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 				\centering
 				\renewcommand{\arraystretch}{0.75}
 				\begin{tabular}{l  c  c  c  r@{$~\pm~$}l  c  c  c } 
+				\toprule
 					Cut & Range (keV) & Triggers & Direction & \multicolumn{2}{c}{Rate (cts/hr)} & $\chi^2$ & NDF & P-value  \\
-					\hline
+				\midrule
 				\multirow{6}{*}{Risetime 50\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{166}	& B & -1.10 & 0.10 & 4.77 & 7 & 0.689\\
 					& & & F & -0.98 & 0.09 & 2.81 & 7 & 0.902\\
 				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{651}	& B & -1.03 & 0.05 & 19.10 & 18 & 0.386\\
 					& & & F & -0.98 & 0.04 & 13.48 & 20 & 0.856\\
 				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1158}	& B & -1.07 & 0.03 & 39.84 & 45 & 0.690\\
 					& & & F & -1.07 & 0.03 & 26.00 & 39 & 0.945\\
-				\hline
+				\midrule
 				
 				\multirow{6}{*}{Risetime 60\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{205}	& B & -1.20 & 0.10 & 7.52 & 6 & 0.275\\
 					& & & F & -1.06 & 0.09 & 2.80 & 7 & 0.902\\
@@ -710,7 +776,7 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 					& & & F & -1.15 & 0.05 & 30.70 & 19 & 0.044\\
 				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1292}	& B & -1.13 & 0.03 & 28.50 & 39 & 0.892\\
 					& & & F & -1.18 & 0.04 & 19.85 & 36 & 0.987\\
-				\hline
+				\midrule
 				
 				\multirow{6}{*}{Risetime 70\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{242}	& B & -1.30 & 0.10 & 7.04 & 6 & 0.317\\
 					& & & F & -1.17 & 0.09 & 3.23 & 7 & 0.863\\
@@ -718,7 +784,7 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 					& & & F & -1.24 & 0.05 & 24.93 & 18 & 0.127\\
 				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1482}	& B & -1.28 & 0.03 & 31.32 & 36 & 0.691\\
 					& & & F & -1.31 & 0.04 & 28.13 & 36 & 0.823\\
-				\hline
+				\midrule
 				
 				\multirow{6}{*}{Risetime 80\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{293}	& B & -1.31 & 0.10 & 3.56 & 5 & 0.615\\
 					& & & F & -1.29 & 0.09 & 4.38 & 8 & 0.821\\
@@ -726,7 +792,7 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 					& & & F & -1.38 & 0.06 & 22.71 & 16 & 0.122\\
 				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1628}	& B & -1.42 & 0.04 & 37.31 & 34 & 0.319\\
 					& & & F & -1.44 & 0.04 & 26.58 & 34 & 0.814\\
-				\hline
+				\midrule
 				
 				\multirow{6}{*}{Risetime 90\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{350}	& B & -1.54 & 0.10 & 1.89 & 4 & 0.756\\
 					& & & F & -1.46 & 0.09 & 4.15 & 7 & 0.762\\
@@ -734,7 +800,7 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 					& & & F & -1.52 & 0.06 & 27.90 & 15 & 0.022\\
 				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1779}	& B & -1.54 & 0.04 & 33.90 & 32 & 0.376\\
 					& & & F & -1.59 & 0.04 & 24.89 & 30 & 0.730\\
-				\hline
+				\midrule
 				
 				\multirow{6}{*}{Risetime 95\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{402}	& B & -1.69 & 0.09 & 2.74 & 4 & 0.602\\
 					& & & F & -1.56 & 0.09 & 3.80 & 6 & 0.704\\
@@ -742,7 +808,7 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 					& & & F & -1.62 & 0.07 & 30.54 & 15 & 0.010\\
 				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1872}	& B & -1.62 & 0.04 & 28.90 & 32 & 0.624\\
 					& & & F & -1.69 & 0.04 & 23.45 & 27 & 0.661\\
-				\hline
+				\midrule
 				
 				\multirow{6}{*}{Risetime 99\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{457}	& B & -1.94 & 0.10 & 5.89 & 4 & 0.207\\
 					& & & F & -1.69 & 0.09 & 1.94 & 5 & 0.858\\
@@ -750,7 +816,7 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 					& & & F & -1.77 & 0.07 & 24.01 & 14 & 0.046\\
 				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{1982}	& B & -1.74 & 0.04 & 24.28 & 28 & 0.666\\
 					& & & F & -1.90 & 0.05 & 32.06 & 27 & 0.230\\
-				\hline
+				\midrule
 				
 				\multirow{6}{*}{LN + micro}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{526}	& B & -2.37 & 0.11 & 8.35 & 4 & 0.080\\
 					& & & F & -2.11 & 0.10 & 1.92 & 4 & 0.751\\
@@ -758,9 +824,7 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 					& & & F & -2.13 & 0.06 & 23.39 & 10 & 0.009\\
 				& \multirow{2}{*}{$10~\to~10.76$} & \multirow{2}{*}{2054}	& B & -2.14 & 0.05 & 26.70 & 24 & 0.319\\
 					& & & F & -2.29 & 0.05 & 29.52 & 22 & 0.131\\
-				\hline
-				
-					\hline
+				\bottomrule
 				\end{tabular}
 
 
@@ -831,17 +895,9 @@ For this analysis and for the purpose of estimating the mass of the detector, we
 		\subsection{Conclusions}
 		\label{sec:BeGeTimeConclusions}			
 		
-	\section{Low-energy features}
-	\label{sec:BeGeLowEnergyFeatures}
+	The search for time correlations in the data yielded results consistent with Poisson statistics, suggesting that the regions of the data sets tested are clean from events arriving in bursts or with defined frequency.  Additionally, the electronic noise of the detector remained constant throughout the counting runs.  The one significant deviation found resulted in the discovery of a class of events detailed in Section\ref{sec:BeGeElecCuts}, but the lack of other environmental information made it impossible to determine their origin.  For long-running experiments such as the \MJ~\minmod, the monitoring and control of the environment is critical for tracking down and explaining events that may appear in the data.  As the abilities of future experiments expand to include the unexplored regions enabled by ultra-low-energy thresholds, so too must the effort to ensure that these areas are fully understood.  
 	
-	Here, we discuss how the investigation of several parameters in the low-energy region to try and obtain an idea of from where they might arise.
-
-FixME - Flesh out low-energy features, discuss from where these might arise, how one might actually test such hypotheses, and how we got around it for this stage.
-
-	\section{Cuts discussion}
-	\label{sec:BeGeCutsDiscussion}
-
-FixME - Add figure showing what is cut out for each cut.
+	%It should be noted that all these tests except the time difference measurement were insensitive to time correlations beyond their time windows (e.g.~8, 24~hours).    More powerful time-series analyses such as a Fourier or wavelet analysis could provide additional insight into the arrival information of events, 
 
 	\section{Conclusions}
      	\label{sec:CutConclusions}		
