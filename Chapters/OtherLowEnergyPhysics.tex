@@ -45,7 +45,7 @@ The low noise of PPC detectors yields excellent sensitivity to non-relativistic 
 	\subsection{Limits on the axioelectric effect}
 	\label{sec:CalcLimitsOnHeavyAxionLimits}		
 		
-	Limits were calculated using the profile-likelihood method described in Section~\ref{sec:LimitsML}.  Fit were performed on the complete number of data sets described in Chapter~\ref{chap:AnalysisBeGe}, but all data sets yielded similar results and so one data set was chosen with 95\% rise-time acceptance cuts and microphonics cuts applied.  The difficulties seen while determining limits on low-mass WIMPs did not appear in these calculations because the signal (gaussian centered at $m_{a}$) was not in general similar to the background.  The limit calculation followed the same procedure as a peak search in the data and is outlined as follows:
+	Limits were calculated using the profile-likelihood method described in Section~\ref{sec:LimitsML}.  Fit were performed on the complete number of data sets described in Chapter~\ref{chap:AnalysisBeGe}, with a total livetime of 150.6~days.  All data sets yielded similar results and so one data set was chosen with 95\% rise-time acceptance cuts and microphonics cuts applied.  As outlined before, assumptions about the source of slow-rise-time events reduced the fidudical mass to 0.33~kg (see Section~\ref{sec:BeGeLowEnergyFeatures}).  Additionally, results with unbinned and binned maximum-likelihood fits were consistent and so the former was used.  The limit calculation followed the same procedure as a peak search in the data and is outlined as follows:
 		\begin{itemize}
 			\item Define the gaussian signal $f_{axion}$: 
 			\begin{itemize}
@@ -57,24 +57,36 @@ The low noise of PPC detectors yields excellent sensitivity to non-relativistic 
 			\item Repeat for other values of $m_{a}$
 		\end{itemize}		
 	
-	During the fits, the $\mu$ and $\sigma$ of the gaussian signal, $f_{axion}$, were kept fixed and only the amplitude, $N_{axion}$ was kept as a free parameter of the signal.  For the background, the behavior of the parameters was the same as during WIMP exclusion fits (see Section~\ref{sec:LimitsDataAndModel}) and the relative amplitude of the \gersixeight~and\znsixfive~L-lines was kept fixed as described in Section~\ref{sec:LimitsConstrained}.  Fixing this relative amplitude served to minimize the impact of the L-lines in the exclusion fits since a signal centered at 1.1 and 1.3~keV will look exactly like the L-capture lines.  The value of the axion mass was scanned from 0.1~keV to 7.8~keV in steps of 0.2~keV using both high- and low-gain channels: high-gain channel, $0.1\to2.9$~keV; low-gain channel, $3\to7.8$~keV.  
+	During the fits, the $\mu$ and $\sigma$ of the gaussian signal, $f_{axion}$, were kept fixed and only the amplitude, $N_{axion}$ was kept as a free parameter of the signal.  For the background, the behavior of the parameters was the same as during WIMP exclusion fits (see Section~\ref{sec:LimitsDataAndModel}) and the relative amplitude of the \gersixeight~and\znsixfive~L-lines was kept fixed as described in Section~\ref{sec:LimitsConstrained}.  Fixing this relative amplitude served to minimize the impact of the L-lines in the exclusion fits since a signal centered at 1.1 and 1.3~keV would look exactly like the L-capture lines.  The difficulties seen while determining limits on low-mass WIMPs did not appear in these calculations because the signal (gaussian centered at $m_{a}$) was not similar to the background except for the case of the L-lines.  The value of the axion mass was scanned from 0.1~keV to 7.8~keV in steps of 0.2~keV using both high- and low-gain channels: high-gain channel, $0.1\to2.9$~keV; low-gain channel, $3\to7.8$~keV.  The axion mass was allowed to vary below threshold (0.5~keV) because the finite resolution of the detector would allow portions of the expected gaussian signal to be detected above threshold.  An example of an exclusion fit in the high-gain channel is shown in Figure~\ref{fig:ExampleHeavyAxionFit} for $m_{a}=3$~keV.  
 
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.9\textwidth]{AxioelectricFitExample}
 			\caption[Example of an excluded non-relativistic axioelectric signal at $m_{a}=3$~keV at 
 			90\% CL]{Example of an excluded non-relativistic axioelectric signal at $m_{a}=3$~keV at 
-			90\% CL.  In this fit, $N_{axion}$ is 36.1 counts.  The components of the fits are noted}
+			90\% CL.  In this fit performed in the high-gain channel, the excluded value $N_{axion}$ 
+			is 36.1 counts.  
+			The components of the fits are split: red solid, L-Lines; red dotted, flat plus exponential
+			background; blue dashed, excluded axioelectric signal.}
 			\label{fig:ExampleHeavyAxionFit}
 		\end{figure}
+			
+	The 90\% CL excluded rate in counts/kg/day, $R_{axion}(m_{a})$, was determined from $N_{axion}(m_{a})$ and from this value the upper limit of $\gaa$ could be determined.  The exclusion calculated from this result is presented in Figure~\ref{fig:HeavyAxionLimits} along with a comparison to other results, including previous results of the CoGeNT collaboration~\cite{Aalseth:2008aa}, the CDMS collaboration~\cite{Ahmed2009}, and an acceptance region from the DAMA collaboration~\cite{Bernabei:2005ca}.  As noted in both references~\cite{Collar:2009sp,Pospelov:2008jk}, the limit calculation performed in~\cite{Bernabei:2005ca} did not correctly treat the leading term in Hamiltonian producing instead a reduced rate for a given $\gaa$ around 3 orders of magnitude lower.  The corrected result from DAMA as outlined in~\cite{Collar:2009sp} appears in Figure~\ref{fig:HeavyAxionLimits}.
 			
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.9\textwidth]{axion_constrained_unbinnedall_exclusion_plots_final}
-			\caption{Limits on non-relativistic axions.}
+			\caption[Limits on the axioelectric coupling constant $\gaa$]{Limits on the axioelectric 
+			coupling constant $\gaa$.  Results from this work appear in comparison to previous 
+			results from CoGeNT!\cite{Aalseth:2008aa}, CDMS~\cite{Ahmed2009}, and 
+			DAMA~\cite{Bernabei:2005ca}.  The DAMA results have been corrected per 
+			reference~\cite{Collar:2009sp}.}
 			\label{fig:HeavyAxionLimits}
 		\end{figure}
 		
+	\subsection{Conclusions and Discussion}
+	\label{sec:DiscOnHeavyAxionLimits}	
+
 
 							
 	\section{Sensitivity of the \MJ~\minmod~to a Dark Matter signal}
