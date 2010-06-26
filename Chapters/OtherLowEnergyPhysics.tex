@@ -92,8 +92,23 @@ The low noise of PPC detectors yields excellent sensitivity to non-relativistic 
 	\section{Sensitivity of the \MJ~\minmod~to a Dark Matter signal}
 	\label{sec:MJSensitivity}
 	
+	Since a framework was established to determine exclusion limits for low-mass WIMPs and for the axioelectric coupling constant, it is simple to apply this to determine the sensitivities of the \MJ~\minmod.  Calculating the sensitivity of the experiment involves making some assumptions of the background at low energies and of the structure of the experiment.  A discussion about the estimation of the background is given in the following in Section~\ref{sec:MJLowEnergyBackgroundModel}.  The general prescription for calculating the sensitivity is as follows:
+	
+		\begin{itemize}
+			\item Generate a background model, including an expected rate of background
+			\item Simulate a spectrum according to the background model
+			\item Fit to the simulated spectrum the background model plus a signal model (e.g.~WIMP or axioelectric spectrum)
+			\item Calculate the upper limit on the amplitude of the signal
+			\item Repeat a large number of times to generate an ensemble of limits.
+		\end{itemize}	
+Details regarding this procedure will be outlined in the following.  Details of the \MJ~\minmod are given in Chapter~\ref{chap:Majorana}.  For these purposes, we have assumed that the \MJ~\minmod~is composed of 20~kg of material, though in reality it will likely have at least twice as much material added, and that it will run to accumulate between 1 and 5~years of livetime.  
+	
 		\subsection{Low-energy background model}
 		\label{sec:MJLowEnergyBackgroundModel}
+		
+The estimation of background generally comes from verified simulations and from extrapolations from previous experiments.  In this work, the background is estimated by assuming it arises from two main sources: (1) a continuum from higher energy processes, and (2) counts from the beta decay of cosmogenically-produced tritium in the detector.  A simulation to estimate (1) is wrought with challenge since a large number of contributions can effect the result.  However, it is possible to use previous results from other germanium-based experiments to produce an estimate of this background.  The IGEX experiment measured a flat background rate of $\sim0.1$~counts/keV/kg/day in this low energy region ($4\to10$~keV)~\cite{Ira01}.    The \MJ~\minmod plans to reduce background above 200~keV by a factor of 100~\cite{MajoranaWhitePaper} and so it is reasonable to expect the flat background at low energies will follow this same reduction to be roughly 0.001~counts/keV/kg/day.  
+
+The estimate of a background to tritium involves understanding the activation rate of tritium at the surface of the earth.  After 
 		
 		\subsection{WIMPs}
 		\label{sec:MJSensitivityToWIMP}
