@@ -78,7 +78,7 @@ The low noise of PPC detectors yields excellent sensitivity to non-relativistic 
 			\includegraphics[width=0.9\textwidth]{axion_constrained_unbinnedall_exclusion_plots_final}
 			\caption[Limits on the axioelectric coupling constant $\gaa$]{Limits on the axioelectric 
 			coupling constant $\gaa$.  Results from this work appear in comparison to previous 
-			results from CoGeNT!\cite{Aalseth:2008aa}, CDMS~\cite{Ahmed2009}, and 
+			results from CoGeNT~\cite{Aalseth:2008aa}, CDMS~\cite{Ahmed2009}, and 
 			DAMA~\cite{Bernabei:2005ca}.  The DAMA results have been corrected per 
 			reference~\cite{Collar:2009sp}.}
 			\label{fig:HeavyAxionLimits}
@@ -115,19 +115,77 @@ The estimate of a background to tritium involves understanding the activation ra
 		
 			\begin{figure}
 				\centering
-				%\includegraphics[width=0.9\textwidth]{PPC2DesignSchematicAll}
-				\caption{\MJ~\minmod~sensitivity to a WIMP signal.}
+				\includegraphics[width=0.9\textwidth]{MJDemoExampleSensFit}
+				\caption[\MJ~\minmod WIMP sensitivity fit example.]{A sensitivity fit example with WIMP  
+				signal at $M_{W}=10$~GeV, with $\signuc$ excluded at 90\% CL with value
+				 $8.6\times10^{-9}$~pb.  Components of the fit are broken out including WIMP 
+				 signal (blue dashed) and flat background (red dotted).  The major feature in the 
+				 fit is due to the beta spectrum of tritium.}
+				\label{fig:MJSensitivityToWIMPExample}
+			\end{figure}
+	
+			\begin{figure}
+				\centering
+				\def\figheight{0.41\textheight}				
+				\subfigure[1~year (20 kg-yr) exposure time]{
+					\includegraphics[height=\figheight]{20TimeExposureMJ}
+					\label{fig:20TimeExposureMJ}						
+				}
+				\subfigure[5~year (100 kg-yr) exposure time]{
+					\includegraphics[height=\figheight]{100TimeExposureMJ}
+					\label{fig:100TimeExposureMJ}						
+				}				
+				\caption[\MJ~\minmod~sensitivity to a WIMP signal]{\MJ~\minmod~sensitivity to a
+				 WIMP signal.}
 				\label{fig:MJSensitivityToWIMP}
 			\end{figure}		
+		
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.9\textwidth]{MGM_MJ_Sensitivity_Compare}
+				\caption[\MJ~\minmod~sensitivity to a WIMP signal, comparing to other experiments]
+				{\MJ~\minmod~sensitivity to a WIMP signal, comparing to other experiments.}
+				\label{fig:MJSensitivityToWIMPCompare}
+			\end{figure}			
 			
 		\subsection{Heavy axions}
 		\label{sec:MJSensitivityToAxions}
 		
+		
 			\begin{figure}
 				\centering
-				%\includegraphics[width=0.9\textwidth]{PPC2DesignSchematicAll}
-				\caption{\MJ~\minmod~sensitivity to a Heavy Axion signal.}
-				\label{fig:MJSensitivityToHeavyAxions}
+				\includegraphics[width=0.9\textwidth]{MJDemoExampleSensFitAxion}
+				\caption[\MJ~\minmod axioelectric sensitivity fit example.]{A sensitivity fit example 
+				with axioelectric signal at $m_{a}=5$~keV, with $\gaa$ excluded at 90\% CL with
+				value
+				 $2.4\times10^{-11}$~pb.  Components of the fit are broken out including WIMP 
+				 signal (blue dashed) and flat background (red dotted).  The major feature in the 
+				 fit is due to the beta spectrum of tritium.}
+				\label{fig:MJSensitivityToAxionExample}
+			\end{figure}
+	
+			\begin{figure}
+				\centering
+				\def\figheight{0.41\textheight}
+				\subfigure[1~year (20 kg-yr) exposure time]{
+					\includegraphics[height=\figheight]{1TimeExposureMJAxion}
+					\label{fig:20TimeExposureMJAxion}						
+				}
+				\subfigure[5~year (100 kg-yr) exposure time]{
+					\includegraphics[height=\figheight]{5TimeExposureMJAxion}
+					\label{fig:100TimeExposureMJAxion}						
+				}				
+				\caption[\MJ~\minmod~sensitivity to an axioelectric signal]{
+				\MJ~\minmod~sensitivity to an axioelectric signal.}
+				\label{fig:MJSensitivityToAxion}
+			\end{figure}	
+					
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.9\textwidth]{MJAxionCompare}
+				\caption{\MJ~\minmod~sensitivity to a Heavy Axion signal, comparing to other 
+				experiments.}
+				\label{fig:MJSensitivityToHeavyAxionsCompare}
 			\end{figure}							
 
 	\section{Conclusions}
