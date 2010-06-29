@@ -92,35 +92,81 @@ The low noise of PPC detectors yields excellent sensitivity to non-relativistic 
 	\section{Sensitivity of the \MJ~\minmod~to a Dark Matter signal}
 	\label{sec:MJSensitivity}
 	
-	Since a framework was established to determine exclusion limits for low-mass WIMPs and for the axioelectric coupling constant, it is simple to apply this to determine the sensitivities of the \MJ~\minmod.  Calculating the sensitivity of the experiment involves making some assumptions of the background at low energies and of the structure of the experiment.  A discussion about the estimation of the background is given in the following in Section~\ref{sec:MJLowEnergyBackgroundModel}.  The general prescription for calculating the sensitivity is as follows:
+	Since a framework was established to determine exclusion limits for low-mass WIMPs and for the axioelectric coupling constant, it is simple to apply this same framework to determine the sensitivities of the \MJ~\minmod.  Calculating the sensitivity of the experiment involves making some assumptions of the background at low energies and of the makeup of the experiment.  A discussion about the estimation of the background is given in the following in Section~\ref{sec:MJLowEnergyBackgroundModel}.  The general prescription for calculating the sensitivity is as follows:
 	
 		\begin{itemize}
 			\item Generate a background model, including an expected rate of background
 			\item Simulate a spectrum according to the background model
 			\item Fit to the simulated spectrum the background model plus a signal model (e.g.~WIMP or axioelectric spectrum)
-			\item Calculate the upper limit on the amplitude of the signal
+			\item Calculate the upper limit on the amplitude of the signal at 90\% CL.
 			\item Repeat a large number of times to generate an ensemble of limits.
 		\end{itemize}	
-Details regarding this procedure will be outlined in the following.  Details of the \MJ~\minmod are given in Chapter~\ref{chap:Majorana}.  For these purposes, we have assumed that the \MJ~\minmod~is composed of 20~kg of material, though in reality it will likely have at least twice as much material added, and that it will run to accumulate between 1 and 5~years of livetime.  
+From the generated ensemble of limits, the 90\% CL value which was above 99\% of the limits was chosen.  Details of the \MJ~\minmod are given in Chapter~\ref{chap:Majorana}.  For these purposes, we have conservatively assumed that the \MJ~\minmod~will be composed of 20~kg of material and that it will run to accumulate between 1 and 5~years of livetime.  
 	
 		\subsection{Low-energy background model}
 		\label{sec:MJLowEnergyBackgroundModel}
 		
-The estimation of background generally comes from verified simulations and from extrapolations from previous experiments.  In this work, the background is estimated by assuming it arises from two main sources: (1) a continuum from higher energy processes, and (2) counts from the beta decay of cosmogenically-produced tritium in the detector.  A simulation to estimate (1) is wrought with challenge since a large number of contributions can effect the result.  However, it is possible to use previous results from other germanium-based experiments to produce an estimate of this background.  The IGEX experiment measured a flat background rate of $\sim0.1$~counts/keV/kg/day in this low energy region ($4\to10$~keV)~\cite{Ira01}.    The \MJ~\minmod plans to reduce background above 200~keV by a factor of 100~\cite{MajoranaWhitePaper} and so it is reasonable to expect the flat background at low energies will follow this same reduction to be roughly 0.001~counts/keV/kg/day.  
+The estimation of background generally comes from verified simulations and from extrapolations from previous experiments.  In this work, the background is estimated by assuming it arises from two main sources: (1) a continuum from higher energy processes, and (2) counts from the beta decay of cosmogenically-produced tritium in the detector.  A simulation to estimate (1) is wrought with challenge since a large number of contributions can affect the result.  However, it is possible to use previous results from other germanium-based experiments to produce an estimate of this background.  The IGEX experiment measured a flat background rate of $\sim0.1$~counts/keV/kg/day in this low energy region ($4\to10$~keV)~\cite{Ira01}.    The \MJ~\minmod~plans to reduce background above 200~keV by a factor of 100~\cite{MajoranaWhitePaper} and so it is reasonable to expect the flat background at low energies will follow this same reduction to be roughly 0.001~counts/keV/kg/day.  This background was assumed to not vary in time as well so that it was flat in both time and energy.
 
-The estimate of a background to tritium involves understanding the activation rate of tritium at the surface of the earth.  After 
+The estimate of a background to tritium involves understanding the activation rate of tritium for germanium at the surface of the earth.  This activation rate has been estimated to be $\lesssim200$~\hthree~atoms per kilogram of Ge per day for natural germanium at the surface of the earth, and almost a factor of 2 less for germanium with enriched \gersevensix~content~\cite{Avi92}.  The exposure is determined by the time of manufacture beginning with the pulling of the germanium crystal since the tritium content is `reset' at this point.  For example, if the entire process from crystal pulling to detector development and then final deployment (or storage) underground takes 15~days, then this integrated time is the the total tritium activation period for the detector.  For a kilogram natural-germanium detector created over such a time scale, we would expect there to be $15\times200\sim3000$ atoms of \hthree~within the detector.  Given the slow time of decay of \hthree~(12.32~years), it is critical to minimize the time above ground and certainly necessary to avoid any time at high altitudes, e.g.~storage or transport via airplane.  In this simple background model, two optimistic exposure times are chosen -- 15 and 30~days -- and it is assumed that the detectors begin taking data immediately after arriving underground.  In practice, this assumption is justified due to the long decay time of tritium since the detector will not significantly cool down during a period of time underground much shorter than the lifetime.  The average rates due to these exposures once underground are then roughly 0.03 and 0.06~counts/keV/kg/day for 15 and 30~days, respectively.  The pdf of the tritium decay function was constructed in both time and energy to be:
+
+		\begin{equation}
+			f_{^{3}\text{H}}\left(E, t\right)  =  g_{^{3}\text{H}}\left(E\right) \times h_{^{3}\text{H}}\left(t\right) 
+		\end{equation}
+		with
+		\begin{eqnarray}
+		g_{^{3}\text{H}}\left(E\right) & = & \sqrt{(E + M_e)^2 - M_e^2} \left(
+			E + M_e \right) \left( Q_{^3\text{H}} - E \right)^2 \\
+h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}}
+		\end{eqnarray}
+		and $Q_{^3\text{H}}=18.6$~keV, $M_{e}=511$~keV, and $\tau_{^3\text{H}} = 12.32 / \log(2)$~years.
+		
+	The background from neutrons has been estimated previously for the IGEX experiment~\cite{Carmona2004523} located at the Canfranc underground laboratory.  This reference considered both neutrons from cosmic-ray muons interacting in the rock as well as neutrons arising from spontaneous fission and ($\alpha$, n) reactions.  Estimates from this (see Figure~7 and Tables 2,3 in\cite{Carmona2004523}, Figure~7 is reproduced in here in Figure~\ref{fig:IGEXNeutrons}) suggested that contributions to IGEX from both sources should be below 0.01~counts/keV/kg/day down to 0~keV.  Additionally, it was demonstrated that neutrons from rock radioactivity could be effectively eliminated with additional shielding.  Though the \MJ~\minmod~will have a different geometry to that of the IGEX experiment, it is expected that these numbers are a conservative upper limit due to the fact that the \minmod~will be in a deeper location (DUSEL vs.~Canfranc).  From these conclusions and because the background from \hthree~should at least initially dominate the \minmod, any background contribution from neutrons was omitted from the background model.
+	
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.9\textwidth]{IGEXNeutronsFromMuons}
+				\caption[Simulated muon-induced-neutron spectrum for IGEX.]{Simulated muon-induced-neutron 
+				spectrum for IGEX, reproduced from Figure~7 in reference~\cite{Carmona2004523}.  A, B, C, and D are different
+				neutron moderator configurations for the IGEX experiment, and the lines are exponential fits to guide the eye.
+				A conservative extrapolation suggests that all of these spectra should be well below 0.01~counts/keV/kg/day at
+				0~keV and is much less than 0.001~counts/keV/kg/day above 10~keV.}
+				\label{fig:IGEXNeutrons}
+			\end{figure}
+	
+	
+
+		\subsection{Sensitivity Fitting}
+		\label{sec:MJSensitivityFitting}
+	
+	The fitting procedure used a binned maximum likelihood to reduce the time required in estimating an upper limit for each toy data model.  Three parameters affecting the fits were varied: tritium exposure time, threshold, and exposure time of the \minmod.  Each of these parameters could take two different values (see Table~\ref{tab:SensFitValues}) so that for each signal eight different sets of fits were done.  The data sets and fitting pdfs were both fully two-dimensional in energy and time and were fit over a range from threshold to 20~keV.  The binning was chosen as follows: 64~bins for energy and 16~bins for time.  For each of the eight set of fits for a signal, the 
+	
+			\begin{table}
+				\centering
+				\begin{tabular}{l r}
+					\toprule
+					Variable & Values \\
+					\midrule
+					\hthree~exposure time & 15, 30~days \\
+					Threshold & 0.3, 0.5~keV \\
+					\minmod~exposure & 1, 5~years (20, 100~kg-years) \\
+					\bottomrule 
+				\end{tabular}				
+				\caption[Variations on background and fitting for \MJ~\minmod~sensitivity calculations]
+				{Variations on background and fitting for \MJ~\minmod~sensitivity calculations}
+				\label{tab:SensFitValues}
+			\end{table}		
 		
 		\subsection{WIMPs}
 		\label{sec:MJSensitivityToWIMP}
-		
+		\cite{Avi92}
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{MJDemoExampleSensFit}
 				\caption[\MJ~\minmod WIMP sensitivity fit example.]{A sensitivity fit example with WIMP  
 				signal at $M_{W}=10$~GeV, with $\signuc$ excluded at 90\% CL with value
 				 $8.6\times10^{-9}$~pb.  Components of the fit are broken out including WIMP 
-				 signal (blue dashed) and flat background (red dotted).  The major feature in the 
-				 fit is due to the beta spectrum of tritium.}
+				 signal (blue dashed) and flat background (red dotted).  The beta spectum from \hthree~is clear.}
 				\label{fig:MJSensitivityToWIMPExample}
 			\end{figure}
 	
@@ -159,8 +205,7 @@ The estimate of a background to tritium involves understanding the activation ra
 				with axioelectric signal at $m_{a}=5$~keV, with $\gaa$ excluded at 90\% CL with
 				value
 				 $2.4\times10^{-11}$~pb.  Components of the fit are broken out including WIMP 
-				 signal (blue dashed) and flat background (red dotted).  The major feature in the 
-				 fit is due to the beta spectrum of tritium.}
+				 signal (blue dashed) and flat background (red dotted).  }
 				\label{fig:MJSensitivityToAxionExample}
 			\end{figure}
 	
