@@ -5,24 +5,26 @@ In this section, we basically discuss two things: Heavy non-relativistic axions,
 Also, making some reasonable assumptions about Majorana, we make some estimates as to the sensitivity of the Majorana experiment to WIMP dark matter and axion dark matter (via the axioelectric effect).  
 
 		
-	\section{Other dark matter: heavy axions}
+	\section{Other dark matter candidates: keV-scale bosons}
 	\label{sec:CalcLimitsOnHeavyAxions}		
-		
 
+	The lack of understanding as to how a dark matter particle couples with normal matter described by the Standard Model has motivated wide theoretical investigation resulting in a large number of candidate particles in addition to WIMPs.  Additionally, results from the NaI-based DAMA experiment~\cite{Bernabei:2005ca} have demonstrated a clear annual modulation signal which could be interpreted as arising from the earth's movement through a galactic cloud of dark matter particles.  Because other experiments sensitive to WIMP interactions have failed to reproduce this result, the possibility remains that some non-WIMP-like process could underly the cause.  However, the results of the DAMA experiment are not the sole motivation for studying dark matter candidates beyond WIMPs.  Whereas most dark matter experiments focus their sensitivity on looking for one type of signal (i.e.~a nuclear recoil from a WIMP interaction), it is still essential to consider other possibilities.  
+	
+	Pospelov et al.~have completed a study~\cite{Pospelov:2008jk} looking at keV-massive bosons as dark matter candidates.  In particular, they outline the expected interactions and rates for scalar, pseudoscalar, and vector bosons incident upon modern detectors.  In general, Pospelov et al.~avoid in-depth discussions regarding theoretical motivation of each bosonic type, but it is possible to interpret a pseudoscalar as equivalent to an axion (or axionlike) particle responsible for preserving CP in QCD (see, e.g.~\cite{Amsler20081}).  Therefore other work deriving axion processes or limits on such processes remains relevant in this case.  As such, the following sections consider the coupling of a pseudoscalar to electrons in a detector and therefore refer to this process as an `axioelectric' effect and the originating particle as an `axion.'  
 
-	\subsection{Heavy axion signal}
+	\subsection{Axioelectric signal}
 	\label{sec:CalcLimitsOnHeavyAxionSignal}		
 
-	The signal for a non-relativistic axion interacting via the axioelectric effect has been derived in~\cite{Pospelov:2008jk}.  This particular inelastic interaction involves the deposition of the \emph{complete} energy of the axion which, in the non-relativistic case, is essentially equal to the mass of the particle.  Since the excitation of the electron via the axioelectric effect is similar to that mediated by a photon in the photoelectric effect, the signal is a delta function centered at the mass of the axion, $m_{a}$.  Convolved with the detector resolution, the signal would appear gaussian with width exactly that of a gamma or x-ray of energy equivalent to $m_{a}$.  The rate of this interaction has been estimated in~\cite{Pospelov:2008jk} as:
+	The signal for a non-relativistic axion interacting via the axioelectric effect has been derived in~\cite{Pospelov:2008jk}.  This particular inelastic interaction involves the deposition of the \emph{complete} energy of the axion which in the non-relativistic case is essentially equal to the mass of the particle.  Since the excitation of the electron via the axioelectric effect is similar to the process mediated by a photon in the photoelectric effect, the signal is a delta function centered at the mass of the axion, $m_{a}$.  Convolved with the detector resolution, the signal would appear gaussian with width exactly that of a gamma or x-ray of energy equivalent to $m_{a}$.  The rate of this interaction has been estimated in~\cite{Pospelov:2008jk} as:
 	
 		\begin{equation}
 			R \left[ kg^{-1} day^{-1} \right]\simeq \frac{1.2\times 10^{19}}{A} \gaa^{2} m_a \sigma_{photo}
 			\label{eqn:AxioelectricRate}
 		\end{equation}
 
-where $A$ is the atomic mass, $m_{a}$ is the mass of the axion in keV, $\sigma_{photo}$ is the measured photoelectric cross section in barns, and $g_{a\bar{e}e}$ is the dimensionless coupling constant.  In the derivation of this result, the value of the density of the dark matter $\rho_{D}$ = 0.3~GeV cm$^{-3}$ was used.  The rate calculated for a germanium detector ($A=72.96$) with a chosen coupling constant, $\gaa = 10^{-11}$, is given in Figure~\ref{fig:HeavyAxionSignalRate}.  The rate calculation used well-known cross sections obtained from the NIST FFAST database located online~\cite{chantler:597}.  
+where $A$ is the atomic mass, $m_{a}$ is the mass of the axion in keV, $\sigma_{photo}$ is the measured photoelectric cross section in barns, and $g_{a\bar{e}e}$ is the dimensionless coupling constant.  In the derivation of this result, the value of the density of the dark matter $\rho_{D}$ = 0.3~GeV cm$^{-3}$ was used.  The rate calculated for a germanium detector ($A=72.96$) with a chosen coupling constant, $\gaa = 10^{-11}$, is given in Figure~\ref{fig:HeavyAxionSignalRate}.  The rate calculation used well-known cross sections obtained from the NIST FFAST database located online~\cite{chantler:597}.  The sharp feature in the plot around $m_{a}\sim1.3$~keV arises from the L-line resonance at this energy.  Other sharp features similarly relate to the energy levels of the electrons in a germanium atom.  
 
-The low noise of PPC detectors yields excellent sensitivity to non-relativistic axions with masses $\leq10$~keV due their sharp resolution at low energies.  A comparison of an axioelectric signal at a given $\gaa$ is provided in Figure~\ref{fig:ResCompare} for characteristic resolutions of NaI and germanium detectors.  In this plot, it is clear that the improved resolution of the germanium detector allows less smearing of the signal, forcing more counts into a narrower peak.
+The low noise of PPC detectors yields excellent sensitivity to non-relativistic axions with masses $\leq10$~keV due their sharp resolution at low energies.  This enhanced performance is especially clear when considering the capabilities of NaI detectors used in the DAMA experiment.  A comparison of an axioelectric signal at a given $\gaa$ is provided in Figure~\ref{fig:ResCompare} for characteristic resolutions of NaI and germanium detectors.  In this plot, it is clear that the improved resolution of the germanium detector allows less smearing of the signal, forcing more counts into a narrower peak.  The enhanced resolution enables superior distinction of the signal in the presence of background.
 
 		\begin{figure}
 			\centering
@@ -45,7 +47,7 @@ The low noise of PPC detectors yields excellent sensitivity to non-relativistic 
 	\subsection{Limits on the axioelectric effect}
 	\label{sec:CalcLimitsOnHeavyAxionLimits}		
 		
-	Limits were calculated using the profile-likelihood method described in Section~\ref{sec:LimitsML}.  Fits were performed on the complete number of data sets described in Chapter~\ref{chap:AnalysisBeGe}, with a total livetime of 150.6~days.  All data sets yielded similar results and so one data set was chosen with 95\% rise-time acceptance cuts and microphonics cuts applied.  As outlined before, assumptions about the source of slow-rise-time events reduced the fidudical mass to 0.33~kg (see Section~\ref{sec:BeGeLowEnergyFeatures}).  Additionally, results with unbinned and binned maximum-likelihood fits were consistent and so the former was used.  The limit calculation followed the same procedure as a peak search in the data and is outlined as follows:
+	Limits were calculated using the profile-likelihood method described in Section~\ref{sec:LimitsML}.  Fits were performed on the complete number of data sets described in Chapter~\ref{chap:AnalysisBeGe}, with a total livetime of 150.6~days.  All data sets yielded similar results and so one data set was chosen with 95\% rise-time acceptance cuts and microphonics cuts applied.  As outlined before, assumptions about the source of slow-rise-time events reduced the fiducial mass to 0.33~kg (see Section~\ref{sec:BeGeLowEnergyFeatures}).  Additionally, results with unbinned and binned maximum-likelihood fits were consistent and so the former was used for the final result.  The limit calculation followed the same procedure as a peak search in the data and is outlined as follows:
 		\begin{itemize}
 			\item Define the gaussian signal $f_{axion}$: 
 			\begin{itemize}
@@ -71,7 +73,9 @@ The low noise of PPC detectors yields excellent sensitivity to non-relativistic 
 			\label{fig:ExampleHeavyAxionFit}
 		\end{figure}
 			
-	The 90\% CL excluded rate in counts/kg/day, $R_{axion}(m_{a})$, was determined from $N_{axion}(m_{a})$ and from this value the upper limit of $\gaa$ could be determined.  The exclusion calculated from this result is presented in Figure~\ref{fig:HeavyAxionLimits} along with a comparison to other results, including previous results of the CoGeNT collaboration~\cite{Aalseth:2008aa}, the CDMS collaboration~\cite{Ahmed2009}, and an acceptance region from the DAMA collaboration~\cite{Bernabei:2005ca}.  As noted in both references~\cite{Collar:2009sp,Pospelov:2008jk}, the limit calculation performed in~\cite{Bernabei:2005ca} did not correctly treat the leading term in Hamiltonian producing instead a reduced rate for a given $\gaa$ around 3 orders of magnitude lower.  The corrected result from DAMA as outlined in~\cite{Collar:2009sp} appears in Figure~\ref{fig:HeavyAxionLimits}.
+	The 90\% CL excluded rate in counts/kg/day, $R_{axion}(m_{a})$, was determined from $N_{axion}(m_{a})$ and from this value the upper limit of $\gaa$ could be determined.  The exclusion calculated from this result is presented in Figure~\ref{fig:HeavyAxionLimits} along with a comparison to other results, including previous results of the CoGeNT collaboration~\cite{Aalseth:2008aa}, the CDMS collaboration~\cite{Ahmed2009}, and an acceptance region from the DAMA collaboration~\cite{Bernabei:2005ca}.  As noted in both references~\cite{Collar:2009sp,Pospelov:2008jk}, the limit calculation performed in~\cite{Bernabei:2005ca} did not correctly treat the leading term in Hamiltonian producing instead a reduced rate for a given $\gaa$ around 3 orders of magnitude lower.  An estimation of the corrected result from DAMA as outlined in~\cite{Collar:2009sp} appears in Figure~\ref{fig:HeavyAxionLimits}.  A comparison to limits derived from both solar neutrinos~\cite{Gondolo09} and globular clusters~\cite{Raffelt95} is included as well.  The limits obtained from astronomical observation arise from determining how much `hidden energy' may be carried off by axions from the solar core (in the case of solar neutrinos) and similarly from the cooling observed in the evolution of red-giant stars in globular clusters.  All direct measurements provide stronger limits than those from solar neutrinos, but the mass-independent limits from globular cluster stars still exceed all others.  
+			
+	Pospelov et al.~noted the axioelectric process should be to first order invariant to the velocity of the incoming dark matter particle and so would not generate an appreciable annual modulation.  This could disallow any interpretation of the DAMA annual modulation as due to an axioelectric interaction.  Collar et al.~point out the possibility of recovering the annual modulation by considering the axioelectric interaction rate as not arising from changes in incident dark matter velocity but rather from the number densities of the particles~\cite{Collar:2009sp}.  Since the comparison between astronomical limits and direct detection methods will depend strongly on choices of models and their parameters, it is still important to explore the space disallowed by globular cluster limits.
 			
 		\begin{figure}
 			\centering
@@ -80,12 +84,13 @@ The low noise of PPC detectors yields excellent sensitivity to non-relativistic 
 			coupling constant $\gaa$.  Results from this work appear in comparison to previous 
 			results from CoGeNT~\cite{Aalseth:2008aa}, CDMS~\cite{Ahmed2009}, and 
 			DAMA~\cite{Bernabei:2005ca}.  The DAMA results have been corrected per 
-			reference~\cite{Collar:2009sp}.}
+			reference~\cite{Collar:2009sp}.  Limits derived from both solar neutrinos~\cite{Gondolo09} and globular clusters~\cite{Raffelt95} are included as noted, see text for details.}
 			\label{fig:HeavyAxionLimits}
 		\end{figure}
 		
 	\subsection{Conclusions and Discussion}
 	\label{sec:DiscOnHeavyAxionLimits}	
+
 
 
 							
@@ -134,12 +139,12 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}}
 				\label{fig:IGEXNeutrons}
 			\end{figure}
 	
-	In general, the detector response must be convolved with the spectrum to get a realistic shape.  However, since point-contact detectors have such excellent energy resolution ($\sigma\sim70$~eV, the response has limited effect on the spectra.  Therefore, no correction for finite resolution was taken into account.  
+	In general, the detector response must be convolved with the spectrum to get a realistic shape.  However, since point-contact detectors have such excellent energy resolution ($\sigma\sim70$~eV), the response has limited effect on the spectra.  Therefore, no correction for finite resolution was taken into account.  
 
 		\subsection{Sensitivity Fitting}
 		\label{sec:MJSensitivityFitting}
 	
-	The fitting procedure used binned maximum likelihood instead of an unbinned fit to reduce the time required in estimating an upper limit for each toy data model.  Three parameters affecting the fits were varied: tritium exposure time, threshold, and exposure time of the \minmod.  Each of these parameters could take two different values (see Table~\ref{tab:SensFitValues}) so that for each signal eight different sets of fits were done.  The data sets and fitting pdfs were both fully two-dimensional in energy and time and were fit over a range from threshold to 20~keV.  The binning was chosen as follows: 64~bins for energy and 16~bins for time.  For each of the eight set of fits for a signal, an ensemble of upper limits with a population $\gtrsim1500$\footnote{ An exact population number was not specified for the ensembles to maximize the efficiency of the calculation.  It was more efficient to specify the \emph{time} for the calculation to run, than for to define a specific number of iterations.} was generated on the Athena cluster at the University of Washington~\cite{Athena}.  The final sensitivity calculations outlined in the following sections took roughly 700 hours of real-time or 221~cpu-days.
+	The fitting procedure used binned maximum likelihood instead of an unbinned fit to reduce the time required in estimating an upper limit for each toy data model.  Three parameters affecting the fits were varied: tritium exposure time, threshold, and exposure time of the \minmod.  Each of these parameters could take two different values (see Table~\ref{tab:SensFitValues}) so that for each signal eight different sets of fits were done.  The data sets and fitting pdfs were both fully two-dimensional in energy and time and were fit over a range from threshold to 20~keV.  The binning was chosen as follows: 256~bins for energy and 16~bins for time.  For each of the eight set of fits for a signal, an ensemble of upper limits with a population $\gtrsim1500$\footnote{ An exact population number was not specified for the ensembles to maximize the efficiency of the calculation.  It was more efficient to specify the \emph{time} for the calculation to run, than for to define a specific number of iterations.} was generated on the Athena cluster at the University of Washington~\cite{Athena}.  The final sensitivity calculations outlined in the following sections took roughly 700 hours of real-time or 221~cpu-days.
 	
 			\begin{table}
 				\centering
@@ -160,9 +165,7 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}}
 		\subsection{Sensitivity to WIMPs}
 		\label{sec:MJSensitivityToWIMP}
 		
-		Make comments on the shape of the excluded distribution with reference to the different 
-		
-	The sensitivity calculations employed the 2-dimensional (time, energy) signal described in the previous chapter and more details can be found in Section~\ref{sec:CalcLimitsOnWIMPSignal}.  The equivalent values for all constants in the WIMP signal were used as previously noted.  The fits proceeded as outlined in the previous section (Section~\ref{sec:MJSensitivityFitting}).  The shape of the WIMP signal was parameterized solely by the mass of the WIMP, $M_{W}$, and so fits were performed with different values of this parameter on a variable grid (in GeV): 2.9; 3; 3.5; $4\to10, \Delta M_{W} = 1$; $12\to24, \Delta M_{W} = 2$; $30\to100, \Delta M_{W} = 10$; $100\to1000, \Delta M_{W} = 100$.  An example sensitivity fit to a WIMP signal at $M_{W}=10$~GeV is given in Figure~\ref{fig:MJSensitivityToWIMPExample}.  In this particular example, the threshold was 0.3~keV, \hthree~exposure time was 15~days, and the total exposure time was 1~year.  It is clear that the amplitude of the excluded signal is very small and perhaps smaller than one might expect given the average count rate dominated by the \hthree~decay.  However, the shape of a WIMP signal is significantly different from that of a tritium beta spectrum making a stronger exclusion possible because the shape of the spectra are taken into account.  A simple integration analysis looking solely at counts in a defined energy window would fail to produce the same limits.  
+	The sensitivity calculations for WIMPs employed the 2-dimensional (time, energy) signal described in the previous chapter and more details can be found in Section~\ref{sec:CalcLimitsOnWIMPSignal}.  The equivalent values for all constants in the WIMP signal were used as previously noted.  The fits proceeded as outlined in the previous section (Section~\ref{sec:MJSensitivityFitting}).  The shape of the WIMP signal was parameterized solely by the mass of the WIMP, $M_{W}$, and so fits were performed with different values of this parameter on a variable grid (in GeV) of spacing given in $\Delta M_{W}$: 2.9; 3; 3.5; $4\to10, \Delta M_{W} = 1$; $12\to24, \Delta M_{W} = 2$; $30\to100, \Delta M_{W} = 10$; $100\to1000, \Delta M_{W} = 100$.  An example sensitivity fit to a WIMP signal at $M_{W}=10$~GeV is given in Figure~\ref{fig:MJSensitivityToWIMPExample}.  In this particular example, the threshold was 0.3~keV, \hthree~exposure time was 15~days, and the total exposure time was 1~year.  It is clear that the amplitude of the excluded signal is very small and perhaps smaller than one might expect given the average count rate dominated by the \hthree~decay.  However, the shape of a WIMP signal is significantly different from that of a tritium beta spectrum making a stronger exclusion possible because the shape of the spectra are taken into account.  A simple integration analysis looking solely at counts in a defined energy window would fail to produce the same limits.  
 		
 			\begin{figure}
 				\centering
@@ -174,7 +177,7 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}}
 				\label{fig:MJSensitivityToWIMPExample}
 			\end{figure}
 	
-	The final results of the sensitivity calculation are presented in Figure~\ref{fig:MJSensitivityToWIMP}.  This figure includes results from the eight different sets of fits with the modification of the exposure times and the threshold.  All the exclusion plots exhibit a similar characteristic shape including a small dip in the $M_{W} = 4 \to 6$~GeV region.  This `dip' is due to the sharp reduction of the tritium spectrum at low energies and because the WIMP signal in this mass range is a very steep exponential.  Counterintuitively, in this region the `dip' for larger tritium exposure times yields a better exclusion limit.  It is expected that this occurs because the larger number of events in the beta spectrum yields a better measurement of its amplitude and reduces the uncertainty in the measurement near threshold.  Aside from this, the factor of 2 increase in exposure time doesn't have a significant impact other than slightly softening the exclusion limits.  In contrast, the threshold has a significant impact below 10.5~GeV yielding much better exclusions for WIMP masses below that value.  This is certainly due to the sharp reduction of the tritium spectrum at low energies and to the sharp turn on of the exponential-like WIMP spectrum.  As expected, the reduced threshold of 0.3~keV enables limits to be made down to $M_{W}=3$~GeV.
+	The final results of the sensitivity calculation are presented in Figure~\ref{fig:MJSensitivityToWIMP}.  This figure includes results from the eight different sets of fits with the modification of the exposure times and the threshold.  The factor of 2 increase in exposure time doesn't have a significant impact other than softening the exclusion limits as the WIMP mass increases.  The threshold has a fairly significant impact below 10.5~GeV yielding better exclusions for WIMP masses below that value and pushing the exclusion region diagonally left and down in the plot.  This is certainly due to the sharp reduction of the tritium spectrum at low energies and to the sharp turn on of the exponential-like WIMP spectrum.  As expected, the reduced threshold of 0.3~keV enables limits to be made down to $M_{W}=3.5$~GeV.  
 	
 			\begin{figure}
 				\centering
@@ -190,17 +193,22 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}}
 				\caption[\MJ~\minmod~sensitivity to a WIMP signal]{\MJ~\minmod~sensitivity.  Lines are 90\% confidence level exclusions.}
 				\label{fig:MJSensitivityToWIMP}
 			\end{figure}		
+	
+	It is instructive to compare the estimated sensitivity of the \minmod~to that of other WIMP dark matter experiments.  The \MJ~experiment is distinct from most dark matter experiments since, for one, it is not primarily seeking to detect dark matter, but also because it will not rely upon any significant background reduction technique to enhance its sensitivity to WIMP-induced nuclear recoils.  That is, the \MJ~experiment will not have the ability to distinguish between nuclear and electron recoils.  Despite this, it can still be competitive because it can access parameter space unreachable by other experiments with higher thresholds.  A comparison of the sensitivity of the \MJ~\minmod~(assuming 0.3~keV threshold, 15~day tritium exposure, and 100~kg-yr exposure) to two characteristic dark matter experiments is given in Figure~\ref{fig:MJSensitivityToWIMPCompare}.  These two experiments include Phase A of SuperCDMS~\cite{Akerib2006411} and the 300~kg LUX experiment~\cite{LUX300}.  The former is a proposed Ge-based dual-mode bolometer and ionization detector, the latter a proposed liquid-Xe-based detector that would read out both scintillation light and ionization.  The dual-mode nature of these detectors gives them the ability to tag nuclear recoils and reject the electron recoils which dominate the background spectrum.  Whereas it is obvious that the reach of these experiments in the higher-WIMP-mass range ($>10.5$~GeV) far exceeds that of the \MJ~\minmod, the low-energy threshold of the \minmod~enables it to push well into the lower-WIMP-mass region.  
 		
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{MGM_MJ_Sensitivity_Compare}
-				\caption[\MJ~\minmod~sensitivity to a WIMP signal, comparing to other experiments]
-				{\MJ~\minmod~sensitivity to a WIMP signal, comparing to other experiments.}
+				\caption[\MJ~\minmod~sensitivity to a WIMP signal, comparing to SuperCDMS Phase A and LUX 300.]
+				{\MJ~\minmod~sensitivity to a WIMP signal (blue solid), comparing to SuperCDMS Phase A~\cite{Akerib2006411}(red dashed) and LUX 300~\cite{LUX300}
+				(black dotted).  Plot generated with DMTools~\cite{Gai03}, lines are 90\% CL exclusions.}
 				\label{fig:MJSensitivityToWIMPCompare}
 			\end{figure}			
 			
 		\subsection{Sensitivity to axioelectric effect}
 		\label{sec:MJSensitivityToAxions}
+		
+	The sensitivity calculations for the axioelectric effect employed the signal model outlined earlier in Section~\ref{sec:CalcLimitsOnHeavyAxionSignal}.  For simplicity and because it is not expected that the rate of interaction does not vary significantly in time~\cite{Pospelov:2008jk}, this model was only 1-dimensional in energy.  The mass of the axion, $m_{a}$, was chosen on a variable grid (in keV) with spacing given in $\Delta m_{a}$: $0.1\to1, \Delta m_{a} = 0.1$; $1\to9, \Delta m_{a} = 0.2$.  An example sensitivity fit to an axioelectric signal centered at $m_{a}=5$~keV is shown in Figure~\ref{fig:MJSensitivityToAxionExample}.  In this example fit, a threshold of 0.3~keV and and a tritium exposure time of 15 days is assumed.  As before, components of the fit appear separately for comparison.   
 		
 			\begin{figure}
 				\centering
@@ -208,10 +216,12 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}}
 				\caption[\MJ~\minmod axioelectric sensitivity fit example.]{A sensitivity fit example 
 				with axioelectric signal at $m_{a}=5$~keV, with $\gaa$ excluded at 90\% CL with
 				value
-				 $2.4\times10^{-11}$~pb.  Components of the fit are broken out including WIMP 
+				 $2.4\times10^{-11}$~pb.  Components of the fit are broken out including axioelectric 
 				 signal (blue dashed) and flat background (red dotted).  }
 				\label{fig:MJSensitivityToAxionExample}
 			\end{figure}
+	
+	The sensitivity for the \MJ~\minmod~to the axioelectric effect is presented in Figure~\ref{fig:MJSensitivityToAxion}.  All of the exclusion plots have similar characteristics, including a sharp drop at $m_{a}=1.3$~keV and a rise at low $m_{a}$.  The former arises from the corresponding feature in the rate (Figure~\ref{fig:HeavyAxionSignalRate}) due to the L-capture line resonance.  The latter comes from the reduction in threshold and the `leakage' of signal from lower energies pushed above threshold due to the finite energy resolution of the detector.  Larger tritium exposure time softens the sensitivity, but not significantly because $\gaa$ appears squared in the rate equation (Equation~\ref{eqn:AxioelectricRate}).  Also, as expected at higher $m_{a}$ the sensitivity has no dependence on the threshold.
 	
 			\begin{figure}
 				\centering
@@ -224,18 +234,21 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}}
 					\includegraphics[height=\figheight]{5TimeExposureMJAxion}
 					\label{fig:100TimeExposureMJAxion}						
 				}				
-				\caption[\MJ~\minmod~sensitivity to an axioelectric signal]{
-				\MJ~\minmod~sensitivity to an axioelectric signal.}
+				\caption[\MJ~\minmod~sensitivity at 90\% CL to an axioelectric signal]{
+				\MJ~\minmod~sensitivity at 90\% CL to an axioelectric signal.  Exposure time for \hthree~and threshold were varied and results displayed as noted
+				in the figure legends.}
 				\label{fig:MJSensitivityToAxion}
 			\end{figure}	
+				
+	A comparison plot to other experiments has not been generated because no experiments have published sensitivities to the axioelectric effect.  However, since most other dark matter experiments rely upon background reduction through electron and nuclear recoil discrimination, it is possible that these experiments will not have a significant sensitivity to an axioelectric signal because the process appears as an electron recoil event.  To help compare with results presented before in Figure~\ref{fig:HeavyAxionLimits}, Figure~\ref{fig:MJSensitivityToHeavyAxionsCompare} is shown including exclusion limits from solar neutrinos~\cite{Gondolo09} and globular clusters~\cite{Raffelt95}.  It is interesting to note that the \MJ~experiment will demonstrate a better sensitivity to $\gaa$ than limits derived from astronomical observation in the limited $m_{a}$ mass range from $0.2\to5$~keV.  This will provide an important verification of the limits from globular clusters.
 					
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{MJAxionCompare}
-				\caption{\MJ~\minmod~sensitivity to a Heavy Axion signal, comparing to other 
-				experiments.}
+				\caption{\MJ~\minmod~sensitivity at 90\% CL (blue curved lines, dotted 20~kg-yr exposure, solid 100~kg-yr exposure) to an axioelectric signal, 
+				comparing to limits derived from astronomical observations including solar neutrinos~\cite{Gondolo09} and globular clusters~\cite{Raffelt95}.}
 				\label{fig:MJSensitivityToHeavyAxionsCompare}
 			\end{figure}							
 
-	\section{Conclusions}
+	\section{Conclusions and Discussion}
 	\label{sec:OtherLowEnergyConclusions}	
