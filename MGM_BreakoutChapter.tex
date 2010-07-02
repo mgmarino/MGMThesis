@@ -70,6 +70,9 @@
 \usepackage{threeparttable}
 \usepackage{amssymb}
 \usepackage{tikz}
+	\usetikzlibrary{arrows,shapes,backgrounds,trees}
+	\usetikzlibrary{decorations.pathmorphing}
+	\usetikzlibrary{decorations.markings}
 \usepackage{grffile}
 \usepackage{multirow}
 \usepackage{booktabs}
@@ -79,6 +82,7 @@
 
 \graphicspath{
 {Figures/}
+{Figures/Introduction/}
 {Figures/DeploymentOfBeGesWithDigitalDAQ/}
 {Figures/AnalysisOfDigitalBeGeData/}
 {Figures/LowEnergyPhysics/}
@@ -146,8 +150,8 @@
 
 % ========== Introduction 
  
-%\input{Chapters/TheMajoranaExperiment} 
-%\clearpage
+\input{Chapters/Introduction} 
+\clearpage
 
 % ========== Chapter 2
 
@@ -172,8 +176,8 @@
 
 % ========== Chapter 6
  
-\input{Chapters/OtherLowEnergyPhysics} 
-\clearpage
+%\input{Chapters/OtherLowEnergyPhysics} 
+%\clearpage
 
 % ========== End of chapters
 
