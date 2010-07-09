@@ -112,7 +112,7 @@ technology whose characteristics provide powerful tools in the search for
 $\nonubb$ and enable searches for other rare physics processes at low energy, e.g.~dark matter.  
 The electrode geometry of \ppc~detectors significantly reduces the
 capacitance, reducing the energy threshold and enhancing the detector's
-ability to detect low-energy ($\sim100$~eV) processes.  Figure~\ref{fig:PPCGeom} shows a picture of the geometry of this detector in comparison to a standard semi-coaxial crystal.  In addition to improving the electronic response of the detector, the crystal geometry also yields a weighting field strongly peaked at the readout electrode.  This means that as charge drifts to the p contact after being created from energy deposition in the crystal (e.g.~from a physics interaction), no signal will be induced in the contact until the drifting charge is very near ($\sim2$~cm) the contact.  Additionally, charge drift times are increased by the longer drift paths.  These two characteristics coupled together improve the ability to distinguish between charge originating from one point in the crystal or from multiple sites in the detector.
+ability to detect low-energy ($\sim100$~eV) processes.  Figure~\ref{fig:PPCGeom} shows a picture of the geometry of this detector in comparison to a standard semi-coaxial crystal.  In addition to improving the electronic response of the detector, the crystal geometry also yields a weighting field strongly peaked at the readout electrode.  This means that as charge drifts to the p contact after being created from energy deposition in the crystal (e.g.~from a physics interaction), no signal will be induced in the contact until the drifting charge is very near (within $\sim2$~cm of) the contact.  Additionally, charge drift times are increased by the longer drift paths.  These two characteristics coupled together improve the ability to distinguish between charge originating from one point in the crystal or from multiple sites in the detector.
 
 An n-type detector with a point-contact geometry was developed by Luke et
 al.~in 1989, demonstrating detector capacitance on the order of
@@ -160,7 +160,7 @@ multi-site events during data analysis provides a powerful background reduction
 tool.  For conventional semi-coaxial detectors, various tools have been developed
 to tag multi-site events based upon the shape of the measured pulse (see,
 e.g.~\cite{Aal00}).  The expansion in time
-of charge collection in \ppc~detectors makes distinguishing multi-site events easier and improves the efficiency for single-site acceptance vs. multi-site rejection of a pulse-shape analysis routine (see~\cite{Budjas:2009zu,Ren10}.
+of charge collection in \ppc~detectors makes distinguishing multi-site events easier and improves the efficiency for single-site acceptance vs. multi-site rejection of a pulse-shape analysis routine (see~\cite{Budjas:2009zu,Ren10}).
 
 To improve the bandwidth of the detector readout it is necessary to
 place front-end preamplification electronics (e.g.~field-effect transistors) nearby the detectors
@@ -206,43 +206,81 @@ throughout the remainder of this dissertation.
 
 	\section{Searching for dark matter: low-energy physics with \ppc~detectors}
 	
+		\subsection{Evidence for dark matter}
 	% Galactic rotational curves
-	
-	From cosmological observation there exists significant evidence that the matter density of the universe is mostly composed of non-luminous gravitationally-interacting particles referred to as `Dark Matter'.  Perhaps the most convincing and intuitive empirical indications arise from measurements of galactic rotational curves.  To explain simply, astronomers measure the rotational velocity of stars in galaxies and determine the relation of this velocity versus the radial distance from galactic center.  When the velocity is compared to that expected given the observed distribution of mass, it is found that galaxies are rotating much more quickly than they should be.  There is simply not enough observable mass to explain why the galaxies' rotational velocities do not tear them apart.  This realization implied that some other mass must exist to hold the galaxies together, and that this mass was hidden due to its weak or nonexistent coupling with photons.  A weak interaction with electromagnetism makes the dark matter unsusceptible to frictional forces and also makes it non-luminous or `dark.'  By including a mass density of dark matter in a `dark matter halo' around galaxies, astronomers could successfully reproduce observed rotation curves.  An example of such a rotational curve and a three-component fit (visible matter (e.g.~stars), gas, and dark halo) has been included from Reference~\cite{Begeman:1991iy} in Figure~\ref{fig:DMRotCurve}.
+	From cosmological observation there exists significant evidence that the matter density of the universe is mostly composed of non-luminous gravitationally-interacting particles referred to as `Dark Matter'.  Perhaps the most convincing and intuitive empirical indications arise from measurements of galactic rotational curves.  Essentially, astronomers measure the rotational velocity of stars in galaxies and determine the relation of this velocity versus the radial distance from galactic center.  When the velocity is compared to that expected given the observed distribution of mass, it is found that galaxies are rotating much more quickly than they should be.  There is simply not enough observable mass to explain why the galaxies' rotational velocities do not tear them apart.  This realization indicated that some other mass must exist to hold the galaxies together, and that this mass was hidden due to its weak or nonexistent coupling with photons.  A weak interaction with electromagnetism makes the dark matter unsusceptible to frictional forces and also makes it non-luminous or `dark.'  By including a mass density of dark matter in a `dark matter halo' around galaxies, astronomers could successfully reproduce observed rotation curves.  An example of such a rotational curve and a three-component fit (visible matter (e.g.~stars), gas, and dark halo) has been included from Reference~\cite{Begeman:1991iy} in Figure~\ref{fig:DMRotCurve}.
 
 		\begin{figure}
 			\centering
 			\includegraphics[height=0.45\textheight]{DMRotationalCurves}
-			\caption[Example galactic rotational velocity curve.]{Example galactic rotational velocity curve 
+			\caption[Galactic rotational velocity curve of NGC 6503.]{Galactic rotational velocity curve of NGC 6503
 			from~\cite{Begeman:1991iy}.  The solid line is a three-component fit to the data with components from:
 			visible mass (dashed), gas (dotted) and the dark halo (dash-dot).  }
 			\label{fig:DMRotCurve}
 		\end{figure}
 	% WMAP results (large-scale structure)
-	Other evidence from dark matter comes from measurements of universe structure through the analysis of the anisotropy of the cosmic microwave background (CMB) (see e.g.~\cite{Amsler20081}).  The extraction of cosmological parameters (e.g.~total matter density, baryon density, Hubble parameter, etc.) occurs by fitting the CMB data using model-based assumptions.  In particular, the parameters-of-interest are the total matter density, $\Omega_{m}$, and the baryon density, $\Omega_{b}$, which have been measured to be
+	Other evidence of dark matter comes from measurements of large-scale structure through the analysis of the anisotropy of the cosmic microwave background (CMB) (see e.g.~\cite{Amsler20081}).  The extraction of cosmological parameters (e.g.~total matter density, baryon density, Hubble parameter, etc.) occurs by fitting the CMB data using model-based assumptions.  In particular, the parameters-of-interest are the total matter density, $\Omega_{m}$, and the baryon density, $\Omega_{b}$, which have been measured to be
 		\begin{eqnarray*}
 			\Omega_{m} & = & 0.256 \pm 0.02 \\
 			\Omega_{b} & = & 0.044 \pm 0.003~\cite{Amsler20081}
 		\end{eqnarray*}
 
-The cold dark matter component is the difference between these two components: $\Omega_{cdm} = \Omega_{m} - \Omega_{b} = 0.21 \pm 0.02$ indicating a significant presence of dark matter in the universe, around 20\%.
+The cold dark matter component is the difference between these two components: $\Omega_{cdm} = \Omega_{m} - \Omega_{b} = 0.21 \pm 0.02$, indicating a significant presence of dark matter in the universe ($\sim$20\%).
 
 	% Bullet cluster
 	
-	Perhaps the most visually stunning evidence for dark matter comes from the 'bullet cluster' (galactic cluster 1E 0657-56)~\cite{Clowe06}.  In this particular example two clusters have collided with one another $\sim$100~Myr ago, subjecting the contents of each to frictional forces.  The stars and galactic components of the clusters were scarcely affected, passing through one another and interacting largely only gravitationally, but the trajectories of the hot gas making up the majority of the baryonic mass density were significantly altered.  The matter density of the gas components were measured using images from the Chandra x-ray observatory and the total mass density of the cluster was measured using gravitational lensing.  When plots of these measurements are superimposed (see Figure~\ref{fig:DMBulletCluster} from~\cite{Clowe06}), it is clear that the two centers (of each cluster) of the total mass density are offset from the centers of the gas plasma mass density.  This indicates the presence of non-luminous (dark) matter which is weakly interacting with both the normal baryonic matter as well as with itself.
+	Perhaps the most visually stunning evidence for dark matter comes from the 'bullet cluster' (galactic cluster 1E 0657-56)~\cite{Clowe06}.  In this particular example two subclusters have collided with one another $\sim$100~Myr ago, subjecting the contents of each to frictional forces.  The stars and galactic components of the subclusters were scarcely affected, passing through one another and interacting largely only gravitationally, but the trajectories of the hot gas making up the majority of the subclusters' baryonic mass density were significantly altered.  The matter density of the gas component was measured using images from the Chandra x-ray observatory and the total mass density of the cluster was measured using gravitational lensing.  When plots of these measurements are superimposed (see Figure~\ref{fig:DMBulletCluster} from~\cite{Clowe06}), it is clear that the two centers (of each subcluster) of the total mass density are offset from the centers of the gas plasma mass density.  This indicates the presence of non-luminous (dark) matter weakly interacting with both the normal baryonic matter and with itself.  
 	
-		\begin{figure}
-			\centering
-			\includegraphics[height=0.45\textheight]{BulletCluster}
-			\caption[Mass and x-ray image of galactic cluster 1E 0657-56.]{ Mass and x-ray image of galactic cluster 1E 0657-56, 
-			the `bullet cluster'.   The total mass, denoted by contour lines, has been measured using gravitational lensing; the 
-			density of the gas, which composes the majority of the baryonic matter density in the cluster, has been imaged 
-			using the Chandra x-ray observatory.  From reference~\cite{Clowe06}.}
-			\label{fig:DMBulletCluster}
-		\end{figure}	
+			\begin{figure}
+				\centering
+				\includegraphics[height=0.45\textheight]{BulletCluster}
+				\caption[Mass and x-ray image of galactic cluster 1E 0657-56.]{Mass and x-ray image of galactic cluster 1E 0657-56, 
+				the `bullet cluster'.   The total mass, denoted by contour lines, has been measured using gravitational lensing; the 
+				density of the gas, which composes the majority of the baryonic matter density in the cluster, has been imaged 
+				using the Chandra x-ray observatory.  %The displacement of the centers of the total mass 
+				Figure taken from reference~\cite{Clowe06}.}
+				\label{fig:DMBulletCluster}
+			\end{figure}	
 	
 	% Dark matter candidates	
+		\subsection{Dark matter candidates}
+	
+	Whereas there are many particle candidates for dark matter, they share several general qualities:
 
-Though the primary purpose of the \MJ~experiment remains the search for $\nonubb$, the choice of detector technology for the experiment will enable sensitivity to other physics processes in low-energy regions.  
+	
+	% Properties of Dark Matter particles
+	% Stable
+	% Interact poorly (or not at all) with electromagnetism
+	% Should be non-relativistic (cold)
+	
+			\begin{enumerate}	
+				\item Stable, having lifetimes at least on the order of the age of the universe.  Otherwise, dark matter would have
+				decayed away.  
+				\item Poor or no interaction with electromagnetism, making them non-luminous or `dark'.
+				\item Non-relativistic at the time of galactic formation: `hot' dark matter would stream out, not allowing it 
+				to affect large-scale structure formation as required by cosmological observation.  
+			\end{enumerate}		
+
+We will consider two potential species of dark matter in particular: WIMPs and axions.  WIMPs, or Weakly-Interacting Massive Particles, are more of a class of candidate particles than one in particular.  
+	% Looking at two species in particular:
+	% WIMPs
+	
+	
+			\begin{figure}
+				\centering
+				\def\figheight{0.4\textwidth}
+				 \subfigure[$\twonubb$] {
+				 	\includegraphics[width=0.6\textwidth]{WIMPProduction}
+				}
+				\subfigure[$\nonubb$]{
+					\includegraphics[width=0.3\textwidth]{WIMPScattering}
+				}
+				\caption{}
+				\label{fig:WIMPExample}
+			\end{figure}	
+	% Axions
+		
+		
+		\subsection{\ppc~detectors and dark matter}
 	
 	\section{Outline of this dissertation}
