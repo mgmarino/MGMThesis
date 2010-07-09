@@ -78,7 +78,7 @@ Q-value of $^{76}$Ge (2039~keV).  A low-capacitance, low-noise p-type point cont
 detector will be deployed in these modules to take advantage of characteristics which make 
 them beneficial for rare-process searches in general and for looking for $\nonubb$ in particular.  These characteristics and other details about \ppc~detectors will be discussed in Section~\ref{sec:PPCDets}.  
 
-To achieve its background goals, the \MJ~experiment will employ standard techniques for background reduction including: creation of detector mounts, cryostats, and other components close to the detectors out of ultra-clean electroformed copper and other radiopure materials; use of passive shielding against external radiation including a lead shield for gamma radiation and a borated polyethylene shield for the moderation of cosmic-ray-induced neutrons; use of active shielding (vetos) against cosmic-ray muons; and deployment of the module underground in the Deep Underground Science and Engineering Lab (DUSEL) at Homestake, South Dakota, for moderation of cosmic-ray muons.  Engineering drawings given in Figures~\ref{fig:MJEngDrawing1} and~\ref{fig:MJEngDrawing2}shows both the cryostat design and the expected shield construction, and indicates the modular design of the experiment; additional, independent cryostats may be deployed within the same shield geometry.  The expected sensitivity of this first stage, 
+To achieve its background goals, the \MJ~experiment will employ standard techniques for background reduction including: creation of detector mounts, cryostats, and other components close to the detectors using ultra-clean electroformed copper and other radiopure materials; use of passive shielding against external radiation including a lead shield for gamma radiation and a borated polyethylene shield for the moderation of cosmic-ray-induced neutrons; use of active shielding (vetos) against cosmic-ray muons; and deployment of the module underground in the Deep Underground Science and Engineering Lab (DUSEL) at Homestake, South Dakota, for moderation of cosmic-ray muons.  Engineering drawings given in Figures~\ref{fig:MJEngDrawing1} and~\ref{fig:MJEngDrawing2}shows both the cryostat design and the expected shield construction, and indicates the modular design of the experiment; additional, independent cryostats may be deployed within the same shield geometry.  The expected sensitivity of this first stage, 
 assuming 3 years with 30~kg of enriched material or 90~kg-yr of $^{76}$Ge
 exposure, is T$_{1/2}\geq 10^{26}$.  Further information on the
 \MJ~experiment can be found in technical documents \footnote{Available:
@@ -206,23 +206,43 @@ throughout the remainder of this dissertation.
 
 	\section{Searching for dark matter: low-energy physics with \ppc~detectors}
 	
-	% Galactic rotationl curves
+	% Galactic rotational curves
 	
-	From cosmological observation there exists significant evidence that the matter density of the universe is mostly composed of non-luminous gravitationally-interacting particles referred to as `Dark Matter'.  Perhaps the most convincing empirical indications arise from measurements of galactic rotational curves.  To explain simply, astronomers measure the rotational velocity of stars in galaxies and determine the relation of this velocity versus the radial distance from galactic center.  One can compare this to the ex
-An example of such a curve has been include from Reference~\cite{Begeman:1991iy} in Figure~\ref{fig:DMRotCurve}.
+	From cosmological observation there exists significant evidence that the matter density of the universe is mostly composed of non-luminous gravitationally-interacting particles referred to as `Dark Matter'.  Perhaps the most convincing and intuitive empirical indications arise from measurements of galactic rotational curves.  To explain simply, astronomers measure the rotational velocity of stars in galaxies and determine the relation of this velocity versus the radial distance from galactic center.  When the velocity is compared to that expected given the observed distribution of mass, it is found that galaxies are rotating much more quickly than they should be.  There is simply not enough observable mass to explain why the galaxies' rotational velocities do not tear them apart.  This realization implied that some other mass must exist to hold the galaxies together, and that this mass was hidden due to its weak or nonexistent coupling with photons.  A weak interaction with electromagnetism makes the dark matter unsusceptible to frictional forces and also makes it non-luminous or `dark.'  By including a mass density of dark matter in a `dark matter halo' around galaxies, astronomers could successfully reproduce observed rotation curves.  An example of such a rotational curve and a three-component fit (visible matter (e.g.~stars), gas, and dark halo) has been included from Reference~\cite{Begeman:1991iy} in Figure~\ref{fig:DMRotCurve}.
 
 		\begin{figure}
 			\centering
-			\includegraphics[width=0.9\textwidth]{DMRotationalCurves}
+			\includegraphics[height=0.45\textheight]{DMRotationalCurves}
 			\caption[Example galactic rotational velocity curve.]{Example galactic rotational velocity curve 
-			from~\cite{Begeman:1991iy}.}
+			from~\cite{Begeman:1991iy}.  The solid line is a three-component fit to the data with components from:
+			visible mass (dashed), gas (dotted) and the dark halo (dash-dot).  }
 			\label{fig:DMRotCurve}
 		\end{figure}
 	% WMAP results (large-scale structure)
-	
-Though the primary purpose of the \MJ~experiment remains the search for $\nonubb$, the choice of detector technology for the experiment will enable sensitivity to other physics processes in low-energy regions.  
+	Other evidence from dark matter comes from measurements of universe structure through the analysis of the anisotropy of the cosmic microwave background (CMB) (see e.g.~\cite{Amsler20081}).  The extraction of cosmological parameters (e.g.~total matter density, baryon density, Hubble parameter, etc.) occurs by fitting the CMB data using model-based assumptions.  In particular, the parameters-of-interest are the total matter density, $\Omega_{m}$, and the baryon density, $\Omega_{b}$, which have been measured to be
+		\begin{eqnarray*}
+			\Omega_{m} & = & 0.256 \pm 0.02 \\
+			\Omega_{b} & = & 0.044 \pm 0.003~\cite{Amsler20081}
+		\end{eqnarray*}
+
+The cold dark matter component is the difference between these two components: $\Omega_{cdm} = \Omega_{m} - \Omega_{b} = 0.21 \pm 0.02$ indicating a significant presence of dark matter in the universe, around 20\%.
 
 	% Bullet cluster
+	
+	Perhaps the most visually stunning evidence for dark matter comes from the 'bullet cluster' (galactic cluster 1E 0657-56)~\cite{Clowe06}.  In this particular example two clusters have collided with one another $\sim$100~Myr ago, subjecting the contents of each to frictional forces.  The stars and galactic components of the clusters were scarcely affected, passing through one another and interacting largely only gravitationally, but the trajectories of the hot gas making up the majority of the baryonic mass density were significantly altered.  The matter density of the gas components were measured using images from the Chandra x-ray observatory and the total mass density of the cluster was measured using gravitational lensing.  When plots of these measurements are superimposed (see Figure~\ref{fig:DMBulletCluster} from~\cite{Clowe06}), it is clear that the two centers (of each cluster) of the total mass density are offset from the centers of the gas plasma mass density.  This indicates the presence of non-luminous (dark) matter which is weakly interacting with both the normal baryonic matter as well as with itself.
+	
+		\begin{figure}
+			\centering
+			\includegraphics[height=0.45\textheight]{BulletCluster}
+			\caption[Mass and x-ray image of galactic cluster 1E 0657-56.]{ Mass and x-ray image of galactic cluster 1E 0657-56, 
+			the `bullet cluster'.   The total mass, denoted by contour lines, has been measured using gravitational lensing; the 
+			density of the gas, which composes the majority of the baryonic matter density in the cluster, has been imaged 
+			using the Chandra x-ray observatory.  From reference~\cite{Clowe06}.}
+			\label{fig:DMBulletCluster}
+		\end{figure}	
+	
 	% Dark matter candidates	
+
+Though the primary purpose of the \MJ~experiment remains the search for $\nonubb$, the choice of detector technology for the experiment will enable sensitivity to other physics processes in low-energy regions.  
 	
 	\section{Outline of this dissertation}
