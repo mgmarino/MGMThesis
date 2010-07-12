@@ -56,7 +56,8 @@ a half-life for these nuclei around $T^{2\nu}_{1/2}\sim10^{20}$~yrs.
 			\subfigure[$\nonubb$]{
 				\includegraphics[height=\figheight]{0nubbDecay}
 			}
-		\caption{Schematic figure of the two types of double-beta decay, the 2$\nu$ mode and the 0$\nu$ mode.  
+		\caption[Schematic of $\twonubb$ and $\nonubb$ decays.]{Schematic figure of the two types of double-beta decay, 
+		the 2$\nu$ mode and the 0$\nu$ mode.  
 			In this schematic, the 0$\nu$ mode is mediated through the exchange of a virtual Majorana neutrino, $\nu_{M}$.}
 		\label{fig:DBDK}
 		\end{figure}
@@ -123,7 +124,7 @@ exhibited poor energy resolution due to incomplete charge collection attributed 
 			\centering
 			\subfigure[Point-contact geometry.]{\includegraphics[height=0.2\textheight]{LukePPC}}
 			\subfigure[Semi-coaxial geometry.]{\includegraphics[height=0.2\textheight]{LukeCoax}}
-			\caption[\ppc~detector geometry]{The left figure depicts the point-contact geometry, the right figure a conventional 
+			\caption[Ge detector geometry comparison: \ppc~and semi-coax.]{The left figure depicts the point-contact geometry, the right figure a conventional 
 			         semi-coaxial geometry.  Figure adapted from~\cite{Luke89}.  The small diameter of the p contact in the
 			          \ppc~detector reduces the capacitance of the detector improving the intrinsic noise characteristics.}
 			\label{fig:PPCGeom}
@@ -234,10 +235,11 @@ The cold dark matter component is the difference between these two components: $
 			\begin{figure}
 				\centering
 				\includegraphics[height=0.45\textheight]{BulletCluster}
-				\caption[Mass and x-ray image of galactic cluster 1E 0657-56.]{Mass and x-ray image of galactic cluster 1E 0657-56, 
-				the `bullet cluster'.   The total mass, denoted by contour lines, has been measured using gravitational lensing; the 
-				density of the gas, which composes the majority of the baryonic matter density in the cluster, has been imaged 
-				using the Chandra x-ray observatory.  %The displacement of the centers of the total mass 
+				\caption[Mass and x-ray image of the `bullet cluster', galactic cluster 1E 0657-56.]{Mass and x-ray image of 
+				galactic cluster 1E 0657-56, 
+				the `bullet cluster'.   The total mass, denoted by contour lines, has been measured using gravitational lensing; 
+				the density of the gas, which composes the majority of the baryonic matter density in the cluster, has been 
+				imaged using the Chandra x-ray observatory.  %The displacement of the centers of the total mass 
 				Figure taken from reference~\cite{Clowe06}.}
 				\label{fig:DMBulletCluster}
 			\end{figure}	
@@ -257,30 +259,75 @@ The cold dark matter component is the difference between these two components: $
 				\item Stable, having lifetimes at least on the order of the age of the universe.  Otherwise, dark matter would have
 				decayed away.  
 				\item Poor or no interaction with electromagnetism, making them non-luminous or `dark'.
-				\item Non-relativistic at the time of galactic formation: `hot' dark matter would stream out, not allowing it 
-				to affect large-scale structure formation as required by cosmological observation.  
+				\item Non-relativistic at the time of galactic formation: `hot' dark matter would move too quickly to clump, 
+				not allowing it to affect large-scale structure formation as required by cosmological observation.  
 			\end{enumerate}		
 
-We will consider two potential species of dark matter in particular: WIMPs and axions.  WIMPs, or Weakly-Interacting Massive Particles, are more of a class of candidate particles than one in particular.  
 	% Looking at two species in particular:
 	% WIMPs
-	
-	
+	% Argument for WIMP dark matter: abundance considerations, freeze-out condition
+In the following, we will consider two potential species of dark matter in particular: WIMPs and axions. 
+			\subsubsection{WIMPs}
+ WIMPs, or Weakly-Interacting Massive Particles, (denoted from here on by $\chi$) are more of a class of candidate particles than one in particular, defined by the fact that these types of particles predominantly (or exclusively) interact via the weak force.  An argument for the existence of WIMPs relates to how they can `naturally' explain the dark matter relic abundance.% while making a few assumptions.  
+For example, during the period right after the big bang and as the temperature of the universe cooled, WIMPs would have been in equilibrium with other fermions, undergoing annihilation and generation according to the two-way reaction: $\chi\bar{\chi} \leftrightarrow f\bar{f} $ (see e.g.~Figure~\ref{fig:WIMPExampleProduction}).  As the temperature of the universe cooled below the mass of $\chi$, eventually this two-way process would shut off in one direction allowing only $\chi\bar{\chi} \rightarrow f\bar{f} $ to remain.  At this point, the rate of decay would be $\Gamma_{\chi} = \WIMPAnn n_{\chi}$, where $\sigma_{A}$ is the average cross-section for $\chi$ to annihilate into lighter fermions, $v$ is the average particle velocity, and $n_{\chi}$ is the density of WIMP particles.  The expansion of the universe would then reduce the density of $\chi$s, effectively shutting off this annihilation process and `freezing out' a so-called relic abundance of the particles.  
+
+An estimate of the density of this abundance remaining today times the Hubble constant squared, $h^{2}\sim0.5$, can be calculated (see, e.g.~\cite{Jun96}):
+			\begin{eqnarray}
+				\Omega_{\chi} h^{2} & = & (2.6 \times 10^{-10}~\text{GeV}^{-2})~\WIMPAnn \\
+				%\WIMPAnn & \sim & \frac{\alpha^{2}}{M_{\text{weak}}^{2}} \sim 10^{-9}~\text{GeV}^{-2}\\			
+			\end{eqnarray}
+and if we assume that this interaction follows the weak force, we can estimate the average cross section times the velocity as:
+			\begin{eqnarray}
+				%\Omega_{\chi} h^{2} & = & (2.6 \times 10^{-10}~\text{GeV}^{-2})~\WIMPAnn \\
+				\WIMPAnn & \sim & \frac{\alpha^{2}}{M_{\text{weak}}^{2}} \sim 10^{-9}~\text{GeV}^{-2}\\			
+			\end{eqnarray}
+which leaves us with an estimate of 	$\Omega_{\chi} h^{2} \sim 0.2$ which is close to the observed cold-dark-matter density.  This `coincidence' has been interpreted otherwise, instead suggested as compelling support for the possibility of WIMP existence.  
+		
 			\begin{figure}
 				\centering
 				\def\figheight{0.4\textwidth}
-				 \subfigure[$\twonubb$] {
+				 \subfigure[WIMP annihilation and production] {
 				 	\includegraphics[width=0.6\textwidth]{WIMPProduction}
+					\label{fig:WIMPExampleProduction}
 				}
-				\subfigure[$\nonubb$]{
-					\includegraphics[width=0.3\textwidth]{WIMPScattering}
+				\subfigure[WIMP elastic scattering]{
+					\includegraphics[width=0.25\textwidth]{WIMPScattering}
+					\label{fig:WIMPExampleScattering}					
 				}
-				\caption{}
+				\caption[Relevant WIMP-quark interactions during hot and cold universe epochs.]{Example WIMP-quark 
+				interactions mediated by the exchange of a $Z^{0}$ boson with the direction
+				of time, $t$, indicated for each at bottom.  The left figure is applicable for WIMPs undergoing annihilation and 
+				generation during the equilibrium phase at
+				the beginning of the universe, when the temperature of the universe was much greater than the mass of $\chi$.
+				The right figure denotes a mathematically equivalent interaction, an elastic-scattering process
+				of $\chi$s off of quarks relevant as the temperature of the universe reaches lower temperatures such as 
+				those observed today.}
 				\label{fig:WIMPExample}
 			\end{figure}	
+			
+	The direct detection of WIMPs is possible via their elastic scattering off of fermions, see e.g.~Figure~\ref{fig:WIMPExampleScattering}.  In creating a detector, we are of course limited to electrons, neutrons, and protons.  In principle, WIMPs could scatter off of any fermion sharing a coupling to a mediating boson, but the kinematics of such a non-relativistic recoil maximize the energy transfer when the target particle has mass comparable to that of the incident particle.  In the case of WIMPs with hypothesized masses $\sim1\to1000$~GeV, an energy transfer is maximized during coherent recoil off of a nucleus having similar or equal mass.  Additionally, WIMP scattering off of bound electrons is suppressed due the mass ratio $m_{e}/m_{\chi}$ as well as the small size of the electronic wave function, see e.g.~\cite{Kopp09} making the nuclear recoil the expected primary method of detection.  The standard form of the energy spectrum for a WIMP-induced nuclear recoil is outlined later in Section~\ref{sec:CalcLimitsOnWIMPSignal}.
+	
+			\subsubsection{Axions}
 	% Axions
-		
+	% Arguments for axions:
+	% pseudoscalar bosons
+	% Peccei-Quinn model - preserve CP in QCD 
+	
+	Axions are light pseudoscalar bosons that were originally suggested as a mechanism to solve the CP problem of QCD~\cite{Pec77}.  In particular, the QCD Lagrangian includes a CP-violating term:
+			\[
+			\mathcal{L}_{\Theta} = \bar{\Theta} \frac{\alpha_s}{8 \pi} G^{\mu \nu a} \tilde{G}_{\mu \nu}^{a}
+			\]
+where $\Theta$ is an angle with possible value between $-\pi$ and $\pi$.  The lack of experimental evidence for CP violation in QCD suggests that this value is very small or 0, an `unnatural' solution given its range of possible values.  The Peccei-Quinn mechanism was proposed~\cite{Pec77} to explain this issue by adding an additional $U(1)_{PQ}$ symmetry to the Lagrangian.  The breaking of this symmetry results in a Nambu-Goldstone boson -- the axion -- updating the CP-violating portion of the QCD Lagrangian to be:
+			\[
+			\mathcal{L}_{\Theta} = \left( \bar{\Theta} - \frac{\phi_{A}}{f_{A}}\right) \frac{\alpha_s}{8 \pi} G^{\mu \nu a} \tilde{G}_{\mu \nu}^{a}
+			\]	
+with $\phi_{A}$ the axion field and $f_{A}$ the axion decay constant~\cite{Amsler20081}.  The expectation value of the axion is found to be $\phi_{A} = f_{A} \bar{\Theta}$ thereby directly canceling the CP violating term.  
+	
+	Bounds on axion properties can derive from cosmological observations as well as direct experimental searches.  For example, cosmological data can constrain axion models by looking for the evidence of additional unexplained energy loss in stars (see, e.g.~\cite{Gondolo09,Raf96}).  Direct detection measurements may take advantage of axions coupling with 2~photons, looking for their interaction in high-intensity magnetic fields, as is the case with the CAST experiment~\cite{Arik09} searching for axions produced in the sun, or searching for an axion interaction in a resonant microwave cavity within a magnetic field, as does the ADMX experiment~\cite{Asz10}.  Germanium detectors are not ideal for searching for such a signal, but can put bounds on the strength of the axion's coupling with electrons by searching for the inelastic scattering of an axion off of an electron.  This interaction and the observed signal is discussed in more detail in Section~\ref{sec:CalcLimitsOnHeavyAxionSignal}.
 		
 		\subsection{\ppc~detectors and dark matter}
+	
+	\ppc~detectors can provide excellent dark matter detectors due to their low-energy threshold ($O(100~\text{eV})$) and excellent resolution down to threshold.
+	
 	
 	\section{Outline of this dissertation}
