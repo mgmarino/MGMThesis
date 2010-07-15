@@ -76,6 +76,31 @@
 \usepackage{grffile}
 \usepackage{multirow}
 \usepackage{booktabs}
+\usepackage{bold-extra}
+%%%%% Listings info
+\usepackage{listings}
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JSON}{
+  keywords={:}
+  keywordstyle=\color{lightgray},
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  numberstyle=\color{blue}\ttfamily,
+  stringstyle=\color{blue}\textbf,%\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+%%%% End Listings info
+
 % The content in this section is for commands
 \input{commands}
 % --- end MGM include ---
@@ -87,6 +112,7 @@
 {Figures/AnalysisOfDigitalBeGeData/}
 {Figures/LowEnergyPhysics/}
 {Figures/OtherPhysics/}
+{Figures/Appendices/}
 }
 
 
@@ -176,8 +202,8 @@
 
 % ========== Chapter 6
  
-\input{Chapters/OtherLowEnergyPhysics} 
-\clearpage
+%\input{Chapters/OtherLowEnergyPhysics} 
+%\clearpage
 
 % ========== End of chapters
 
@@ -197,8 +223,8 @@
  
 % ========== Appendix A
 
-%\input{Appendices/WaveformProcessingFramework} 
-%\clearpage
+\input{Appendices/WaveformProcessingFramework} 
+\clearpage
 
 %\input{Appendices/DigitizerHardwareDevelopment} 
 %\clearpage
