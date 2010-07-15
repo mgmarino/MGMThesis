@@ -1,14 +1,558 @@
 % Here, focus on the development of MGDO (waveform processing
 % framework, data objects), OrcaROOT, and other tools 
 
-\chapter{Waveform processing toolkit for \MJ}
+
+\chapter{Analysis tools}
 \label{app:MGDO}
 
+This appendix outlines several technical aspects related to the software work in this dissertation and can serve as a full or partial reference for the following:
+
+	\begin{enumerate}
+		\item \MJ~GERDA Data Objects (MGDO) -- software framework for encapsulation and processing of waveforms
+		\item Analysis, Run database and processing framework
+		\item pyWIMP, a software framework for generating limits on a WIMP signal
+	\end{enumerate}
+
 	\section{\MJ~GERDA Data Objects (MGDO)}
-    \label{sec:WaveformProcMGDO}
+	\label{sec:WaveformProcMGDO}
+	\lstset{
+	   language=C++,
+	   backgroundcolor=\color{lightgray},
+	   extendedchars=true,
+	   basicstyle=\footnotesize\ttfamily,
+	   keywordstyle=\bfseries,
+	   showstringspaces=false,
+	   showspaces=false,
+	   numbers=left,
+	   numberstyle=\footnotesize,
+	   numbersep=9pt,
+	   tabsize=2,
+	   breaklines=true,
+	   showtabs=false,
+	   captionpos=t}
+	
+	
+	The \MJ~GERDA Data Objects (MGDO) \cpp-based software package has been jointly developed by the \MJ~and GERDA collaborations as
+a framework for encapsulating and processing waveform data.  This section will reference some of the functionality and layout of this
+software package, focusing on the overall structure as well as particular aspects specifically relevant to this dissertation.  This is meant
+to supplement the reference materials already available, including a basic user and installation guide that ships with the distribution.  MGDO is available on specific request to the \MJ~or GERDA software groups at the following subversion repository~\url{svn://pclg-soft.mppmu.mpg.de/MGDO}.  This section will outline the basic structure and functionality of MGDO and then proceed to describe
+in more detail the waveform transformations that ship with the software, emphasizing aspects important for users rather than programmers of the package.  
 
-    \section{Analysis database and processing framework}
-    \label{sec:AnalysisDBProcFramework}
+		\subsection{Structure}
+		
+		The MGDO software is composed in the following package structure:
 
-    \section{WIMP PDFs software framework}
-    \label{sec:WIMPPDFs}
+			\begin{enumerate}
+				\item Base -- Base classes
+				\item Root -- Root wrappers for base classes, allowing serialization of encapsulation classes and usage of calculation classes from ROOTCINT or pyROOT.
+				\item Transforms -- Transform classes for objects performing a calculation or modification on a waveform
+				\item Majorana -- \MJ-specific classes intended for encapsulation of data in the \MJ~data format
+				\item Gerda -- GERDA-specific classes intended for encapsulation of data in the GERDA data format.
+			\end{enumerate}
+		Further description will focus only on the first three sub-packages and will leave the reference of objects particular to the \MJ~or GERDA collaborations to their respective owners or developers.
+		
+		\subsection{Base package}
+	This package includes base classes for all the objects 
+	% Describe the Base objects, MGWaveform, but be rather brief, I want to focus on the transforms
+		\subsection{Root}
+			
+	The Root sub-package includes objects that may depend on the ROOT analysis package.  In particular, this directory provides
+wrapped code for Base class objects, enabling them to be serialized or loaded during a ROOT interactive session in ROOTCINT or pyROOT.  It also introduces a class: \lstinline! class MGTDataObject : public TNamed ! which provides an inheritance layer between ROOT objects and MGDO objects.  In general, every MGDO class requiring ROOT dependence should derive from this class.  Some base classes are merely wrapped:
+			\begin{lstlisting}[label=lst:RootWrappedExamp]
+...
+class MGTVWaveformTransformer : public MGTDataObject, public MGVWaveformTransformer 
+{
+  public:
+    MGTVWaveformTransformer(const std::string& aTransformationName);
+    virtual ~MGTVWaveformTransformer();    
+    virtual void Transform(MGWaveform* anInput, MGWaveform* anOutput = NULL) = 0;
+    
+  protected:
+  ClassDef(MGTVWaveformTransformer, 0) 
+};
+...			\end{lstlisting}		
+whereas others add some functionality, e.g.~\lstinline! class MGTWaveform !:
+			\begin{lstlisting}[label=lst:RootWaveformExamp]
+...
+class MGTWaveform : public MGTDataObject, public MGWaveform
+{
+    ...
+    // Returns a histogram named MGTWaveformHist_[label/ID]. If the user does not
+    // supply an ID, the waveform ID is used. The function first searches
+    // gROOT for MGTWaveformHist_[label/ID]. If it is found, that hist is used.
+    // If it is not found, the function returns a newly allocated histogram 
+    // of the waveform. Either way, it is the user's responsibility to
+    // delete the histogram.
+    virtual TH1D* GimmeHist(const char* label=""); 
+
+    // Deprecated versions
+    virtual TH1D* GetNewHist();
+    virtual TH1D* GetNewHist(int id); 
+
+    // When you don't care what the lable is and just want a brand-new,
+    // unique histogram, call the following function
+    virtual TH1D* GimmeUniqueHist(); 
+
+    // Loads the waveform into a user-supplied hist. This function is safer
+    // because it is obvious that the user owns (and therefore must later
+    // delete) this histogram.
+    virtual void LoadIntoHist(TH1D* hist);
+
+    // Returns a TF1 object that is based on the       
+    // loaded waveform.  There are three parameters for this TF1:
+    //    parameters[0] - normalization (a)
+    //    parameters[1] - constant factor (b)
+    //    parameters[2] - offset (c)
+    //    
+    //   MGWaveform is a function of x == wf(x)
+    // This function returns a TF1 with the underlying structure:
+    //  a * wf( b*x + c )
+    //  
+    // Linear interpolation is applied when values are requested between 
+    // data indices.
+    //
+    // iCopy specifies a different number of the function to return.
+    // The name of the function takes the form:
+    //
+    // MGTWaveformFunction_[ID]_[Copy] 
+    //
+    // where ID is the id of the histogram and Copy is the passed in iCopy.
+    // If this function already exists, it is deleted and  
+    virtual TF1* GetFunction( int iCopy = 0 );
+
+  protected:
+    enum EWFFunctionPars { kNumberOfParameters = 3 }; 
+    TF1* fWaveformFunction;
+    double InterpolatingWaveformFunction( const double* x, 
+                                          const double* parameters ); 
+
+  ClassDef(MGTWaveform, 2) // Waveform class, holds waveforms
+};
+
+...			\end{lstlisting}		
+which adds interpolation and export to ROOT class format (e.g.~\lstinline!TF1, TH1D!).
+		\subsection{Transforms}
+		
+	This package includes basic waveform transforms which are derived from \lstinline!class MGVWaveformTransformer!  and \lstinline!class MGVFreqDomainTransformer!, which define the basic interfaces for time-domain and  frequency-domain transformations, respectively.  The latter derives from the former.  The use of the transformations involves calling the class function
+\lstinline! virtual void MGVWaveformTransformer::Transform(MGWaveform* input, MGWaveform* output = NULL) ! to generate the transformation.  If the function is called with \lstinline!output=NULL! (the default) then the result of the transformation is placed in the \lstinline!input! variable.  The particulars of the calculation depend on whether or not the transformation can be done in-place or out-of-place.  For example, a transformation done in-place can directly modify the input waveform, whereas a out-of-place transformation would require an additional auxiliary waveform to perform the transformation.  The following sections describe the general transformations available in the Transforms package.  If algorithms are described, $g[n]$ is used to denote the output waveform and $f[n]$ the input waveform.
+	
+	% Here put a description of the transforms used, giving perhaps an example of how to use them?  
+	
+			\subsubsection{\lstinline!class MGWFAddNoise!}
+	Adds gaussian (white) noise to the input waveform.  The amplitude of the noise can be set by calling \lstinline!virtual void MGWFAddNoise::SetNoiseAmplitude(double aVal)! defined as the $\sigma$ of the gaussian noise.  
+			
+			\subsubsection{\lstinline!class MGWFAddNoiseFromFT!}
+Adds noise to a waveform given an input noise spectrum in frequency space.  The input spectrum is defined using the class function \lstinline!virtual void MGWFAddNoiseFromFT::SetNoiseWaveform(MGWaveformFT* aWF)! and is assumed
+to be an average noise spectrum with added together Fourier transforms of noise (i.e.~the Fourier transforms should be added using the class function \lstinline!MGWaveformFT::AddNormsSquared(const MGWaveformFT& other)!).  This information is used to add noise to the waveform since each bin of the average power spectrum is related to the sigma of the real and imaginary
+parts of the noise (see~\cite{WanThesis08} and Section~\ref{sec:RisetimeSimulation}).  
+
+			\subsubsection{\lstinline!class MGWFBandpassFilter!}
+Performs a bandpass filter on a waveform, using upper and lower bandpass frequencies defined using the class functions \lstinline!MGWFBandpassFilter::SetLowerBandpass(double lower)! and \lstinline!MGWFBandpassFilter::SetUpperBandpass(double upper)!.  The input frequencies use CLHEP units, for example \lstinline!SetLowerBandpass(1*CLHEP::GHz)!.  The algorithm provides a hard cutoff at the defined frequencies with no roll-off.  In other words, all frequency components of the waveform not within the lower and upper bounds are set to zero.
+			
+			\subsubsection{\lstinline!class MGWFBaselineRemover!}
+Removes the baseline from a waveform.  The baseline is estimated using a simple average beginning at a start time or start sample number of the waveform defined by one of the class functions \lstinline!MGWFBaselineRemover::SetStartSample( size_t iSample )! or \lstinline!MGWFBaselineRemover::SetStartTime( double aTime )!.  The length of the baseline averaging is defined by either \lstinline!MGWFBaselineRemover::SetBaselineSamples( size_t nSamples )! or \lstinline!MGWFBaselineRemover::SetBaselineTime( double aTime )!.  A utility function is included in this class to just estimate the baseline of a waveform: \lstinline!virtual double MGWFBaselineRemover::GetBaseline(const MGWaveform& waveform)!.
+
+			\subsubsection{\lstinline!class MGWFCalculateChiSquare!}
+Calculates the chi-square difference (RMS) between the input and output waveforms.  This transformation leaves both waveforms unchanged and the total chi-square can be retrieved using the the class function \lstinline!double MGWFCalculateChiSquare::GetChiSquareValue()!.
+
+			\subsubsection{\lstinline!class MGWFCountZeroCrossings!}
+Counts the number of zero crossings in a region of the waveform defined using either class function \lstinline!SetSearchRegion( const MGWaveformRegion& aVal )! or \lstinline!SetSearchTimeRegion(double tlower, double tupper)!.  This can be used in conjunction with, for example, \lstinline!MGWFDerivative! to determine the number of peaks in a waveform.  The class function \lstinline!SetRequiredDifference( double aVal )! can be used to set the lower threshold for a zero crossing.  This can be set to ignore noise oscillations around zero.  Results from this transformation can be obtained using the following class functions: \lstinline!size_t GetNumberOfZeroCrossings()!, which returns the number of zero crossings seen, and \lstinline!const std::vector<double>& GetZeroCrossingTimeVector()!, which returns the time of the zero crossings in a vector.  This class was used extensively when performing the pulse-shape analysis outlined in Section~\ref{sec:HeadToHeadCompareAnalysis}.
+			
+			\subsubsection{\lstinline!class MGWFDerivative!}
+Performs a simple derivative on the waveform, implementing the following function:
+				\[
+					g[n] = (f[n+1] - f[n-1])/sp
+				\]
+where $sp$ is the sampling period of the waveform.
+
+			\subsubsection{\lstinline!class MGWFDerivativeFourthOrder!}
+Performs a fourth-order derivative on the waveform, estimating the derivative using additional points:
+				\[
+					g[n] = ( -f[n+2] + 8 f[n+1] - 8 f[n-1] + f[n-2])/(12 sp)
+				\]
+where $sp$ is the sampling period of the waveform.
+				
+			\subsubsection{\lstinline!class MGWFDigitizer!}
+Takes a continuous waveform and `digitizes' it, returning a waveform that has been resampled (see \lstinline!MGWFResampler!) `digtized' according to some range and bit depth.  The range may be defined using the functions \lstinline!SetMaxSignal( double aVal )! and \lstinline!SetMinSignal( double aVal )!, and the bit depth can be specified by \lstinline!SetNumberOfBits(size_t nBits)!.  The input value from the waveform is assigned an integer value based upon the nearest `digital' assignable value.  The output sampling frequency is defined using the function \lstinline!SetSamplingFrequency( double freq )!.  
+			
+			
+			\subsubsection{\lstinline!class MGWFExtremumFinder!}
+Does a simple search to find the maximum or minimum of a waveform.  The behavior of the class is defined by the class function \lstinline!SetFindMaximum(bool findMax)! which will enable either finding the maximum or minimum.  Results are obtained from the class functions \lstinline!virtual const size_t& GetTheExtremumPoint()!, which returns the point in the waveform, and \lstinline!virtual const double& GetTheExtremumValue()!, which returns the value at that point.
+
+			\subsubsection{\lstinline!class MGWFIntegral!}
+Performs a simple integral of the waveform according to the following algorithm:
+				\[
+				g[n] = g[n-1] + f[n]
+				\]
+			
+			\subsubsection{\lstinline!class MGWFMovingAverage!}
+Smooths a waveform by performing a moving average of a defined width.  The width is defined using the class function \lstinline!SetSmoothSize( size_t aVal )! and region of smoothing (the part of the waveform that is smoothed) can be defined using the function \lstinline!SetSmoothRegion( const MGWaveformRegion& aVal )!.
+			
+			\subsubsection{\lstinline!class MGWFMovingWindow!}
+Performs a moving window transformation on a waveform.  This algorithm can be used together with \lstinline!MGWFPoleZeroCorrection! to determine the amplitude of a preamplifier waveform.  However, it is generally more desirable to use \lstinline!MGWFStaticWindow! defined later.  The algorithm used:
+				\[
+				g[n] = g[n-1] + f[n] - f[n-rt] - f[n-ft-rt] + f[n-ft-2rt]
+				\]
+where $ft$ and $rt$ are the flat and ramp times, respectively, defined by the class functions \lstinline!SetFlatTime( double aVal )! and \lstinline!SetRampTime( double aVal )!.
+			
+			\subsubsection{\lstinline!class MGWFPoleZeroCorrection!}
+Removes a pole from a waveform defined by a time constant.  Before calling this transformation it is essential to remove the baseline from a waveform.  The following algorithm is used:
+				\[
+				g[n] = g[n-1] + f[n] + \tau sf(f[n] - f[n-1])
+				\]
+where $sf$ is the sampling frequency and $\tau$ is the time constant of the pole defined using the class function \lstinline!SetDecayConstant(double aVal)!.  This transformation can be used to remove a pole induced by a preamplifier in order to estimate the amplitude of the waveform.
+			
+			\subsubsection{\lstinline!class MGWFPulseFinder!}
+Finds pulses (or regions of pulses) in a waveform.  The baseline must be removed from a waveform before passing it through this transformation.  The algorithm searches the waveform and determines when it goes either above a positive threshold or below a negative threshold and stores the results.  These saved regions can then be retrieved using the class function \lstinline!const std::vector< MGWaveformRegion >& GetThePulseRegions()!.  The threshold is set using \lstinline!SetThreshold( double aThresh )!.
+		
+			\subsubsection{\lstinline!class MGWFRCDifferentiation!}
+Handles an RC differentiation of a waveform simulating the passing of a waveform through a simple preamp.  The following algorithm is applied:
+				\[
+				 g[n] = g[n-1] + f[n] - f[n-1] - g[n-1]/(\tau sf)
+				\]
+where $sf$ is the sampling frequency and $\tau$ is the RC time constant defined using the class function \lstinline!SetTimeConstant( double aVal )!.
+
+			\subsubsection{\lstinline!class MGWFRCIntegration!}
+Handles an RC integration of a waveform simulating the passing of a waveform through a simple preamp integrator.  The following algorithm is applied:
+				\[
+				g[n] = f[n-1] + g[n-1] (1 - 1/(tau sf) )
+				\]
+where $sf$ is the sampling frequency and $\tau$ is the RC time constant defined using the class function \lstinline!SetTimeConstant( double aVal )!.  The output waveform has an amplitude multiplied by $\tau sf$.
+
+			\subsubsection{\lstinline!class MGWFResampler!}
+Compresses or resamples a waveform.  The parameters to resample the input waveform are defined by the parameters of the output waveform.  For example, to downsample a waveform sampled at 1~GHz to 100~MHz, the sampling frequency of the output waveform must be defined to be 100~MHz.  Various methods are used to resample the waveform and these different methods are selected using \lstinline!SetMode(EMode mode)! where \lstinline!EMode! is an enum taking the following values:
+				\begin{itemize}
+					\item \lstinline!kInterpolate! (default): take a strict interpolation from the input
+					 waveform at the requested output sample time
+					\item \lstinline!kIntegrate!: integrate over the input waveform for one sample of the
+					 output waveform. The position of the integration region relative to
+					 the output sample time is chosen via \lstinline!SetSampleReference()!. Each
+					 sample is multiplied by the sampling period (like a proper
+					 integral), and hence the waveform type of the output is different
+					 than the input (e.g.~current becomes charge)
+					\item \lstinline!kRebin!: like \lstinline!kIntegrate!, but doesn't multiply by the sampling period
+					 or change the waveform type (as if the waveform is a histogram whose
+					 contents merely need to be ``rebinned")
+					\item \lstinline!kAverage!: like \lstinline!kIntegrate!, but divides by the number of samples
+					 (including fractional samples) involved in the integral over the bin
+					 width. Doesn't change the waveform type.
+
+				\end{itemize}				  
+			
+			\subsubsection{\lstinline!class MGWFRisetimeCalculation!}
+Finds the risetime of a waveform.  Before this transform is called the baseline of the pulse should be removed and the maximum value of the waveform should be set using the class function \lstinline!SetPulsePeakHeight(double maximum)!.  This is to allow the user to use different methods to find the maximum and maximize usefulness of this class. This algorithm always assumes the the pulse is rising/falling left to right.  This class contains a number of access and behavior-modification functions, which are most easily expressed in the following:
+				\begin{itemize} 
+				    \item \lstinline!virtual void SetScanFrom( size_t scanfrom )! -- Sets the position to begin scanning forward on the waveform for the mid point of the rising edge
+				    \item \lstinline!virtual void SetInitialThresholdPercentage( double threshold )! --     Sets the initial threshold percentage (should be between 0, 1)
+				    \item \lstinline!virtual void SetFinalThresholdPercentage( double threshold )! --     Sets the final threshold percentage (should be between 0, 1)
+				    \item \lstinline!virtual void SetInitialScanToPercentage( double threshold )! -- Sets the inital scanning percentage to find the middle of the pulse (should be between 0, 1)
+				    \item \lstinline!virtual double GetRiseTime()! --     Returns risetime with CLHEP units of time
+				    \item \lstinline!virtual size_t GetInitialThresholdCrossing()! -- Returns point of the initial threshold crossing in the waveform.
+				    \item \lstinline!virtual size_t GetFinalThresholdCrossing()! --     Returns point of the final threshold crossing in the waveform.
+				    \item \lstinline!virtual double GetInitialThresholdCrossingEstimate()! --     Returns the initial threshold crossing estimate, based upon linear interpolation 
+				    \item \lstinline!virtual double GetFinalThresholdCrossingEstimate()! -- Returns the final threshold crossing estimate, based upon linear interpolation 
+				\end{itemize}				
+			\subsubsection{\lstinline!class MGWFSavitzkyGolaySmoother!}
+Performs Savitzky-Golay smoothing on the waveform~\cite{Sav64aa}.  
+Behavior of the transformation can be changed by calling the class function \lstinline!ResetSmootherAttributes( size_t smoothSize, size_t derivativeOrder, size_t polynomialDegree )! to set the size of the smoothing, the derivative order (0 for no derivative), and the polynomial degree.  
+
+			\subsubsection{\lstinline!class MGWFSmoother!}
+Performs triangular smoothing on a waveform which is essentially a convolution of the waveform with another triangular waveform of defined size.  The size of the smoothing can be changed by calling \lstinline!SetSmoothSize( size_t aVal )! and region of smoothing (the part of the waveform that is smoothed) can be defined using the function \lstinline!SetSmoothRegion( const MGWaveformRegion& aVal )!.  
+
+			\subsubsection{\lstinline!class MGWFStaticWindow!}
+Performs an estimation of the amplitude of the pulse, it should be used after baseline removal and pole-zero correction.  This algorithm is the preferred method for performing an offline estimation of a preamplifier pulse height.  Instead of performing an offline convolution, the transformation begins after a delay, averages for the first ramp time, skips ahead for the flat time, averages for the second ramp time and then subtracts the first ramp time from the average of the second ramp time.  The integration (ramp) times are independent so that you can essentially have an asymmetric trapezoidal filter.  The behavior of this class is therefore defined by the following functions: \lstinline!SetDelayTime( double aVal ), SetFirstRampTime( double aVal ), SetSecondRampTime( double aVal ), SetFlatTime( double aVal )!.  The peak height can be read out using the function \lstinline!double GetPeakHeight()!.
+% FixME, picture?
+			\subsubsection{\lstinline!class MGWFStaticWindowCusp!}
+This class performs essentially the same function as the \lstinline!MGWFStaticWindow!, but instead of performing a straight average, it applies a truncated cusp-like weighting function to the average:  
+				\[
+					\sum_{n} W[n] f[n]
+				\]
+This is equivalent to using a truncated cusp filter and can give improved performance in certain noise environments, see e.g.~\cite{Gatti1990467}.  The behavior is equivalent to the \lstinline!MGWFStaticWindow! class, with the addition of functions \lstinline!SetFirstRampTruncation( double truncate )! and \lstinline!SetSecondRampTruncation( double truncate )! used to define the truncation of the cusp.  The weighting function used for a particular ramp time, $r$, and a truncation, $t$, is given by:
+				\[
+				W[n] = \exp (-n t/r)
+				\]
+where $0\leq n \leq r$ denotes a sample in the waveform.  It is clear that as $t \to 0$, this becomes equivalent to a straight average.
+	
+		\subsection{Usage Examples}
+	Some examples of possible usage for these transformations are given with particular emphasis on types of analyses performed in this dissertation.  
+			\begin{lstlisting}[caption=Calculating amplitude of pulse in {C$++$}]
+MGWFBaselineRemover baseline;
+MGWFStaticWindow staticWindow;
+MGWFPoleZeroCorrection pz;
+double tauUsed = 50e3;
+... 
+// Setting baseline average time
+baseline.SetBaselineTime( baselineAverageTime );
+// Taking advantage of the fact that the baseline has been removed
+// Don't have to do it with the staticWindow *and* the baseline tool.
+// Setup staticWindow
+staticWindow.SetFirstRampTime( 0 );
+staticWindow.SetDelayTime( baselineAverageTime );
+staticWindow.SetSecondRampTime( secondRiseTime );
+staticWindow.SetFlatTime( flatTime );
+// Setup up pole-zero correction
+pz.SetDecayConstant(tauUsed);
+// Perform transforms, all in-line (results saved back in wf)
+baseline.Transform( wf );
+pz.Transform( wf );
+staticWindow.Transform( wf );
+// Grab energy (amplitude)
+double energy = staticWindow.GetPeakHeight()/(tauUsed*wf->GetSamplingFrequency());
+			\end{lstlisting}	
+
+	\lstset{
+	   language=Python}			
+			\begin{lstlisting}[caption=Calculating general waveform characteristics in Python]			
+# Baseline Transformer
+baseline = ROOT.MGWFBaselineRemover()
+init_baseline_time = 280e3
+# Extremum Transformer
+extremum = ROOT.MGWFExtremumFinder()
+# Bandpass transformer, this is used to smooth
+# the shaped waveforms before energy estimation 
+first_bandpass = ROOT.MGWFBandpassFilter()
+shaped_bandpass = 0.0001 # 100 kHz low-bandpass
+first_bandpass.SetUpperBandpass(shaped_bandpass)
+...
+for wf in all_waveforms:
+    # All channels
+    for chan_num in (0,1,2,4,5):
+        baseline.SetBaselineTime(init_baseline_time) # 250 mus
+        wf = event.GetWaveform(chan_num)
+        extremum.SetFindMaximum(True)
+        extremum.Transform(wf)
+
+        # Find parameter of waveform, max, min, etc.
+        max_value = extremum.GetTheExtremumValue()
+        avg_value = max_value
+        extremum.SetFindMaximum(False)
+        extremum.Transform(wf)
+        min_value = extremum.GetTheExtremumValue()
+        baseline_factor = 1
+
+        # only process the shaped waveform with a bandpass filter
+        if chan_num in (0,1,2):
+            first_bandpass.Transform(wf)
+            extremum.SetFindMaximum(True)
+            extremum.Transform(wf)
+            avg_value = extremum.GetTheExtremumValue()/wf.GetLength()
+            baseline_factor = wf.GetLength()
+        baseline_value = baseline.GetBaseline(wf)/baseline_factor
+			\end{lstlisting}	
+
+These limited examples only touch on a very small set of the functionality of MGDO Transforms, further examples are available at git repositories located at \url{http://github.com/mgmarino}.
+	
+	
+	\section{Analysis database and processing framework}
+	\label{sec:AnalysisDBProcFramework}
+	\lstset{
+	   language=JSON,
+	   %backgroundcolor=\color{lightgray},
+	   extendedchars=true,
+	   basicstyle=\footnotesize\ttfamily,
+	   showstringspaces=false,
+	   showspaces=false,
+	   numbers=left,
+	   numberstyle=\footnotesize,
+	   numbersep=9pt,
+	   tabsize=2,
+	   breaklines=true,
+	   showtabs=false,
+	   captionpos=b
+	}	
+	The analysis database was set up to facilitate the movement and analysis of data from beginning of processing (data acquisition) to the end (exclusion plots, physics analyses, etc.).  The database ran using a couchDB backend, a document-based database with several desirable features, including scalability using the `view' Map-Reduce functionality and simple backup and mirror propagation through built-in replication.  Replication allows quick and easy distribution of data to several servers, very desirable for collaborations wishing to share or mirror data in multiple locations.  As well, the couchDB server employs a RESTful interface, accepting basic http commands to access and manipulate data and distributing data in a JSON (JavaScript Object Notation) format.  This interface simplifies communication with the database server and has fostered the development of couchDB `wrappings' in several languages including Ruby and Python.  More information on this database can be found online at~\url{http://couchdb.apache.org/}.  This section will describe the basic functionality of the run/analysis database as well as describe particular details of its implementation.  
+	
+		\subsection{Overview}
+		
+	The central couchDB server for the run/analysis database was located on a machine at the University of Washington and backed up to several other instances including personal laptops and online at CloudAnt (\url{https://cloudant.com/}).  The code written to encapsulate and read out/run the database was written in python using an older version of couchdb-python (available \url{http://code.google.com/p/couchdb-python/}).  Other software with couchDB python `bindings' is available including couchdbkit (\url{http://couchdbkit.org/}), but the former was initially chosen for arbitrary reasons.  The functionality of both frameworks is similar and so a translation from one to the other should not entail a significant amount of effort.  Three databases were run with this code, one for each of three different detectors: \ppc1, \ppc2, and the low-background BEGe detector.  \ppc2 and the BEGe are described previously in this dissertation.  The code is freely available in a browsable git repository online at: \url{http://github.com/mgmarino/SoudanDB}.  Instead of describing the code in depth, the following sections will focus on key functional aspects of the database as they pertain to the creation of future databases.  
+	
+		\subsection{Functional overview}
+		
+	The purpose of the run/analysis database was to track run information and data and manage the analysis process.  A schematic of this process is shown in Figure~\ref{fig:RunDBSchem}.  Metadata (e.g.~names of run files, time information, parameter settings, etc.) generated by the DAQ system or slow controls is automatically inserted into the database as a record when a new run file is generated or run settings are changed.  Once this information appears in the database, a process management class can then determine what types of processing needs to happen to the metadata record and then execute the necessary tasks to complete these.  In the schematic in Figure~\ref{fig:RunDBSchem}, the process management class queries the run database to determine which records have associated data that still requires back up or analysis processing and then calls the associated program(s) to complete this.  This methodology can scale well to larger numbers of data records since processing (e.g.~cpu usage) only occurs when needed.  
+
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.7\textwidth]{RunDatabaseSchematic}
+				\caption[Schematic of the run/analysis database functionality.]
+				{Schematic of the run/analysis database functionality.}
+				\label{fig:RunDBSchem}
+			\end{figure}	
+
+	Another advantage of using a couchDB database is that it is possible to insert records with different internal structure or different
+metadata.  For example, a single database can include records of associated run metadata as well as other records with slow control information.  Additionally, metadata need not be consistent across records of a certain type.  This has the advantage that it is not required to fully define the data structure within a database during initial deployment, therefore allowing simple adaptability to any changes that will inevitably happen to the data-taking process such as adding a new channel or additional sets of information.  
+
+		\subsection{Functional implementation}
+	
+	Implementing the functionality described in the previous section involved taking advantage of several features built into the couchDB database.  The database update could occur via several methods, for example: a daemon which runs regularly to insert the metadata when new files or information from the DAQ are generated; a system interrupt process calling an insertion function or program when a new file appears in a certain directory; active insertion (direct communication) by the DAQ software into the database.  This software employed the first method, regularly running a daemon via a cron job to determine when a new file was written into a certain directory by the DAQ software and inserting the necessary metadata as a record into the database.  
+	
+	The initial insertion of metadata placed a skeleton record in the database, populating the fields of the record with available data and leaving other fields that required information from further processing empty.  The data resided in the database in JSON format, and an example of a portion of an inserted JSON record in the run/analysis database is shown in Listing~\ref{lst:JSONExample}.  In this example, one can see the left-empty fields denoted by {\ttfamily null}.  It is simple to write a `view' (a couchDB query) to return records where an empty field might exist.  This method can be used to select records for processing.  For example, in the record snippet, thet \lstinline!root_data_file_tier_1! has daughter values set to \lstinline!null! including \lstinline!last_mod_time! (last modification time) and \lstinline!md5hash! (calculated md5 hash) indicating that this particular file in the analysis chain has yet to be created.  The process management daemon could then run the proper program or function to generate this file and populate those fields.  Other fields with \lstinline!null! also require some further processing.  
+	
+	The framework 
+
+			\begin{lstlisting}[caption=Truncated example of a JSON record in the run/analysis database., label=lst:JSONExample]
+{
+   "_id": "20100713120006",
+   "_rev": "6-8ba079fbf9a7196c83b14aaf9976678b",
+   "modification_time": null,
+   "raw_data_file_tier_0": {
+       "last_mod_time": "2010-07-13T12:22:07Z",
+       "lfn": "tier0/100713120006",
+       "md5hash": "c669edfa8e5a671b0a7c4e84932decb1",
+       "pfn": "/data/Soudan/Data/BeGe/tier0/100713120006"
+   },
+   "number_of_entries_in_tier1_root_tree": null,
+   "quality_assurance": {
+       "qa_check_process_has_been_run": null,
+       "qa_accept_run": null
+   },
+   "livetime": {
+       "run_milliseconds": 9046984,
+       "run_milliseconds_error": 0
+   },
+   "local_time_of_start_of_run": "2010-07-13T12:00:06Z",
+   "root_data_file_tier_1": {
+       "last_mod_time": null,
+       "lfn": "tier1/100713120006_rootified.root",
+       "md5hash": null,
+       "pfn": "/data/Soudan/Data/BeGe/tier1/100713120006_rootified.root"
+   },
+   "run_settings": [
+       "8000",
+       "20000000",
+       "20"
+   ],
+   ...
+}
+			\end{lstlisting}	
+
+		\subsection{Database Management}
+	This section outlines the necessary steps to manage the database 
+
+
+		
+	\section{WIMP PDFs software framework}
+	\label{sec:WIMPPDFs}
+	% Discussing pyWIMP.  Touch on the most useful features, in particular the WIMPPds and DMModel
+	This section outlines and describes the functionality of the pyWIMP software package for generating fits and limits
+to dark matter interactions such as a WIMP-nuclear recoil or the axioelectric effect.  The software is freely available in a 
+git repository online at \url{http://github.com/mgmarino/pyWIMP}.  The software is written as a Python/\cpp~hybrid package, essentially
+using Python for process control and management and using compiled \cpp~code when speed was critical.  As with most work performed for a thesis, some significant effort was placed in the initial design and development of this package, but as deadlines approached and the pressure to make it just \emph{work} increased, some code not generally useful necessarily appeared.  Because of this, the following sections will discuss the code that \emph{is} generally useful in the hopes that its development will save the same effort from others.  
+	
+		\subsection{Overview}
+	The pyWIMP package makes extensive use of the RooFit fitting package~\cite{ver03aa} -- developed for BaBar and now included in the ROOT analysis package~\cite{Bru97}.  The basic structure of pyWIMP is as follows:
+	
+			\begin{itemize}
+				\item[] buildTools/ -- directory for building utilities
+				\item[] test\_scripts/ -- directory containing test scripts useful for checking for proper installation
+				\item[] pyWIMP/ -- base directory of Python package
+				\begin{itemize}
+					\item[] Calculation/ -- directory containing Python calculation classes for deriving sensitivities and limits
+					\item[] DMModels/ -- directory containing Python objects for the construction of models used in fitting dark matter signals
+					\item[] WIMPPdfs/ -- directory containing compiled \cpp~classes used to construct dark matter signal models
+					\item[] utilities/ -- utilities directory
+				\end{itemize}
+			\end{itemize}
+Since the most generically useful tools exist in the WIMPPdfs and DMModels directories, the following sections will detail these.
+		
+		\subsection{WIMPPdfs}
+			\lstset{
+			   language=C++,
+			   backgroundcolor=\color{white},
+			   extendedchars=true,
+			   basicstyle=\footnotesize\ttfamily,
+			   %keywordstyle=\bfseries,
+			   showstringspaces=false,
+			   showspaces=false,
+			   numbers=none,
+			   numberstyle=\footnotesize,
+			   numbersep=9pt,
+			   tabsize=2,
+			   breaklines=true,
+			   showtabs=false,
+			   captionpos=t}
+
+WIMPPdfs contains \cpp-constructed objects of probability distribution functions and related classes.  Almost all of the classes derive from \lstinline!RooAbsPdf!, except for classes used for Form Factor calculation which derive from \lstinline!MGMVWimpFormFactor!.  All classes are described in detail here, including their functionality and primary constructor.  
+			\paragraph{\lstinline!class MGMVWimpFormFactor!}
+Base class for all classes describing a form factor.  This class has a standard constructor, but should never need to be directly
+instantiated by a user: 
+				\begin{lstlisting}
+MGMVWimpFormFactor(const char *name = "", const char *title = "")
+				\end{lstlisting}			
+				
+			\paragraph{\lstinline!class MGMWimpHelmFFSquared!}
+Class describing a Helm nuclear form factor squared~\cite{Helm56}, the default constructor is: 
+				\begin{lstlisting}
+MGMWimpHelmFFSquared(const char *name, const char *title, 
+	RooAbsReal& _q, 
+	RooAbsReal& _r_sub_n, 
+	RooAbsReal& _s)
+				\end{lstlisting}
+where \lstinline!_q! is the momentum transfer, \lstinline!_r_sub_n! is the effective nuclear radius and \lstinline!_s! is the skin thickness.
+			
+			\paragraph{\lstinline!class MGMBetaDecayFunction!}
+Class describing a generic beta decay.  This class does not take into account any correction factors and instead gives the kinematic spectrum for the electron given the endpoint energy of the decay.  The default constructor is			
+				\begin{lstlisting}
+MGMBetaDecayFunction(const char *name, const char *title,
+	RooAbsReal& _energy,
+	RooAbsReal& _mass_of_electron,
+	RooAbsReal& _qvalue)
+				\end{lstlisting}	
+where \lstinline!_enery! is the energy of the electron, \lstinline!_mass_of_electron! is the mass of the electron and  \lstinline!_qvalue! is the q-value of the decay, all in keV.
+
+			\paragraph{\lstinline!class MGMErfcFunction!}
+Class implementing an error function pdf of the form: $ \frac{1}{2}\operatorname{erf} ((E-\mu)/(\sigma \sqrt{2})) + \rho$ with $\rho$ the offset.  The constructor:
+				\begin{lstlisting}
+MGMErfcFunction(const char *name, const char *title,
+	RooAbsReal& _energy,
+	RooAbsReal& _mean,
+	RooAbsReal& _sigma,
+	RooAbsReal& _offset)
+				\end{lstlisting}			
+				
+			\paragraph{\lstinline!class MGMWimpDiffRateBasicPdf!}
+Class implementing the basic form of the WIMP interaction with no time dependence~\cite{Lew96}: $0.751 R_{0}/(E_{0} r) \exp(-0.561 \frac{Q}{E_{0} r })$
+				\begin{lstlisting}
+MGMWimpDiffRateBasicPdf(const char *name, const char *title,
+	RooAbsReal& _R_sub_0,
+	RooAbsReal& _E_sub_0,
+	RooAbsReal& _Q,
+	RooAbsReal& _r,
+	MGMVWimpFormFactor& _form_factor = MGMVWimpFormFactor::DefaultFormFactor())
+				\end{lstlisting}	
+
+			\paragraph{\lstinline!class MGMWimpDiffRatePdf!}
+Class implementing the time-dependent WIMP interaction assuming infinite escape velocity (see Section~\ref{sec:CalcLimitsOnWIMPSignal} and~\cite{Jun96,Lew96}), where $v_{E}$ is the velocity of the earth with possible time dependence.  This class takes advantage of RooFit functionality which does not require parameters to have explicit dependencies.  That is, this class does not need to know about any time dependence of $v_{E}$.
+				\begin{lstlisting}
+MGMWimpDiffRatePdf(const char *name, const char *title,
+	RooAbsReal& _v_sub_0,
+	RooAbsReal& _v_sub_min,
+	RooAbsReal& _v_sub_E,
+	RooAbsReal& _R_sub_0,
+	RooAbsReal& _E_sub_0,
+	RooAbsReal& _r,
+	MGMVWimpFormFactor& _form_factor = MGMVWimpFormFactor::DefaultFormFactor())
+				\end{lstlisting}	
+						
+			\paragraph{\lstinline!class MGMWimpDiffRateEscapeVelPdf!}
+Class implementing the time-dependent WIMP interaction with the finite escape velocity of the dark matter halo included.  This class is equivalent to the above class with the addition of the the escape velocity parameter, $v_{\text{esc}}$.  See Section~\ref{sec:CalcLimitsOnWIMPSignal} for details on the functional form of this pdf.
+				\begin{lstlisting}
+MGMWimpDiffRateEscapeVelPdf(const char *name, const char *title,
+	RooAbsReal& _v_sub_0,
+	RooAbsReal& _v_sub_min,
+	RooAbsReal& _v_sub_E,
+	RooAbsReal& _R_sub_0,
+	RooAbsReal& _E_sub_0,
+	RooAbsReal& _r,
+	RooAbsReal& _v_sub_esc,
+	MGMVWimpFormFactor& _form_factor = MGMVWimpFormFactor::DefaultFormFactor());
+				\end{lstlisting}	
+
+			\paragraph{\lstinline!class MGMWimpTimeFunction!}
+Class implementing a generic time pdf for a WIMP search with the functional form: $v_{0} + v_{1}\sin{2\pi t}$.  This is useful for deriving sensitivity or looking for limits on a generic oscillation signal.			
+				\begin{lstlisting}
+MGMWimpTimeFunction(const char *name, const char *title,
+	RooAbsReal& _velocity_0,
+	RooAbsReal& _velocity_1,
+	RooAbsReal& _time);
+
+				\end{lstlisting}	
