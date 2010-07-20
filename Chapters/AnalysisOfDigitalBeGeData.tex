@@ -204,14 +204,15 @@ Therefore, during these filling periods, a flag was set in the data to enable la
 		
 	For microphonics induced from sources other than LN fills, another cut was made.  Morales et al.~developed a technique to mitigate this class of events, taking advantage of the fact that microphonics tend to have characteristics (e.g.~rise-time, fall-time, baseline shift) significantly different from events arising from charge collection in the crystal~\cite{Morales1992410}.  This procedure analyzes the ratio of amplitudes from two signal channels with different shaping times  and accepts or rejects events based upon their deviation from the expected ratio.  This expectation can be determined by using a source or a pulser at low amplitudes and in a setup where the amplification of the two shaped channels is nearly equivalent the expectation value of the ratio is close to 1.  
 	
-	In this application, a pulser was used to train the microphonics cut by taking high-statistics pulser runs at several discrete amplitudes near the threshold.  At these discrete amplitudes, the ratios of the two channels were histogrammed and fit to a gaussian.  The cut points were then determined by taking the values $\mu \pm 3 \sigma$ to accept 99.7\% of the pulser events.  Since these cut points were estimated at discrete amplitudes, a 4th-order polynomial was fit to them to interpolate between the points.  The results of this are shown in Figure~\ref{fig:RatioOfShapedChannels}.  To avoid errors from the interpolation, the cut was softened forcing the upper limit to be no less than 1, and the lower limit to be no less than 0.8.  The final cut is then shown in Figure~\ref{fig:RatioOfShapedChannelsFinal} which shows an overlay of the calculated cut on data from a scanned pulser run (Figure~\ref{fig:RatioScannedPulser} and from the run data (Figure~\ref{fig:RatioData}).  Interesting to note is how the run data and the scanned pulser data follow a different distribution at energies above 1~keV, in particular that the scanned pulser data is centered around a ratio of 0.9 and the run data is centered at a lower value.  This suggests that the difference between a pulser and an actual crystal event become more significant at these energies.
+	In this application, a pulser was used to train the microphonics cut by taking high-statistics pulser runs at several discrete amplitudes near the threshold.  At these discrete amplitudes, the ratios of the two channels were histogrammed and fit to a gaussian.  The cut points were then determined by taking the values $\mu \pm 3 \sigma$ to accept 99.7\% of the pulser events.  Since these cut points were estimated at discrete amplitudes, a 4th-order polynomial was fit to them to interpolate between the points.  The results of this are shown in Figure~\ref{fig:RatioOfShapedChannels}.  To avoid errors from the interpolation, the cut was softened forcing the upper limit to be no less than 1, and the lower limit to be no less than 0.8.  The final cut is then shown in Figure~\ref{fig:RatioOfShapedChannelsFinal} which shows an overlay of the calculated cut on data from a scanned pulser run (Figure~\ref{fig:RatioScannedPulser} and from the run data (Figure~\ref{fig:RatioData}).  Interesting to note is how the run data and the scanned pulser data follow a different distribution at energies above 1~keV, in particular that the scanned pulser data is centered around a ratio of 0.9 and the run data is centered at a lower value.  This suggests that the difference between a pulser and an actual crystal event become more significant at these energies.  Interestingly, there appears that there may exist a crescent-shaped distribution of events that runs through the low-energy acceptance region (beginning below threshold at high ratios and ending from $1\to2$~keV at low ratios).  Whether or not such a distribution really exists has not been determined, but will be considered as a possible background in this low-energy region.  
 
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.8\textwidth]{Pulser_cut6}
 				\caption[Calculation of microphonics cuts]
-				{Calculation of microphonics cuts using the ratio of outputs from two different spectroscopy amplifiers with an input pulser at discrete amplitudes.  Line is 
-				an estimate of the cut, see text for details.}
+				{Calculation of microphonics cuts using the ratio of outputs from two different spectroscopy amplifiers with an 
+				input pulser at discrete amplitudes.  Line is 
+				an estimate of the cut, see text for details.  }
 				\label{fig:RatioOfShapedChannels}
 			\end{figure}
 
@@ -933,7 +934,40 @@ The binned baseline data included outliers in one direction which were attribute
 	
 	%It should be noted that all these tests except the time difference measurement were insensitive to time correlations beyond their time windows (e.g.~8, 24~hours).    More powerful time-series analyses such as a Fourier or wavelet analysis could provide additional insight into the arrival information of events, 
 
+	\section{Systematic error summary}
+	\label{sec:BeGeSysError}
+	
+	The previous sections have discussed possible systematic errors in detail.  To summarize, systematic errors may arise from the following:
+		\begin{itemize}
+			\item Threshold drift 
+			\item Contributions at low energy from non-Poisson processes (environmental noise)			
+			\item Cut efficiencies (errors in the estimation of microphonics and rise-time cut efficiencies)
+			\item Estimation of detector fiducial mass
+		\end{itemize}
+		
+	The threshold drift can be estimated by considering that the $\sigma$ of the baseline (Section~\ref{sec:BeGeParsVsTime}) only varies by 0.1~mV.  Since the magnitude of the baseline is subtracted for every events, drifts over long time scales shouldn't affect the estimation of the energy on an event-by-event basis.  Therefore, we expect that the drift in threshold can be estimated using the $\sigma$ of the baseline, which corresponds to roughly 7~eV in energy units.  
+	
+	An upper limit on the contribution of a non-Poisson process to the count rate at $0.5\to1$~keV can be made by conservatively assuming that it must be less than or equal to the error on the measured rate in that region.  That is, the rate (after LN cuts) is measured as $0.172\pm0.007$ counts/hour in that region.  Therefore, a non-Poisson process could contribute $\leq4$\% to events in this region.  	
+	
+	The \emph{acceptance} efficiencies for the rise-time cuts have been estimated by performing a systematic analysis on the behavior of the cuts on peaks in the data.  At higher acceptance ($\geq70$\%), the estimated efficiencies are correct within 10\%.  This error is not explicitly taken into account, but the effect of the different cuts is studied during limit calculations (Section~\ref{sec:LimitsUnbinned}).  The error is biased since that the efficiencies are always underestimated, meaning that limit estimations will be conservative.  The detector fiducial mass has been estimated as $0.346\pm0.0124$~kg, but the value of this has been conservatively assumed to be at the lower end of this error: 0.33~kg.  As with the rise-time efficiency underestimation, this will make limit calculations more conservative since a decrease in assumed mass reduces the sensitivity of a detector.  
+	
+			\begin{table} 
+				\centering
+				\begin{tabular}{p{0.4\textwidth}  c  p{0.35\textwidth}  } 
+				\toprule
+					Source & Estimate & Comments \\
+				\midrule	
+					Threshold drift & $\lesssim7$~eV & Estimated from baseline versus time measurements, negligible/ignored \\
+					Non-poisson process contribution & $\leq4$\% of counts & Possible `unknown background' contribution to $0.5\to1$~keV region.  \\			
+					Rise-time cut efficiency error & $\lesssim10$\% & For efficiencies $\geq$70\%; effects of different cuts studied during limit calculations (Section~\ref{sec:LimitsUnbinned}) \\
+					Fiducial mass error & 4\% & Error ignored, but mass conservatively assumed to be 0.33~kg\\
+
+				\bottomrule
+				\end{tabular}	
+				\caption{Summary of estimation of systematic errors.}
+				\label{tab:BeGeSysErrors}
+			\end{table}
 	\section{Conclusions}
      	\label{sec:BeGeConclusions}		
 	
-	During the counting runs presented here, the detector and electronics demonstrated good stability, running without significant intervention for almost half a year.  At the time of writing, data collection continues.  A robust analysis chain developed for a previous \ppc~detector at Soudan was applied to the distinct DAQ setup used for the modified BEGe, demonstrating the adaptability required for use with the \MJ~\minmod.  Tools were developed to measure the rise-time of preamplifier traces with small signal-to-noise ratios, and the results can be applied to future detectors with similar or better capabilities including \ppc~detectors in the \minmod.  Future DAQ systems for the \minmod~will likely forego the use of spectroscopic amplifiers, opting for the simplicity afforded by directly digitizing the preamplifier output.  Therefore, the study of microphonics cuts based upon preamplifier traces must progress, though it is expected that the ability to differentiate between `real' events and those vibrationally induced will improve because the deviations in preamplifier traces should manifest more significantly.  The study of the rise-time cuts demonstrated the ability to cut slow-rise-time pulses, but also implied that further work must progress to establish the robustness of this technique near threshold.  Additionally, determining if other origins of slow pulses exist and how the distribution of these pulses depends on geometry and manufacturing requires further quantitative tests with other similar detectors.  The cuts and analysis of this data have readied it for further interpretation: possible sensitivities and exclusion limit are discussed in the following chapters.
+	During the counting runs presented here, the detector and electronics demonstrated good stability, running without significant intervention for almost half a year.  At the time of writing, data collection continues.  A robust analysis chain developed for a previous \ppc~detector at Soudan was applied to the distinct DAQ setup used for the modified BEGe, demonstrating the adaptability required for use with the \MJ~\minmod.  Tools were developed to measure the rise-time of preamplifier traces with small signal-to-noise ratios, and the results can be applied to future detectors with similar or better capabilities including \ppc~detectors in the \minmod.  Future DAQ systems for the \minmod~will likely forego the use of spectroscopic amplifiers, opting for the simplicity afforded by directly digitizing the preamplifier output.  Therefore, the study of microphonics cuts based upon preamplifier traces must progress, though it is expected that the ability to differentiate between `real' events and those vibrationally induced will improve because the deviations in preamplifier traces should manifest more significantly.  The study of the rise-time cuts demonstrated the ability to cut slow-rise-time pulses, but also implied that further work must progress to establish the robustness of this technique near threshold.  Additionally, determining if other origins of slow pulses exist and how the distribution of these pulses depends on geometry and manufacturing requires further quantitative tests with other similar detectors.  The cuts and analysis of this data have readied it for further interpretation: possible sensitivities and exclusion limits are discussed in the following chapters.

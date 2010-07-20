@@ -5,7 +5,12 @@
 	\label{chap:IntroChapter}
 
 	% Set the context for the experiment a bit, why MJ can look for dark matter.  
-	Before discussing dark matter, it is important to put this in the context of the \MJ~experiment.  
+	The \MJ~experiment experiment will search for the rare process of 
+neutrinoless double-beta decay ($\nonubb$) to determine characteristics of the neutrino.  The 
+choice of detector technology, p-type point contact germanium detectors, 
+will also allow the experiment to search for dark matter.  
+The following outlines the reasons behind using this technology and focuses on the
+additional physics questions beyond those related to neutrinos which may be answered with these detectors.
 
 	\section{Neutrinos and neutrinoless double-beta decay ($\nonubb$)}
 	
@@ -76,12 +81,12 @@ The search for a rare process such as $\nonubb$ necessarily involves maximizing 
 simultaneously reducing backgrounds that may mimic the sought-after process.  
 The \MJ~experiment proposes to search for $\nonubb$ in \gersevensix~using high-purity
 germanium as both source and detector, thereby maximizing a possible signal from $\nonubb$. 
-The first stage of this experiment will involve the deployment of 20-40~kg of germanium in a arrayed fashion in a \minmod~module with the goal to determine
+The first stage of this experiment will involve the deployment of 20-40~kilograms of germanium in a arrayed fashion in a \minmod~module with the goal to determine
 the feasibility of scaling up to the 1-tonne scale.  To achieve this, the \MJ~experiment seeks to demonstrate less than
 1~background count per year per tonne of enriched material in the
 region-of-interest, a $\sim4$~keV window around the $\beta\beta$-decay
-Q-value of $^{76}$Ge (2039~keV).  A low-capacitance, low-noise p-type point contact (\ppc)
-detector will be deployed in these modules to take advantage of characteristics which make 
+Q-value of $^{76}$Ge (2039~keV).  Low-capacitance, low-noise p-type point contact (\ppc)
+detectors will be deployed in these modules to take advantage of characteristics which make 
 them beneficial for rare-process searches in general and for looking for $\nonubb$ in particular.  These characteristics and other details about \ppc~detectors will be discussed in Section~\ref{sec:PPCDets}.  
 
 To achieve its background goals, the \MJ~experiment will employ standard techniques for background reduction including: creation of detector mounts, cryostats, and other components close to the detectors using ultra-clean electroformed copper and other radiopure materials; use of passive shielding against external radiation including a lead shield for gamma radiation and a borated polyethylene shield for the moderation of cosmic-ray-induced neutrons; use of active shielding (vetos) against cosmic-ray muons; and deployment of the module underground in the Deep Underground Science and Engineering Lab (DUSEL) at Homestake, South Dakota, for moderation of cosmic-ray muons.  Engineering drawings given in Figures~\ref{fig:MJEngDrawing1} and~\ref{fig:MJEngDrawing2}shows both the cryostat design and the expected shield construction, and indicates the modular design of the experiment; additional, independent cryostats may be deployed within the same shield geometry.  
@@ -99,16 +104,17 @@ exposure, is T$_{1/2}\geq 10^{26}$.
 			\def\figheight{0.45\textheight}
 			\includegraphics[height=\figheight]{ShieldDesign}
 			\caption[\MJ~\minmod~shield geometry]{\MJ~\minmod~shield geometry.  The modular design of the shield will 
-			enable a phased deployment of cryostats, allowing detectors to be easily added after commission of the experiment.}
+			enable a phased deployment of cryostats, allowing sets of detectors to be easily added after initial commissioning of the 
+			experiment.}
 			\label{fig:MJEngDrawing2}
 		\end{sidewaysfigure}
 	
 		\begin{figure}
 			\centering		
 			\def\figheight{0.45\textheight}
-			\includegraphics[width=0.9\textwidth]{CrystalCryostatDesign}
-			\caption[\MJ~\minmod~cryostat and crystal string geometry]{\MJ~\minmod~cryostat and crystal string geometry, the
-			crystal string houses .}
+			\includegraphics[height=0.9\textwidth]{CrystalCryostatDesign}
+			\caption[\MJ~\minmod~cryostat and crystal string geometry]{\MJ~\minmod~cryostat and crystal string geometry, each
+			crystal string houses 5~p-type point-contact germanium detectors.}
 			\label{fig:MJEngDrawing1}
 		\end{figure}
 
@@ -121,11 +127,11 @@ technology whose characteristics provide powerful tools in the search for
 $\nonubb$ and enable searches for other rare physics processes at low energy, e.g.~dark matter.  
 The electrode geometry of \ppc~detectors significantly reduces the
 capacitance, reducing the energy threshold and enhancing the detector's
-ability to detect low-energy ($\sim100$~eV) processes.  Figure~\ref{fig:PPCGeom} shows a picture of the geometry of this detector in comparison to a standard semi-coaxial crystal.  In addition to improving the electronic response of the detector, the crystal geometry also yields a weighting field strongly peaked at the readout electrode.  This means that as charge drifts to the p contact after being created from energy deposition in the crystal (e.g.~from a physics interaction), no signal will be induced in the contact until the drifting charge is very near (within $\sim2$~cm of) the contact.  Additionally, charge drift times are increased by the longer drift paths.  These two characteristics coupled together improve the ability to distinguish between charge originating from one point in the crystal or from multiple sites in the detector.
+ability to detect low-energy ($\sim100$~eV) processes.  Figure~\ref{fig:PPCGeom} shows a picture of the geometry of this detector in comparison to a standard semi-coaxial crystal.  In addition to improving the electronic response of the detector, the crystal geometry also yields a weighting field strongly peaked at the readout electrode.  This means that as charge drifts to the p contact after being created from energy deposition in the crystal (e.g.~from a physics interaction), no signal will be induced in the contact until the drifting charge is very near (within $\sim1$~cm of) the contact.  Additionally, charge drift times are increased by the longer drift paths.  These two characteristics coupled together improve the ability to distinguish between charge originating from one point in the crystal or from multiple sites in the detector.
 
 An n-type detector with a point-contact geometry was developed by Luke et
 al.~in 1989, demonstrating detector capacitance on the order of
-1~pF~\cite{Luke89}.  With such a low capacitance and therefore low energy
+1~pF~\cite{Luke89}.  With such a low capacitance and therefore a low-energy
 threshold this detector was seen as a potential tool for dark matter detection, but this detector 
 exhibited poor energy resolution due to incomplete charge collection attributed to charge-trapping effects.  
 		\begin{figure}
@@ -138,9 +144,9 @@ exhibited poor energy resolution due to incomplete charge collection attributed 
 			\label{fig:PPCGeom}
 		\end{figure}
   In 2007, Barbeau et al.~presented a new detector with a point-contact 
-geometry which departed from previous convention in that it was made
-of p-type instead of n-type material~\cite{Barb07}.  The reason for this
-change was to take advantage of reduced sensitivity of p-type crystals to electron trapping in germanium.  
+geometry, departing from previous convention by creating it out
+of p-type material~\cite{Barb07}.  The reason for this
+change was to take advantage of the reduced sensitivity of p-type crystals to electron trapping in germanium.  
 Because p-type crystals collect holes instead of electrons at the p contact of the crystal, they are less likely to 
 see a degradation of signal from electron trapping~\cite{Hull:2005p2207}.
 With these changes, Barbeau et al.~demonstrated
@@ -183,17 +189,21 @@ softening radiopurity requirements.
 Cosmogenically-produced $^{68}$Ge is a significant background
 source for the \MJ~experiment, decaying first via electron capture to $^{68}$Ga
 (T$_{1/2}=271$~d) and then to $^{68}$Zn (Q=2921~keV, T$_{1/2}=68$~m).  The
-initial decay is followed by the emission of Auger electrons and/or soft x-rays
-from $\sim1.3$~keV to $\sim10.3$~keV, and it is possible to use these to tag
-the $^{68}$Ge decay.  A time cut can then be introduced to veto events
+initial decay is characterized by the emission of Auger electrons and/or soft x-rays
+summing to the orbital energy of the captured electon (e.g.~1.3~keV for L-capture, 10.3~keV for K-capture) 
+and it is possible to use these to tag the $^{68}$Ge decay.  A time cut can then be introduced to veto events
 occurring within a few $^{68}$Ga lifetimes to mitigate background from that
 decay without seriously affecting detector live time.   \ppc~detectors have an
 improved sensitivity to low-energy physics because of their low noise and 
 low-energy threshold and so could significantly enhance the tagging of the
-$^{68}$Ge decay.  This low-energy threshold will also
-expand the physics reach of the \MJ~experiment, making it sensitive to
-low-energy nuclear recoils and enhancing its capacity as a dark matter
-detector.  This is a question considered in much more detail 
+$^{68}$Ge decay.  
+
+Though characteristics of \ppc~detectors will prove useful in searching for
+$\nonubb$, the low-energy threshold will also
+expand the physics reach of the \MJ~experiment.  Access to low energies will 
+make the \minmod~sensitive to low-energy nuclear recoils and enhance its capacity as a dark matter
+detector.  The functionality and usefulness of the \ppc~detector as a tool for dark
+matter searches is considered in much more detail 
 throughout the remainder of this dissertation.
 
 
@@ -217,7 +227,7 @@ throughout the remainder of this dissertation.
 	
 		\subsection{Evidence for dark matter}
 	% Galactic rotational curves
-	From cosmological observation there exists significant evidence that the matter density of the universe is mostly composed of non-luminous gravitationally-interacting particles referred to as `Dark Matter'.  Perhaps the most convincing and intuitive empirical indications arise from measurements of galactic rotational curves.  Essentially, astronomers measure the rotational velocity of stars in galaxies and determine the relation of this velocity versus the radial distance from galactic center.  When the velocity is compared to that expected given the observed distribution of mass, it is found that galaxies are rotating much more quickly than they should be.  There is simply not enough observable mass to explain why the galaxies' rotational velocities do not tear them apart.  This realization indicated that some other mass must exist to hold the galaxies together, and that this mass was hidden due to its weak or nonexistent coupling with photons.  A weak interaction with electromagnetism makes the dark matter unsusceptible to frictional forces and also makes it non-luminous or `dark.'  By including a mass density of dark matter in a `dark matter halo' around galaxies, astronomers could successfully reproduce observed rotation curves.  An example of such a rotational curve and a three-component fit (visible matter (e.g.~stars), gas, and dark halo) has been included from Reference~\cite{Begeman:1991iy} in Figure~\ref{fig:DMRotCurve}.
+	From cosmological observation there exists significant evidence that the matter density of the universe is mostly composed of non-luminous, gravitationally-interacting particles referred to as `Dark Matter'.  Perhaps the most convincing and intuitive empirical indications arise from measurements of galactic rotational curves.  Astronomers have measured the rotational velocity of stars in galaxies and determined the relation of this velocity versus the radial distance from galactic center.  When the velocity is compared to that expected given the observed distribution of mass, it is found that galaxies are rotating much more quickly than they should be.  Essentially, there is simply not enough observable mass to explain why the galaxies' rotational velocities do not tear them apart.  This realization indicated that some other mass must exist to hold the galaxies together, and that this mass was hidden due to its weak or nonexistent coupling with photons.  Such a weak interaction with electromagnetism, would make the dark matter unsusceptible to frictional forces and also would make it non-luminous or `dark.'  By including a mass density of dark matter in a `dark matter halo' around galaxies, astronomers could successfully reproduce observed rotation curves.  An example of such a rotational curve and a three-component fit (visible matter (e.g.~stars), gas, and dark halo) has been included from Reference~\cite{Begeman:1991iy} in Figure~\ref{fig:DMRotCurve}.
 
 		\begin{figure}
 			\centering
@@ -228,17 +238,16 @@ throughout the remainder of this dissertation.
 			\label{fig:DMRotCurve}
 		\end{figure}
 	% WMAP results (large-scale structure)
-	Other evidence of dark matter comes from measurements of large-scale structure through the analysis of the anisotropy of the cosmic microwave background (CMB) (see e.g.~\cite{Amsler20081}).  The extraction of cosmological parameters (e.g.~total matter density, baryon density, Hubble parameter, etc.) occurs by fitting the CMB data using model-based assumptions.  In particular, the parameters-of-interest are the total matter density, $\Omega_{m}$, and the baryon density, $\Omega_{b}$, which have been measured to be
+	Other evidence of dark matter comes from measurements of large-scale structure through the analysis of the anisotropy of the cosmic microwave background (CMB) (see e.g.~\cite{Amsler20081}).  The extraction of cosmological parameters (e.g.~total matter density, baryon density, Hubble parameter, etc.) occurs by fitting the CMB data using model-based assumptions.  In particular, the parameters-of-interest are the total matter density, $\Omega_{m}$, and the baryon density, $\Omega_{b}$, which have been measured to be (in units of critical density):
 		\begin{eqnarray*}
 			\Omega_{m} & = & 0.256 \pm 0.02 \\
 			\Omega_{b} & = & 0.044 \pm 0.003~\cite{Amsler20081}
 		\end{eqnarray*}
-
-The cold dark matter component is the difference between these two components: $\Omega_{cdm} = \Omega_{m} - \Omega_{b} = 0.21 \pm 0.02$, indicating a significant presence of dark matter in the universe ($\sim$20\%).
+If baryonic matter composed the majority of the mass in the universe, one would expect these two quantities to be equivalent.  Instead, the significant discrepancy between the two indicates the presence of unaccounted material.  Therefore, the dark matter component is the difference between these two components: $\Omega_{dm} = \Omega_{m} - \Omega_{b} = 0.21 \pm 0.02$, indicating a large proportion of dark matter in the universe on the order of 20\%.
 
 	% Bullet cluster
 	
-	Perhaps the most visually stunning evidence for dark matter comes from the 'bullet cluster' (galactic cluster 1E 0657-56)~\cite{Clowe06}.  In this particular example two subclusters have collided with one another $\sim$100~Myr ago, subjecting the contents of each to frictional forces.  The stars and galactic components of the subclusters were scarcely affected, passing through one another and interacting largely only gravitationally, but the trajectories of the hot gas making up the majority of the subclusters' baryonic mass density were significantly altered.  The matter density of the gas component was measured using images from the Chandra x-ray observatory and the total mass density of the cluster was measured using gravitational lensing.  When plots of these measurements are superimposed (see Figure~\ref{fig:DMBulletCluster} from~\cite{Clowe06}), it is clear that the two centers (of each subcluster) of the total mass density are offset from the centers of the gas plasma mass density.  This indicates the presence of non-luminous (dark) matter weakly interacting with both the normal baryonic matter and with itself.  
+	Perhaps the most visually stunning evidence for dark matter comes from the `bullet cluster' (galactic cluster 1E 0657-56)~\cite{Clowe06}.  In this particular example two subclusters have collided with one another $\sim$100~Myr ago, subjecting the contents of each to frictional forces.  The stars and galactic components of the subclusters were scarcely affected, passing through one another and interacting largely only gravitationally, but the trajectories of the hot gas making up the majority of the subclusters' baryonic mass density were significantly altered.  The matter density of the gas component was measured using images from the Chandra x-ray observatory and the total mass density of the cluster was measured using gravitational lensing.  When plots of these measurements are superimposed (see Figure~\ref{fig:DMBulletCluster} from~\cite{Clowe06}), it is clear that the two centers (of each subcluster) of the total mass density are offset from the centers of the gas-plasma mass density.  This indicates the presence of non-luminous (dark) matter weakly interacting with both the normal baryonic matter and with itself.  
 	
 			\begin{figure}
 				\centering
@@ -278,7 +287,7 @@ Additionally, dark matter will compose a halo in our galaxy which the earth pass
 			\subsubsection{WIMPs}
  WIMPs, or Weakly-Interacting Massive Particles, (denoted from here on by $\chi$) are more of a class of candidate particles than one in particular, defined by the fact that these types of particles predominantly (or exclusively) interact via the weak force.  An argument for the existence of WIMPs relates to how they can `naturally' explain the dark matter relic abundance.
  % while making a few assumptions.  
-  For example, during the period right after the big bang as the temperature of the universe cooled, WIMPs would have been in equilibrium with other fermions, undergoing annihilation and generation according to the two-way reaction: $\chi\bar{\chi} \leftrightarrow f\bar{f} $ (see e.g.~Figure~\ref{fig:WIMPExampleProduction}).  As the temperature of the universe cooled below the mass of $\chi$, eventually this two-way process would shut off in one direction allowing only $\chi\bar{\chi} \rightarrow f\bar{f} $ to remain.  At this point, the rate of decay would be $\Gamma_{\chi} = \WIMPAnn n_{\chi}$~\cite{Jun96}, where $\sigma_{A}$ is the average cross-section for $\chi$ to annihilate into lighter fermions, $v$ is the average particle velocity, and $n_{\chi}$ is the density of WIMP particles.  The expansion of the universe would then reduce the density of $\chi$s, effectively shutting off this annihilation process and `freezing out' a so-called relic abundance of the particles.  
+  For example, during the period right after the big bang as the temperature of the universe was still quite hot, WIMPs would have been in equilibrium with other fermions, undergoing annihilation and generation according to the two-way reaction: $\chi\bar{\chi} \leftrightarrow f\bar{f} $ (see e.g.~Figure~\ref{fig:WIMPExampleProduction}).  As the temperature of the universe cooled below the mass of $\chi$, eventually this two-way process would shut off in one direction allowing only the interaction $\chi\bar{\chi} \rightarrow f\bar{f} $ to remain.  At this point in time, the rate of decay of $\chi$ has been calculated to be $\Gamma_{\chi} = \WIMPAnn n_{\chi}$~\cite{Jun96}, where $\sigma_{A}$ is the average cross-section for $\chi$ to annihilate into lighter fermions, $v$ is the average particle velocity, and $n_{\chi}$ is the density of WIMP particles.  The expansion of the universe would then reduce the density of $\chi$s, effectively shutting off this annihilation process and `freezing out' a so-called relic abundance of the particles.  
 
 An estimate of the density of this abundance remaining today times the Hubble constant squared, $h^{2}\sim0.5$, can be calculated (see, e.g.~\cite{Jun96}):
 			\begin{eqnarray}
@@ -290,7 +299,7 @@ and if we assume that this interaction follows the weak force, we can estimate t
 				%\Omega_{\chi} h^{2} & = & (2.6 \times 10^{-10}~\text{GeV}^{-2})~\WIMPAnn \\
 				\WIMPAnn & \sim & \frac{\alpha^{2}}{M_{\text{weak}}^{2}} \sim 10^{-9}~\text{GeV}^{-2}\\			
 			\end{eqnarray}
-which leaves us with an estimate of 	$\Omega_{\chi} h^{2} \sim 0.2$ which is close to the observed cold-dark-matter density.  This realization has not been interpreted as a `coincidence' and instead is suggested as compelling support for the possibility of WIMP existence.  
+which leaves us with an estimate of 	$\Omega_{\chi} h^{2} \sim 0.2$, close to the observed cold-dark-matter density.  This realization has not been interpreted as a `coincidence' and instead is suggested as compelling support for the possibility of WIMP existence.  
 		
 			\begin{figure}
 				\centering
@@ -309,12 +318,11 @@ which leaves us with an estimate of 	$\Omega_{\chi} h^{2} \sim 0.2$ which is clo
 				generation during the equilibrium phase at
 				the beginning of the universe, when the temperature of the universe was much greater than the mass of $\chi$.
 				The right figure denotes a mathematically equivalent interaction, an elastic-scattering process
-				of $\chi$s off of quarks relevant as the temperature of the universe reaches lower temperatures such as 
-				those observed today.}
+				of $\chi$s off of quarks becoming relevant as the temperature of the universe reduced below the mass of $\chi$.}
 				\label{fig:WIMPExample}
 			\end{figure}	
 			
-	The direct detection of WIMPs is possible via their elastic scattering off of fermions, see e.g.~Figure~\ref{fig:WIMPExampleScattering}.  In creating a detector, we are of course limited to electrons, neutrons, and protons.  In principle, WIMPs could scatter off of any fermion sharing a coupling to a mediating boson, but the kinematics of such a non-relativistic recoil maximize the energy transfer when the target particle has mass comparable to that of the incident particle.  In the case of WIMPs with hypothesized masses $\sim1\to1000$~GeV, an energy transfer is maximized during coherent recoil off of a nucleus having similar or equal mass.  Additionally, WIMP scattering off of bound electrons is suppressed due the mass ratio $m_{e}/m_{\chi}$ as well as the small size of the electronic wave function, see e.g.~\cite{Kopp09} making the nuclear recoil the expected primary method of detection.  The standard form of the energy spectrum for a WIMP-induced nuclear recoil is outlined later in Section~\ref{sec:CalcLimitsOnWIMPSignal}.
+	The direct detection of WIMPs is possible via their elastic scattering off of fermions, see e.g.~Figure~\ref{fig:WIMPExampleScattering}.  In creating a detector, we are of course generally limited to composing it out of electrons, neutrons, and protons.  In principle, WIMPs could scatter off of any fermion sharing a coupling to a mediating boson, but the kinematics of such a non-relativistic recoil maximize the energy transfer when the target particle has mass comparable to that of the incident particle.  In the case of WIMPs with hypothesized masses $\sim1\to1000$~GeV, an energy transfer is maximized during coherent recoil off of a nucleus having similar or equal mass.  Additionally, WIMP scattering off of bound electrons is suppressed due the mass ratio $m_{e}/m_{\chi}$, as well as the small size of the electronic wave function (see e.g.~\cite{Kopp09}) making the nuclear recoil the expected primary method of detection.  The standard form of the energy spectrum for a WIMP-induced nuclear recoil is outlined later in Section~\ref{sec:CalcLimitsOnWIMPSignal}.
 	
 			\subsubsection{Axions}
 	% Axions
@@ -322,7 +330,7 @@ which leaves us with an estimate of 	$\Omega_{\chi} h^{2} \sim 0.2$ which is clo
 	% pseudoscalar bosons
 	% Peccei-Quinn model - preserve CP in QCD 
 	
-	Axions are light pseudoscalar bosons that were originally suggested as a mechanism to solve the CP problem of QCD~\cite{Pec77}.  In particular, the QCD Lagrangian includes a CP-violating term:
+	Axions are light, pseudoscalar bosons that were originally suggested as a mechanism to solve the CP problem of QCD~\cite{Pec77}.  In particular, the QCD Lagrangian includes a CP-violating term:
 			\[
 			\mathcal{L}_{\Theta} = \bar{\Theta} \frac{\alpha_s}{8 \pi} G^{\mu \nu a} \tilde{G}_{\mu \nu}^{a}
 			\]
@@ -339,7 +347,9 @@ with $\phi_{A}$ the axion field and $f_{A}$ the axion decay constant~\cite{Amsle
 	
 	% WIMPs, truncated exponential
 	
-	\ppc~detectors can provide excellent dark matter detectors due to their low-energy threshold ($O(100~\text{eV})$) and excellent resolution down to threshold.  This can be made more clear if we consider the signal that WIMPs and axions can leave in a germanium detector.  These signals and their exact spectral form are discussed in more detail later for WIMPs (see Section~\ref{sec:CalcLimitsOnWIMPSignal}) and axions (see Section~\ref{sec:CalcLimitsOnHeavyAxionSignal}), but we consider their general properties here.  The nuclear recoil signal from a WIMP is essentially an exponential in energy space truncated by the finite escape velocity of the WIMP from the halo (see, e.g.~\cite{Jun96, Lew96}).  The exponential constant is determined by the mass of WIMP and the spectrum becomes steeper as the mass gets smaller.  This can be visualized in Figure~\ref{fig:WIMPDiffMasses}.  It is clear that lowering the threshold of the germanium detector is critical to detecting low-mass WIMPs, due to the steepening of the curves and the truncation of the signal.  The sub-keV thresholds of \ppc~detectors therefore enables sensitivity to these low masses.
+	\ppc~detectors can provide excellent dark matter detectors due to their low-energy threshold ($O(100~\text{eV})$) and excellent resolution down to threshold.  This can be made more clear if we consider the signal that WIMPs and axions can leave in a germanium detector.  These signals and their exact spectral form are discussed in more detail later for WIMPs (see Section~\ref{sec:CalcLimitsOnWIMPSignal}) and axions (see Section~\ref{sec:CalcLimitsOnHeavyAxionSignal}), but we consider their general properties here.  
+	
+	The nuclear recoil signal from a WIMP is essentially described as an exponential in energy space truncated by the finite escape velocity of the WIMP from the halo (see, e.g.~\cite{Jun96, Lew96}).  The exponential constant is determined by the mass of the WIMP and the spectrum becomes steeper as the mass gets smaller.  This can be visualized in Figure~\ref{fig:WIMPDiffMasses}.  It is clear that lowering the threshold of the germanium detector is critical to detecting low-mass WIMPs, due to the steepening of the curves and the truncation of the signal.  The sub-keV thresholds of \ppc~detectors therefore enables sensitivity to these low masses.  Most WIMP experiments rely on the ability to distinguish between electron and nuclear recoils for background reduction since the vast majority of backgrounds (e.g.~gammas, alphas, and betas) interact solely with electrons.  \ppc~detectors will be unable to distinguish between these two types of events, instead relying on the passive reduction of radioactivity through the choice of radiopure materials and appropriate shielding.
 	
 			\begin{figure}
 				\centering
@@ -348,13 +358,14 @@ with $\phi_{A}$ the axion field and $f_{A}$ the axion decay constant~\cite{Amsle
 				{Ionization spectrum (differential rate vs.~energy) of a WIMP nuclear-recoil in a Ge detector normalized by the
 				 interaction cross section.  The signal becomes steeper with lower WIMP mass and the truncation due to the
 				 escape velocity is more apparent at low mass.  Because of the characteristics of the signal, a germanium
-				  detector with threshold greater than 1~keV could not detect a recoiling WIMP of mass 5~GeV.}
+				  detector with threshold greater than 1~keV could not detect a recoiling WIMP of mass 5~GeV, underscoring
+				  the need for low thresholds to detect low-mass WIMPs.}
 				\label{fig:WIMPDiffMasses}
 			\end{figure}
 
 	% Axioelectric effect - gaussian signal
 
-	The signal for a non-relativistic axion interacting via the axioelectric effect has been derived in~\cite{Pospelov:2008jk}.  This particular inelastic interaction involves the deposition of the \emph{complete} energy of the axion, yielding an electron-recoil signal centered at the mass of the axion.  The low noise of \ppc~detectors yields excellent sensitivity to non-relativistic axions with masses $\leq10$~keV due their sharp resolution at low energies.  This enhanced performance is especially clear when compared to the capabilities of NaI scintillation detectors.  A comparison of an axioelectric signal at a defined axion-electron coupling ($\gaa$) is provided in Figure~\ref{fig:ResCompare} for characteristic resolutions of NaI and germanium detectors.  In this plot, it is clear that the improved resolution of the germanium detector allows less smearing of the signal, forcing more counts into a narrower peak.  The enhanced resolution enables superior distinction of the signal in the presence of background.
+	The signal for a non-relativistic axion interacting via the axioelectric effect has been derived in~\cite{Pospelov:2008jk}.  This particular inelastic interaction involves the deposition of the \emph{complete} energy of the axion, yielding an electron-recoil signal centered at the mass of the axion.  The low noise of \ppc~detectors yields excellent sensitivity to non-relativistic axions with masses $\leq10$~keV due their sharp resolution at low energies.  This enhanced performance is especially clear when compared to the capabilities of NaI scintillation detectors.  A comparison of an axioelectric signal at a defined axion-electron coupling ($\gaa$) is provided in Figure~\ref{fig:ResCompare} for characteristic resolutions of NaI and germanium detectors.  In this plot, it is clear that the improved resolution of the germanium detector allows less smearing of the signal, forcing more counts into a narrower peak.  This enhanced resolution enables superior distinction of the signal in the presence of background.
 	
 		\begin{figure}
 			\centering
@@ -372,4 +383,4 @@ with $\phi_{A}$ the axion field and $f_{A}$ the axion decay constant~\cite{Amsle
 		% A final system (with updated DAQ, etc.) underground
 		% Limits on WIMPs and the axioelectric effect as well as considerations for Majorana
 
-	This dissertation will focus on understanding and exploiting the low-energy capabilities of \ppc~detectors.  It will begin by considering the data acquisition (DAQ) needs to read out these detectors to enable full access to physics at $\qval$ and at low energies.  Following this will be the description of the application of this DAQ system to a \ppc~detector deployed underground at Soudan Underground Laboratory in Soudan, Minnesota, including conclusions from this initial study.  Results and knowledge gained from this initial detector were then applied to the deployment of another, lower-background \ppc~at Soudan.  The analysis of this detector, including the generation of limits for WIMP and axion dark matter, comprises the bulk of the thesis.  Finally, the work ends with some contextual discussion of these results, focusing on estimating the sensitivity of the \MJ~\minmod~to detect dark matter.
+	This dissertation will focus on understanding and exploiting the low-energy capabilities of \ppc~detectors.  It will begin by considering the data acquisition (DAQ) needs to read out these detectors to enable full access to physics at $\qval$ and at low energies.  Following this will be the description of the application of this DAQ system to a \ppc~detector deployed underground at Soudan Underground Laboratory in Soudan, Minnesota, including conclusions from this initial study.  Results and knowledge gained from this initial detector were then applied to the deployment of another, lower-background \ppc~at Soudan.  The analysis of this detector, including the generation of limits for WIMP and axion dark matter, comprises the bulk of the thesis.  Finally, the work ends with some contextual discussion of these results, focusing on estimating the sensitivity of the \MJ~\minmod~to detect dark matter.  Appendices detailing the development and use of software for the results of this dissertation are included for reference.
