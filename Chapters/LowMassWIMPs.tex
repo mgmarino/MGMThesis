@@ -3,6 +3,8 @@
 % in the previous chapter, to dark matter and low-energy
 % physics.  A number of different models of dark matter will be covered
 
+
+% JFW has seen this and commented.  All comments incorporated, except for FixME statements.
 \chapter{Limits on light Weakly-Interacting Massive Particles (WIMPs)}
 \label{chap:DMWIMPLimits}
 	%\section{Calculating limits on a Dark Matter signal}
@@ -13,16 +15,16 @@
 	\section{Signal from WIMP Dark Matter}
 	\label{sec:CalcLimitsOnWIMPSignal}	
 
-	A WIMP from the dark matter halo of the galaxy may interact with material in a detector by recoiling off of nuclei.  This interaction is in general dependent upon properties of the halo (e.g.~density, escape velocity) and characteristics of the detector (e.g.~mass, atomic number) and has been calculated in several reviews~\cite{Lew96,Jun96}.  The WIMP signal used in this analysis was the most generic parameterized form from Lewin and Smith~\cite{Lew96} given as a differential rate per recoil energy of the nucleus:
+	A WIMP from the dark matter halo of the galaxy may interact with matter by recoiling off of nuclei.  This interaction is in general dependent upon properties of the halo -- e.g.~density, escape velocity -- and characteristics of the detector -- e.g.~detector mass, atomic number.  The mathematical form has been derived in several reviews~\cite{Lew96,Jun96}.  The WIMP signal used in this analysis was the most generic parameterized form from Lewin and Smith~\cite{Lew96} given as a differential rate per recoil energy of the nucleus:
 
 		\begin{equation}
 			\frac{dR (v_{E}, v_{esc})}{dE_{rec}} = 
 				\frac{k_{0}}{k_{1}} \frac{R_{0}}{E_{0} r} 
 				\left\{ 
-			 		\frac{\pi^{1/2}}{4} \frac{v_{0}}{v_{E}} 
+			 		\frac{\pi^{1/2}}{4} \frac{v_{0}}{v_{E}(t)} 
 					\left[ 
-						\operatorname{erf} \left( \frac{v_{min} + v_{E}}{v_{0}} \right) - 
-							   \operatorname{erf} \left( \frac{v_{min} - v_{E}}{v_{0}} \right) 
+						\operatorname{erf} \left( \frac{v_{min} + v_{E}(t)}{v_{0}} \right) - 
+							   \operatorname{erf} \left( \frac{v_{min} - v_{E}(t)}{v_{0}} \right) 
 					\right] 
 					- e^{-v_{esc}^{2}/v_{0}^{2}} 
 				\right\}
@@ -30,7 +32,7 @@
 		\end{equation}
 with 
 		\[
-		v_{E} = v_{E_{0}} + v_{E_{1}}\sin (2 \pi t)
+		v_{E}(t) = v_{E_{0}} + v_{E_{1}}\sin (2 \pi t)
 		\]
 		\[
 		\frac{k_{0}}{k_{1}} = \left[
@@ -62,7 +64,16 @@ The above equations have a number of parameters which are described as follows:
 			\item[$N_{A}$] -- Avogadro's number
 			\item[$\signuc$] -- WIMP-nucleus cross section at zero velocity
 		\end{itemize}			
-This distribution is generally approximated using a single exponential in energy with constants slightly varying with time.  The complete form was chosen to be more portable for eventually performing two-dimensional fits over both time and energy.  For these results the time dependence of the WIMP interaction is ignored and $t\to0$, which is an excellent approximation of the average of this function.  
+This distribution is generally approximated using a single exponential in energy~\cite{Lew96}:
+		\begin{equation}
+\frac{dR (v_{E}, v_{esc})}{dE_{rec}} = 
+				\frac{k_{0}}{k_{1}} \frac{R_{0}}{E_{0} r} 
+				\left(  
+					c_{1} e^{-c_{2}E_{R}/E_{0}r} 
+					- e^{-v_{esc}^{2}/v_{0}^{2}} 
+				\right)
+		\end{equation}
+ with constants, $c_{1}, c_{2}$ slightly varying with time.  The complete form (Equation~\ref{eqn:WIMPMasterEqn}) was chosen to allow eventually performing two-dimensional fits over both time and energy.  For these results the time dependence of the WIMP interaction is ignored and $t\to0$, which is an excellent approximation of the average of Equation~\ref{eqn:WIMPMasterEqn}.  
 
 The WIMP-nucleus cross section is valid at small momentum transfers, $q = \sqrt{2 M_{T} E_{rec}}$, when $h/q$ is large compared to the size of the nucleus.  As the momentum transfer increases, the cross section for a coherent-nuclear-recoil interaction decreases.  This reduction in cross section is parameterized with a form factor to account for the dependence on momentum transfer: $\signuc \to \signuc F^{2} (q r_{n})$ where $r_{n}$ is the effective nuclear radius.  In this analysis, the Woods-Saxon/Helm form factor~\cite{Helm56} was used:
 
@@ -76,12 +87,12 @@ with (from~\cite{Lew96})
 		\]
 and $s$ is the nuclear skin thickness.  In practice, this correction is implemented by replacing all $\signuc$ with $\signuc F^{2}$ or, equivalently, by multiplying the differential rate by the form factor squared.  A plot of this form factor for germanium is show in Figure~\ref{fig:HelmFF}, indicating that the form factor can provide a significant correction to the cross-section for ionization energies above $\sim10$~keV and a $\sim10$\% correction in the 0$\to$3~keV region.  
 
-The WIMP-nucleus cross section, $\signuc$, is defined for a particular nucleus.  However, it is common to scale this parameter to a WIMP-nucleon cross section, $\sigman$, to compare between experiments using different detectors and therefore distinct nuclei.  The relationship from~\cite{Alner2005444} is given: 
+The WIMP-nucleus cross section, $\signuc$, is defined for a particular nucleus.  However, it is common to scale this parameter to a WIMP-nucleon cross section, $\sigman$, to compare between experiments using different detectors and therefore distinct nuclei.  The relationship from~\cite{Alner2005444} is given as: 
 		\begin{equation}
 			\sigman (pb) = \left( \frac{\mu_{1}}{\mu_{A}} \right)^{2}\frac{1}{A^{2}} \signuc (pb)
 			\label{eqn:SigmaConversion}
 		\end{equation}
-where $\mu_{A} = \frac{M_{W} M_{T}}{M_{W} + M_{T}}$.  All exclusion plots will be presented in terms of $\sigman$, but all other results will be presented in terms of $\signuc$.
+where $\mu_{A} = \frac{M_{W} M_{T}}{M_{W} + M_{T}}$ and $\mu_{1}$ is defined at $A=1$.  All exclusion plots will be presented in terms of $\sigman$, but all other results will be presented in terms of $\signuc$.
 
 		\begin{figure}
 			\centering
@@ -137,9 +148,8 @@ A summary of the parameters used is given in Table~\ref{tab:BeGeFitParameters}. 
 					\toprule
 					Parameter & Value (unit) \\
 					\midrule
+					\multicolumn{2}{l}{\emph{Fit parameters}} \\
 					Atomic Mass & 72.96 (amu) \\
-					Threshold & 0.5 (keV) \\
-					Max energy & 3.5 (keV) \\
 					$\rho_{D}$  &  0.4 (GeV cm$^{-3}$) \\
 					Average velocity, $v_{0}$ & 230 (km s$^{-1}$) \\
 					DM escape velocity, $v_{esc}$ & 600 (km s$^{-1}$) \\
@@ -147,6 +157,9 @@ A summary of the parameters used is given in Table~\ref{tab:BeGeFitParameters}. 
 					%Variational velocity of the earth, $v_{E}_{1}$\footnote{Not used in this fit} & 15 km s$^{-1}$ \\
 					Detector mass &  0.33, 0.4\tnote{a} (kg) \\
 					Nuclear skin thickness $s$ & 0.9 (fm) \\
+					\multicolumn{2}{l}{\emph{Data set limits}} \\					
+					Threshold & 0.5 (keV) \\
+					Max energy & 3.5 (keV) \\					
 					\bottomrule
 				\end{tabular}	
 				 \begin{tablenotes}
@@ -189,7 +202,7 @@ A maximum-likelihood analysis provides a mechanism for estimating the parameters
 		\]
 where $f(\theta, x)$ is a probability distribution function (pdf) describing the data, $x_{n}$, with parameter set $\tbf$.  The true values of the parameters, $\boldsymbol{\theta_{T}}$, are then estimated by maximizing $L$, or, equivalently, by minimizing $-\log L$.  For some more-trivial pdfs, it is possible to find an analytical solution to the equation set: $-\frac{\partial ( \log L )}{\partial\tbf} = 0$, but normally the minimization of the function is handled numerically.  
 
-Hypothesis testing defines a mechanism by which one compares two models to the same data to find the favored model.  It is useful when searching for limits on an signal since one can compare the null hypothesis (no signal) versus the model with signal included.  Hypothesis testing using likelihood functions is performed by using a profile-likelihood test which involves the construction of a profile-likelihood function over a parameter or set of parameters, $\theta_{0}$:
+Hypothesis testing defines a mechanism by which one compares two models to the same data to find the favored model.  It is useful when searching for limits on a signal since one can compare the null hypothesis (no signal) versus the model with signal included.  Hypothesis testing using likelihood functions is performed by using a profile-likelihood test which involves the construction of a profile-likelihood function over a parameter or set of parameters, $\theta_{0}$:
 		\[
 		\lambda(\theta_{0}) = \log L_{max}  - \log L_{max}(\theta_{0}, \boldsymbol{\theta_{n}})
 		\]
@@ -208,9 +221,9 @@ where we have assumed that the only variable parameterizing the signal, $S$, is 
 	\subsection{Obtaining limits in the presence of unknown backgrounds}
 	\label{sec:LimitsUnknownBackgroundML}	
 	
-In some experiments it is sometimes difficult or impossible to determine precisely the background contamination in a region-of-interest for a signal.  This could arise for several reasons: e.g.~(1) poorly understood systematics from simulation, (2) overlapping signal and background in the region of interest, or (3) the inability to perform independent measurements of background by, for example, performing background-only data runs.  Especially in dark matter experiments, some or all of these could present an issue when attempting to understand data and generate limits on potential signals.  This is largely due to several factors, including that detectors looking for dark matter might operate at or close to their limits in poorly understood regions (e.g.~near threshold), signal can not be `turned off' to get a pure-background measurement, and simulations in low-energy regions might not offer precise estimates of backgrounds.  Several methods have been proposed to deal with poorly understood or unknown backgrounds, including the Maximum-gap method described in~\cite{Yell02} and a method proposed by Rolke et al.~\cite{Rolke2001} to treat the uncertainties in the background as statistical errors.  These methods are generally applicable to experiments with very low count rates in the signal region.  A method used by the CRESST experiment~\cite{Anglo2002} proceeded by initially fitting the spectrum to an empirically determined function using maximum likelihood and then using a profile-likelihood-like technique to determine the exclusion on a WIMP signal.  Another method similar to the CRESST method but with deeper numerical study has been proposed by Rolke et al.~to handle uncertainties in background by using a profile-likelihood technique~\cite{Rol05}.  The Rolke method is used in this analysis.  
+In some experiments it is sometimes difficult or impossible to determine precisely the background contamination in a region-of-interest for a signal.  This could arise for several reasons: e.g.~(1) poorly understood systematics from simulation, (2) overlapping signal and background in the region of interest, or (3) the inability to perform independent measurements of background by, for example, performing background-only data runs.  Especially in dark matter experiments, some or all of these could present an issue when attempting to understand data and generate limits on potential signals.  This is largely due to several factors, including that detectors looking for dark matter might operate at or close to their noise limits in poorly understood regions (e.g.~near threshold), signal can not be `turned off' to get a pure-background measurement, and simulations in low-energy regions might not offer precise estimates of backgrounds.  Several methods have been proposed to deal with poorly understood or unknown backgrounds, including the Maximum-gap method described in~\cite{Yell02} and a method proposed by Rolke et al.~\cite{Rolke2001} to treat the uncertainties in the background as statistical errors.  These methods are generally applicable to experiments with very low count rates in the signal region.  A method used by the CRESST experiment~\cite{Anglo2002} proceeded by initially fitting the spectrum to an empirically determined function using maximum likelihood and then using a profile-likelihood-like technique to determine the exclusion on a WIMP signal.  Another method similar to the CRESST method but with deeper numerical study has been proposed by Rolke et al.~to handle uncertainties in background by using a profile-likelihood technique~\cite{Rol05}.  The Rolke method is used in this analysis.  
 
-The Rolke method treats the background as a nuisance parameter in the likelihood analysis, essentially using the data to estimate both the background and the signal simultaneously.  The technique itself is roughly equivalent to the profile-likelihood method, but accommodates boundary cases such as when the best estimate of a parameter constrained to be greater than 0 (e.g.~as in the case of a cross-section or number of counts) is less than 0, or when the likelihood function has no maximum as is the case when the signal and background look very similar or the number of data seen is less than that expected in background.  Rolke et al.~presented two techniques for dealing with these issues: an unbounded-likelihood method and a bounded-likelihood method; this analysis makes use of the latter.  The bounded-likelihood method is no different than the profile-likelihood method if the best fit of the parameter is in a physical or `acceptable' region.  However, if the best-fit parameter floats into an unphysical region, then the parameter is forced to its nearest physical boundary and the maximum likelihood is set as the value of the profile likelihood at that boundary.  
+The Rolke method treats the background as a nuisance parameter in the likelihood analysis, essentially using the data to estimate both the background and the signal simultaneously.  The technique itself is roughly equivalent to the profile-likelihood method, but accommodates boundary cases such as when the best estimate of a parameter constrained to be greater than 0 (e.g.~as in the case of a cross-section or number of counts) is less than 0, or when the likelihood function has no maximum as is the case when the signal and background look very similar or the number of data seen is less than that expected in background.  Rolke et al.~presented two techniques for dealing with these issues: an unbounded-likelihood method and a bounded-likelihood method; this analysis makes use of the latter.  The bounded-likelihood method is no different than the profile-likelihood method if the best fit of the parameter is in a physical or `acceptable' region.  However, if the best-fit parameter moves into an unphysical region, then the parameter is forced to its nearest physical boundary and the maximum likelihood is set as the value of the profile likelihood at that boundary.  
 
 This can be made more clear by considering the example in Section~\ref{sec:LimitsML}:  In this example, $\alpha$ must be greater than or equal to 0 since a negative background has no physical meaning.  However, it is possible that a best fit can yield an estimate for $\alpha$ of $\alpha_{0}<0$.  In this case, $\alpha_{0}$ would be quoted as 0 and, for purposes of calculating an upper limit, $L_{max}$ would be replaced with the likelihood function $L$ maximized at $\alpha = 0$.  This can be summarized with the following equations:
 		\begin{equation}
@@ -231,6 +244,7 @@ where the primed values are used in the bounded-likelihood method and $H(x)$ is 
 			the model used to generate the data set) of the parameter(s) of interest 
 			\item Repeat many times to measure how often the calculated limits include the true values
 		\end{itemize}			
+% FixME JFW: I'm not sure I understand this sentence?    Doesn't one use the MC method above to actually generate the CL?
 In essence, this is a guess-and-check test: one initially \emph{assumes} that the profile likelihood follows a $\chi^{2}$ distribution and then performs tests to ensure that it in fact does.  A model is over covered if the percentage of times the calculated limits include the true values is greater than $CL$ and is under covered if the opposite is true.  Rolke et al.~provide several concrete models where they demonstrate that their technique properly covers the model parameter space, i.e.~that the calculated coverage is at least the expected $CL$.  In practice, determining and scanning the allowed parameter space for coverage tests is difficult: for this analysis, this is discussed in Section~\ref{sec:LimitsCoverageTests}.
 
 
@@ -271,7 +285,9 @@ The mean values of the L-capture lines ($\mu_{Zn}, \mu_{Ge}$) were fixed (1.1 an
 		\begin{table}
 			\centering				
 			\caption[Allowed ranges and values of parameters used in the WIMP fit]
-			{Allowed ranges and values of parameters used in the WIMP fit.}
+			{Allowed ranges and values of parameters used in the WIMP fit.  Limits were chosen to avoid obtaining best-fit 	
+			parameters near limit boundaries.  Therefore, some parameters -- e.g.~cross sections -- were allowed to float to 
+			unphysical regions.}
 			\label{tab:WIMPFitParameterRanges}
 			\smallskip
 			\begin{threeparttable}
@@ -299,7 +315,9 @@ The mean values of the L-capture lines ($\mu_{Zn}, \mu_{Ge}$) were fixed (1.1 an
 			     	\end{tablenotes}
 			\end{threeparttable}
 		\end{table}
-The inclusion of the exponential background in the null model was not due to any \emph{a priori} assumption or background simulation, but instead as a mechanism to quantify our agnosticism as to the source of this shape in the data.  The cause could be from several factors in indeterminate combination: (1) noise fluctuations -- deviations in noise could manifest as a widening of the noise pedestal (gaussian) which would appear exponential; (2) untagged microphonics -- microphonics can generate an exponential at low energies~\cite{Morales1992410}; (3) slow-rise-time-event contamination -- an incomplete rejection of slow events could induce this shape, see Section~\ref{sec:RisetimeCuts}; (4) other unknown environmental (electronic and/or temperature) variations; (5) low-mass WIMP interactions.  The source of this shape is discussed in more detail in Section~\ref{sec:BeGeLowEnergyFeatures}.  Only after all sources of background have been independently and conclusively measured can one determine a more precise background model to feed back into the likelihood function.  To generate limits using this data in the interim, it must suffice to treat the shape and amplitude of this background as nuisance parameters and follow the prescription of Rolke et al.~\cite{Rol05} as described in Section~\ref{sec:LimitsUnknownBackgroundML}.  However, since the WIMP signal is almost indistinguishable from an exponential in energy space, the inclusion of an unconstrained exponential posed some difficulties during the fits; these and other difficulties are outlined in Section~\ref{sec:LLPathologies}.
+The inclusion of the exponential background in the null model was not due to any \emph{a priori} assumption or background simulation, but instead as a mechanism to quantify our agnosticism as to the source of 
+this shape in % FixME JFW this contribution to?
+the data.  The cause could be from several factors in indeterminate combination: (1) noise fluctuations -- deviations in noise could manifest as a widening of the noise pedestal (gaussian) which would appear exponential; (2) untagged microphonics -- microphonics can generate an exponential at low energies~\cite{Morales1992410}; (3) slow-rise-time-event contamination -- an incomplete rejection of slow events could induce this shape, see Section~\ref{sec:RisetimeCuts}; (4) other unknown environmental (electronic and/or temperature) variations; (5) low-mass WIMP interactions.  The source of this shape is discussed in more detail in Section~\ref{sec:BeGeLowEnergyFeatures}.  Only after all sources of background have been independently and conclusively measured can one determine a more precise background model to feed back into the likelihood function.  To generate limits using this data given our current state of knowledge, it must suffice to treat the shape and amplitude of this background as nuisance parameters and follow the prescription of Rolke et al.~\cite{Rol05} as described in Section~\ref{sec:LimitsUnknownBackgroundML}.  However, since the WIMP signal is almost indistinguishable from an exponential in energy space, the inclusion of an unconstrained exponential posed some difficulties during the fits; these and other difficulties are outlined in Section~\ref{sec:LLPathologies}.
 Fits with different constraints and methodologies were performed to investigate systematics of the fit and to determine how different constraints affected the calculated limits.  Three main sets of fits were performed:
 		\begin{itemize}
 			\item Unbinned fit -- No additional constraints on parameters
@@ -428,7 +446,8 @@ whereas an estimate using the Rolke method would define the lower bound as 0!  O
 			\subfigure[50$\to$100~GeV]{
 				\includegraphics[width=0.46\textheight]{CoverageWithLastWIMP100}
 				\label{fig:Coverage100}						
-			}					
+			}	
+			% FixME JFW, why the different x axis ranges?				
 			\caption[Coverage test results for WIMP mass range 4.25$\to$100~GeV]
 			{Coverage test results for WIMP mass range 4.25$\to$100~GeV, see text for details. }
 			\label{fig:CoverageTestResults}
@@ -441,9 +460,11 @@ Results of these simulations are shown in Figure~\ref{fig:CoverageTestResults}, 
 
 		\subsection{Limits from unbinned and binned ML fits.}
 		\label{sec:LimitsUnbinned}
-			
+
 Limits were calculated using data described in Chapter~\ref{chap:AnalysisBeGe} and the model in Section~\ref{sec:LimitsDataAndModel}.  The RooFit framework includes an abstracted interface for all data sets, making a transition between using a binned and unbinned analysis very simple and enabling a comparison between the two types of results.  Therefore, both binned and unbinned limits were calculated, selecting a bin size of 23.4~eV over the energy range (0.5$\to$3.5~keV, bin number: 128).  
-Fits were performed for chosen values of $M_{W}$ in the range $3.75\to100$~GeV, sampling different ranges of the mass with a variable step size, $\Delta$: $3.75\to11$, $\Delta=0.25$~GeV; $11\to25$, $\Delta=1$~GeV, $30\to100$, $\Delta=10$~GeV.  Given the large amount of fits required to generate, the calculation method was parallelized for submission to the Athena cluster~\cite{Athena} at the University of Washington.  When running a large number of fits, it is challenging to provide effective quality control to ensure that the limit calculation has proceeded correctly.  To check this, the parameters of the values were tracked at their best-fit value (defined as the minimum $-\log L$ in the region $\signuc\geq0$) and at the 90\% exclusion limit of $\signuc$.  Examples of two of these plots are given in Figures~\ref{fig:UnbinnedResultsNoConstrain} and~\ref{fig:BinnedResultsNoConstrain} which are for unbinned and binned results, respectively.  The top three plots in each of these figures includes the individual components of the background events: the counts-per-kilogram-per-day in the exponential, flat, and separate L-line backgrounds.  The bottom plot includes the sum of the flat and exponential background and the sum of the Ge and Zn L-capture lines.  The parameters are generally smoothly varying versus $\signuc$ except in the region $\sim6\to10$~GeV where a significant amount of oscillation can be seen in the amplitudes of the flat and exponential components.  This oscillation is due mainly to the fact that the exponential shape constant is allowed to float positive and therefore can become indistinguishable from the flat background.  This is also confirmed by the largely-smooth behavior of the sum of the exponential and flat background components.  An example of the variation of the exponential shape parameter is discussed in Section~\ref{sec:LLPathologies} and shown in Figure~\ref{fig:FitExpoShapeVsSigma}.  However, some large variations do remain in the best-fit values of the sum components; these are due to the appearance in this WIMP mass region of local extrema away from the global minimum (see Figure~\ref{fig:PLLRangeSeven}).  Since the global extremum may be in the disallowed region (i.e.~$\signuc<0$), it is possible that the local minima are then interpreted as the global minima (i.e.~the best fit), but this is dependent on the granularity of the scanned $\signuc$ space and the size of the local minimum since it is possible to not sample fully the local minimum if it has a small width.  In other words, it is possible to `skip over' the local minimum and therefore interpret $\signuc=0$ as the best fit.  However, despite the sharp features in the best-fit values of the exponential and flat components it is clear that the value of the sum of these components at the 90\% exclusion of $\signuc$ varies smoothly.  
+Fits were performed for chosen values of $M_{W}$ in the range $3.75\to100$~GeV, sampling different ranges of the mass with a variable step size, $\Delta$: $3.75\to11$, $\Delta=0.25$~GeV; $11\to25$, $\Delta=1$~GeV, $30\to100$, $\Delta=10$~GeV.  Given the large amount of fits required to generate, the calculation method was parallelized for submission to the Athena cluster~\cite{Athena} at the University of Washington.  
+			\subsubsection{Fit components versus $\signuc$}
+When running a large number of fits, it is challenging to provide effective quality control to ensure that the limit calculation has proceeded correctly.  To check this, the parameters of the values were tracked at their best-fit value (defined as the minimum $-\log L$ in the region $\signuc\geq0$) and at the 90\% exclusion limit of $\signuc$.  Examples of two of these plots are given in Figures~\ref{fig:UnbinnedResultsNoConstrain} and~\ref{fig:BinnedResultsNoConstrain} which are for unbinned and binned results, respectively.  The top three plots in each of these figures includes the individual components of the background events: the counts-per-kilogram-per-day in the exponential, flat, and separate L-line backgrounds.  The bottom plot includes the sum of the flat and exponential background and the sum of the Ge and Zn L-capture lines.  The parameters are generally smoothly varying versus $\signuc$ except in the region $\sim6\to10$~GeV where a significant amount of oscillation can be seen in the amplitudes of the flat and exponential components.  This oscillation is due mainly to the fact that the exponential shape constant is allowed to float positive and therefore can become indistinguishable from the flat background.  This is also confirmed by the largely-smooth behavior of the sum of the exponential and flat background components.  An example of the variation of the exponential shape parameter is discussed in Section~\ref{sec:LLPathologies} and shown in Figure~\ref{fig:FitExpoShapeVsSigma}.  However, some large variations do remain in the best-fit values of the sum components; these are due to the appearance in this WIMP mass region of local extrema away from the global minimum (see Figure~\ref{fig:PLLRangeSeven}).  Since the global extremum may be in the disallowed region (i.e.~$\signuc<0$), it is possible that the local minima are then interpreted as the global minima (i.e.~the best fit), but this is dependent on the granularity of the scanned $\signuc$ space and the size of the local minimum since it is possible to not sample fully the local minimum if it has a small width.  In other words, it is possible to `skip over' the local minimum and therefore interpret $\signuc=0$ as the best fit.  However, despite the sharp features in the best-fit values of the exponential and flat components it is clear that the value of the sum of these components at the 90\% exclusion of $\signuc$ varies smoothly.  
 
 The amplitudes of each L-line component vary quite little versus $\signuc$.  Additionally, there is little to no difference between the amplitudes of these components at the global minimum and at the 90\% exclusion of $\signuc$.  This indicates that this portion of the background has little effect on the calculation of limits on a WIMP signal.
 
@@ -485,11 +506,13 @@ All of the same conclusions may be drawn from the binned analysis of the same da
 				\caption[90\% CL limits on $\sigman$ for various data sets]
 				{90\% CL limits on $\sigman$ for various data sets.}
 				\label{fig:UnconstrainedLimits}
-			\end{sidewaysfigure}				
+			\end{sidewaysfigure}			
+			
+			\subsubsection{Exclusion limits}	
 Exclusion limits at 90\% confidence level for $\sigman$ are shown in Figure~\ref{fig:UnconstrainedLimits}, with $\sigman$ calculated from $\signuc$ given the relationship in Equation~\ref{eqn:SigmaConversion}.  Results for both binned and unbinned data are split into two plots each to allow clearer visualization of exclusions calculated for data sets with different cuts applied.  
 It is clear that there exists very little distinction between limits on binned and unbinned data; however, several features are apparent among the different data sets.  In the low-WIMP-mass range, 4-5.5~GeV, all the curves are very similar suggesting the limits in this small region are robust against cuts to the data.  At higher WIMP mass, 20-100~GeV, the slope of the curves is very similar, though the normalizations are somewhat different.  As expected, in this region the microphonics-cut data exhibits more conservative limits than the rise-time cut-data.  The variation in the limits calculated from rise-time-cut data is expected to arise from systematic errors on the estimation of the efficiencies of these cuts as well as from the unknown ratio, (signal)/(signal + background), for each cut.  
 
-The mass range 6-9~GeV exhibits sharp features in the exclusion plots, existing in WIMP-mass regions where the shape of the signal is very similar to the shape of the background.  These features also appear in the microphonics-cut data, but at a slightly higher mass range from $\sim7\to10.5$~GeV.  These characteristics are essentially an indication that the exclusion of the signal comes when the signal completely takes over the contribution from the exponential fit component.  An example of this is given in Figure~\ref{fig:WIMPFitExampleSigLikeBgd} which displays the fit at the 90\% CL exclusion of $\sigman$.  It is clear that at this value of $\sigman$, the WIMP signal fits to the low-energy data without any contribution from the exponential background.  Close inspection also reveals that the exponential shape parameter has transitioned to a positive value, resulting in a mildly increasing background with energy.  
+The mass range 6-9~GeV exhibits sharp features in the exclusion plots, existing in WIMP-mass regions where the shape of the signal is very similar to the shape of the background.  These features also appear in the microphonics-cut data, but at a slightly higher mass range from $\sim7\to10.5$~GeV.  These characteristics are essentially an indication that the calculated exclusion limit comes when the amplitude of the WIMP signal completely takes over the contribution from the exponential fit component.  An example of this is given in Figure~\ref{fig:WIMPFitExampleSigLikeBgd} which displays the fit at the 90\% CL exclusion of $\sigman$.  It is clear that at this value of $\sigman$, the WIMP signal fits to the low-energy data without any contribution from the exponential background.  Close inspection also reveals that the exponential shape parameter has transitioned to a positive value, resulting in a mildly increasing background with energy.  
 
 			\begin{figure}
 				\centering
@@ -580,7 +603,7 @@ Results are presented as in Section~\ref{sec:LimitsUnbinned}, with a representat
 
 The data from the BEGe detector deployed underground at Soudan Underground Laboratory have been used to generate limits on spin-independent WIMP interaction cross-section.  A framework has been developed that should prove useful in generating limits using other R\&D detectors and the \MJ~\minmod.  The results of the data from this detector may be compared to other experimental results as well.  For example, in Figure~\ref{fig:BeGeLimitsComparedToOtherDataSets}, limits from these results are compared to previous results with a similar detector from CoGeNT~\cite{Aalseth:2008aa}, the most recent published data from the CDMS collaboration~\cite{Ahmed:2009zw}, and regions of acceptance for the DAMA data as interpreted in~\cite{Savage:2008er}.  
 
-The DAMA experiment is a NaI-based experiment which has observed an annual modulation in their data.  Interpreting this feature in their data as interactions of low-mass WIMPs yields the acceptance regions presented in Figure~\ref{fig:BeGeLimitsComparedToOtherDataSets}.  The germanium-based CDMS experiment has the ability to distinguish between electron and nuclear recoils, enabling it to achieve far lower bounds on $\sigman$.  However, the threshold of the CDMS detectors limits their sensitivities to WIMP masses above $\sim7$GeV.  It is clear that results from this analysis fully exclude the DAMA $3\sigma$ acceptance region at low WIMP mass and remove almost all of the allowed space of the $5\sigma$ region save some space at mass below $M_{W}=4$~GeV and some mass regions from $6\to10$~GeV.  Accessing the region at low mass will require a further reduction of threshold below 0.3~keV. %FixME, put in a WIMP plot here to demonstrate this?
+The DAMA experiment is a NaI-based experiment which has observed an annual modulation in their data.  Interpreting this feature in their data as interactions of low-mass WIMPs yields the acceptance regions presented in Figure~\ref{fig:BeGeLimitsComparedToOtherDataSets}.  The germanium-based CDMS experiment has the ability to distinguish between electron and nuclear recoils, enabling it to achieve far lower bounds on $\sigman$.  However, the threshold of the CDMS detectors limits their sensitivities to WIMP masses above $\sim7$~GeV.  It is clear that results from this analysis fully exclude the DAMA $3\sigma$ acceptance region at low WIMP mass and remove almost all of the allowed space of the $5\sigma$ region save some space at mass below $M_{W}=4$~GeV and some mass regions from $6\to10$~GeV.  Accessing the region at low mass will require a further reduction of threshold below 0.3~keV. %FixME, put in a WIMP plot here to demonstrate this?
 The exclusion of the still-accessible $5\sigma$ region $6\to10$~GeV will demand a clearer understanding of the unknown exponential background since the similarity between this background and a WIMP signal forces the limits high in this region.  Rejecting this background as a possible WIMP signal can also come from looking at the time behavior of the data to see if it exhibits any annual oscillation characteristic of moving through the WIMP halo.  The \MJ~\minmod~will have an enhanced sensitivity to a rate modulation given its larger mass and exposure time.  These abilities and additional analyses of other dark matter candidates will be explored in the following chapter.
 
 
