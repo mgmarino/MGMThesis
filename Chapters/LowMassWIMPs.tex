@@ -108,16 +108,14 @@ where $\mu_{A} = \frac{M_{W} M_{T}}{M_{W} + M_{T}}$ and $\mu_{1}$ is defined at 
 In ionization detectors, the calibration relating the energy deposited per amount of charge collected is generally performed by using gamma lines from a known source.  However, since photons interact by recoiling off of electrons in the detector, this calibration is only valid for other processes which deposit energy in a similar manner.  In contrast, a process that deposits energy in a detector by recoiling off of a nucleus (such as a WIMP interaction) does not generate the same amount of charge per amount of energy deposited as an electron-recoil interaction.  The relationship between the `seen' ionization from a nuclear recoil and the `seen' ionization from an electron recoil at the same energy is referred to as quenching.  For ionization detectors, a theory has been developed by Lindhard et al.~\cite{Lindhard:1961fa} to parameterize this relationship:
 
 		\begin{equation}
-			E_{ion} =  \frac{E_{rec} k g(\epsilon)}{1 + k g(\epsilon)}
+			E_{ion} =  \frac{k E_{rec} g(\epsilon)}{1 + k g(\epsilon)}
 			\label{eqn:LindhardFunction}
 		\end{equation}
 with 
-		\[
-			\epsilon =  11.5 E_{rec} Z^{-7/3}
-		\]
-		\[
-			g(\epsilon) = 3 \epsilon^{0.15} + 0.7\epsilon^{0.6} + \epsilon
-		\]
+		\begin{eqnarray*}
+			g(\epsilon) & = & 3 \epsilon^{0.15} + 0.7\epsilon^{0.6} + \epsilon \\		
+			\epsilon & = & 11.5 E_{rec} Z^{-7/3} \\
+		\end{eqnarray*}
 For germanium detectors, the constant, $k$, has been recently measured as 0.2 by Barbeau, et al.~\cite{Barbeau:2009fk}.  In a single-mode readout detector (e.g.~reading out \emph{only} ionization), nuclear recoil and electron recoil events are indistinguishable and so it is necessary to transform all theoretical spectra defined in recoil energy to ionization energy.  Unfortunately, accomplishing this requires inverting the Lindhard equation which is impossible to do analytically and so it essential to either obtain it numerically or to estimate this function with another function.  The function $E_{ion} =  \alpha E_{rec}^{\beta}$ provides an excellent approximation to this equation and can be easily inverted and differentiated.  Results from a fit of this function to the Lindhard equation (Eqn.~\ref{eqn:LindhardFunction}) for germanium detectors are shown in Figure~\ref{fig:LindhardFitResults}.  Fit values for $\alpha$ and $\beta$ are $0.204971$ and $1.13615$, respectively.
 
 		\begin{figure}
