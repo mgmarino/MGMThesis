@@ -256,7 +256,7 @@ In essence, this is a guess-and-check test: one initially \emph{assumes} that th
 
 The likelihood fitting was performed using the RooFit~\footnote{See \url{http://roofit.sourceforge.net/}.} framework developed by Wouter Verkerke and David Kirkby within the ROOT analysis package~\cite{Bru97}.  RooFit provides an abstract framework to perform different types of fitting, including both binned and unbinned maximum likelihood as well as chi-square minimization.  The package includes a set of pdfs from which one can construct more complex models and enables the user to generate his or her own models which could not have otherwise been constructed from the provided building blocks.  A toolkit extension was built within the RooFit framework including several pdfs of WIMP interactions.  More information on this constructed WIMP fitting framework can be found in Section~\ref{sec:WIMPPDFs}.  RooFit takes the built pdf models, automatically normalizes them, and constructs the appropriate negative log-likelihood or $\chi^{2}$ function which can then be minimized using numerical algorithms (i.e.~Minuit~\cite{James:1975dr}).
 
-%FixME: Something about weights and efficiencies
+
 The likelihood function for the fit was constructed from the following pdfs (normalization not shown):	
 		\begin{itemize}
 			\item Flat background --  $f_{flat}(E) = 1$
@@ -447,7 +447,8 @@ whereas an estimate using the Rolke method would define the lower bound as 0!  O
 			}	
 			% FixME JFW, why the different x axis ranges?				
 			\caption[Coverage test results for WIMP mass range 4.25$\to$100~GeV]
-			{Coverage test results for WIMP mass range 4.25$\to$100~GeV, see text for details. }
+			{Coverage test results for WIMP mass range 4.25$\to$100~GeV, see text for details. The range of the x axes ($\signuc$) differs since the coverage scans only
+			cover values of the profile likelihood that satisfy $\pll \leq 2$.}
 			\label{fig:CoverageTestResults}
 		\end{sidewaysfigure}
 
