@@ -33,12 +33,20 @@ This appendix outlines several technical aspects related to the software work in
 	
 	
 	The \MJ~GERDA Data Objects (MGDO) \cpp-based software package has been
-jointly developed by the \MJ~\cite{MJCollaboration} and GERDA~\cite{GERDACollaboration} collaborations as a framework for
+jointly developed by the \MJ~\cite{MJCollaboration} and
+GERDA~\cite{GERDACollaboration} collaborations as a framework for
 encapsulating and processing waveform data.  This section will reference some
-of the functionality and layout of this
-software package, focusing on the overall structure as well as particular aspects specifically relevant to this dissertation.  This is meant
-to supplement the reference materials already available, including a basic user and installation guide that ships with the distribution.  MGDO is available on specific request to the \MJ~or GERDA software groups at the following subversion repository~\url{svn://pclg-soft.mppmu.mpg.de/MGDO}.  This section will outline the basic structure and functionality of MGDO and then proceed to describe
-in more detail the waveform transformations that ship with the software, emphasizing aspects important for users rather than programmers of the package.  
+of the functionality and layout of this software package, focusing on the
+overall structure as well as particular aspects specifically relevant to this
+dissertation.  This is meant to supplement the reference materials already
+available, including a basic user and installation guide that ships with the
+distribution.  MGDO is available on specific request to the \MJ~or GERDA
+software groups at the following subversion
+repository~\url{svn://pclg-soft.mppmu.mpg.de/MGDO}.  This section will outline
+the basic structure and functionality of MGDO and then proceed to describe in
+more detail the waveform transformations that ship with the software and have been developed
+related to this dissertation work,
+emphasizing aspects important for users rather than programmers of the package.  
 
 		\subsection{Structure}
 		
@@ -54,9 +62,40 @@ in more detail the waveform transformations that ship with the software, emphasi
 		Further description will focus only on the first three sub-packages and will leave the reference of objects particular to the \MJ~or GERDA collaborations to their respective owners or developers.
 		
 		\subsection{Base}
-	This package includes base classes for all the objects 
-	% FixME, fill in.
-	% Describe the Base objects, MGWaveform, but be rather brief, I want to focus on the transforms
+	This package includes base classes for all the objects within MGDO,
+including encapsulation classes and others providing virtual interfaces for
+derived.  The main encapsulation classes are as follows:
+
+			\begin{enumerate}  
+				\item[]{\lstinline!class MGWaveform!} Provides a
+base encapsulation class for waveforms, storing e.g.~raw trace, sampling
+information, type (charge, current, etc.) and providing access functions and
+overloaded operators for simple calculations. 
+				\item[]{\lstinline!class MGWaveformFT!} Provides a base
+encapsulation class for frequency waveforms, and is specifically tailored to
+hold data from the fast Fourier transform of real-data.  Provides similar
+access and storage functionality to \lstinline!MGWaveform!. 
+			\end{enumerate}  
+The main virtual base classes are:
+			\begin{enumerate}  
+				\item[]{\lstinline!class MGVWFFastFourierTransform!}  Provides
+a virtual interface for fast Fourier transform (FFT) classes.  Derived from
+this class are particular implementations, including
+\lstinline!MGWFFastFourierTransformDefault! and
+\lstinline!MGWFFastFourierTransformFFTW! which provide a basic FFT and a
+wrapped version of FFTW3~\cite{FFTW05}, respectively. 
+				\item[]{\lstinline!class MGVWaveformTransformer!}  Provides a
+virtual interface for generating waveform transformations or calculations, see
+Section~\ref{sec:MGDOTransforms}.  \lstinline!class MGMultiWaveformTransformer!
+provides a base class for chaining multiple waveform transformations together. 
+				\item[]{\lstinline!class MGVFreqDomainTransformer!}  Provides
+a virtual interface for generating transformations or calculations on a
+waveform in frequency space, see Section~\ref{sec:MGDOTransforms}.  This base
+class handles the necessary transformations to Fourier space.
+\lstinline!class MGMultiFreqDomainTransformer! provides a base class for chaining
+multiple frequency-domain transformations together. 
+
+			\end{enumerate}  
 		\subsection{Root}
 			
 	The Root sub-package includes objects that may depend on the ROOT analysis package.  In particular, this directory provides
@@ -136,6 +175,7 @@ class MGTWaveform : public MGTDataObject, public MGWaveform
 which adds the capabilities of interpolation and export to 
 other ROOT class formats (e.g.~\lstinline!TF1, TH1D!).
 		\subsection{Transforms}
+		\label{sec:MGDOTransforms}
 		
 	This package includes basic waveform transforms which are derived from \lstinline!class MGVWaveformTransformer!  and \lstinline!class MGVFreqDomainTransformer!, which define the basic interfaces for time-domain and  frequency-domain transformations, respectively.  The latter derives from the former.  The use of the transformations involves calling the class function
 \lstinline! virtual void MGVWaveformTransformer::Transform(MGWaveform* input, MGWaveform* output = NULL) ! to generate the transformation.  If the function is called with \lstinline!output=NULL! (the default) then the result of the transformation is placed in the \lstinline!input! variable.  The particulars of the calculation depend on whether or not the transformation can be done in-place or out-of-place.  For example, a transformation done in-place can directly modify the input waveform, whereas a out-of-place transformation would require an additional auxiliary waveform to perform the transformation.  The following sections describe the general transformations available in the Transforms package.  If algorithms are described, $g[n]$ is used to denote the output waveform and $f[n]$ the input waveform.
@@ -491,30 +531,90 @@ for using MGDO in production.
 					
 	\section{Analysis database and processing framework}
 	\label{sec:AnalysisDBProcFramework}
-	\lstset{
-	   language=JSON,
-	   %backgroundcolor=\color{lightgray},
-	   extendedchars=true,
-	   basicstyle=\footnotesize\ttfamily,
-	   showstringspaces=false,
-	   showspaces=false,
-	   numbers=left,
-	   numberstyle=\footnotesize,
-	   numbersep=9pt,
-	   tabsize=2,
-	   breaklines=true,
-	   showtabs=false,
-	   captionpos=b
-	}	
-	The analysis database was set up to facilitate the movement and analysis of data from beginning of processing (data acquisition) to the end (exclusion plots, physics analyses, etc.).  The database ran using a couchDB backend, a document-based database with several desirable features, including scalability using the `view' Map-Reduce functionality and simple backup and mirror propagation through built-in replication.  Replication allows quick and easy distribution of data to several servers, very desirable for collaborations wishing to share or mirror data in multiple locations.  As well, the couchDB server employs a RESTful interface, accepting basic http commands to access and manipulate data and distributing and storing data in a JSON (JavaScript Object Notation) format.  This interface simplifies communication with the database server and has fostered the development of couchDB `wrappings' in several languages including Ruby and Python.  More information on this database can be found online at~\url{http://couchdb.apache.org/}.  This section will describe the basic functionality of the run/analysis database as well as describe particular details of its implementation.  
-	
+	The analysis database was set up to facilitate the movement and analysis of
+data from beginning of processing (data acquisition) to the end (exclusion
+plots, physics analyses, etc.).  The database ran using a couchDB backend, a
+document-based database with several desirable features, including scalability
+using the `view' Map-Reduce functionality and simple backup and mirror
+propagation through built-in replication.  Replication allows quick and easy
+distribution of data to several servers, very desirable for collaborations
+wishing to share or mirror data in multiple locations.  As well, the couchDB
+server employs a RESTful interface, accepting basic http commands to access and
+manipulate data and distributing and storing data in a JSON (JavaScript Object
+Notation) format.  This interface simplifies communication with the database
+server and has fostered the development of couchDB `wrappings' in several
+languages including Ruby and Python.  More information on this database can be
+found online at~\url{http://couchdb.apache.org/}.  This section will describe
+the basic functionality of the run/analysis database as well as describe
+particular details of its implementation.  
+
 		\subsection{Overview}
 		
-	The central couchDB server for the run/analysis database was located on a machine at the University of Washington and backed up to several other instances including personal laptops and online at CloudAnt (\url{https://cloudant.com/}).  The code written to encapsulate and read out/run the database was written in python using an older version of couchdb-python (available \url{http://code.google.com/p/couchdb-python/}).  Other software with couchDB python `bindings' is available including couchdbkit (\url{http://couchdbkit.org/}), but the former was initially chosen for arbitrary reasons.  The functionality of both frameworks is similar and so a translation from one to the other should not entail a significant amount of effort.  Three databases were run with this code, one for each of three different detectors: \ppc1, \ppc2, and the low-background BEGe detector.  \ppc2 and the BEGe are described previously in this dissertation.  The code is freely available in a browsable git repository online at: \url{http://github.com/mgmarino/SoudanDB}.  Instead of describing the code in depth, the following sections will focus on key functional aspects of the database as they pertain to the creation of future databases.  
+	The central couchDB server for the run/analysis database was located on a
+machine at the University of Washington and backed up to several other
+instances including personal laptops and online at CloudAnt
+(\url{https://cloudant.com/}).  The code written to encapsulate and read
+out/run the database was written in python using an older version of
+couchdb-python (available \url{http://code.google.com/p/couchdb-python/}).
+Other software with couchDB python `bindings' is available including couchdbkit
+(\url{http://couchdbkit.org/}), but the former was initially chosen for
+arbitrary reasons.  The functionality of both frameworks is similar and so a
+translation from one to the other should not entail a significant amount of
+effort.  Three databases were run with this code, one for each of three
+different detectors: \ppc1, \ppc2, and the low-background BEGe detector.  \ppc2
+and the BEGe are described previously in this dissertation.  The code is freely
+available in a browsable git repository online at:
+\url{http://github.com/mgmarino/SoudanDB}.  			
+
+			\lstset{language=sh}
+			\begin{itemize}
+		  	  	\setlength{\itemsep}{0.5pt}
+		  	  	\setlength{\parskip}{0pt}
+		  	  	\setlength{\parsep}{0pt}
+				\item[] \lstinline!management! -- sub-module for management objects 
+				\item[] \lstinline!utilities! -- sub-module for utility functions 
+				\item[] \lstinline!update! -- sub-module housing objects for updating the database 
+				\item[] \lstinline!views! -- sub-module housing objects and base classes for database views 
+				\item[] \lstinline!databases! -- sub-module housing database objects 
+				\begin{itemize}
+		  	  		\setlength{\itemsep}{0.5pt}
+		  	  		\setlength{\parskip}{0pt}
+		  	  		\setlength{\parsep}{0pt}
+					\item[] \lstinline!bege_gretina! -- Database for Gretina DAQ readout of the \bege 
+					\item[] \lstinline!bege_jc! -- Database for NI DAQ readout of the \bege~(see Section~\ref{sec:BeGeExperimentalSetup}) 
+					\item[] \lstinline!ppctwo! -- Database for test stand readout of \ppc1 (not described in this dissertation 
+				\end{itemize}
+			\end{itemize}
+The \lstinline!database! directories each had the following sub-structure with relevant code for the particular database:
+			\begin{itemize}
+		  	  	\setlength{\itemsep}{0.5pt}
+		  	  	\setlength{\parskip}{0pt}
+		  	  	\setlength{\parsep}{0pt}
+				\item[] \lstinline!db.py! -- module providing particular code for the database 
+				\item[] \lstinline!views! -- module providing separate python files for each view 
+				\item[] \lstinline!update! -- module providing separate python files for each update function 
+			\end{itemize}
 	
+Instead of describing the code in
+depth, the following sections will focus on key functional aspects of the
+database as they pertain to the creation of future databases.  
+
 		\subsection{Functional overview}
 		
-	The purpose of the run/analysis database was to track run information and data and manage the analysis process.  A schematic of this process is shown in Figure~\ref{fig:RunDBSchem}.  Metadata (e.g.~names of run files, time information, parameter settings, etc.) generated by the DAQ system or slow controls is automatically inserted into the database as a record when a new run file is generated or run settings are changed.  Once this information appears in the database, a process management class can then determine what types of processing needs to happen to the metadata record and then execute the necessary tasks to complete these.  In the schematic in Figure~\ref{fig:RunDBSchem}, the process management class queries the run database to determine which records have associated data that still requires back up or analysis processing and then calls the associated program(s) to complete this.  This methodology can scale well to larger numbers of data records since processing (e.g.~cpu usage) only occurs when needed.  
+	The purpose of the run/analysis database was to track run information and
+data and manage the analysis process.  A schematic of this process is shown in
+Figure~\ref{fig:RunDBSchem}.  Metadata (e.g.~names of run files, time
+information, parameter settings, etc.) generated by the DAQ system or slow
+controls is automatically inserted into the database as a record when a new run
+file is generated or run settings are changed.  Once this information appears
+in the database, a process management class can then determine what types of
+processing needs to happen to the metadata record and then execute the
+necessary tasks to complete these.  In the schematic in
+Figure~\ref{fig:RunDBSchem}, the process management class queries the run
+database to determine which records have associated data that still requires
+back up or analysis processing and then calls the associated program(s) to
+complete this.  This methodology can scale well to larger numbers of data
+records since processing (e.g.~cpu usage) only occurs when needed.  
 
 			\begin{figure}
 				\centering
@@ -528,12 +628,49 @@ for using MGDO in production.
 metadata.  For example, a single database can include records of associated run metadata as well as other records with slow control information.  Additionally, metadata need not be consistent across records of a certain type.  This has the advantage that it is not required to fully define the data structure within a database during initial deployment, therefore allowing simple adaptability to any changes that will inevitably happen to the data-taking process such as adding a new channel or additional sets of information.  
 
 		\subsection{Functional implementation}
+			\lstset{
+		   language=JSON,
+		   %backgroundcolor=\color{lightgray},
+		   extendedchars=true,
+		   basicstyle=\footnotesize\ttfamily,
+		   showstringspaces=false,
+		   showspaces=false,
+		   numbers=left,
+		   numberstyle=\footnotesize,
+		   numbersep=9pt,
+		   tabsize=2,
+		   breaklines=true,
+		   showtabs=false,
+		   captionpos=b}	
+
+	Implementing the functionality described in the previous section involved
+taking advantage of several features built into the couchDB database.  The
+database update could occur via several methods, for example: a daemon which
+runs regularly to insert the metadata when new files or information from the
+DAQ are generated; a system interrupt process calling an insertion function or
+program when a new file appears in a certain directory; active insertion
+(direct communication) by the DAQ software into the database.  This software
+employed the first method, regularly running a daemon via a cron job to
+determine when a new file was written into a certain directory by the DAQ
+software and inserting the necessary metadata as a record into the database.  
 	
-	Implementing the functionality described in the previous section involved taking advantage of several features built into the couchDB database.  The database update could occur via several methods, for example: a daemon which runs regularly to insert the metadata when new files or information from the DAQ are generated; a system interrupt process calling an insertion function or program when a new file appears in a certain directory; active insertion (direct communication) by the DAQ software into the database.  This software employed the first method, regularly running a daemon via a cron job to determine when a new file was written into a certain directory by the DAQ software and inserting the necessary metadata as a record into the database.  
+	The initial insertion of metadata placed a skeleton record in the database,
+populating the fields of the record with available data and leaving other
+fields that required information from further processing empty.  The data
+resided in the database in JSON format, and an example of a portion of an
+inserted JSON record in the run/analysis database is shown in
+Listing~\ref{lst:JSONExample}.  In this example, one can see the left-empty
+fields denoted by {\ttfamily null}.  It is simple to write a `view' (a couchDB
+query) to return records where an empty field might exist.  This method can be
+used to select records for processing.  For example, in the record snippet,
+thet \lstinline!root_data_file_tier_1! has daughter values set to
+\lstinline!null! including \lstinline!last_mod_time! (last modification time)
+and \lstinline!md5hash! (calculated md5 hash) indicating that this particular
+file in the analysis chain has yet to be created.  The process management
+daemon could then run the proper program or function to generate this file and
+populate those fields.  Other fields with \lstinline!null! also require some
+further processing.  
 	
-	The initial insertion of metadata placed a skeleton record in the database, populating the fields of the record with available data and leaving other fields that required information from further processing empty.  The data resided in the database in JSON format, and an example of a portion of an inserted JSON record in the run/analysis database is shown in Listing~\ref{lst:JSONExample}.  In this example, one can see the left-empty fields denoted by {\ttfamily null}.  It is simple to write a `view' (a couchDB query) to return records where an empty field might exist.  This method can be used to select records for processing.  For example, in the record snippet, thet \lstinline!root_data_file_tier_1! has daughter values set to \lstinline!null! including \lstinline!last_mod_time! (last modification time) and \lstinline!md5hash! (calculated md5 hash) indicating that this particular file in the analysis chain has yet to be created.  The process management daemon could then run the proper program or function to generate this file and populate those fields.  Other fields with \lstinline!null! also require some further processing.  
-	
-	The framework %FixME, continue 
 
 			\begin{lstlisting}[caption=Truncated example of a JSON record in the run/analysis database., label=lst:JSONExample]
 {
@@ -571,10 +708,20 @@ metadata.  For example, a single database can include records of associated run 
 }
 			\end{lstlisting}	
 
-		\subsection{Database Management}
-	This section outlines the necessary steps to manage the database 
-	% FixME, add this section
-
+			\lstset{language=Python}		
+	In the database sub-modules, the framework associates `views' with
+processing functions in the `update' module.  This allows updates to be
+performed on records returned by particular views.  Each update module
+(e.g.~\lstinline!SoudanDB.databases.bege_jc.update.update_number_of_entries_in_root_file!)
+exports two functions: \lstinline!get_view()! and \lstinline!update_rundoc(run_doc)!.  Therefore,
+a daemon management program would use the \lstinline!get_view()! to return the records needing
+updates and then run \lstinline!update_rundoc()! for each \lstinline!run_doc!.  The management process
+for doing this is located in \lstinline!SoudanDB.update.update_calculations_on_database!.
+Newer versions of couchDB should allow such processing to occur within the
+view server framework of the database itself.  For example, the couchDB server should eventually be
+able to handle both generating the views and running the update functions on
+those views.  Therefore, future implementations should not use this daemon
+methodology and instead should migrate to using a Python view server.  
 
 		
 	\section{WIMP PDFs software framework}
@@ -588,20 +735,26 @@ using Python for process control and management and using compiled \cpp~code whe
 		\subsection{Overview}
 	The pyWIMP package makes extensive use of the RooFit fitting package~\cite{ver03aa} -- developed for BaBar and now included in the ROOT analysis package~\cite{Bru97}.  The basic structure of pyWIMP is as follows:
 	
+			\lstset{language=sh}
 			\begin{itemize}
-				\item[] buildTools/ -- directory for building utilities
-				\item[] test\_scripts/ -- directory containing test scripts useful for checking for proper installation
-				\item[] pyWIMP/ -- base directory of Python package
+		  	  	\setlength{\itemsep}{0.5pt}
+		  	  	\setlength{\parskip}{0pt}
+		  	  	\setlength{\parsep}{0pt}
+				\item[] \lstinline!buildTools/! -- directory for building utilities
+				\item[] \lstinline!test_scripts/! -- directory containing test scripts useful for checking for proper installation
+				\item[] \lstinline!pyWIMP/! -- base directory of Python package
 				\begin{itemize}
-					\item[] Calculation -- sub-module containing Python calculation classes for deriving sensitivities and limits
-					\item[] DMModel -- sub-module containing Python objects for the construction of models used in fitting dark matter signals
-					\item[] WIMPPdfs -- sub-module containing compiled \cpp~classes used to construct dark matter signal models
-					\item[] utilities/ -- utilities sub-module
+		  	  		\setlength{\itemsep}{0.5pt}
+		  	  		\setlength{\parskip}{0pt}
+		  	  		\setlength{\parsep}{0pt}
+					\item[] \lstinline!Calculation! -- sub-module containing Python calculation classes for deriving sensitivities and limits
+					\item[] \lstinline!DMModel! -- sub-module containing Python objects for the construction of models used in fitting dark matter signals
+					\item[] \lstinline!WIMPPdfs! -- sub-module containing compiled \cpp~classes used to construct dark matter signal models
+					\item[] \lstinline!utilities! -- utilities sub-module
 				\end{itemize}
 			\end{itemize}
 Since the most generically useful tools exist in the WIMPPdfs and DMModels sub-modules, the following sections will detail these.
-			\lstset{
-			   language=Python}		
+			\lstset{language=Python}		
 		\subsection{\texorpdfstring{\lstinline!pyWIMP.WIMPPdfs!}{pyWIMP.WIMPPdfs}}
 			\lstset{
 			   language=C++,
