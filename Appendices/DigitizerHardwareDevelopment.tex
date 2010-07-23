@@ -5,7 +5,7 @@
 \chapter{Development of DAQ hardware for \MJ}
 \label{app:ORCASoftwareChapter}
 
-	\section{Tundra Universe IID PCI-VME Bridge Driver}
+	\section{Tundra Universe IID PCI-VME bridge driver}
 	\label{sec:TundraUniverse}
 
 This section describes a Linux driver for PCI-VME Tundra Universe II bridge chip.  This
@@ -29,7 +29,7 @@ are given in the code package, so those details are not covered here.
 			   breaklines=true,
 			   showtabs=false,
 			   captionpos=t}
-		\subsection{Char Driver}
+		\subsection{Char driver}
 
 The linux driver package installs a kernel-space driver and installs several devices in 
 \lstinline!/dev!, including:
@@ -542,7 +542,7 @@ class ORVVmeCard : public ORVCard
 };
 			\end{lstlisting}
 
-		\subsection{SBC Management, fast readout design}	
+		\subsection{SBC management, fast readout design}	
 
 	By designing the code using abstracted functionality, the development of the readout code was simple and is described
 fully in the following pythonic pseudocode:

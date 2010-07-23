@@ -7,12 +7,12 @@
 % JFW has seen this and commented.  All comments incorporated, except for FixME statements.
 \chapter{Limits on light Weakly-Interacting Massive Particles (WIMPs)}
 \label{chap:DMWIMPLimits}
-	%\section{Calculating limits on a Dark Matter signal}
+	%\section{Calculating limits on a dark matter signal}
 	%\label{sec:CalcLimitsOnDarkMatterSignal}
 
-	As discussed in Chapter~\ref{chap:IntroChapter}, p-type point contact detectors have sensitivity to low-mass WIMPs given their intrinsic low noise and low-energy thresholds.  This chapter presents the framework and methodology required for deriving limits on these particles given the data taken with the \bege~detector at Soudan Underground Laboratory.  Emphasis is given on handling the difficulties described in the previous chapter related to unknown backgrounds at low energy.  
+	As discussed in Chapter~\ref{chap:IntroChapter}, p-type point-contact detectors have sensitivity to low-mass WIMPs given their intrinsic low noise and low-energy thresholds.  This chapter presents the framework and methodology required for deriving limits on these particles given the data taken with the \bege~detector at Soudan Underground Laboratory.  Emphasis is given on handling the difficulties described in the previous chapter related to unknown backgrounds at low energy.  
 
-	\section{Signal from WIMP Dark Matter}
+	\section{Signal from WIMP dark matter}
 	\label{sec:CalcLimitsOnWIMPSignal}	
 
 	A WIMP from the dark matter halo of the galaxy may interact with matter by recoiling off of nuclei.  This interaction is in general dependent upon properties of the halo -- e.g.~density, escape velocity -- and characteristics of the detector -- e.g.~detector mass, atomic number.  The mathematical form has been derived in several reviews~\cite{Lew96,Jun96}.  The WIMP signal used in this analysis was the most generic parameterized form from Lewin and Smith~\cite{Lew96} given as a differential rate per recoil energy of the nucleus:
@@ -181,8 +181,8 @@ A summary of the parameters used is given in Table~\ref{tab:BeGeFitParameters}. 
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.9\textwidth]{WIMPModel}
-			\caption[2-dimensional WIMP Dark Matter signal]
-			{2-dimensional WIMP Dark Matter signal, $M_{WIMP} = $10~GeV.}
+			\caption[2-dimensional WIMP dark matter signal]
+			{2-dimensional WIMP dark matter signal, $M_{WIMP} = $10~GeV.}
 			\label{fig:2DDMSignal}
 		\end{figure}
 
@@ -248,10 +248,10 @@ where the primed values are used in the bounded-likelihood method and $H(x)$ is 
 In essence, this is a guess-and-check test: one initially \emph{assumes} that the profile likelihood follows a $\chi^{2}$ distribution and then performs tests to ensure that it in fact does.  A model is over covered if the percentage of times the calculated limits include the true values is greater than $CL$ and is under covered if the opposite is true.  Rolke et al.~provide several concrete models where they demonstrate that their technique properly covers the model parameter space, i.e.~that the calculated coverage is at least the expected $CL$.  In practice, determining and scanning the allowed parameter space for coverage tests is difficult: for this analysis, this is discussed in Section~\ref{sec:LimitsCoverageTests}.
 
 
-\section{Dark Matter limits using data from a low-background \bege~detector at Soud\-an Underground Laboratory} 
+\section{Dark matter limits using data from a low-background \bege~detector at Soud\-an Underground Laboratory} 
 \label{sec:DMLimitsWithSoudan}
 
-	The data described and analyzed in Chapter~\ref{chap:AnalysisBeGe} were used to calculate limits on light Dark Matter following the procedures outlined in previous sections.  This section describes the data and model used during fitting and explores difficulties that arose during generation of these results.  Several systematic tests were performed to investigate how details of the fitting procedure might affect the results.  For systematic tests, a smaller subset of the data with $\sim$2~months of live-time was used, however the conclusions derived from this limited data set remain valid when considered for the entire data set.
+	The data described and analyzed in Chapter~\ref{chap:AnalysisBeGe} were used to calculate limits on light dark matter following the procedures outlined in previous sections.  This section describes the data and model used during fitting and explores difficulties that arose during generation of these results.  Several systematic tests were performed to investigate how details of the fitting procedure might affect the results.  For systematic tests, a smaller subset of the data with $\sim$2~months of live-time was used, however the conclusions derived from this limited data set remain valid when considered for the entire data set.
 
 	\subsection{Data and model}
 	\label{sec:LimitsDataAndModel}	
@@ -426,7 +426,7 @@ The $\pll$ for $M_{W}$ = 8.75~GeV in Figure~\ref{fig:PLLRangeSeven} includes a l
 The realization of several non-parabolic features underscores the care which must be taken when deriving limits from models with similar background and signal.  Some methods (e.g.~the HESSE functionality in MINUIT~\cite{James:1975dr}) estimate the error on the parameter by assuming a parabolic shape and extrapolating $\pll$ around its minimum by using the measured second derivative at the extremum.  For non-parabolic $\pll$ functions it is clear this won't work, and could possibly yield inappropriate bounds on $\signuc$.  For example, in Figure~\ref{fig:PLLRangeSeven} the $\pll$ for $M_{W}$ = 7.75~GeV indicates a minimum at $\sim$37~pb: a parabolic estimate of the the lower bound would be significantly non-zero %FixME, define what it *would* be?
 whereas an estimate using the Rolke method would define the lower bound as 0!  Of course, as with all Frequentist methods it is essential to estimate the performance of the method using Monte Carlo tests; results of such an investigation are presented in Section~\ref{sec:LimitsCoverageTests}.
 
-	\subsection{Coverage Tests}
+	\subsection{Coverage tests}
 	\label{sec:LimitsCoverageTests}			
 
 		\begin{sidewaysfigure}
@@ -585,7 +585,7 @@ The relative amplitudes of the Zn and Ge L-capture lines may be constrained by t
 			
 Results are presented as in Section~\ref{sec:LimitsUnbinned}, with a representative set of plots of parameters versus WIMP mass (Figures~\ref{fig:UnBinnedResultsConstrain},~\ref{fig:BinnedResultsConstrain}) and exclusion limits in Figure~\ref{fig:ConstrainedLimits}.  As before, it was determined that very few differences manifested between the binned and unbinned results.  The amplitude of the sum of the L-lines appears very similar ($\sim6$~Counts/kg/d) as with the unconstrained fit (Figure~\ref{fig:UnbinnedResultsNoConstrain}).  However, this comes as little surprise given the relative independence and lack of variation of these parameters in the unconstrained fits.  Because of the clear similarity between the constrained and unconstrained results, the conclusions regarding this set are equivalent to the previous.  However, the results of this section further emphasize that the amplitudes of the L-lines have little effect on the exclusion of a low-mass-WIMP signal since the sum of the L-lines varies so minimally with WIMP mass.  Also, little difference exists between the amplitude of the L-line at best fit and at 90\% exclusion, indicating that these parameters have very little sensitivity to $\signuc$.
 
-	\section{Conclusions and Discussion}
+	\section{Conclusions and discussion}
 	\label{sec:LowMassWIMPConclusions}
 
 
@@ -641,4 +641,4 @@ explored in the following chapter.
 %Performed the fits, performed systematic tests, found robust against modification of binned, and un-binned results, constraining L-capture lines
 
 %Apply these data to other data sets, in particular compare to the results of other experiments (DAMA, CDMS, etc.)
-%In the context of Majorana, a set of tools and a procedure was developed for generating Dark Matter limits.  In particular, given the small data rate expected from the \minmod~and the large detector mass, we expect to be able to apply these results and methods to MJ.  
+%In the context of Majorana, a set of tools and a procedure was developed for generating dark matter limits.  In particular, given the small data rate expected from the \minmod~and the large detector mass, we expect to be able to apply these results and methods to MJ.  
