@@ -13,7 +13,7 @@
 	
 	The detectors in the \MJ~\minmod~will be readout using a digital data acquisition system using fast ADCs to digitize raw preamp traces to be used in later pulse-shape analysis.  The requirements of a digital DAQ system for the \minmod~were investigated, in particular focusing on refining the hardware specifications needed to achieve the physics goals of the project.  These specifications must be sufficient to achieve two general goals: (1) background reduction through pulse-shape analysis, especially in the $\nonubb$ region-of-interest, and (2) low-energy performance enabling both background reduction at $\qval$ and sensitivity to low-energy physics (dark matter).  
 	
-	 This chapter focuses on investigations of several issues of the DAQ:
+	 This appendix focuses on investigations of several issues of the DAQ:
 		\begin{itemize}
 			\item Sampling rate 
 			\item Operational stability
@@ -29,7 +29,13 @@ but does not detail the development of all the hardware and software to run most
 	   
 	\section{Baseline DAQ system}
 
-	The baseline system for development used the Gretina Mark IV digitizer designed by the GRETA collaboration~\cite{Anderson:2009p1293}.  This VME64x-based ADC digitizes 10 independent channels at 100~Ms/s with a resolution of 14 bits.  The card was read out using the ORCA DAQ software developed at the University of Washington and at the University of North Carolina~\cite{Howe04,ORCA}.%, see also Appendix~\ref{app:ORCASoftwareChapter}).  
+	The baseline system for development used the Gretina Mark IV digitizer
+designed by the GRETA collaboration~\cite{Anderson:2009p1293}.  This
+VME64x-based ADC digitizes 10 independent channels at 100~Ms/s with a
+resolution of 14 bits.  The card was read out using the ORCA DAQ software
+developed at the University of Washington and at the University of North
+Carolina~\cite{Howe04,Howe08,ORCA}.%, see also
+%Appendix~\ref{app:ORCASoftwareChapter}).  
 	
 	\section{Digitizer comparison tests}
      	\label{sec:HeadToHeadCompare}

@@ -10,16 +10,17 @@
 	%\section{Calculating limits on a Dark Matter signal}
 	%\label{sec:CalcLimitsOnDarkMatterSignal}
 
-	As discussed in Chapter~\ref{chap:IntroChapter}, p-type point contact detectors have sensitivity to low-mass WIMPs given their intrinsic low noise and low-energy thresholds.  This chapter presents the framework and methodology required for deriving limits on these particles given the data taken with the BEGe detector at Soudan Underground Laboratory.  Emphasis is given on handling the difficulties described in the previous chapter related to unknown backgrounds at low energy.  
+	As discussed in Chapter~\ref{chap:IntroChapter}, p-type point contact detectors have sensitivity to low-mass WIMPs given their intrinsic low noise and low-energy thresholds.  This chapter presents the framework and methodology required for deriving limits on these particles given the data taken with the \bege~detector at Soudan Underground Laboratory.  Emphasis is given on handling the difficulties described in the previous chapter related to unknown backgrounds at low energy.  
 
 	\section{Signal from WIMP Dark Matter}
 	\label{sec:CalcLimitsOnWIMPSignal}	
 
 	A WIMP from the dark matter halo of the galaxy may interact with matter by recoiling off of nuclei.  This interaction is in general dependent upon properties of the halo -- e.g.~density, escape velocity -- and characteristics of the detector -- e.g.~detector mass, atomic number.  The mathematical form has been derived in several reviews~\cite{Lew96,Jun96}.  The WIMP signal used in this analysis was the most generic parameterized form from Lewin and Smith~\cite{Lew96} given as a differential rate per recoil energy of the nucleus:
 
-		\begin{equation}
-			\frac{dR (v_{E}, v_{esc})}{dE_{rec}} = 
-				\frac{k_{0}}{k_{1}} \frac{R_{0}}{E_{0} r} 
+		\begin{eqnarray}
+			\begin{aligned}
+			\lefteqn{\frac{dR (v_{E}, v_{esc})}{dE_{rec}} = } \\ 
+				& & \frac{k_{0}}{k_{1}} \frac{R_{0}}{E_{0} r} 
 				\left\{ 
 			 		\frac{\pi^{1/2}}{4} \frac{v_{0}}{v_{E}(t)} 
 					\left[ 
@@ -29,7 +30,8 @@
 					- e^{-v_{esc}^{2}/v_{0}^{2}} 
 				\right\}
 			\label{eqn:WIMPMasterEqn}
-		\end{equation}
+			\end{aligned}
+		\end{eqnarray}
 with 
 		\[
 		v_{E}(t) = v_{E_{0}} + v_{E_{1}}\sin (2 \pi t)
@@ -187,7 +189,7 @@ A summary of the parameters used is given in Table~\ref{tab:BeGeFitParameters}. 
 
 \section{Fit methodology} 
 
-	The analysis of the BEGe data presented in the previous chapter, in particular Section~\ref{sec:BeGeLowEnergyFeatures}, uncovered several difficulties which must be addressed when determining limits with the data.  This section discusses the extraction of a signal limit using the maximum-likelihood method and explores the necessary mechanisms for dealing with unknown backgrounds.  
+	The analysis of the \bege~data presented in the previous chapter, in particular Section~\ref{sec:BeGeLowEnergyFeatures}, uncovered several difficulties which must be addressed when determining limits with the data.  This section discusses the extraction of a signal limit using the maximum-likelihood method and explores the necessary mechanisms for dealing with unknown backgrounds.  
 	
 	\subsection{Obtaining limits using Maximum Likelihood}
 	\label{sec:LimitsML}		
@@ -246,7 +248,7 @@ where the primed values are used in the bounded-likelihood method and $H(x)$ is 
 In essence, this is a guess-and-check test: one initially \emph{assumes} that the profile likelihood follows a $\chi^{2}$ distribution and then performs tests to ensure that it in fact does.  A model is over covered if the percentage of times the calculated limits include the true values is greater than $CL$ and is under covered if the opposite is true.  Rolke et al.~provide several concrete models where they demonstrate that their technique properly covers the model parameter space, i.e.~that the calculated coverage is at least the expected $CL$.  In practice, determining and scanning the allowed parameter space for coverage tests is difficult: for this analysis, this is discussed in Section~\ref{sec:LimitsCoverageTests}.
 
 
-\section{Dark Matter limits using data from a low-background BeGe detector at Soud\-an Underground Laboratory} 
+\section{Dark Matter limits using data from a low-background \bege~detector at Soud\-an Underground Laboratory} 
 \label{sec:DMLimitsWithSoudan}
 
 	The data described and analyzed in Chapter~\ref{chap:AnalysisBeGe} were used to calculate limits on light Dark Matter following the procedures outlined in previous sections.  This section describes the data and model used during fitting and explores difficulties that arose during generation of these results.  Several systematic tests were performed to investigate how details of the fitting procedure might affect the results.  For systematic tests, a smaller subset of the data with $\sim$2~months of live-time was used, however the conclusions derived from this limited data set remain valid when considered for the entire data set.
@@ -385,7 +387,7 @@ If we first consider Figure~\ref{fig:SBCounts100} ($M_{W}$ = 100~GeV), it is cle
 
 We can then consider lower WIMP mass (8.75~GeV) where the shape of the WIMP signal is roughly equivalent to the shape the exponential background component in the data.  The relevant plots for this are Figure~\ref{fig:SBCounts8.75} and Figure~\ref{fig:PLLRangeSeven}, focusing on $M_{W}$=8.75~GeV in the latter.  It is important to note the $\pll$ for this mass does not intersect 0 in Figure~\ref{fig:PLLRangeSeven}; this is because no minimum of the $-\log L$ was found in the scanned region for $\signuc$ and was therefore defined as the value of $-\log L$ at the lowest scanned value of $\signuc$ (-100~pb).  To define an upper limit with this function, the Rolke prescription outlined in Section~\ref{sec:LimitsUnknownBackgroundML} would be followed, defining the minimum of $-\log L$ to be at $\signuc$ = 0.  It is clear that, in contrast to the previous case with signal of a WIMP at $M_{W}$=100~GeV, the flat and L-line components of the background are largely independent of $\signuc$, whereas the exponential component varies almost linearly below 35~pb and reaches its lower bound of 0 around 40~pb.  (The transition region between 35 and 40~pb which manifests a local minimum will be discussed in the following section.)  As before, the linear variation indicates that the likelihood is dominated by the extended term because the signal and background have a roughly equivalent shape.  The transition at higher $\signuc$ (50~pb) is due to the exponential shape constant floating to  $\sim0$ and taking over the contributions from the flat component.  This can be seen in Figure~\ref{fig:FitExpoShapeVsSigma}.
 	
-		\subsubsection{Local minima of $\pll$}
+		\subsubsection{Local minima of \texorpdfstring{$\pll$}{profile-likelihood function}}
 		\label{sec:LLPathoLocalMinima}
 			
 			\begin{figure}
@@ -462,7 +464,7 @@ Results of these simulations are shown in Figure~\ref{fig:CoverageTestResults}, 
 
 Limits were calculated using data described in Chapter~\ref{chap:AnalysisBeGe} and the model in Section~\ref{sec:LimitsDataAndModel}.  The RooFit framework includes an abstracted interface for all data sets, making a transition between using a binned and unbinned analysis very simple and enabling a comparison between the two types of results.  Therefore, both binned and unbinned limits were calculated, selecting a bin size of 23.4~eV over the energy range (0.5$\to$3.5~keV, bin number: 128).  
 Fits were performed for chosen values of $M_{W}$ in the range $3.75\to100$~GeV, sampling different ranges of the mass with a variable step size, $\Delta$: $3.75\to11$, $\Delta=0.25$~GeV; $11\to25$, $\Delta=1$~GeV, $30\to100$, $\Delta=10$~GeV.  Given the large amount of fits required to generate, the calculation method was parallelized for submission to the Athena cluster~\cite{Athena} at the University of Washington.  
-			\subsubsection{Fit components versus $\signuc$}
+			\subsubsection{Fit components versus \texorpdfstring{$\signuc$}{sigma\_nuc}}
 When running a large number of fits, it is challenging to provide effective quality control to ensure that the limit calculation has proceeded correctly.  To check this, the parameters of the values were tracked at their best-fit value (defined as the minimum $-\log L$ in the region $\signuc\geq0$) and at the 90\% exclusion limit of $\signuc$.  Examples of two of these plots are given in Figures~\ref{fig:UnbinnedResultsNoConstrain} and~\ref{fig:BinnedResultsNoConstrain} which are for unbinned and binned results, respectively.  The top three plots in each of these figures includes the individual components of the background events: the counts-per-kilogram-per-day in the exponential, flat, and separate L-line backgrounds.  The bottom plot includes the sum of the flat and exponential background and the sum of the Ge and Zn L-capture lines.  The parameters are generally smoothly varying versus $\signuc$ except in the region $\sim6\to10$~GeV where a significant amount of oscillation can be seen in the amplitudes of the flat and exponential components.  This oscillation is due mainly to the fact that the exponential shape constant is allowed to float positive and therefore can become indistinguishable from the flat background.  This is also confirmed by the largely-smooth behavior of the sum of the exponential and flat background components.  An example of the variation of the exponential shape parameter is discussed in Section~\ref{sec:LLPathologies} and shown in Figure~\ref{fig:FitExpoShapeVsSigma}.  However, some large variations do remain in the best-fit values of the sum components; these are due to the appearance in this WIMP mass region of local extrema away from the global minimum (see Figure~\ref{fig:PLLRangeSeven}).  Since the global extremum may be in the disallowed region (i.e.~$\signuc<0$), it is possible that the local minima are then interpreted as the global minima (i.e.~the best fit), but this is dependent on the granularity of the scanned $\signuc$ space and the size of the local minimum since it is possible to not sample fully the local minimum if it has a small width.  In other words, it is possible to `skip over' the local minimum and therefore interpret $\signuc=0$ as the best fit.  However, despite the sharp features in the best-fit values of the exponential and flat components it is clear that the value of the sum of these components at the 90\% exclusion of $\signuc$ varies smoothly.  
 
 The amplitudes of each L-line component vary quite little versus $\signuc$.  Additionally, there is little to no difference between the amplitudes of these components at the global minimum and at the 90\% exclusion of $\signuc$.  This indicates that this portion of the background has little effect on the calculation of limits on a WIMP signal.
@@ -473,7 +475,7 @@ All of the same conclusions may be drawn from the binned analysis of the same da
 				\centering				
 				\includegraphics[width=0.85\textwidth]{unconstrained_unbinnedresults_rt_95AllComponentsLN+microphonicscuts,Rise-timecut:95}				
 				
-				\caption[Results from an unbinned fit using data with 95\% risetime cut (+ microphonics cut) applied]
+				\caption[Fit results using unbinned data with 95\% risetime cut (+ microphonics cut) applied]
 				{Results from an unbinned fit using data with 95\% risetime cut (+ microphonics cut) applied.
 				The top three figures contain the variation of all independent parameters at their best-fit value and at the 90\% exclusion
 				limit of $\signuc$.  The bottom figure contains a sum of the background components (flat + exponential) and
@@ -484,7 +486,7 @@ All of the same conclusions may be drawn from the binned analysis of the same da
 				\centering				
 				\includegraphics[width=0.95\textwidth]{unconstrained_binnedresults_rt_95AllComponentsLN+microphonicscuts,Rise-timecut:95}				
 				
-				\caption[Results from an binned fit using data with 95\% risetime cut (+ microphonics cut) applied]
+				\caption[Fit results using binned data with 95\% risetime cut (+ microphonics cut) applied]
 				{As Figure~\ref{fig:UnbinnedResultsNoConstrain} but with binned data.}
 				\label{fig:BinnedResultsNoConstrain}
 			\end{figure}
@@ -549,7 +551,7 @@ The relative amplitudes of the Zn and Ge L-capture lines may be constrained by t
 			\begin{figure}
 				\centering				
 				\includegraphics[width=0.95\textwidth]{constrained_unbinnedresults_rt_95AllComponentsLN+microphonicscuts,Rise-timecut:95}				
-				\caption[Results from an unbinned fit, constraints on relative amplitude of Ge and Zn lines]
+				\caption[Unbinned fit results, constraints on relative amplitude of Ge and Zn lines]
 				{As Figure~\ref{fig:UnbinnedResultsNoConstrain}, but with a constraint on the relative amplitudes 
 				of the Ge and Zn lines.  Therefore, only the sum of the L-lines (and not each contribution) is included.  }
 				\label{fig:UnBinnedResultsConstrain}
@@ -559,7 +561,7 @@ The relative amplitudes of the Zn and Ge L-capture lines may be constrained by t
 				\centering				
 				\includegraphics[width=0.95\textwidth]{constrained_binnedresults_rt_95AllComponentsLN+microphonicscuts,Rise-timecut:95}
 								
-				\caption[Results from an binned fit, constraints on relative amplitude of Ge and Zn lines]
+				\caption[Binned fit results, constraints on relative amplitude of Ge and Zn lines]
 				{As Figure~\ref{fig:UnBinnedResultsConstrain}, but with binned data.}
 				\label{fig:BinnedResultsConstrain}
 			\end{figure}
@@ -600,10 +602,31 @@ Results are presented as in Section~\ref{sec:LimitsUnbinned}, with a representat
 			\label{fig:BeGeLimitsComparedToOtherDataSets}
 		\end{figure}		
 
-The data from the BEGe detector deployed underground at Soudan Underground Laboratory have been used to generate limits on spin-independent WIMP interaction cross-section.  A framework has been developed that should prove useful in generating limits using other R\&D detectors and the \MJ~\minmod.  The results of the data from this detector may be compared to other experimental results as well.  For example, in Figure~\ref{fig:BeGeLimitsComparedToOtherDataSets}, limits from these results are compared to previous results with a similar detector from CoGeNT~\cite{Aalseth:2008aa}, the most recent published data from the CDMS collaboration~\cite{Ahmed:2009zw}, and regions of acceptance for the DAMA data as interpreted in~\cite{Savage:2008er}.  
+The data from the \bege~detector deployed underground at Soudan Underground Laboratory have been used to generate limits on spin-independent WIMP interaction cross-section.  A framework has been developed that should prove useful in generating limits using other R\&D detectors and the \MJ~\minmod.  The results of the data from this detector may be compared to other experimental results as well.  For example, in Figure~\ref{fig:BeGeLimitsComparedToOtherDataSets}, limits from these results are compared to previous results with a similar detector from CoGeNT~\cite{Aalseth:2008aa}, the most recent published data from the CDMS collaboration~\cite{Ahmed:2009zw}, and regions of acceptance for the DAMA data as interpreted in~\cite{Savage:2008er}.  
 
-The DAMA experiment is a NaI-based experiment which has observed an annual modulation in their data.  Interpreting this feature in their data as interactions of low-mass WIMPs yields the acceptance regions presented in Figure~\ref{fig:BeGeLimitsComparedToOtherDataSets}.  The germanium-based CDMS experiment has the ability to distinguish between electron and nuclear recoils, enabling it to achieve far lower bounds on $\sigman$.  However, the threshold of the CDMS detectors limits their sensitivities to WIMP masses above $\sim7$~GeV.  It is clear that results from this analysis fully exclude the DAMA $3\sigma$ acceptance region at low WIMP mass and remove almost all of the allowed space of the $5\sigma$ region save some space at mass below $M_{W}=4$~GeV and some mass regions from $6\to10$~GeV.  Accessing the region at low mass will require a further reduction of threshold below 0.3~keV. %FixME, put in a WIMP plot here to demonstrate this?
-The exclusion of the still-accessible $5\sigma$ region $6\to10$~GeV will demand a clearer understanding of the unknown exponential background since the similarity between this background and a WIMP signal forces the limits high in this region.  Rejecting this background as a possible WIMP signal can also come from looking at the time behavior of the data to see if it exhibits any annual oscillation characteristic of moving through the WIMP halo.  The \MJ~\minmod~will have an enhanced sensitivity to a rate modulation given its larger mass and exposure time.  These abilities and additional analyses of other dark matter candidates will be explored in the following chapter.
+The DAMA experiment is a NaI-based experiment which has observed an annual
+modulation in their data.  Interpreting this feature in their data as
+interactions of low-mass WIMPs yields the acceptance regions presented in
+Figure~\ref{fig:BeGeLimitsComparedToOtherDataSets}.  The germanium-based CDMS
+experiment has the ability to distinguish between electron and nuclear recoils,
+enabling it to achieve far lower bounds on $\sigman$.  However, the threshold
+of the CDMS detectors limits their sensitivities to WIMP masses above
+$\sim7$~GeV.  It is clear that results from this analysis fully exclude the
+DAMA $3\sigma$ acceptance region at low WIMP mass and remove almost all of the
+allowed space of the $5\sigma$ region save some space at mass below
+$M_{W}=4$~GeV and some mass regions from $6\to10$~GeV.  Accessing the region at
+low mass will require a further reduction of threshold below 0.3~keV. 
+%FixME, put in a WIMP plot here to demonstrate this?
+The exclusion of the still-accessible $5\sigma$ region $6\to10$~GeV will demand
+a clearer understanding of the unknown exponential background since the
+similarity between this background and a WIMP signal forces the limits high in
+this region.  Rejecting this background as a possible WIMP signal can also come
+from looking at the time behavior of the data to see if it exhibits any annual
+oscillation characteristic of moving through the WIMP halo.  The
+\MJ~\minmod~will have an enhanced sensitivity to a rate modulation given its
+larger mass and exposure time.  The physics reach of the \MJ~\minmod~and 
+additional analyses related to other dark matter candidates will be 
+explored in the following chapter.
 
 
 

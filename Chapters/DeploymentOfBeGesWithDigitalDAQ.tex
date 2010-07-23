@@ -54,7 +54,7 @@ with all components in Figure~\ref{fig:PPC2Shield}.  Relevant characteristics of
 	\section{Description of DAQ system}
 	\label{sec:DeploymentPPC2SoudanDAQSystem}
 	
-	The DAQ system was designed as a single-channel prototype for the \MJ~\minmod.  Additionally, a significant amount of effort was put in to ensure that the setup was remotely configurable to enable the modification of experimental parameters from experimenters at the University of Washington and PNNL.  Signals from the detector were read out using a Gretina Mark IV digitizer designed by the GRETA collaboration~\cite{Anderson:2009p1293}.  This VME64x-based ADC digitized 10 independent channels at 100~Ms/s with a resolution of 14 bits.  The card was read out on the VME backplane using a Concurrent Technologies VX 407/042 single-board computer controlled via gigabit ethernet by the ORCA DAQ and slow controls software~\cite{ORCA} running on an Apple Mac Mini computer.  For more details regarding the ORCA DAQ software and the development of its components relevant to this hardware configuration, please see Appendix~\ref{app:ORCASoftwareChapter}.  Also, additional details regarding the development and investigation of this DAQ system are given in Chapter~\ref{chap:DAQDevel}. The high voltage on \ppc2 was controlled via a Canberra LYNX system which allowed for remote powering on and off of the detector bias.  The Liquid Nitrogen (LN) dewar was filled manually by the laboratory staff so no explicit tag was set in the data stream during these fills.  Techniques to identify and cut out these events are discussed in Section~\ref{sec:DeploymentPPC2SoudanAnalysisCuts}.
+	The DAQ system was designed as a single-channel prototype for the \MJ~\minmod.  Additionally, a significant amount of effort was put in to ensure that the setup was remotely configurable to enable the modification of experimental parameters from experimenters at the University of Washington and PNNL.  Signals from the detector were read out using a Gretina Mark IV digitizer designed by the GRETA collaboration~\cite{Anderson:2009p1293}.  This VME64x-based ADC digitized 10 independent channels at 100~Ms/s with a resolution of 14 bits.  The card was read out on the VME backplane using a Concurrent Technologies VX 407/042 single-board computer controlled via gigabit ethernet by the ORCA DAQ and slow controls software~\cite{ORCA} running on an Apple Mac Mini computer.  For more details regarding the ORCA DAQ software and the development of its components relevant to this hardware configuration, please see Appendix~\ref{app:ORCASoftwareChapter}.  Also, additional details regarding the development and investigation of this DAQ system are given in Appendix~\ref{chap:DAQDevel}. The high voltage on \ppc2 was controlled via a Canberra LYNX system which allowed for remote powering on and off of the detector bias.  The Liquid Nitrogen (LN) dewar was filled manually by the laboratory staff so no explicit tag was set in the data stream during these fills.  Techniques to identify and cut out these events are discussed in Section~\ref{sec:DeploymentPPC2SoudanAnalysisCuts}.
 	    
 	As with many low-noise designs, the \ppc2 preamp employed a pulse-reset circuit to avoid the Johnson noise associated with a feedback resistor.  The preamp had 3~outputs: 2~signal outputs and 1~inhibit output which would fire when the reset circuitry of the preamp was active.  Additionally, there was a test input for pulser signals used in electronic testing.  The 2~signal outputs were AC-coupled to remove their DC components using independent capacitors of $\sim500$~nF to yield a roughly 50~$\mu$s decay time of the preamp pulses.  One of these channels was input directly into the digitizer; the other was routed through a Phillips Scientific 777 fast amplifier (DC$\to$200~MHz bandwidth) with roughly $10\times$ gain to obtain better resolution near threshold from $0.5\to80$~keV.  The signal was split after the 777, with one output being input into a digitizer channel in the Gretina card and the other routed through a conventional spectroscopy amplifier (Ortec 667) to generate the trigger for the high-gain channel.  Figure~\ref{fig:PPC2DAQSetup} provides a simplified visualization of the DAQ setup including signal paths.  See Section~\ref{sec:DeploymentPPC2SoudanTriggerDesign} for more details regarding the high-gain trigger and its development.  The inhibit output was sent directly into the Gretina digitizer card to record the timing information of the reset circuitry.
 	
@@ -141,12 +141,13 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 						
 				\begin{figure}
 					\centering
+					\def\figwidth{0.76\textwidth}
 					\subfigure[High-gain channel]{
-						\includegraphics[width=0.9\textwidth]{LowEnergyCal}
+						\includegraphics[width=\figwidth]{LowEnergyCal}
 						\label{fig:PPC2CalLow}
 					}
 					\subfigure[Low-gain channel]{
-						\includegraphics[width=0.9\textwidth]{HighEnergyCal}
+						\includegraphics[width=\figwidth]{HighEnergyCal}
 						\label{fig:PPC2CalHigh}
 					}
 					\caption[Calibration of the high- and low-gain channels]
@@ -447,10 +448,10 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 					\label{tab:PPCLowEnergyLines}
 				\end{table}
 
-	\section{Estimate of \gersixeight~surface production}       
+	\section{Estimate of \texorpdfstring{\gersixeight}{68Ge}~surface production}       
 	\label{sec:Ge68ProdPPC}
 	
-       \gersixeight~is a cosmogenically-produced isotope inside germanium detectors which is a well-known background to $\nonubb$ (see e.g.~\cite{Ceb06aa}) due to the fact that the decays of its \galsixeight~daughters can deposit energy in the $\nonubb$ region-of-interest.  A schematic of the decay chain is shown in Figure~\ref{fig:GE68Decay}.  The decay of \gersixeight~proceeds via electron-capture with a half-life of 271~days to \galsixeight, which subsequently decays to $^{68}$Zn with a half-life of 68~minutes.  The latter decay has a Q-value of 2921~keV which could deposit energy at 2039~keV, the $\nonubb$ Q-value.  This background can be reduced two ways: (1) an analysis cut which tags the initial decay of \gersixeight~and vetoes the detector for a specified multiple of \galsixeight~half-lives, and/or (2) reduce the intrinsic \gersixeight~content in germanium detectors by either storing them in a low-cosmic-ray-flux environment (i.e.~underground) and waiting or by actively removing \gersixeight~through isotopic depletion.  Because \gersixeight~decays inside the detector, the total energy emitted through Auger electrons and x-rays is summed to lines of the K-, L-, or M-electron binding energy of the daughter nuclei (see Table~\ref{tab:GE68decayinfo}).  These lines can then be used to tag events likely to belong to a \gersixeight~decay.  Tagging the \gersixeight~decays to reduce the \galsixeight~background is dependent on the decay rate of \gersixeight, $\lambda^{(^{68}Ge)}$, and is not a viable solution until $\lambda^{(^{68}Ge)} \tau_{1/2}^{(^{68}Ga)} \ll 1$.   Estimations of the \gersixeight~activation rate at the earth's surface in both natural and enriched (86\% $^{76}$Ge) have been performed previously (see e.g.~\cite{Avi92,Elliott:2009cw,Mei:2009vn}). 
+       \gersixeight~is a cosmogenically-produced isotope inside germanium detectors which is a well-known background to $\nonubb$ (see e.g.~\cite{Ceb06aa}) due to the fact that the decays of its \galsixeight~daughters can deposit energy in the $\nonubb$ region-of-interest.  A schematic of the decay chain is shown in Figure~\ref{fig:GE68Decay}.  The decay of \gersixeight~proceeds via electron-capture with a half-life of 271~days to \galsixeight, which subsequently decays to $^{68}$Zn with a half-life of 68~minutes.  The latter decay has a Q-value of 2921~keV which could deposit energy at 2039~keV, the $\nonubb$ Q-value.  This background can be reduced two ways: (1) an analysis cut which tags the initial decay of \gersixeight~and vetoes the detector for a specified multiple of \galsixeight~half-lives, and/or (2) reduce the intrinsic \gersixeight~content in germanium detectors by either storing them in a low-cosmic-ray-flux environment (i.e.~underground) and waiting or by actively removing \gersixeight~through isotopic depletion.  Because \gersixeight~decays inside the detector, the total energy emitted through Auger electrons and x-rays is summed to lines of the K-, L-, or M-electron binding energy of the daughter nuclei (see Table~\ref{tab:GE68decayinfo}).  These lines can then be used to tag events likely to belong to a \gersixeight~decay.  Tagging the \gersixeight~decays to reduce the \galsixeight~background is dependent on the decay rate of \gersixeight, $\lambda^{(^{68}Ge)}$, and is not a viable solution until $\lambda^{(^{68}Ge)} \tau_{1/2}^{(^{68}Ga)} \ll 1$.   Estimations of the \gersixeight~activation rate at the earth's surface in both natural and enriched (86\% $^{76}$Ge) have been performed previously (see e.g.~\cite{Avi92,Elliott:2009cw,Mei2009417}). 
 
        
        			\begin{table}
@@ -550,5 +551,28 @@ with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), an
 			
 	\section{Conclusions}
 	
-	A \MJ-like data acquisition system operated stably in a deployed environment for over a half year, demonstrating software and hardware robustness required for the \MJ~\minmod.  A tiered analysis framework was constructed that allowed automated processing and management of data from the deployed system.  This flexible framework was applied to data from two other detectors, including one analyzed in Chapter~\ref{chap:AnalysisBeGe}.  Several parameters of the data were tracked and exhibited deviations over time, underscoring the need to monitor channel rates, electronic noise, and trigger efficiency throughout the life of a deployed system.  Although the backgrounds seen in the detector were too large to provide competitive limits on dark matter signals, two important results from the data were made including a measurement of rise-time versus energy for low-energy pulses and an estimation of \gersixeight~surface activation in natural germanium.  The measurement of the former determined a potential source of background for applications such as the \MJ~\minmod~using PPCs for direct dark matter detection.  Results from this deployment reaffirmed conclusions made in Chapter~\ref{chap:DAQDevel}, namely that the trigger efficiency and electronic noise measured with this system were insufficient for dark matter searches or for sensitivity to the L-capture line of \gersixeight~and would require an update in hardware for improvement.
+	A \MJ-like data acquisition system operated stably in a deployed
+environment for over a half year, demonstrating software and hardware
+robustness required for the \MJ~\minmod.  A tiered analysis framework was
+constructed that allowed automated processing and management of data from the
+deployed system.  This flexible framework was applied to data from two other
+detectors, including one analyzed in Chapter~\ref{chap:AnalysisBeGe}.  Several
+parameters of the data were tracked and exhibited deviations over time,
+underscoring the need to monitor channel rates, electronic noise, and trigger
+efficiency throughout the life of a deployed system.  Although the backgrounds
+seen in the detector were too large to provide competitive limits on dark
+matter signals, two important results from the data were made including a
+measurement of rise-time versus energy for low-energy pulses and an estimation
+of \gersixeight~surface activation in natural germanium.  The measurement of
+the former determined a potential source of background for applications such as
+the \MJ~\minmod~using PPCs for direct dark matter detection.  Results from this
+deployment reaffirmed conclusions made in Appendix~\ref{chap:DAQDevel}, namely
+that the trigger efficiency and electronic noise measured with this system were
+insufficient for dark matter searches or for sensitivity to the L-capture line
+of \gersixeight~and would therefore require an update in hardware for improvement.
 
+These conclusions helped lead to the deployment of another, lower-background \ppc~with
+improved triggering capabilities and the ability to measure the rise-time of 
+preamplifier traces.  As well, the tools developed for the analysis of \ppc2 would
+be directly applicable to the new detector.  The deployment and analysis of data
+from this low-background \ppc~are the subject of Chapters~\ref{chap:AnalysisBeGe},~\ref{chap:DMWIMPLimits} and~\ref{chap:OtherPhys}.

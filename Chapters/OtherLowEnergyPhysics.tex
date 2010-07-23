@@ -1,4 +1,5 @@
 \chapter{Other low-energy physics with P-type point contact detectors}
+\label{chap:OtherPhys}
 
 %In this section, we basically discuss two things: Heavy non-relativistic axions, the signal, and the exclusion limit as calculated with the data from the previous chapter.
 	
@@ -56,8 +57,8 @@ where $A$ is the atomic mass, $m_{a}$ is the mass of the axion in keV, $\sigma_{
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.9\textwidth]{AxioelectricFitExample}
-			\caption[Example of an excluded non-relativistic axioelectric signal at $m_{a}=3$~keV at 
-			90\% CL]{Example of an excluded non-relativistic axioelectric signal at $m_{a}=3$~keV at 
+			\caption[Example of an 90\% CL excluded non-relativistic axioelectric signal at $m_{a}=3$~keV]
+			{Example of an excluded non-relativistic axioelectric signal at $m_{a}=3$~keV at 
 			90\% CL.  In this fit performed in the high-gain channel, the excluded value $N_{axion}$ 
 			is 36.1 counts.  
 			The components of the fits are split: red solid, L-Lines; red dotted, flat plus exponential
@@ -97,7 +98,7 @@ stars still exceed all others.  Supernovae generally provide the best constraint
 
 %	Note what we've done here, in particular looking at an axioelectric signal in data.  Also note that this is one very small detector that's comparable to a large array.  Talk about how this could be better with MJ and how the limits from astrophysical observations still need to be checked.  
 	
-	The results from this section underscore and emphasize the physics reach of \ppc~detectors. At higher energies the BEGe data yielded results comparable to those from CDMS, but was additionally able to generate exclusions at lower axion mass values due to the reduced threshold.  Though limits derived from astronomical observations still exceed those from direct-detection experiments, it remains important to verify these limits and, if possible, better them with larger exposure times and smaller backgrounds.  The need to explore dark matter candidates beyond those offered by WIMP theories remains evident and the only method to ensure experimental sensitivity to rare events with an \emph{a priori} unknown signature is to reduce known backgrounds through appropriate shielding and detector component radio-purity.  The \MJ~experiment seeks to do this to search for $\nonubb$, but the same efforts to reduce backgrounds in the double-beta decay signal region ($\sim2$~MeV) should benefit searches for dark matter in low-energy regions.  The following sections discuss and calculate the sensitivity of the \MJ~\minmod~for such searches.
+	The results from this section underscore and emphasize the physics reach of \ppc~detectors. At higher energies the \bege~data yielded results comparable to those from CDMS, but was additionally able to generate exclusions at lower axion mass values due to the reduced threshold.  Though limits derived from astronomical observations still exceed those from direct-detection experiments, it remains important to verify these limits and, if possible, better them with larger exposure times and smaller backgrounds.  The need to explore dark matter candidates beyond those offered by WIMP theories remains evident and the only method to ensure experimental sensitivity to rare events with an \emph{a priori} unknown signature is to reduce known backgrounds through appropriate shielding and detector component radio-purity.  The \MJ~experiment seeks to do this to search for $\nonubb$, but the same efforts to reduce backgrounds in the double-beta decay signal region ($\sim2$~MeV) should benefit searches for dark matter in low-energy regions.  The following sections discuss and calculate the sensitivity of the \MJ~\minmod~for such searches.
 							
 	\section{Sensitivity of the \MJ~\minmod~to dark matter signals}
 	\label{sec:MJSensitivity}
@@ -119,28 +120,31 @@ The generated ensemble of limits for a particular signal would create a distribu
 		
 The estimation of background generally comes from verified simulations and from extrapolations from previous experiments.  In this work, the background is estimated by assuming it arises from two main sources: (1) a continuum from higher energy processes, and (2) counts from the beta decay of cosmogenically-produced tritium in the detector.  A simulation to estimate (1) is wrought with challenges since a large number of contributions can affect the result.  However, it is possible to use previous results from low-background germanium-based experiments to produce an estimate of this background.  The IGEX experiment measured a flat background rate of $\sim0.1$~counts/keV/kg/day in this low energy region ($4\to10$~keV)~\cite{Ira01}.    The \MJ~\minmod~plans to reduce background above 200~keV by a factor of 100~\cite{Gaitskell:2003zr} and so it is reasonable to expect the flat background at low energies will follow this same reduction to be roughly 0.001~counts/keV/kg/day.  This background was assumed stable in time as well, so that it was flat in both time and energy.  Estimating the flat background amplitude is not as critical assuming that the low-energy background is dominated by tritium.  
 
-The estimate of a background to tritium involves understanding the activation rate of tritium for germanium at the surface of the earth.  This activation rate has been estimated to be $\lesssim200$~\hthree-atoms-per-kilogram-of-Ge-per-day for natural germanium at the surface of the earth, and almost a factor of 2 less for germanium with enriched \gersevensix~content~\cite{Avi92}.  Other references have suggested that this rate is roughly an order of magnitude too high~\cite{Col92,Mei:2009vn}; we conservatively use the enhanced rate, but assuming a smaller activation would correspondingly lengthen an allowed exposure time.  The exposure is determined by the time of manufacture beginning with the pulling of the germanium crystal and ending when the crystal is brought underground.  For example, if the entire process from crystal pulling to detector development and then final deployment (or storage) underground takes 15~days, then this integrated time is the the total tritium activation period for the detector.  For a kilogram natural-germanium detector created over such a time scale, we would expect there to be $15\times200\sim3000$ atoms of \hthree~within the detector.  Given the slow time of decay of \hthree~(12.32~years), it is critical to minimize the time above ground and certainly necessary to avoid any time at high altitudes, e.g.~storage or transport via airplane.  In this simple background model, two optimistic exposure times are chosen -- 15 and 30~days -- and it is assumed that the detectors begin taking data immediately after arriving underground.  In practice, the assumption of immediate detector commissioning is justified due to the long decay time of tritium: the detector will not significantly cool down during a period of time underground much shorter than the tritium lifetime.  The average rates due to these exposures once underground are then roughly 0.03 and 0.06~counts/keV/kg/day for 15 and 30~days, respectively, more than an order of magnitude greater than the assumed flat-background contribution.  
+The estimate of a background to tritium involves understanding the activation rate of tritium for germanium at the surface of the earth.  This activation rate has been estimated to be $\lesssim200$~\hthree-atoms-per-kilogram-of-Ge-per-day for natural germanium at the surface of the earth, and almost a factor of 2 less for germanium with enriched \gersevensix~content~\cite{Avi92}.  Other references have suggested that this rate is roughly an order of magnitude too high~\cite{Col92,Mei2009417}; we conservatively use the enhanced rate, but assuming a smaller activation would correspondingly lengthen an allowed exposure time.  The exposure is determined by the time of manufacture beginning with the pulling of the germanium crystal and ending when the crystal is brought underground.  For example, if the entire process from crystal pulling to detector development and then final deployment (or storage) underground takes 15~days, then this integrated time is the the total tritium activation period for the detector.  For a kilogram natural-germanium detector created over such a time scale, we would expect there to be $15\times200\sim3000$ atoms of \hthree~within the detector.  Given the slow time of decay of \hthree~(12.32~years), it is critical to minimize the time above ground and certainly necessary to avoid any time at high altitudes, e.g.~storage or transport via airplane.  In this simple background model, two optimistic exposure times are chosen -- 15 and 30~days -- and it is assumed that the detectors begin taking data immediately after arriving underground.  In practice, the assumption of immediate detector commissioning is justified due to the long decay time of tritium: the detector will not significantly cool down during a period of time underground much shorter than the tritium lifetime.  The average rates due to these exposures once underground are then roughly 0.03 and 0.06~counts/keV/kg/day for 15 and 30~days, respectively, more than an order of magnitude greater than the assumed flat-background contribution.  
 
 The pdf of the tritium decay function was constructed in both time and energy using the corrected kinematic equation:
 		\begin{equation}
 			f_{^{3}\text{H}}\left(E, t\right)  =  g_{^{3}\text{H}}\left(E\right) \times h_{^{3}\text{H}}\left(t\right) 
 		\end{equation}
 		with
-		\begin{eqnarray}
+		\begin{eqnarray*}
 		g_{^{3}\text{H}}\left(E\right) & = & \sqrt{(E + M_e)^2 - M_e^2} \left(
 			E + M_e \right) \left( Q_{^3\text{H}} - E \right)^2 F(Z, E) \\
 h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}} \\
 		F(Z,E) & =  & y ( 1 - e^{-y} )^{-1} (1.002037 - 0.001427(v/c)) \\
 		y & = & \frac{2 \pi Z \alpha}{v/c} \\
-		\end{eqnarray}
-		where $F(Z,E)$ is an approximation of the screened and relativistic Fermi function with $Z = 2$ for the daughter nucleus (as determined by J.~J.~Simpson in~\cite{Simp81}) and $Q_{^3\text{H}}=18.6$~keV, $M_{e}=511$~keV, and $\tau_{^3\text{H}} = 12.32 / \log(2)$~years.  
+		\end{eqnarray*}
+		where $F(Z,E)$ is an approximation of the screened and relativistic
+Fermi function with $Z = 2$ for the daughter nucleus (as determined by
+J.~J.~Simpson in~\cite{Simp81}), $Q_{^3\text{H}}=18.6$~keV, $M_{e}=511$~keV,
+and $\tau_{^3\text{H}} = 12.32 / \log(2)$~years.  
 		
 	The background from neutrons has been estimated previously for the IGEX experiment~\cite{Carmona2004523} located at the Canfranc underground laboratory.  This reference considered both neutrons from cosmic-ray muons interacting in the rock as well as neutrons arising from spontaneous fission and ($\alpha$, n) reactions.  Estimates from this -- see Figure~7 and Tables 2,3 in~\cite{Carmona2004523}, Figure~7 reproduced here in Figure~\ref{fig:IGEXNeutrons} -- suggested that contributions to IGEX from both sources should be below 0.01~counts/keV/kg/day down to 0~keV.  Additionally, it was demonstrated that neutrons from rock radioactivity could be effectively eliminated with additional shielding.  Though the \MJ~\minmod~will have a different geometry to that of the IGEX experiment, it is expected that these numbers are a conservative upper limit due to the fact that the \minmod~will be in a deeper location (Sanford Underground Lab ($\lesssim4500$~m.w.e.) vs.~Canfranc (2500~m.w.e.)).  From these conclusions and because the background from \hthree~should at least initially dominate the \minmod, any background contribution from neutrons was omitted from the background model.
 	
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{IGEXNeutronsFromMuons}
-				\caption[Simulated muon-induced-neutron spectrum for IGEX.]{Simulated muon-induced-neutron 
+				\caption[Simulated muon-induced-neutron spectrum for IGEX]{Simulated muon-induced-neutron 
 				spectrum for IGEX, reproduced from Figure~7 in reference~\cite{Carmona2004523}.  A, B, C, and D are different
 				neutron moderator configurations for the IGEX experiment, and the lines are exponential fits to guide the eye.
 				A conservative extrapolation suggests that the smallest of these spectra (A) 
@@ -180,7 +184,7 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}} \\
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{MJDemoExampleSensFit}
-				\caption[\MJ~\minmod WIMP sensitivity fit example.]{A sensitivity fit example with WIMP  
+				\caption[\MJ~\minmod~WIMP sensitivity fit example.]{A sensitivity fit example with WIMP  
 				signal at $M_{W}=10$~GeV, with $\signuc$ excluded at 90\% CL with value
 				 $8.6\times10^{-9}$~pb.  Components of the fit are broken out including WIMP 
 				 signal (blue dashed) and flat background (red dotted).  The beta spectrum from \hthree~dominates the fit.}
@@ -191,7 +195,7 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}} \\
 	
 			\begin{figure}
 				\centering
-				\def\figheight{0.41\textheight}				
+				\def\figheight{0.4\textheight}				
 				\subfigure[1~year (20 kg-yr) exposure time]{
 					\includegraphics[height=\figheight]{20TimeExposureMJ}
 					\label{fig:20TimeExposureMJ}						
@@ -209,7 +213,7 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}} \\
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{MGM_MJ_Sensitivity_Compare}
-				\caption[\MJ~\minmod~sensitivity to a WIMP signal, comparing to SuperCDMS Phase A and LUX 300.]
+				\caption[WIMP signal sensitivity comparison to SuperCDMS Phase A and LUX 300]
 				{\MJ~\minmod~sensitivity to a WIMP signal (blue solid, 0.3~keV threshold; blue dashed, 0.5~keV threshold), comparing to SuperCDMS Phase A~\cite{Akerib2006411}(red dashed) and LUX 300~\cite{LUX300}
 				(black dotted).  Plot generated with DMTools~\cite{Gai03}, lines are 90\% CL exclusions.}
 				\label{fig:MJSensitivityToWIMPCompare}
@@ -223,7 +227,7 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}} \\
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{MJDemoExampleSensFitAxion}
-				\caption[\MJ~\minmod axioelectric sensitivity fit example.]{A sensitivity fit example 
+				\caption[\MJ~\minmod~axioelectric sensitivity fit example]{A sensitivity fit example 
 				with axioelectric signal at $m_{a}=5$~keV, with $\gaa$ excluded at 90\% CL with
 				value
 				 $4.4\times10^{-11}$~pb.  Components of the fit are broken out including axioelectric 
@@ -235,7 +239,7 @@ h_{^{3}\text{H}}\left(t\right) & = & e^{-t/\tau_{^3\text{H}}} \\
 	
 			\begin{figure}
 				\centering
-				\def\figheight{0.41\textheight}
+				\def\figheight{0.38\textheight}
 				\subfigure[1~year (20 kg-yr) exposure time]{
 					\includegraphics[height=\figheight]{1TimeExposureMJAxion}
 					\label{fig:20TimeExposureMJAxion}						
@@ -281,7 +285,8 @@ where $\Omega_{a}$ is estimated as $\Omega_{DM}$ so that $\Omega_a/\Omega_{\text
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{MJAxionCompare}
-				\caption{\MJ~\minmod~sensitivity at 90\% CL (blue curved lines, dotted 20~kg-yr exposure, solid 100~kg-yr exposure) to an axioelectric signal, 
+				\caption[Sensitivity comparison to limits from cosmology and astronomical observation]
+				{\MJ~\minmod~sensitivity at 90\% CL (blue curved lines, dotted 20~kg-yr exposure, solid 100~kg-yr exposure) to an axioelectric signal, 
 				comparing to limits derived from astronomical observations including globular clusters~\cite{Raffelt95}, 
 				axion abundance after the big bang, and constraints from observed galactic $\gamma$ 
 				backgrounds~\cite{Pospelov:2008jk}.}

@@ -12,7 +12,7 @@ will also allow the experiment to search for dark matter.
 The following discusses the reasons behind using this technology with a focus on the
 additional physics questions beyond those related to neutrinos which may be answered with these detectors.
 
-	\section{Neutrinos and neutrinoless double-beta decay ($\nonubb$)}
+	\section{Neutrinos and neutrinoless double-beta decay\texorpdfstring{ ($\nonubb$)}{}}
 	
 	Neutrinos have provided evidence for physics beyond the Standard Model: 
 neutrino oscillation experiments have shown that neutrinos are massive but
@@ -59,7 +59,7 @@ a half-life for these nuclei around $T^{2\nu}_{1/2}\sim10^{20}$~yrs.
 
 		\begin{figure}
 			\centering
-			\def\figheight{0.4\textheight}
+			\def\figheight{0.38\textheight}
 			 \subfigure[$\twonubb$] {
 			 	\includegraphics[height=\figheight]{2nubbDecay}
 			}
@@ -112,7 +112,7 @@ exposure, is T$_{1/2}\geq 10^{26}$.
 		\begin{figure}
 			\centering		
 			\def\figheight{0.45\textheight}
-			\includegraphics[height=0.9\textwidth]{CrystalCryostatDesign}
+			\includegraphics[height=0.79\textwidth]{CrystalCryostatDesign}
 			\caption[\MJ~\minmod~cryostat and crystal string geometry]{\MJ~\minmod~cryostat and crystal string geometry, each
 			crystal string houses 5~p-type point-contact germanium detectors.  From the \MJ~collaboration~\cite{MJCollaboration}.}
 			\label{fig:MJEngDrawing1}
@@ -341,7 +341,7 @@ where $\Theta$ is an angle with possible value between $-\pi$ and $\pi$.  The la
 			\]	
 with $\phi_{A}$ the axion field and $f_{A}$ the axion decay constant~\cite{Amsler20081}.  The expectation value of the axion is found to be $\phi_{A} = f_{A} \bar{\Theta}$ thereby directly canceling the CP violating term.  Further detail regarding axions can be found in several current reviews, including~\cite{Amsler20081,2008LNP}.
 	
-	Bounds on axion properties can derive from cosmological observations as well as direct experimental searches.  For example, cosmological data can constrain axion models by looking for the evidence of additional unexplained energy loss in stars (see, e.g.~\cite{Gondolo09,Raf96}).  Direct detection measurements may take advantage of axions coupling with 2~photons, looking for their interaction in high-intensity magnetic fields, as is the case with the CAST experiment~\cite{Arik09} searching for axions produced in the sun, or searching for an axion interaction in a resonant microwave cavity within a magnetic field, as does the ADMX experiment~\cite{Asz10}.  Germanium detectors are not ideal for searching for such a signal, but can put bounds on the strength of the axion's coupling with electrons by searching for the inelastic scattering of an axion off of an electron.  This interaction and the observed signal is discussed in more detail in Section~\ref{sec:CalcLimitsOnHeavyAxionSignal}.
+	Bounds on axion properties can derive from cosmological observations as well as direct experimental searches.  For example, cosmological data can constrain axion models by looking for the evidence of additional unexplained energy loss in stars (see, e.g.~\cite{Gondolo09,Raffelt95}).  Direct detection measurements may take advantage of axions coupling with 2~photons, looking for their interaction in high-intensity magnetic fields, as is the case with the CAST experiment~\cite{Arik09} searching for axions produced in the sun, or searching for an axion interaction in a resonant microwave cavity within a magnetic field, as does the ADMX experiment~\cite{Asz10}.  Germanium detectors are not ideal for searching for such a signal, but can put bounds on the strength of the axion's coupling with electrons by searching for the inelastic scattering of an axion off of an electron.  This interaction and the observed signal is discussed in more detail in Section~\ref{sec:CalcLimitsOnHeavyAxionSignal}.
 		
 		\subsection{\ppc~detectors and dark matter}
 
@@ -371,9 +371,8 @@ with $\phi_{A}$ the axion field and $f_{A}$ the axion decay constant~\cite{Amsle
 		\begin{figure}
 			\centering
 			\includegraphics[width=0.9\textwidth]{DAMARes}
-			\caption[Axion signal at $m_{a}$ = 3.2~keV]{Axion signal at $m_{a}$ = 3.2~keV comparing 
-			the an estimate of detector responses of germanium (blue, dashed) and NaI (red, solid) to an equivalent
-			axion-electron coupling ($\gaa$).  The resolution functions ($\sigma(E)$) for Ge and NaI are $\sqrt{(0.0697)^{2} + (0.3)(2.96\times10^{-3})E}$ and
+			\caption[Axioelectric signal at $m_{a}$ = 3.2~keV]{Axioelectric signal at $m_{a}$ = 3.2~keV comparing 
+			the detector responses of germanium (blue, dashed) and NaI (red, solid) assuming some axion-electron coupling $\gaa$.  The resolution functions ($\sigma(E)$) for Ge and NaI are $\sqrt{(0.0697)^{2} + (0.3)(2.96\times10^{-3})E}$ and
 			$(0.448/\sqrt{E} + 0.0091) E$ with $E$ in keV, from~\cite{Aalseth:2008aa} and~\cite{Bernabei2008297} respectively.} 
 			\label{fig:ResCompare}
 		\end{figure}
@@ -385,4 +384,18 @@ with $\phi_{A}$ the axion field and $f_{A}$ the axion decay constant~\cite{Amsle
 		% A final system (with updated DAQ, etc.) underground
 		% Limits on WIMPs and the axioelectric effect as well as considerations for Majorana
 
-	This dissertation will focus on understanding and exploiting the low-energy capabilities of \ppc~detectors.  It will begin by considering the data acquisition (DAQ) needs to read out these detectors to enable full access to physics at $\qval$ and at low energies.  Following this will be the description of the application of this DAQ system to a \ppc~detector deployed underground at Soudan Underground Laboratory in Soudan, Minnesota, including conclusions from this initial study.  Results and knowledge gained from this initial detector were then applied to the deployment of another, lower-background \ppc~at Soudan.  The analysis of this detector, including the generation of limits for WIMP and axion dark matter, comprises the bulk of the thesis.  Finally, the work ends with some contextual discussion of these results, focusing on estimating the sensitivity of the \MJ~\minmod~to detect dark matter.  Appendices detailing the development and use of software for the results of this dissertation are included for reference.
+	This dissertation will focus on understanding and exploiting the low-energy
+capabilities of \ppc~detectors.  %It will begin by considering the data
+%acquisition (DAQ) needs to read out these detectors to enable full access to
+%physics at $\qval$ and at low energies.  
+It will begin by describing the application of a digital data acquisition
+system to a \ppc~detector deployed underground at Soudan Underground Laboratory
+in Soudan, Minnesota, and outline conclusions from this initial study.  Results
+and knowledge gained from this initial detector were then applied to the
+deployment of another, lower-background \ppc~at Soudan.  The analysis of this
+detector, including the generation of limits for WIMP and axion dark matter,
+comprises the bulk of the thesis.  Finally, the work ends with some contextual
+discussion of these results, focusing on estimating the sensitivity of the
+\MJ~\minmod~to detect dark matter.  Appendices detailing the development and
+use of DAQ hardware and DAQ and analysis software for the results of this
+dissertation are included for reference.

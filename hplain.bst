@@ -927,6 +927,104 @@ MACRO {toplas} {"ACM Transactions on Programming Languages and Systems"}
 
 MACRO {tcs} {"Theoretical Computer Science"}
 
+ %-------------------------------------------------------------------
+ % Begin module:
+ % \ProvidesFile{physjour.mbs}[2002/01/14 2.2 (PWD)]
+MACRO {aa}{"Astron. \& Astrophys."}
+MACRO {aasup}{"Astron. \& Astrophys. Suppl. Ser."}
+MACRO {aj} {"Astron. J."}
+MACRO {aph} {"Acta Phys."}
+MACRO {advp} {"Adv. Phys."}
+MACRO {ajp} {"Amer. J. Phys."}
+MACRO {ajm} {"Amer. J. Math."}
+MACRO {amsci} {"Amer. Sci."}
+MACRO {anofd} {"Ann. Fluid Dyn."}
+MACRO {am} {"Ann. Math."}
+MACRO {ap} {"Ann. Phys. (NY)"}
+MACRO {adp} {"Ann. Phys. (Leipzig)"}
+MACRO {ao} {"Appl. Opt."}
+MACRO {apl} {"Appl. Phys. Lett."}
+MACRO {app} {"Astroparticle Phys."}
+MACRO {apj} {"Astrophys. J."}
+MACRO {apjsup} {"Astrophys. J. Suppl."}
+MACRO {apss} {"Astrophys. Space Sci."}
+MACRO {araa} {"Ann. Rev. Astron. Astrophys."}
+MACRO {baas} {"Bull. Amer. Astron. Soc."}
+MACRO {baps} {"Bull. Amer. Phys. Soc."}
+MACRO {cmp} {"Comm. Math. Phys."}
+MACRO {cpam} {"Commun. Pure Appl. Math."}
+MACRO {cppcf} {"Comm. Plasma Phys. \& Controlled Fusion"}
+MACRO {cpc} {"Comp. Phys. Comm."}
+MACRO {cqg} {"Class. Quant. Grav."}
+MACRO {cra} {"C. R. Acad. Sci. A"}
+MACRO {fed} {"Fusion Eng. \& Design"}
+MACRO {ft} {"Fusion Tech."}
+MACRO {grg} {"Gen. Relativ. Gravit."}
+MACRO {ieeens} {"IEEE Trans. Nucl. Sci."}
+MACRO {ieeeps} {"IEEE Trans. Plasma Sci."}
+MACRO {ijimw} {"Interntl. J. Infrared \& Millimeter Waves"}
+MACRO {ip} {"Infrared Phys."}
+MACRO {irp} {"Infrared Phys."}
+MACRO {jap} {"J. Appl. Phys."}
+MACRO {jasa} {"J. Acoust. Soc. America"}
+MACRO {jcp} {"J. Comp. Phys."}
+MACRO {jetp} {"Sov. Phys.--JETP"}
+MACRO {jfe} {"J. Fusion Energy"}
+MACRO {jfm} {"J. Fluid Mech."}
+MACRO {jmp} {"J. Math. Phys."}
+MACRO {jne} {"J. Nucl. Energy"}
+MACRO {jnec} {"J. Nucl. Energy, C: Plasma Phys., Accelerators, Thermonucl. Res."}
+MACRO {jnm} {"J. Nucl. Mat."}
+MACRO {jpc} {"J. Phys. Chem."}
+MACRO {jpp} {"J. Plasma Phys."}
+MACRO {jpsj} {"J. Phys. Soc. Japan"}
+MACRO {jsi} {"J. Sci. Instrum."}
+MACRO {jvst} {"J. Vac. Sci. \& Tech."}
+MACRO {nat} {"Nature"}
+MACRO {nature} {"Nature"}
+MACRO {nedf} {"Nucl. Eng. \& Design/Fusion"}
+MACRO {nf} {"Nucl. Fusion"}
+MACRO {nim} {"Nucl. Inst. \& Meth."}
+MACRO {nimpr} {"Nucl. Inst. \& Meth. in Phys. Res."}
+MACRO {np} {"Nucl. Phys."}
+MACRO {npb} {"Nucl. Phys. B"}
+MACRO {nt/f} {"Nucl. Tech./Fusion"}
+MACRO {npbpc} {"Nucl. Phys. B (Proc. Suppl.)"}
+MACRO {inc} {"Nuovo Cimento"}
+MACRO {nc} {"Nuovo Cimento"}
+MACRO {pf} {"Phys. Fluids"}
+MACRO {pfa} {"Phys. Fluids A: Fluid Dyn."}
+MACRO {pfb} {"Phys. Fluids B: Plasma Phys."}
+MACRO {pl} {"Phys. Lett."}
+MACRO {pla} {"Phys. Lett. A"}
+MACRO {plb} {"Phys. Lett. B"}
+MACRO {prep} {"Phys. Rep."}
+MACRO {pnas} {"Proc. Nat. Acad. Sci. USA"}
+MACRO {pp} {"Phys. Plasmas"}
+MACRO {ppcf} {"Plasma Phys. \& Controlled Fusion"}
+MACRO {phitrsl} {"Philos. Trans. Roy. Soc. London"}
+MACRO {prl} {"Phys. Rev. Lett."}
+MACRO {pr} {"Phys. Rev."}
+MACRO {physrev} {"Phys. Rev."}
+MACRO {pra} {"Phys. Rev. A"}
+MACRO {prb} {"Phys. Rev. B"}
+MACRO {prc} {"Phys. Rev. C"}
+MACRO {prd} {"Phys. Rev. D"}
+MACRO {pre} {"Phys. Rev. E"}
+MACRO {ps} {"Phys. Scripta"}
+MACRO {procrsl} {"Proc. Roy. Soc. London"}
+MACRO {rmp} {"Rev. Mod. Phys."}
+MACRO {rsi} {"Rev. Sci. Inst."}
+MACRO {science} {"Science"}
+MACRO {sciam} {"Sci. Am."}
+MACRO {sam} {"Stud. Appl. Math."}
+MACRO {sjpp} {"Sov. J. Plasma Phys."}
+MACRO {spd} {"Sov. Phys.--Doklady"}
+MACRO {sptp} {"Sov. Phys.--Tech. Phys."}
+MACRO {spu} {"Sov. Phys.--Uspeki"}
+MACRO {st} {"Sky and Telesc."}
+ % End module: physjour.mbs
+
 READ
 
 FUNCTION {sortify}

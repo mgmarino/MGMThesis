@@ -64,7 +64,6 @@
     \usepackage{graphicx}
 \fi
 \usepackage{rotating}
-\usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{subfigure}
 \usepackage{threeparttable}
@@ -73,6 +72,16 @@
 \usepackage{grffile}
 \usepackage{multirow}
 \usepackage{booktabs}
+
+% make paragraph have carriage return
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\usepackage[plainpages=false,pdfpagelabels]{hyperref}
 %%%%% Listings info
 \usepackage{listings}
 \usepackage{color}
@@ -189,7 +198,10 @@
 %
 \begin{glossary}
 \item[$\nonubb$] Neutrinoless double-beta decay. 
- 
+\item[\bege] Low-background \ppc~detector deployed underground at Soudan Underground Laboratory.
+\item[DAQ] Data acquisition.
+\item[\ppc] P-type point contact germanium detector.
+\item[\ppc2] \ppc~detector deployed underground at Soudan Underground Laboratory.
 \end{glossary}
  
 %
@@ -225,9 +237,6 @@
 
 % ========== Chapter 2
 
-\input{Chapters/DevelopmentOfADigitalDAQ} 
-\clearpage
-
 % ========== Chapter 3
  
 \input{Chapters/DeploymentOfBeGesWithDigitalDAQ} 
@@ -257,7 +266,7 @@
 % ==========   Bibliography
 %
 %\nocite{*}   % include everything in the uwthesis.bib file
-\bibliographystyle{hplain}
+\bibliographystyle{utcaps}
 \bibliography{MGM_Thesis}
 %
 % ==========   Appendices
@@ -266,6 +275,10 @@
 \raggedbottom\sloppy
  
 % ========== Appendix A
+
+
+\input{Appendices/DevelopmentOfADigitalDAQ} 
+\clearpage
 
 \input{Appendices/WaveformProcessingFramework} 
 \clearpage
