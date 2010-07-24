@@ -9,8 +9,9 @@
 	\label{sec:TundraUniverse}
 
 This section describes a Linux driver for PCI-VME Tundra Universe II bridge chip.  This
-driver is used in Linux kernels newer than 2.6.20 and has been used extensively with the 
-x86-based lightweight CRUX distribution~\url{http://www.crux.nu} as well as Fedora Core.  The driver is available
+driver is used in Linux kernels newer than 2.6.20 and has been used extensively
+with the x86-based lightweight CRUX distribution (\url{http://www.crux.nu}) as
+well as Fedora Core (\url{http://fedoraproject.org/}).  The driver is available
 at a git repository~\url{http://github.com/mgmarino/VMELinux} as well as in the ORCA subversion
 repository~\url{svn://orca.physics.unc.edu/Drivers/SBCDrivers}.  Installation instructions
 are given in the code package, so those details are not covered here.
@@ -434,14 +435,26 @@ similar to usage of the C framework and examples are provided here:
 
 	\section{Single-board computers (SBCs)}
 
-    This section briefly describes the framework of the development of Single-board computers (SBCs) for the \MJ~experiment
-and related test stands.  This software was built in conjunction with Mark Howe as part of the ORCA~\cite{Howe08} software package and has been
-applied to SBCs with VME, cPCI, and IPE form factors.  The SBCs in VME crates used the driver described in the previous
-section, Section~\ref{sec:TundraUniverse}.  The software provided two essential run modes: (1) a slow-control mode to
-set register settings of cards and (2) a fast readout mode to pull data from cards resident on the bus. The general software
-design was to provide an interface to the ORCA DAQ program, which would allow the behavior of cards to be customized through
-register settings, etc.  The fast readout would then be handled by the SBC to take advantage of the speed of being directly coupled to the bus.  The SBC would read out the cards on the bus and fill a circular buffer with their data.  This circular
-buffer would then be read out asynchronously by the ORCA program in large chunkcs over a TCP socket.  This type of setup is most useful given the high bandwidth yet high latency of Gigabit ethernet.  A schematic of the fast readout is shown in Figure~\ref{fig:SBCReadout}. 
+	This section briefly describes the framework of the development of
+Single-board computers (SBCs) for the \MJ~experiment and related test stands.
+This software was built in conjunction with Mark Howe as part of the
+ORCA~\cite{Howe08} software package and has been applied to SBCs with VME,
+cPCI, and IPE form factors and use with test stands for the
+\MJ~experiment~\cite{MJCollaboration}, the KATRIN
+experiment~\cite{KatrinCollaboration}, and the SNO+
+experiment~\cite{SNO+Collaboration}.  The SBCs in VME crates used the driver
+described in the previous section, Section~\ref{sec:TundraUniverse}.  The
+software provides two essential run modes: (1) a slow-control mode to set
+register settings of cards and (2) a fast readout mode to pull data from cards
+resident on the bus. The general software design was to provide an interface to
+the ORCA DAQ program, which would allow the behavior of cards to be customized
+through register settings, etc.  The fast readout would then be handled by the
+SBC to take advantage of the speed of being directly coupled to the bus.  The
+SBC would read out the cards on the bus and fill a circular buffer with their
+data.  This circular buffer would then be read out asynchronously by the ORCA
+program in large chunkcs over a TCP socket.  This type of setup is most useful
+given the high bandwidth yet high latency of Gigabit ethernet.  A schematic of
+the fast readout is shown in Figure~\ref{fig:SBCReadout}. 
 
 		\begin{figure}
 			\centering

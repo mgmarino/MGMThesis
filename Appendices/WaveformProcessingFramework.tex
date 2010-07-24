@@ -501,7 +501,7 @@ class MGMRisetimeInfo: public TObject
 };
 					\end{lstlisting}	
 				\paragraph{\lstinline!class MGMMuonVeto!}
-Provides classes to encapsulate muon-veto information about an event.  This is useful, because the muon veto logic pulses are much shorter (10~$\mu$s) than the total length of the waveform (400~$\mu$s) and can fire several times in parts of the waveform (see Figure~\ref{fig:MuonVetoExample}.  In particular, it exports several convenience functions
+Provides classes to encapsulate muon-veto information about an event.  This is useful, because the muon veto logic pulses are much shorter (10~$\mu$s) than the total length of the waveform (400~$\mu$s) and can fire several times in parts of the waveform (see Figure~\ref{fig:MuonVetoExample}).  In particular, it exports several convenience functions
 for determining whether or not a muon veto has fired at a particular point in the waveform.  For example, \lstinline!IsInVetoRegion(size_t pos)! will return true or false depending upon if \lstinline!pos! falls during a veto fire.
 					\begin{figure}
 						\centering
@@ -533,16 +533,15 @@ for using MGDO in production.
 	\label{sec:AnalysisDBProcFramework}
 	The analysis database was set up to facilitate the movement and analysis of
 data from beginning of processing (data acquisition) to the end (exclusion
-plots, physics analyses, etc.).  The database ran using a couchDB backend, a
+plots, physics analyses, etc.).  The database ran using a \couchdb~backend, a
 document-based database with several desirable features, including scalability
 using the `view' Map-Reduce functionality and simple backup and mirror
 propagation through built-in replication.  Replication allows quick and easy
 distribution of data to several servers, very desirable for collaborations
-wishing to share or mirror data in multiple locations.  As well, the couchDB
-server employs a RESTful interface, accepting basic http commands to access and
+wishing to share or mirror data in multiple locations.  As well, the \couchdb~server employs a RESTful interface, accepting basic http commands to access and
 manipulate data and distributing and storing data in a JSON (JavaScript Object
 Notation) format.  This interface simplifies communication with the database
-server and has fostered the development of couchDB `wrappings' in several
+server and has fostered the development of \couchdb~`wrappings' in several
 languages including Ruby and Python.  More information on this database can be
 found online at~\url{http://couchdb.apache.org/}.  This section will describe
 the basic functionality of the run/analysis database as well as describe
@@ -550,13 +549,13 @@ particular details of its implementation.
 
 		\subsection{Overview}
 		
-	The central couchDB server for the run/analysis database was located on a
+	The central \couchdb~server for the run/analysis database was located on a
 machine at the University of Washington and backed up to several other
 instances including personal laptops and online at CloudAnt
 (\url{https://cloudant.com/}).  The code written to encapsulate and read
-out/run the database was written in python using an older version of
+out/run the database was written in Python using an older version of
 couchdb-python (available \url{http://code.google.com/p/couchdb-python/}).
-Other software with couchDB python `bindings' is available including couchdbkit
+Other software with \couchdb~Python `bindings' is available including couchdbkit
 (\url{http://couchdbkit.org/}), but the former was initially chosen for
 arbitrary reasons.  The functionality of both frameworks is similar and so a
 translation from one to the other should not entail a significant amount of
@@ -591,8 +590,8 @@ The \lstinline!database! directories each had the following sub-structure with r
 		  	  	\setlength{\parskip}{0pt}
 		  	  	\setlength{\parsep}{0pt}
 				\item[] \lstinline!db.py! -- module providing particular code for the database 
-				\item[] \lstinline!views! -- module providing separate python files for each view 
-				\item[] \lstinline!update! -- module providing separate python files for each update function 
+				\item[] \lstinline!views! -- module providing separate Python files for each view 
+				\item[] \lstinline!update! -- module providing separate Python files for each update function 
 			\end{itemize}
 	
 Instead of describing the code in
@@ -624,7 +623,7 @@ records since processing (e.g.~cpu usage) only occurs when needed.
 				\label{fig:RunDBSchem}
 			\end{figure}	
 
-	Another advantage of using a couchDB database is that it is possible to insert records with different internal structure or different
+	Another advantage of using a \couchdb~database is that it is possible to insert records with different internal structure or different
 metadata.  For example, a single database can include records of associated run metadata as well as other records with slow control information.  Additionally, metadata need not be consistent across records of a certain type.  This has the advantage that it is not required to fully define the data structure within a database during initial deployment, therefore allowing simple adaptability to any changes that will inevitably happen to the data-taking process such as adding a new channel or additional sets of information.  
 
 		\subsection{Functional implementation}
@@ -644,7 +643,7 @@ metadata.  For example, a single database can include records of associated run 
 		   captionpos=b}	
 
 	Implementing the functionality described in the previous section involved
-taking advantage of several features built into the couchDB database.  The
+taking advantage of several features built into the \couchdb~database.  The
 database update could occur via several methods, for example: a daemon which
 runs regularly to insert the metadata when new files or information from the
 DAQ are generated; a system interrupt process calling an insertion function or
@@ -660,8 +659,7 @@ fields that required information from further processing empty.  The data
 resided in the database in JSON format, and an example of a portion of an
 inserted JSON record in the run/analysis database is shown in
 Listing~\ref{lst:JSONExample}.  In this example, one can see the left-empty
-fields denoted by {\ttfamily null}.  It is simple to write a `view' (a couchDB
-query) to return records where an empty field might exist.  This method can be
+fields denoted by {\ttfamily null}.  It is simple to write a `view' (a \couchdb~query) to return records where an empty field might exist.  This method can be
 used to select records for processing.  For example, in the record snippet,
 thet \lstinline!root_data_file_tier_1! has daughter values set to
 \lstinline!null! including \lstinline!last_mod_time! (last modification time)
@@ -717,8 +715,8 @@ exports two functions: \lstinline!get_view()! and \lstinline!update_rundoc(run_d
 a daemon management program would use the \lstinline!get_view()! to return the records needing
 updates and then run \lstinline!update_rundoc()! for each \lstinline!run_doc!.  The management process
 for doing this is located in \lstinline!SoudanDB.update.update_calculations_on_database!.
-Newer versions of couchDB should allow such processing to occur within the
-view server framework of the database itself.  For example, the couchDB server should eventually be
+Newer versions of \couchdb~should allow such processing to occur within the
+view server framework of the database itself.  For example, the \couchdb~server should eventually be
 able to handle both generating the views and running the update functions on
 those views.  Therefore, future implementations should not use this daemon
 methodology and instead should migrate to using a Python view server.  
@@ -968,7 +966,7 @@ gamma_model = gamma.get_model()
 Defines \lstinline!DMModels.wimp_model.WIMPModel! which is a class wrapping several different WIMP PDFs.  At the time
 of writing, the class was tuned to work with germanium detectors as it included quenching and atomic information
 specific to a germanium detector.  Modifying the class to be applicable to other detectors should not be difficult.  
-This models that this class returns require a normalization factor, which is the \emph{nuclear}
+The models that this class returns require a normalization factor, which is the \emph{nuclear}
 cross section of the WIMP interaction (i.e.~not normalized per nucleon).  
 Therefore, all classes should use a \lstinline!RooExtendPdf! to multiply the cross-section by the obtained \lstinline!RooAbsPdf!.  
 The class is instantiated:
@@ -1094,7 +1092,7 @@ mass of 3~keV, one might use the additional flags:
 				\end{lstlisting}
 and drop the flag \lstinline!--wimp_mass!.  
 
-Currently, limit calculations on data can also be performed using \lstinline!job_engine.py DataExclusion!, but this is currently limited
+Currently, limit calculations on data can also be performed using \lstinline!`job_engine.py DataExclusion`!, but this is currently limited
 to a background model consistent with that from the BEGe detector described in Section~\ref{sec:LimitsDataAndModel}.  Therefore, any application of this framework to other data sets would require the construction of a background model to suitably 
 describe that dataset.  It is the hope that this toolkit together with the tools already available in RooFit would provide
-everything necessary for building this model.
+everything necessary for building such a model.
