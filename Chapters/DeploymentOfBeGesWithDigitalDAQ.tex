@@ -207,7 +207,7 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 					\label{eqn:TriggerEfficiency}
 				\end{equation}
 				
-with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\rho$, in keV.  An example of a fit to this data is given in Figure~\ref{fig:PPC2TriggeringEfficiencyExample}.  Some results of the trigger tests over time are given in Figure~\ref{fig:PPC2AllPlotCompare}, comparing them to other detector parameters.  The offset parameter, $\rho$, was largely stable but increased before the transition from I$\to$II and again during region III.  $\rho$ returned to a lower value during region II.  The scaling, $s$, was largely insensitive to any change in reset rate, though exhibited slight deviations low in transitions between regions I and II.  
+with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\rho$, in keV.  An example of a fit to this data is given in Figure~\ref{fig:PPC2TriggeringEfficiencyExample}.  Some results of the trigger tests over time are given in Figure~\ref{fig:PPC2AllPlotCompare}, comparing them to other detector parameters.  The offset parameter, $\rho$, was largely stable but increased before the transition from I$\to$II and again during region III.  $\rho$ returned to a lower value during region II.  The scaling, $s$, was largely insensitive to any change in reset rate, though it exhibited slight deviations low in transitions between regions I and II.  
 
 				\begin{figure}
 					\centering
@@ -237,7 +237,7 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 		    	\subsubsection{Pulser data}
 			\label{sec:DeploymentPPC2SoudanAnalysisPulserData}    
 
-	Pulses from the Agilent waveform generator were input into the test input at a rate of 1~Hz and at low energy: $\sim2.5$~keV.  These events underwent analysis equivalent to every other waveform and were selected by finding all waveforms which arrived in coincidence with the pulser synchronization signal.  Each hour-long run yielded a data set of $\sim3600$ events; the calculated amplitudes (energies) of these events were histogrammed and fit to a gaussian to extract the mean, $\mu$, and the sigma, $\sigma$, of the pulser signal for each run.  Results of these fits are plotted versus run number in Figure~\ref{fig:PPC2AllPlotCompare}.  It is clear that the width of the noise ($\sigma$) did not significantly alter for reset rates below 15~Hz.  However, the mean ($\mu$) of the pulser demonstrated three clear transition regions an example of which have been labeled `I', `II', and `III' in Figure~\ref{fig:PPC2AllPlotCompare}: from reset rates 3$\to$7~Hz (region I labeled in the plot), the mean increased, transitioned to lower values for reset rates 7$\to$11~HZ (region II), and then returned for rates above 11~Hz (region III).  The absolute cause of this behavior was not determined, but it is possibly due to a modification of operating parameters of the front-end crystal electronics (e.g.~the FET) by the increasing leakage current.  
+	Pulses from the Agilent waveform generator were input into the test input at a rate of 1~Hz and at low energy: $\sim2.5$~keV.  These events underwent analysis equivalent to every other waveform and were selected by finding all waveforms which arrived in coincidence with the pulser synchronization signal.  Each hour-long run yielded a data set of $\sim3600$ events; the calculated amplitudes (energies) of these events were histogrammed and fit to a gaussian to extract the mean, $\mu$, and the sigma, $\sigma$, of the pulser signal for each run.  Results of these fits are plotted versus run number in Figure~\ref{fig:PPC2AllPlotCompare}.  It is clear that the width of the noise ($\sigma$) did not significantly alter for reset rates below 15~Hz.  However, the mean ($\mu$) of the pulser demonstrated three clear transition regions an example of which has been labeled `I', `II', and `III' in Figure~\ref{fig:PPC2AllPlotCompare}: from reset rates 3$\to$7~Hz (region I labeled in the plot), the mean increased, transitioned to lower values for reset rates 7$\to$11~HZ (region II), and then returned for rates above 11~Hz (region III).  The absolute cause of this behavior was not determined, but it is possibly due to a modification of operating parameters of the front-end crystal electronics (e.g.~the FET) by the increasing leakage current.  
 			
 				\begin{figure}
 					\centering
@@ -279,9 +279,25 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 	Reset pulse waveforms had distinct qualities (positive clipping whereas energy pulses were negative-going) which allowed the waveforms to be removed online from the data stream while retaining the timing information of the event.  The offline timing cut introduced a veto window of 1~ms following a reset event.  Given the average reset rate ($\sim$10~Hz), this introduced a $\sim$1\% correction to the live-time.  
 
 			\subsubsection{Baseline cut}	
-	The baselines of the traces were monitored on an event-by-event basis by calculating a 1st-degree polynomial fit to the first 3.5~$\mu$s of each preamp trace.  From this information, an average baseline was calculated for each run to generate a cut based upon significant deviations from these average values.  In a stable system, the baseline will be gaussian distributed around a central value according to the magnitude of the noise.  The integrated-counts-per-run in particular energy windows (0.6-10~keV and 10-70~keV) were monitored as well to observe deviations from expectation assuming poisson statistics.  This second cut relied upon the fact that spurious events from increases in environmental noise and microphonics arrive in bursts, see e.g.~\cite{Morales1992410}).  
+	The baselines of the traces were monitored on an event-by-event basis by calculating a 1st-degree polynomial fit to the first 3.5~$\mu$s of each preamp trace.  From this information, an average baseline was calculated for each run to generate a cut based upon significant deviations from these average values.  In a stable system, the baseline will be gaussian distributed around a central value according to the magnitude of the noise.  The integrated-counts-per-run in particular energy windows (0.6-10~keV and 10-70~keV) were monitored as well to observe deviations from expectation assuming Poisson statistics.  This second cut relied upon the fact that spurious events from increases in environmental noise and microphonics arrive in bursts, see e.g.~\cite{Morales1992410}).  
 	
-	The average baseline per run shifted with a systematic correlation with a shift in the measured inhibit rate, shown in Figure~\ref{fig:PPC2AllPlotCompare}.  As the leakage current increased, the inhibit rate went up and the measured baseline dropped due to additional charge collection on the AC-coupling capacitor.  In general, this downward shift in baseline could affect the dynamic (energy) range of a digitizer channel because it would allow fewer ADC values for the (negative-going) pulses before clipping.  To generate a cut on this value, the values of the baseline for each event with an energy greater than 0.4~keV during a run were histogrammed and fit to a gaussian.  (The integrated counts in this energy range for an hour-long run was $\sim$4000.)  A cut was then generated based upon the results of this fit: rejecting events outside the range $\mu\pm3\sigma$ for a 99.7\% acceptance.  An example of one of these fits is shown in~\ref{fig:PPC2BaselineCuts}.  During LN fills, the baseline would return to its maximum value making a cut based upon the average baseline value impossible.  Runs during these transition times were cut from the data set.  
+	The average baseline per run shifted in a way systematically correlated
+with a shift in the measured inhibit rate, shown in
+Figure~\ref{fig:PPC2AllPlotCompare}.  As the leakage current increased, the
+inhibit rate went up and the measured baseline dropped due to additional charge
+collection on the capacitors used for AC coupling the signal to the digitizer.  
+In general, this downward shift in
+baseline could affect the dynamic (energy) range of a digitizer channel because
+it would allow fewer ADC values for the (negative-going) pulses before
+clipping.  To generate a cut on this value, the values of the baseline for each
+event with an energy greater than 0.4~keV during a run were histogrammed and
+fit to a gaussian.  (The integrated counts in this energy range for an
+hour-long run was $\sim$4000.)  A cut was then generated based upon the results
+of this fit: rejecting events outside the range $\mu\pm3\sigma$ for a 99.7\%
+acceptance.  An example of one of these fits is shown
+in Figure~\ref{fig:PPC2BaselineCuts}.  During LN fills, the baseline would return to
+its maximum value making a cut based upon the average baseline value
+impossible.  Runs during these transition times were cut from the data set.  
 		
 			%%%%\begin{figure}
 			%%%%	\centering
@@ -517,7 +533,7 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 					a & 11 \leq E \leq 15~\textrm{(keV)}\\
 				\end{array} \right.			
 			\end{equation}
-with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), and $\tau_{1/2}$ (\gersixeight~half-life).  Fit results of this are summarized in Table~\ref{tab:Ge68FitResults} and plotted in Figure~\ref{fig:GE68Production}.  At the beginning of the counting runs, the detector had already been underground 212~days, meaning that the estimated decay rate, $b$, must be multiplied by the value $e^{(\log(2)~212 d/270.95 d)} = 1.72$ as well as  the energy window (0.73~keV) to get the counts-per-day-per-kilogram the day the detector was brought underground.  It was necessary to estimate the acceptance of the energy window using parameters ($\mu$ and $\sigma$) found from a maximum likelihood fit to the data (see, e.g.~Section~\ref{sec:DeploymentPPC2SoudanAnalysisEnergySpectra}); this acceptance was measured as $0.99797\pm0.001$.  Finally, since only the K-capture line was used in this estimation, the percentage of decays into this channel must be taken into account (see Table~\ref{tab:GE68decayinfo}).  The final result was then determined to be $53.3\pm4.3$~counts/kg/day which can also be interpreted as the activation rate for \gersixeight.  A comparison of this value to previous results is given in Table~\ref{tab:Ge68PreviousResults}.  It should be noted that this detector was fabricated in Europe and then shipped via airplane to Richland, WA, USA so that additional activation would have occurred during transportation.  Therefore, the calculated activation rate of $53.3\pm4.3$~\gersixeight~atoms/kg/day should be considered conservative since the detector would not have reached equilibrium from its original shipment date until its deployment underground ($\sim1$~year).
+with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), and $\tau_{1/2}$ (\gersixeight~half-life).  Fit results of this are summarized in Table~\ref{tab:Ge68FitResults} and plotted in Figure~\ref{fig:GE68Production}.  At the beginning of the counting runs, the detector had already been underground 212~days, meaning that the estimated decay rate, $b$, must be multiplied by the value $e^{(\log(2)~212 d/270.95 d)} = 1.72$ as well as  the energy window (0.73~keV) to get the counts-per-day-per-kilogram the day the detector was brought underground.  It was necessary to estimate the acceptance of the energy window using parameters ($\mu$ and $\sigma$) found from a maximum likelihood fit to the data (see, e.g.~Section~\ref{sec:DeploymentPPC2SoudanAnalysisEnergySpectra}); this acceptance was measured as $0.99797\pm0.001$.  Finally, since only the K-capture line was used in this estimation, the percentage of decays into this channel must be taken into account (see Table~\ref{tab:GE68decayinfo}).  The final result was then determined to be $53.3\pm4.3$~decays/kg/day which can also be interpreted as the activation rate for \gersixeight, assuming the detector was at saturation at the surface.  A comparison of this value to previous results is given in Table~\ref{tab:Ge68PreviousResults}.  It should be noted that this detector was fabricated in Europe and then shipped via airplane to Richland, WA, USA so that additional activation would have occurred during transportation.  Therefore, the calculated activation rate of $53.3\pm4.3$~\gersixeight~atoms/kg/day should be considered conservative since the detector would not have reached equilibrium from its original shipment date until its deployment underground ($\sim1$~year).
 
        			\begin{table}
 				\centering
@@ -553,6 +569,7 @@ with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), an
 					\toprule
 					Rate (\gersixeight~atoms/kg/day) & Reference \\
 					\midrule
+					$53.3\pm4.3$ & This calculation\\
 					29.6 (Calculation) & \cite{Avi92}\\
 					$30\pm7$ (Experiment) & \cite{Avi92}\\
 					58.4 & \cite{KlapdorKleingrothaus2002149}\\
@@ -562,7 +579,7 @@ with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), an
 					41.3 & \cite{Mei2009417}\\
 					\bottomrule
 				\end{tabular}
-				\caption[Summary of previous estimates of \gersixeight~surface activation rates in natural Ge.]
+				\caption[Summary of estimates of \gersixeight~surface activation rates in natural Ge.]
 				{A summary of previous estimates of \gersixeight~surface activation rates in natural Ge, 
 				adapted from Table~1 in~\cite{Elliott:2009cw}.}
 				\label{tab:Ge68PreviousResults}

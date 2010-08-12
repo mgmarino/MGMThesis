@@ -5,7 +5,7 @@
 	
 %Also, making some reasonable assumptions about Majorana, we make some estimates as to the sensitivity of the Majorana experiment to WIMP dark matter and axion dark matter (via the axioelectric effect).  
 
-	The high resolution and low threshold of p-type point-contact detectors makes them sensitive to other dark matter signals in addition to those from WIMPs.  This chapter explores this, deriving limits on the inelastic scattering of pseudoscalar dark matter candidates off of electrons.  The \MJ~\minmod~will deploy an array of \ppc~detectors with a significantly lower background ($\gtrsim10^{3}$ reduction in count rate) than seen in the data set presented in this thesis.  The latter half of the chapter estimates the sensitivity the \MJ~experiment to dark matter candidates making some conservative assumptions on the shape and magnitude of the expected background.  
+	The high resolution and low threshold of p-type point-contact detectors makes them sensitive to other dark matter signals in addition to those from WIMPs.  This chapter explores this, deriving limits on the inelastic scattering of pseudoscalar dark matter candidates off electrons.  The \MJ~\minmod~will deploy an array of \ppc~detectors with a significantly lower background ($\gtrsim10^{3}$ reduction in count rate) than seen in the data set presented in this thesis.  The latter half of the chapter estimates the sensitivity the \MJ~experiment to dark matter candidates making some conservative assumptions on the shape and magnitude of the expected background.  
 		
 	\section{Other dark matter candidates: keV-scale bosons}
 	\label{sec:CalcLimitsOnHeavyAxions}		
@@ -24,7 +24,7 @@
 			\label{eqn:AxioelectricRate}
 		\end{equation}
 
-where $A$ is the atomic mass, $m_{a}$ is the mass of the axion in keV, $\sigma_{photo}$ is the measured photoelectric cross section in barns, and $\gaa$ is the dimensionless coupling constant related to the axion decay constant $f_{a}$ (see Section~\ref{sec:AxionsAsDM}) by $\gaa \equiv 2 m_{e}/ f_{a}$ ($m_{e}$ is the mass of the electron).  In the derivation of this result, the value of the density of dark matter was used: $\rho_{D}$ = 0.3~GeV~cm$^{-3}$.  Also, Pospelov et al.~noted that this rate should not exhibit a significant annual modulation from the earth's orbital velocity since the interaction does not include strong velocity dependence.  Therefore no time dependence was included in the equation.  The rate calculated for a germanium detector ($A=72.96$) for an assumed coupling constant value, $\gaa = 10^{-11}$, is shown in Figure~\ref{fig:HeavyAxionSignalRate}.  The rate calculation used well-measured photoelectric cross sections obtained from the NIST FFAST database located online~\cite{chantler:597}.  The sharp feature in the plot around $m_{a}\sim1.3$~keV arises from the L-line resonance at this energy.  Other sharp features similarly relate to the energy levels of electrons in a germanium atom, but the K-line resonance is notably absent due to the limited range of the plot ($<$10~keV).  
+where $A$ is the atomic mass, $m_{a}$ is the mass of the axion in keV, $\sigma_{photo}$ is the measured photoelectric cross section in barns, and $\gaa$ is the dimensionless coupling constant related to the axion decay constant $f_{a}$ (see Section~\ref{sec:AxionsAsDM}) by $\gaa \equiv 2 m_{e}/ f_{a}$ ($m_{e}$ is the mass of the electron).  In the derivation of this result, the value of the density of dark matter was used: $\rho_{D}$ = 0.3~GeV~cm$^{-3}$.  Also, Pospelov et al.~noted that this rate should not exhibit a significant annual modulation from the earth's orbital velocity since the interaction does not include strong velocity dependence.  Therefore no time dependence was included in the equation.  The rate calculated for a germanium detector ($A=72.96$) for an assumed coupling constant value, $\gaa = 10^{-11}$, is shown in Figure~\ref{fig:HeavyAxionSignalRate}.  The rate calculation used well-measured photoelectric cross sections obtained from the NIST FFAST database located online~\cite{chantler:597}.  The sharp feature in the plot around $m_{a}\sim1.3$~keV arises from the L-line edge at this energy.  Other sharp features similarly relate to the energy levels of electrons in a germanium atom, but the K-line edge is notably absent due to the limited range of the plot ($<$10~keV).  
 
 
 
@@ -32,7 +32,7 @@ where $A$ is the atomic mass, $m_{a}$ is the mass of the axion in keV, $\sigma_{
 			\centering
 			\includegraphics[width=0.9\textwidth]{GeRate}
 			\caption[Axioelectric interaction rate in germanium]{Non-relativistic axion axioelectric 
-			interaction rate in germanium.  The photoelectric cross section for germanium was obtain
+			interaction rate in germanium.  The photoelectric cross section for germanium was obtained
 			from the NIST database~\cite{chantler:597}.}
 			\label{fig:HeavyAxionSignalRate}
 		\end{figure}
@@ -66,19 +66,39 @@ where $A$ is the atomic mass, $m_{a}$ is the mass of the axion in keV, $\sigma_{
 			\label{fig:ExampleHeavyAxionFit}
 		\end{figure}
 			
-	The 90\% CL excluded rate in counts/kg/day, $R_{axion}(m_{a})$, was determined from $N_{axion}$
-and from this value the upper limit of $\gaa$ could be determined.  The exclusion calculated from this result is presented in Figure~\ref{fig:HeavyAxionLimits} 
-along with a comparison to other results, including previous results of the CoGeNT collaboration~\cite{Aalseth:2008aa}, the CDMS 
-collaboration~\cite{Ahmed2009}, and an acceptance region from the DAMA collaboration~\cite{Bernabei:2005ca}.  As noted in both 
-references~\cite{Collar:2009sp,Pospelov:2008jk}, the limit calculation performed in~\cite{Bernabei:2005ca} did not correctly treat the 
-leading term in the Hamiltonian, producing instead a reduced rate around 3 orders of magnitude lower for a given $\gaa$.  An estimation 
-of the corrected result from DAMA as outlined in~\cite{Collar:2009sp} appears in Figure~\ref{fig:HeavyAxionLimits}.  A comparison to 
-limits derived from both solar neutrinos~\cite{Gondolo09} and globular clusters~\cite{Raffelt95} is included as well.  
+	The 90\% CL excluded rate in counts/kg/day, $R_{axion}(m_{a})$, was
+determined from $N_{axion}$ and from this value the upper limit of $\gaa$ could
+be determined.  The exclusion calculated from this result is presented in
+Figure~\ref{fig:HeavyAxionLimits} along with a comparison to other results,
+including previous results of the CoGeNT collaboration~\cite{Aalseth:2008aa},
+the CDMS collaboration~\cite{Ahmed2009}, and an acceptance region from the DAMA
+collaboration~\cite{Bernabei:2005ca}.  As noted in both
+references~\cite{Collar:2009sp,Pospelov:2008jk}, the limit calculation
+performed in~\cite{Bernabei:2005ca} did not correctly treat the leading term in
+the Hamiltonian, producing instead a reduced rate around 3 orders of magnitude
+lower for a given $\gaa$.  An estimation of the corrected result from DAMA as
+outlined in~\cite{Collar:2009sp} appears in Figure~\ref{fig:HeavyAxionLimits}.
+A comparison to limits derived from both solar neutrinos~\cite{Gondolo09} and
+globular clusters~\cite{Raffelt95} is included as well.  
 
-The strongest limits obtained from astronomical observation arise from determining how much `hidden energy' may be carried off by axions from the solar 
-core (in the case of solar neutrinos) and similarly from the cooling observed in the evolution of red-giant stars in globular clusters.  All 
-direct measurements provide stronger limits than those from solar neutrinos, but the mass-independent limits from globular-cluster 
-stars still exceed all others.  Supernovae generally provide the best constraints on axions and other exotic particles, but their high temperatures ($O$(10~MeV)) mean that axion-electron interactions are suppressed according to $m_{e}^{2}/T^{2}$~\cite{Pospelov:2008jk}.  Other limits on pseudoscalars from cosmological observations are possible, including searches for decays to photons and estimates of axion abundance from the big bang.  These limits are discussed with respect to the sensitivity of the \MJ~\minmod~in Section~\ref{sec:MJSensitivityToAxions}.  Even though the presented direct-detection limits are already well within the space disallowed by astronomical constraints, it is still important to explore these parameter regions since limits from both cosmological observation and experiment can depend strongly on choices of models and their parameters.
+The strongest limits obtained from astronomical observation arise from
+determining how much `hidden energy' may be carried off by axions from the
+solar core (in the case of solar neutrinos) and similarly from the cooling
+observed in the evolution of red-giant stars in globular clusters.  All direct
+measurements provide stronger limits than those from solar neutrinos, but the
+mass-independent limits from globular-cluster stars still surpass all others.
+Supernovae generally provide the best constraints on axions and other exotic
+particles, but at their high temperatures ($O$(10~MeV)) axion-electron
+interactions are additionally suppressed according to
+$m_{e}^{2}/T^{2}$~\cite{Pospelov:2008jk}.  Other limits on pseudoscalars from
+cosmological observations are possible, including searches for decays to
+photons and estimates of axion abundance from the big bang.  These limits are
+discussed with respect to the sensitivity of the \MJ~\minmod~in
+Section~\ref{sec:MJSensitivityToAxions}.  Even though the presented
+direct-detection limits are already well within the space disallowed by
+astronomical constraints, it is still important to explore these parameter
+regions since limits from both cosmological observation and experiment can
+depend strongly on choices of models and their parameters.
 			
 	Pospelov et al.~noted the axioelectric process should be to first order invariant to the velocity of the incoming dark matter particle and so would not generate an appreciable annual modulation.  This would limit any interpretation of the DAMA annual modulation as due to an axioelectric interaction and would therefore disallow the DAMA acceptance region in Figure~\ref{fig:HeavyAxionLimits}.  Collar et al.~point out the possibility of recovering the annual modulation effect by considering the axioelectric interaction rate as not arising from changes in incident dark matter velocity but rather from the annual variation of the number density of the particles~\cite{Collar:2009sp}. 
 			
@@ -103,6 +123,8 @@ stars still exceed all others.  Supernovae generally provide the best constraint
 	\section{Sensitivity of the \MJ~\minmod~to dark matter signals}
 	\label{sec:MJSensitivity}
 	
+		\subsection{Introduction}
+		\label{sec:MJSensitivityIntro}
 	Since a framework was established to determine exclusion limits for low-mass WIMPs and for the axioelectric coupling constant, it is simple to apply this same framework to determine the sensitivities of the \MJ~\minmod~to these two dark matter signals.  The ultra-clean composition of the \minmod~should provide an excellent detector for searching for dark matter without relying upon significant background reduction cuts (e.g.~discrimination between nuclear and electron recoils).  Calculating the sensitivity of the experiment involves making some assumptions of the background at low energies and of the makeup of the experiment.  A discussion about the estimation of the background follows in Section~\ref{sec:MJLowEnergyBackgroundModel}.  The general prescription for calculating the sensitivity is outlined:
 	
 		\begin{itemize}
@@ -120,7 +142,7 @@ The generated ensemble of limits for a particular signal would create a distribu
 		
 The estimation of background generally comes from verified simulations and from extrapolations from previous experiments.  In this work, the background is estimated by assuming it arises from two main sources: (1) a continuum from higher energy processes, and (2) counts from the beta decay of cosmogenically-produced tritium in the detector.  A simulation to estimate (1) is wrought with challenges since a large number of contributions can affect the result.  However, it is possible to use previous results from low-background germanium-based experiments to produce an estimate of this background.  The IGEX experiment measured a flat background rate of $\sim0.1$~counts/keV/kg/day in this low energy region ($4\to10$~keV)~\cite{Ira01}.    The \MJ~\minmod~plans to reduce background above 200~keV by a factor of 100~\cite{Gaitskell:2003zr} and so it is reasonable to expect the flat background at low energies will follow this same reduction to be roughly 0.001~counts/keV/kg/day.  This background was assumed stable in time as well, so that it was flat in both time and energy.  Estimating the flat background amplitude is not as critical assuming that the low-energy background is dominated by tritium.  
 
-The estimate of a background to tritium involves understanding the activation rate of tritium for germanium at the surface of the earth.  This activation rate has been estimated to be $\lesssim200$~\hthree-atoms-per-kilogram-of-Ge-per-day for natural germanium at the surface of the earth, and almost a factor of 2 less for germanium with enriched \gersevensix~content~\cite{Avi92}.  Other references have suggested that this rate is roughly an order of magnitude too high~\cite{Col92,Mei2009417}; we conservatively use the enhanced rate, but assuming a smaller activation would correspondingly lengthen an allowed exposure time.  The exposure is determined by the time of manufacture beginning with the pulling of the germanium crystal and ending when the crystal is brought underground.  For example, if the entire process from crystal pulling to detector development and then final deployment (or storage) underground takes 15~days, then this integrated time is the the total tritium activation period for the detector.  For a kilogram natural-germanium detector created over such a time scale, we would expect there to be $15\times200\sim3000$ atoms of \hthree~within the detector.  Given the slow time of decay of \hthree~(12.32~years), it is critical to minimize the time above ground and certainly necessary to avoid any time at high altitudes, e.g.~storage or transport via airplane.  In this simple background model, two optimistic exposure times are chosen -- 15 and 30~days -- and it is assumed that the detectors begin taking data immediately after arriving underground.  In practice, the assumption of immediate detector commissioning is justified due to the long decay time of tritium: the detector will not significantly cool down during a period of time underground much shorter than the tritium lifetime.  The average rates due to these exposures once underground are then roughly 0.03 and 0.06~counts/keV/kg/day for 15 and 30~days, respectively, more than an order of magnitude greater than the assumed flat-background contribution.  
+The estimate of a background to tritium involves understanding the activation rate of tritium for germanium at the surface of the earth.  This activation rate has been estimated to be $\lesssim200$~\hthree-atoms-per-kilogram-of-Ge-per-day for natural germanium at the surface of the earth, and almost a factor of 2 less for germanium with enriched \gersevensix~content~\cite{Avi92}.  Other references have suggested that this rate is roughly an order of magnitude too high~\cite{Col92,Mei2009417}; we conservatively use the enhanced rate, but assuming a smaller activation would correspondingly lengthen an allowed exposure time.  The exposure is determined by the time of manufacture beginning with the pulling of the germanium crystal and ending when the crystal is brought underground.  For example, if the entire process from crystal pulling to detector development and then final deployment (or storage) underground takes 15~days, then this integrated time is the total tritium activation period for the detector.  For a kilogram natural-germanium detector created over such a time scale, we would expect there to be $15\times200\sim3000$ atoms of \hthree~within the detector.  Given the slow time of decay of \hthree~(12.32~year half-life), it is critical to minimize the time above ground and certainly necessary to avoid any time at high altitudes, e.g.~storage or transport via airplane.  In this simple background model, two optimistic exposure times are chosen -- 15 and 30~days -- and it is assumed that the detectors begin taking data immediately after arriving underground.  In practice, the assumption of immediate detector commissioning is justified due to the long decay time of tritium: the detector will not significantly cool down during a period of time underground much shorter than the tritium lifetime.  The average rates due to these exposures once underground are then roughly 0.03 and 0.06~counts/keV/kg/day for 15 and 30~days, respectively, more than an order of magnitude greater than the assumed flat-background contribution.  
 
 The pdf of the tritium decay function was constructed in both time and energy using the corrected kinematic equation:
 		\begin{equation}
@@ -187,7 +209,8 @@ and $\tau_{^3\text{H}} = 12.32 / \log(2)$~years.
 				\caption[\MJ~\minmod~WIMP sensitivity fit example.]{A sensitivity fit example with WIMP  
 				signal at $M_{W}=10$~GeV, with $\signuc$ excluded at 90\% CL with value
 				 $8.6\times10^{-9}$~pb.  Components of the fit are broken out including WIMP 
-				 signal (blue dashed) and flat background (red dotted).  The beta spectrum from \hthree~dominates the fit.}
+				 signal (blue dashed) and flat background (red dotted).  The beta spectrum from \hthree~dominates the fit.
+				Multiple fits like this were performed to estimate sensitivity (see Section~\ref{sec:MJSensitivityIntro}).}
 				\label{fig:MJSensitivityToWIMPExample}
 			\end{figure}
 	
@@ -231,11 +254,12 @@ and $\tau_{^3\text{H}} = 12.32 / \log(2)$~years.
 				with axioelectric signal at $m_{a}=5$~keV, with $\gaa$ excluded at 90\% CL with
 				value
 				 $4.4\times10^{-11}$~pb.  Components of the fit are broken out including axioelectric 
-				 signal (blue dashed) and flat background (red dotted).  }
+				 signal (blue dashed) and flat background (red dotted).  
+				Multiple fits like this were performed to estimate sensitivity (see Section~\ref{sec:MJSensitivityIntro}).}
 				\label{fig:MJSensitivityToAxionExample}
 			\end{figure}
 	
-	The sensitivity for the \MJ~\minmod~to the axioelectric effect is presented in Figure~\ref{fig:MJSensitivityToAxion}.  All of the exclusion plots have similar characteristics, including a sharp drop at $m_{a}=1.3$~keV and a rise at low $m_{a}$.  The former arises from the corresponding feature in the rate (Figure~\ref{fig:HeavyAxionSignalRate}) due to the L-capture line resonance.  The latter comes as the signal moves below threshold and the `leakage' of signal from lower energies pushes above threshold due to the finite energy resolution of the detector.  Larger tritium exposure time softens the sensitivity, but not significantly because $\gaa$ appears squared in the rate equation (Equation~\ref{eqn:AxioelectricRate}).  Also, as expected at higher $m_{a}$ the sensitivity has no dependence on the threshold.
+	The sensitivity for the \MJ~\minmod~to the axioelectric effect is presented in Figure~\ref{fig:MJSensitivityToAxion}.  All of the exclusion plots have similar characteristics, including a sharp drop at $m_{a}=1.3$~keV and a rise at low $m_{a}$.  The former arises from the corresponding feature in the rate (Figure~\ref{fig:HeavyAxionSignalRate}) due to the L-capture line edge.  The latter comes as the signal moves below threshold and the `leakage' of signal from lower energies pushes above threshold due to the finite energy resolution of the detector.  Larger tritium exposure time softens the sensitivity, but not significantly because $\gaa$ appears squared in the rate equation (Equation~\ref{eqn:AxioelectricRate}).  Also, as expected at higher $m_{a}$ the sensitivity has no dependence on the threshold.
 	
 			\begin{figure}
 				\centering
@@ -296,6 +320,24 @@ where $\Omega_{a}$ is estimated as $\Omega_{DM}$ so that $\Omega_a/\Omega_{\text
 	\section{Conclusions and discussion}
 	\label{sec:OtherLowEnergyConclusions}	
 	
-	The results of this chapter indicate the usefulness of \ppc~detectors for putting limits on dark matter, both for standard WIMP interactions as well as for more exotic interactions such as those from pseudoscalars.  The \MJ~\minmod~will play an important role in the dark matter field especially since it will provide an experimental platform for searching for dark matter particles other than WIMPs and should be competitive with limits from astronomical observation.  Of course, this chapter was unable to fully treat the rich landscape of available dark matter parameter space and some obvious candidates of study remain.  A spin-dependent WIMP interaction could be studied using the \minmod~since there exists one species of Ge with a non-zero nuclear spin:(\gerseventhree, $J=9/2^{+}$).  Since the relative content of this isotope in the detectors will be reduced by \gersevensix~enrichment, a comparison with detectors with natural \gerseventhree~abundance (7.7\%) could provide an opportunity for systematic studies.  The size of the detector array should also make it an excellent candidate for searching for a generic annual modulation signature of interactions with velocity dependence (e.g.~WIMP nuclear recoils).  As well, other more exotic hypothesis might already exist for which \MJ~could generate constraints, but those theories and analogous analyses of \MJ's sensitivity are left for the next thesis.
+	The results of this chapter indicate the usefulness of \ppc~detectors for
+putting limits on dark matter, both for standard WIMP interactions as well as
+for more exotic interactions such as those from pseudoscalars.  The
+\MJ~\minmod~will play an important role in the dark matter field especially
+since it will provide an experimental platform for searching for dark matter
+particles other than WIMPs and should be competitive with limits from
+astronomical observation.  Of course, this chapter was unable to fully treat
+the rich landscape of available dark matter parameter space and some obvious
+candidates of study remain.  A spin-dependent WIMP interaction could be studied
+using the \minmod~since there exists one species of Ge with a non-zero nuclear
+spin:(\gerseventhree, $J=9/2^{+}$).  Since the relative content of this isotope
+in the detectors will be reduced by \gersevensix~enrichment, a comparison with
+detectors with natural \gerseventhree~abundance (7.7\%) could provide an
+opportunity for systematic studies.  The size of the detector array should also
+make it an excellent candidate for searching for a generic annual modulation
+signature of interactions with velocity dependence (e.g.~WIMP nuclear recoils).
+As well, other more exotic hypotheses might already exist for which \MJ~could
+generate constraints, but those theories and analogous analyses of \MJ's
+sensitivity are left for the next thesis.
 	
 %This will be one of the more final discussions, but I can add to it later.  For now, focus on how these detectors can access different styles of dark matter because of their excellent energy resolution and threshold.  
