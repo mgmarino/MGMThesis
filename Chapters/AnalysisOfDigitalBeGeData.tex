@@ -488,7 +488,6 @@ The exponential background component exhibits the opposite behavior from the fla
 
 It is possible that the same mechanism which generates the partial charge collection in the `plateau' discussed in Section~\ref{sec:BeGeSpecFit} is related to or the same as that which gives rise to slow-rise-time pulses.  If this were true, we would expect the rise-time cut to significantly reduce or completely remove the contributions to the background from the error function.  The rise-time cut leaves a remaining contribution in the plateau, but this could also be due to deviations between the fit PDF and the data.  One can clearly see this in Figure~\ref{fig:RTLowGainCompResults} comparing two fits to data with a rise-time cut of 95\% and another set with only microphonics cuts.  The significant deviation from the best-fit line of data in the `plateau' region of the spectrum indicates the presence of unaccounted-for backgrounds, in particular possibly other electron-capture cosmogenic species\footnote{Contributions from the continuum of higher-energy processes should already be taken into account by the flat (non-error function) background.}.  The presence of this background does pull the contribution from the error function up.  
 
-
 						\begin{sidewaysfigure}
 							\centering
 							\subfigure[X-rays]{
@@ -555,7 +554,71 @@ It is possible that the same mechanism which generates the partial charge collec
 							\label{tab:RTLowGainResults}
 						\end{sidewaystable}						
 
-					\paragraph{Low-energy results}
+Other possible sources for the additional background in the flat component have been investigated, in particular:
+						\begin{itemize} 
+							\item Contributions from the Lorentzian tails from the finite widths of the K-, L-, 
+									and M-vacancy states
+							\item Continuum from internal bremsstrahlung electron capture (IBEC)
+							\item Overlap/exchange corrections due to the inexact overlap between the initial and final atomic									wavefunctions.
+						\end{itemize} 
+The expected shape of the energy spectrum from the electron decay of a species internal to the detector is given by~\cite{Gatti08}:
+						\begin{equation}
+							\frac{dW}{dE} = M^2(Q_{EC}-E)^2 \sum_H{\psi_H^2 \frac{\Gamma_H}{(E-E_H)^2 + \Gamma_H^2/4}}
+						\end{equation}
+where $M$ is the transition matrix element, $Q_{EC}$ is the total available decay
+energy, $E$ is the summed energy deposited in the detector, $\psi_H$ is the
+overlap of the wavefunction of orbital $H$ at the nucleus, $E_H$ is the binding
+energy of state $H$, and $\Gamma_H$ the width of the state.  Relevant values for \gersixeight~are given
+in Tables~\ref{tab:GE68decayinfo} and~\ref{tab:GE68DecayWidths}.  Relative intensity spectra are shown
+in Figure~\ref{fig:RelIntensityGe68} for both the raw calculation and for it folded with the resolution function (Gaussian
+with $\sigma$ defined as in Equation~\ref{eqn:SigmaEqn}).  It is clear that the Lorentzian tails contribute very little
+between the K- and L-capture lines. 
+
+  	  	  	  	  		\begin{table}
+	   	 	         		\centering
+	   	 	         		\begin{tabular}{ l c r }
+	   	 	         			\toprule
+	   	 	         			\gersixeight~decays & Decay widths (eV) & Reference \\
+	   	 	         			\midrule
+	   	 	         			     K-capture & 2 &  \cite{Chen80}\\
+	   	 	         			     L-capture & 9 &  \cite{Chen81}\\
+	   	 	         			     M-capture & 5 &  \cite{McG72}\\
+	   	 	         			\bottomrule
+	   	 	         		\end{tabular}
+	   	 	         		\caption[Decay widths for K-, L-, and M-vacancy states of \gersixeight]
+	   	 	         		{Decay widths for K-, L-, and M-vacancy states of \gersixeight.  If the tabulation in the
+							references did not explicitly include the Ga atomic state, the value of the width
+							was estimated using adjacent atoms.}
+	   	 	         		\label{tab:GE68DecayWidths}
+	   	 	         	\end{table}	
+						\begin{figure}
+							\centering
+							\includegraphics[width=0.7\textwidth]{RelativeCountRateGe68}
+							\caption[Calculated relative intensity spectrum for \gersixeight.]
+							{Calculated relative intensity spectrum for \gersixeight~for the raw calculation (dashed) and
+							for the raw calculation folded with the detector resolution (solid) 
+							using Equation~\ref{eqn:SigmaEqn}.}
+							\label{fig:RelIntensityGe68}
+						\end{figure}			
+
+IBEC is a second-order process by which the final state of the decay includes one or more radiative photons.  
+These photons share
+energy with the emitted neutrino and so exhibit a continuous spectrum up to $Q_{EC} - E_H$, where $E_H$ is the binding energy
+of the vacant orbital and $Q_{EC}$ is the total energy available to the electron-capture decay.  The relative intensity of this process  
+has been found to be $\frac{\alpha}{12 \pi} (\frac{Q_{EC} - E_H}{m_e c^2})^2$ IBEC-decays-per-K-capture-decays~\cite{Morr40}, or
+$\sim10^{-5}$ for \gersixeight.  The energy from these emitted photons
+would add to the energy released by the filling of the vacant orbital, yielding a continuum to the high-energy
+side of the K-, L-, and M-capture lines (see e.g.~Figure 17 in reference~\cite{DeRuj81}).  If this process were
+to contribute significantly, a step up in the spectrum as one traverses the K-capture line from low to high energy
+should be observed; this is opposite to what is seen.   
+		
+Corrections arising from the incomplete overlap of the initial and final atomic
+wavefunctions have been calculated in the literature, see e.g.~\cite{Bah63}.
+These calculations largely only affect the decay spectrum by adjusting the relative
+intensities of the K-, L-, and M-decays by a few percent.  Because of this, it is not expected that these
+corrections should lead to a significant contribution in the energy region between the L- and K-capture lines. 
+
+					\paragraph{High-gain channel results}
 
 Results for the high-gain channel are shown in
 Figure~\ref{fig:RTSimHighGainResults}. The conclusions for this channel set are
