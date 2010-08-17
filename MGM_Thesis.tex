@@ -208,7 +208,10 @@
 %
 % ----- acknowledgments
 %
-\acknowledgments{% \vskip2pc
+\acknowledgments{
+
+\include{MGM_Acknowledge}
+% \vskip2pc
   % {\narrower\noindent
   % \par}
 }
@@ -216,8 +219,9 @@
 %
 % ----- dedication
 %
-\dedication{\begin{center}40\end{center}}
-
+\dedication{
+\begin{center}To my family\end{center}
+}
 %
 % end of the preliminary pages
  
@@ -287,9 +291,7 @@
 \input{Appendices/DigitizerHardwareDevelopment} 
 \clearpage
  
-\vita{
-Soon to come.
-}
+\include{MGM_Vita}
 
 
 \end{document}
