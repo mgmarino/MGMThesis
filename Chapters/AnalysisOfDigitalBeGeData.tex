@@ -685,6 +685,7 @@ This is not unexpected, since as the signal-to-noise of the pulse reduces de-noi
 							\label{tab:RTHighGainResults}
 						\end{sidewaystable}
 
+		
 		\subsubsection{Conclusions and discussion}
 		\label{sec:RTBeGeConclusions}
 		
@@ -696,6 +697,32 @@ Whereas it is likely that a component of these slow pulses is arising from charg
 
 Whatever the origin of these slow-pulse events, it is clear that they can produce a background to low-energy signals.  If the majority of these slow pulses arise from energy deposition near the outer surface, a cut on rise-time would effectively generate a cut on the fiducial volume and mass of the detector.  Understanding the active fiducial volume of the detector is critical for experiments sensitive to mass exposure times, such as those searching for $\nonubb$ or dark matter.  For double-beta decay, even though $\qval$ is around 2~MeV, the decay is internal to the detector and energy is deposited by two electrons summing to $\qval$.  The range of electrons at this energy is on the order of 1~mm, so it is expected that poor charge collection in an outer layer of the detector could still have an effect on a fiducial mass for $\nonubb$ results.  
 
+
+	\subsection{Behavior of energy spectrum with cuts applied}
+	\label{sec:RTBeGeBehaviorOfCuts}
+It is useful to look at the behavior of the cuts as they are subsequently applied to check for deviations or irregularities (e.g.~strong peaks or valleys) that may be indicative
+of a problem with the analysis.  The results of this are shown in Figure~\ref{fig:BehaviorOfCuts} where in all cases the base or reference data set was with LN fill events and electronic noise events (see Section~\ref{sec:BeGeElecCuts}) removed.
+					Figure~\ref{fig:BehaviorOfCutsAccepted} shows the energy spectrum as subsequent cuts are applied.  A complementary plot is provided in Figure~\ref{fig:BehaviorOfCutEvents} which shows the energy spectrum of events \emph{removed} by the microphonics cuts and 95\% rise-time cuts.  It is interesting to note   
+that the number of removed events diminishes as the energy moves to threshold (0.5~keV).  It is expected that this arises from the reduced resolution of the rise-time calculation 
+as the signal-to-noise ratio dimishes.
+
+				\begin{figure}
+					\centering
+					\def\figwidth{0.7\textwidth}
+					\subfigure[Energy spectrum as subsequent cuts are applied]{
+						\includegraphics[width=\figwidth]{CutComparison}
+						\label{fig:BehaviorOfCutsAccepted}
+					}
+					\subfigure[Energy spectrum of events \emph{removed} by microphonics and 95\% rise-time cuts.  The overlap of these two is also included. ]{
+						\includegraphics[width=\figwidth]{CutComparisonDiff}
+						\label{fig:BehaviorOfCutEvents}						
+					}					
+					\caption[Behavior of analysis cuts on the high-gain energy spectrum.]
+					{Behavior of analysis cuts on the high-gain energy spectrum.  In all cases, the base data set was with LN fill events and electronic noise events (see 
+					Section~\ref{sec:BeGeElecCuts}) applied.  Events below 0.5~keV were not used to extract signal, but this energy region is still shown.}
+					\label{fig:BehaviorOfCuts}
+				\end{figure}			
+		
 
 	\subsection{Extracting or looking for signals in cut data}
 	\label{sec:BeGeLowEnergyFeatures}
