@@ -1,9 +1,9 @@
-\chapter{Deployment and analysis of a low-background \bege~detector}
+\chapter{Deployment and analysis of a low-background modified-\bege~detector}
 \label{chap:AnalysisBeGe}
 	\section{Experimental setup}
 	\label{sec:BeGeExperimentalSetup}
 
-A 440~g \ppc~\textbf{B}road-\textbf{E}nergy \textbf{G}ermanium (\bege) detector manufactured by Canberra Industries was deployed underground on 24~August~2009 in the Soudan Underground Laboratory in Soudan, MN.  The purpose of the deployment of this detector was to obtain low-threshold, low-background counting data to seek improved limits on WIMPs in the low-mass range ($\lesssim10$~GeV).  The design of this detector included several custom modifications to address backgrounds seen with a previous \ppc~used to obtain dark matter limits~\cite{Aalseth:2008aa}, including several internal mounting components replaced by ones constructed with cleaner materials by J.~Collar at the University of Chicago.  A summary of relevant geometrical aspects of the detector is provided in Table~\ref{tab:BEGeCharacteristics}.
+A 440~g \ppc~modified \textbf{B}road-\textbf{E}nergy \textbf{G}ermanium (\bege) detector manufactured by Canberra Industries was deployed underground on 24~August~2009 in the Soudan Underground Laboratory in Soudan, MN.  The purpose of the deployment of this detector was to obtain low-threshold, low-background counting data to seek improved limits on WIMPs in the low-mass range ($\lesssim10$~GeV).  The design of this detector included several custom modifications to address backgrounds seen with a previous \ppc~used to obtain dark matter limits~\cite{Aalseth:2008aa}, including several internal mounting components replaced by ones constructed with cleaner materials by J.~Collar at the University of Chicago.  A summary of relevant geometrical aspects of the detector is provided in Table~\ref{tab:BEGeCharacteristics}.
 % Additionally, the outer cryostat was not made of typical aluminum but rather of copper.  True?
 The detector was placed in the same shield as described in Section~\ref{sec:DeploymentPPC2SoudanIntro} with a few small changes.  The inner OFHC copper shield was replaced by old Pb bricks from the University of Chicago and a different PMT-based muon veto was placed around the external borated polyethylene shield.   %FixME contamination of bricks?
 
@@ -22,8 +22,8 @@ The detector was placed in the same shield as described in Section~\ref{sec:Depl
 
 					\bottomrule
 				\end{tabular}
-				\caption[\bege~detector characteristics]
-				{\bege~detector characteristics.  }
+				\caption[Modified-\bege~detector characteristics]
+				{Modified-\bege~detector characteristics.  }
 				\label{tab:BEGeCharacteristics}
 			\end{table}
 
@@ -32,7 +32,7 @@ This chapter presents results from data taken with the BeGE detector underground
 	\section{Data acquisition and processing}
 	\label{sec:BeGeDAQProcessing}
 	
-The DAQ system used was similar to the one used in~\cite{Aalseth:2008aa}.  The preamp of the \bege~included 2~signal outputs, an inhibit output generating a logic signal when the reset circuitry of the preamp was active, and a test input for waveform generator pulses.  The initial system was set up without the ability to digitize raw preamp traces, but a later upgrade on 1~Dec~2009 introduced additional hardware to take this data.  The readout system was a PCI-based National Instruments digitizer with 6~channels, sampling at 20~MS/s with a resolution of 8~bits.  This digitizer allowed selectable voltage ranges, enabling higher resolution at lower energies.  The acquisition software used was a Windows- and Labview-based program designed by J.~Collar.  
+The DAQ system used was similar to the one used in~\cite{Aalseth:2008aa}.  The preamp of the modified \bege~included 2~signal outputs, an inhibit output generating a logic signal when the reset circuitry of the preamp was active, and a test input for waveform generator pulses.  The initial system was set up without the ability to digitize raw preamp traces, but a later upgrade on 1~Dec~2009 introduced additional hardware to take this data.  The readout system was a PCI-based National Instruments digitizer with 6~channels, sampling at 20~MS/s with a resolution of 8~bits.  This digitizer allowed selectable voltage ranges, enabling higher resolution at lower energies.  The acquisition software used was a Windows- and Labview-based program designed by J.~Collar.  
 
 One of the preamp signal outputs was run into an analog spectroscopy amplifier with a 10$\mu$s shaping time.  Two outputs from this amplifier were input into the digitizer with different voltage ranges: -0.05$\to$0.05~V (high gain) and -0.25$\to$0.25~V (low gain).  The second preamp output was AC-coupled to a Phillips Scientific 777 fast (DC$\to$200~MHz) amplifier using a capacitor to yield a $\sim$50~$\mu$s decay time.  This stage provided a $\sim1\times$ gain and was used as a fan-out for two outputs to the next stage: (1) one output was input into a spectroscopy amplifier with 6~$\mu$s shaping time and then into the digitizer; (2) the other output was sent to another gain stage of the 777.  The two outputs from the fan-out of this stage were then input into two channels of the digitizer with different voltage ranges: -0.05$\to$0.05~V (high gain) and -0.25$\to$0.25~V (low gain).  The 777 allowed adjustment of the output offset, and so the baseline was set to be close to the upper maximum of the high-gain channel.  This was to maximize the dynamic range for digitizing the negative-going preamplifier pulses.  
 
@@ -123,7 +123,7 @@ Since some applications of this PDF would not require a fit over the entire enti
 					$^{73,74}$As K-capture & 11.103~keV \\
 					\bottomrule
 				\end{tabular}	
-				\caption[Summary of prominent x-ray lines in the \bege~data set]
+				\caption[Summary of prominent x-ray lines in the modified-\bege~data set]
 				{Summary of prominent x-ray lines in the data set.}
 				\label{tab:XRayLines}
 			\end{table}	
@@ -142,8 +142,8 @@ where $V$ is in volts, $s$ is a scaling parameter and $\sigma$ is a position par
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.9\textwidth]{energy_efficiency_bege}
-				\caption[\bege~triggering efficiency measured with a pulser]
-				{\bege~triggering efficiency measured with a pulser.  Error bars are binomial and the fit is to the error function in
+				\caption[Modified-\bege~triggering efficiency measured with a pulser]
+				{Modified-\bege~triggering efficiency measured with a pulser.  Error bars are binomial and the fit is to the error function in
 				Equation~\ref{eqn:TrigEfficiency}.}
 				\label{fig:BeGeTriggeringEfficiency}
 			\end{figure}
@@ -164,8 +164,8 @@ The resolution of the detector was determined by measuring the intrinsic electro
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.8\textwidth]{FitResolutionPlot}
-				\caption[Estimate of \bege~resolution]
-				{Fit to estimate the resolution of the \bege, including gaussian fits to some of the prominent lines listed in Table~\ref{tab:XRayLines}.}
+				\caption[Estimate of modified-\bege~resolution]
+				{Fit to estimate the resolution of the modified \bege, including gaussian fits to some of the prominent lines listed in Table~\ref{tab:XRayLines}.}
 				\label{fig:BeGeResFit}
 			\end{figure}
 The results of these measurements were folded into the following equation:
@@ -180,8 +180,8 @@ to determine the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fan
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.8\textwidth]{resolution_plot}
-				\caption[\bege~resolution versus energy]
-				{\bege~resolution versus energy.  Red dashed line is measured and fit intrinsic electronic noise, 
+				\caption[Modifed \bege~resolution versus energy]
+				{Modifed \bege~resolution versus energy.  Red dashed line is measured and fit intrinsic electronic noise, 
 				black points are measured resolution from x-ray lines, black line is a fit to Eqn.~\ref{eqn:SigmaEqn}.}
 				\label{fig:BeGeResPlot}
 			\end{figure}
@@ -401,7 +401,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\begin{figure}
 						\centering
 						\includegraphics[width=0.9\textwidth]{chan4amplitude_vs_chan1}
-						\caption[Unshaped amplitudes vs.~shaped amplitudes in the \bege]
+						\caption[Unshaped amplitudes vs.~shaped amplitudes in the modified \bege]
 						{Comparison between the amplitudes in the unshaped channel 4 and shaped channel 1.  											The line is a linear fit to the data.  The spectroscopy amplifier
 						output positive-going pulses whereas the preamplifier output negative-going pulses which explains why the slope 
 						is negative.  The voltage ranges on both the x and y axis have been made large enough to include events from the
@@ -424,8 +424,8 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 				\begin{figure}
 					\centering
 					\includegraphics[width=0.9\textwidth]{risetime_cut_chan5_nice}
-					\caption[Simulation of calculated rise-time for the low-gain channel of the \bege]
-					{Simulation of calculated rise-time for the low-gain channel of the \bege.  
+					\caption[Simulation of calculated rise-time for the low-gain channel of the modified \bege]
+					{Simulation of calculated rise-time for the low-gain channel of the modified \bege.  
 					The line is the calculated 99\% contour, which includes 99\% of events below the line.}
 					\label{fig:RisetimeSimulation}
 				\end{figure}	
@@ -549,7 +549,7 @@ It is possible that the same mechanism which generates the partial charge collec
 								\bottomrule
 							\end{tabular}
 
-							\caption[Behavior of fit components after cuts for low-gain \bege~channel]
+							\caption[Behavior of fit components after cuts for low-gain modified-\bege~channel]
 							{Behavior of fit components after cuts for low-gain channel.  Components are given in total counts.}
 							\label{tab:RTLowGainResults}
 						\end{sidewaystable}						
@@ -649,7 +649,7 @@ This is not unexpected, since as the signal-to-noise of the pulse reduces de-noi
 								\includegraphics[width=0.46\textheight]{LowBackgroundComponents}
 								\label{fig:RTHighGainBkgd}						
 							}														
-							\caption[Behavior of fit components after cuts for high-gain \bege~channel]
+							\caption[Behavior of fit components after cuts for high-gain modified-\bege~channel]
 							{Behavior of fit components after cuts for high-gain channel.  `LN+micro' refers to data with only
 							LN and microphonics cuts applied.  The percentages refer to data with an rise-time cut applied
 							with the designated efficiency.}
@@ -680,7 +680,7 @@ This is not unexpected, since as the signal-to-noise of the pulse reduces de-noi
 							\end{tabular}
 
 
-							\caption[Behavior of fit components after cuts for high-gain \bege~channel]
+							\caption[Behavior of fit components after cuts for high-gain modified-\bege~channel]
 							{Behavior of fit components after cuts for high-gain channel.  Components are given in total counts.}
 							\label{tab:RTHighGainResults}
 						\end{sidewaystable}
@@ -700,11 +700,11 @@ Whatever the origin of these slow-pulse events, it is clear that they can produc
 
 	\subsection{Behavior of energy spectrum with cuts applied}
 	\label{sec:RTBeGeBehaviorOfCuts}
-It is useful to look at the behavior of the cuts as they are subsequently applied to check for deviations or irregularities (e.g.~strong peaks or valleys) that may be indicative
+It is useful to look at the behavior of the energy spectrum as cuts are subsequently applied to check for deviations or irregularities (e.g.~strong peaks or valleys) that may be indicative
 of a problem with the analysis.  The results of this are shown in Figure~\ref{fig:BehaviorOfCuts} where in all cases the base or reference data set was with LN fill events and electronic noise events (see Section~\ref{sec:BeGeElecCuts}) removed.
 					Figure~\ref{fig:BehaviorOfCutsAccepted} shows the energy spectrum as subsequent cuts are applied.  A complementary plot is provided in Figure~\ref{fig:BehaviorOfCutEvents} which shows the energy spectrum of events \emph{removed} by the microphonics cuts and 95\% rise-time cuts.  It is interesting to note   
 that the number of removed events diminishes as the energy moves to threshold (0.5~keV).  It is expected that this arises from the reduced resolution of the rise-time calculation 
-as the signal-to-noise ratio dimishes.
+as the signal-to-noise ratio diminishes.
 
 				\begin{figure}
 					\centering
