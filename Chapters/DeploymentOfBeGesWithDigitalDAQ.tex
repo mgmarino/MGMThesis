@@ -32,6 +32,10 @@ with all components in Figure~\ref{fig:PPC2Shield}.  Relevant characteristics of
 	
 			\begin{table}
 				\centering
+				\caption[\ppc2 detector characteristics]
+				{\ppc2 detector characteristics.  The diameter of the p contact was proprietary manufacturer information and so
+				was unknown. }
+				\label{tab:PPC2Characteristics}
 				\begin{tabular}{l r}
 					\toprule
 					Property & Value \\
@@ -45,10 +49,6 @@ with all components in Figure~\ref{fig:PPC2Shield}.  Relevant characteristics of
 					% FixME include contact diameter
 					\bottomrule
 				\end{tabular}
-				\caption[\ppc2 detector characteristics]
-				{\ppc2 detector characteristics.  The diameter of the p contact was proprietary manufacturer information and so
-				was unknown. }
-				\label{tab:PPC2Characteristics}
 			\end{table}
 	
 	\section{Description of DAQ system}
@@ -85,6 +85,9 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 		 
 			\begin{table}
 				\centering
+				\caption[Channel summary for the Gretina digitizer card]
+				{Channel summary for the Gretina digitizer card.  }
+				\label{tab:PPC2DAQChannelInfo}
 				\begin{tabular}{l c c}
 					\toprule`
 					Type & Channel &  Info \\
@@ -98,9 +101,6 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 					High-gain signal & 0 & 10~$\mu$s trace (1022 samples) \\				
 					\bottomrule
 				\end{tabular}
-				\caption[Channel summary for the Gretina digitizer card]
-				{Channel summary for the Gretina digitizer card.  }
-				\label{tab:PPC2DAQChannelInfo}
 			\end{table}	     
 	
 	
@@ -137,6 +137,10 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 
 				\begin{table}
 					\centering
+					\caption[Selected gamma lines used for calibration in the $^{133}$Ba spectrum]
+					{Selected gamma lines used for calibration in the $^{133}$Ba spectrum, 
+					data adapted from~\cite{Rab1995491}.}
+					\label{tab:Ba133Peaks}
 					\begin{tabular}{l r}
 						\toprule
 						Energy (keV) & Intensity \\
@@ -152,10 +156,6 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 						   383.85 	  &    8.94 \% \\
 						\bottomrule
 					\end{tabular}
-					\caption[Selected gamma lines used for calibration in the $^{133}$Ba spectrum]
-					{Selected gamma lines used for calibration in the $^{133}$Ba spectrum, 
-					data adapted from~\cite{Rab1995491}.}
-					\label{tab:Ba133Peaks}
 				\end{table}	
 						
 				\begin{figure}
@@ -254,6 +254,9 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 	
 				\begin{table}
 					\centering
+					\caption[Average parameters for trigger efficiency and electronic noise]
+					{Average parameters for trigger efficiency and electronic noise.}
+					\label{tab:PPC2AvgPars}
 					\begin{tabular}{l r}
 						\toprule
 						Parameter & Value \\
@@ -266,9 +269,6 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 						    Scaling, $s$ &  $-3.666\pm0.044$ (keV$^{-1}$) \\						    						    
 						\bottomrule
 					\end{tabular}
-					\caption[Average parameters for trigger efficiency and electronic noise]
-					{Average parameters for trigger efficiency and electronic noise.}
-					\label{tab:PPC2AvgPars}
 				\end{table}	
 	    	\subsection{Cuts}
 		\label{sec:DeploymentPPC2SoudanAnalysisCuts}    
@@ -402,6 +402,9 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 	
 				\begin{table}
 					\centering
+					\caption[Selection of gamma lines in the high-energy channel of \ppc2.]
+					{Selection of gamma lines in the high-energy channel of \ppc2.  Table courtesy A.~Schubert.}
+					\label{tab:PPC2HighEnergyGammaLines}
 					\begin{tabular}{  c  r  r  c  }
 					\toprule
 					{\bf Source} & {\bf Energy [keV]} & {\bf Fit centroid [keV]} & {\bf Sigma [keV]} \\  
@@ -460,13 +463,13 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 					\end{tabular}
 
 				
-					\caption[Selection of gamma lines in the high-energy channel of \ppc2.]
-					{Selection of gamma lines in the high-energy channel of \ppc2.  Table courtesy A.~Schubert.}
-					\label{tab:PPC2HighEnergyGammaLines}
 				\end{table}
 	
 	The calibration of the low-energy channel was refined using the \gersixeight~and \znsixfive~K-capture lines plus the non-overlapping x-ray lines from Pb and Bi (see the observed energy spectra in Figure~\ref{fig:PPC2EnergySpectra}).  The final maximum likelihood fits to these lines, means and sigmas and their expected value, are given in Table~\ref{tab:PPCLowEnergyLines}.  The x-ray lines from Pb and Bi come from the $\beta$-decays of $^{208}$Tl and $^{214}$Pb in the $^{232}$Th and $^{238}$U decay chains.  The two lines at $\sim$73~keV were fit with one gaussian which generated a wider width.  
 				\begin{table}
+					\caption[Lines in the low-energy channel of \ppc2.]
+					{Lines in the low-energy channel of \ppc2.}
+					\label{tab:PPCLowEnergyLines}
 					\begin{tabular}{l c c c}
 						\toprule
 						Source & Energy (keV) & Fit Mean (keV) & Fit Sigma (eV) \\
@@ -478,9 +481,6 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 						$^{(214)}$Ba K$_{\alpha1}$ & 77.107& $77.11\pm1.9\times10^{-2}$ & $163 \pm 19.7$ \\		
 						\bottomrule
 					\end{tabular}
-					\caption[Lines in the low-energy channel of \ppc2.]
-					{Lines in the low-energy channel of \ppc2.}
-					\label{tab:PPCLowEnergyLines}
 				\end{table}
 
 	\section{Estimate of \texorpdfstring{\gersixeight}{68Ge}~surface production}       
@@ -489,8 +489,12 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
        \gersixeight~is a cosmogenically-produced isotope inside germanium detectors which is a well-known background to $\nonubb$ (see e.g.~\cite{Ceb06aa}) due to the fact that the decays of its \galsixeight~daughters can deposit energy in the $\nonubb$ region-of-interest.  A schematic of the decay chain is shown in Figure~\ref{fig:GE68Decay}.  The decay of \gersixeight~proceeds via electron-capture with a half-life of 271~days to \galsixeight, which subsequently decays to $^{68}$Zn with a half-life of 68~minutes.  The latter decay has a Q-value of 2921~keV which could deposit energy at 2039~keV, the $\nonubb$ Q-value.  This background can be reduced two ways: (1) an analysis cut which tags the initial decay of \gersixeight~and vetoes the detector for a specified multiple of \galsixeight~half-lives, and/or (2) reduce the intrinsic \gersixeight~content in germanium detectors by either storing them in a low-cosmic-ray-flux environment (i.e.~underground) and waiting or by actively removing \gersixeight~through isotopic depletion.  Because \gersixeight~decays inside the detector, the total energy emitted through Auger electrons and x-rays is summed to lines of the K-, L-, or M-electron binding energy of the daughter nuclei (see Table~\ref{tab:GE68decayinfo}).  These lines can then be used to tag events likely to belong to a \gersixeight~decay.  Tagging the \gersixeight~decays to reduce the \galsixeight~background is dependent on the decay rate of \gersixeight, $\lambda^{(^{68}Ge)}$, and is not a viable solution until $\lambda^{(^{68}Ge)} \tau_{1/2}^{(^{68}Ga)} \ll 1$.   Estimations of the \gersixeight~activation rate at the earth's surface in both natural and enriched (86\% $^{76}$Ge) have been performed previously (see e.g.~\cite{Avi92,Elliott:2009cw,Mei2009417}). 
 
        
-       			\begin{table}
+       		\begin{table}
 				\centering
+				\caption[Decay information of\ \gersixeight]
+				{Decay information of\ \gersixeight.  Capture probabilities are adapted from 
+				reference~\cite{Schonfeld1994955}, characteristic energies from~\cite{Bea67}.}
+				\label{tab:GE68decayinfo}
 				\begin{tabular}{ l c r }
 					\toprule
 					\gersixeight~decays & Percent & Energy (keV) \\
@@ -500,10 +504,6 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 					     M-capture & $1.92\pm0.08$\% & $\sim$0.1 \\
 					\bottomrule
 				\end{tabular}
-				\caption[Decay information of\ \gersixeight]
-				{Decay information of\ \gersixeight.  Capture probabilities are adapted from 
-				reference~\cite{Schonfeld1994955}, characteristic energies from~\cite{Bea67}.}
-				\label{tab:GE68decayinfo}
 			\end{table}	
 			\begin{figure}
 				\centering
@@ -535,8 +535,11 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 			\end{equation}
 with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), and $\tau_{1/2}$ (\gersixeight~half-life).  Fit results of this are summarized in Table~\ref{tab:Ge68FitResults} and plotted in Figure~\ref{fig:GE68Production}.  At the beginning of the counting runs, the detector had already been underground 212~days, meaning that the estimated decay rate, $b$, must be multiplied by the value $e^{(\log(2)~212 d/270.95 d)} = 1.72$ as well as  the energy window (0.73~keV) to get the counts-per-day-per-kilogram the day the detector was brought underground.  It was necessary to estimate the acceptance of the energy window using parameters ($\mu$ and $\sigma$) found from a maximum likelihood fit to the data (see, e.g.~Section~\ref{sec:DeploymentPPC2SoudanAnalysisEnergySpectra}); this acceptance was measured as $0.99797\pm0.001$.  Finally, since only the K-capture line was used in this estimation, the percentage of decays into this channel must be taken into account (see Table~\ref{tab:GE68decayinfo}).  The final result was then determined to be $53.3\pm4.3$~decays/kg/day which can also be interpreted as the activation rate for \gersixeight, assuming the detector was at saturation at the surface.  A comparison of this value to previous results is given in Table~\ref{tab:Ge68PreviousResults}.  It should be noted that this detector was fabricated in Europe and then shipped via airplane to Richland, WA, USA so that additional activation would have occurred during transportation.  Therefore, the calculated activation rate of $53.3\pm4.3$~\gersixeight~atoms/kg/day should be considered conservative since the detector would not have reached equilibrium from its original shipment date until its deployment underground ($\sim1$~year).
 
-       			\begin{table}
+       		\begin{table}
 				\centering
+				\caption[Fit information for \gersixeight~analysis]
+				{Fit information for \gersixeight~analysis.}
+				\label{tab:Ge68FitResults}	
 				\begin{tabular}{l r}
 					\toprule
 					Parameter & Fit Value \\
@@ -547,9 +550,6 @@ with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), an
 					$\chi^{2}$/NDF & 32.3/45 \\					
 					\bottomrule
 				\end{tabular}
-				\caption[Fit information for \gersixeight~analysis]
-				{Fit information for \gersixeight~analysis.}
-				\label{tab:Ge68FitResults}	
 			\end{table}	
 			
 			\begin{figure}
@@ -565,6 +565,10 @@ with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), an
 	          
 	          	\begin{table}
 				\centering
+				\caption[Summary of estimates of \gersixeight~surface activation rates in natural Ge.]
+				{A summary of previous estimates of \gersixeight~surface activation rates in natural Ge, 
+				adapted from Table~1 in~\cite{Elliott:2009cw}.}
+				\label{tab:Ge68PreviousResults}
 				\begin{tabular}{l r}
 					\toprule
 					Rate (\gersixeight~atoms/kg/day) & Reference \\
@@ -579,10 +583,6 @@ with the free parameters $a$ (flat background rate), $b$ (\gersixeight~rate), an
 					41.3 & \cite{Mei2009417}\\
 					\bottomrule
 				\end{tabular}
-				\caption[Summary of estimates of \gersixeight~surface activation rates in natural Ge.]
-				{A summary of previous estimates of \gersixeight~surface activation rates in natural Ge, 
-				adapted from Table~1 in~\cite{Elliott:2009cw}.}
-				\label{tab:Ge68PreviousResults}
 	          	\end{table}			
 			
 	\section{Conclusions}
