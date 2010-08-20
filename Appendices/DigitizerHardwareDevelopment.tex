@@ -32,7 +32,7 @@ are given in the code package, so those details are not covered here.
 			   captionpos=t}
 		\subsection{Char Driver}
 
-The linux driver package installs a kernel-space driver and installs several devices in 
+The Linux driver package installs a kernel-space driver and installs several devices in 
 \lstinline!/dev!, including:
 		\begin{lstlisting}
 /dev/vme_m[0-7]
@@ -123,11 +123,11 @@ the \lstinline!errno! global.
 			\end{lstlisting}
   This function grabs a new device with the given specifications. It will return \lstinline!NULL! if there is any error. 
   An error can be caused if there are no more available devices, or if something is wrong with the input parameters. 
-  If \lstinline!sizeOfImage! is 0, then the driver attempts to make the size of the returned device 1/8 of the total pci memory
+  If \lstinline!sizeOfImage! is 0, then the driver attempts to make the size of the returned device 1/8 of the total PCI memory
   space allocated to the Universe II chip. 
   The size of the image specifies how many addresses from the base vmeAddress can be read/written. 
   vmeAddress should be normally 64K aligned (0x10000, with the bottom 16 bits always 0), but there are 
-  two devices which have 4K resolution (0x100 aligned).  The driver api will attempt to return one of these
+  two devices which have 4K resolution (0x100 aligned).  The driver API will attempt to return one of these
   two devices when the \lstinline!addressModifier! specifies A16, but it is not guaranteed.  
   \lstinline!dataWidth! specifies the width of the data in bytes. 
 
@@ -139,7 +139,7 @@ Closes a device and releases it back into the available pool.  This should be ca
 			\item\begin{lstlisting}
 	extern TUVMEDevice* get_dma_device(uint32_t vmeAddress, uint32_t addressModifier, uint32_t dataWidth);
 			\end{lstlisting}
-Grabs the dma device and sets up the transfer.  If \lstinline!NULL!, this means that DMA device is busy.
+Grabs the DMA device and sets up the transfer.  If \lstinline!NULL!, this means that DMA device is busy.
 A transfer from the DMA is initiated with the \lstinline!read_device! function.
 
 			\item\begin{lstlisting}
@@ -182,20 +182,20 @@ the `write' functions behave correspondingly.
   TUVMEDevice* device = get_new_device(0x0, 0x29, 2, 0x10000); //Map the entire A16 space beginning at 0x0
   char buffer[4];
   if (device == NULL) exit; // Error!
-  // read at adress 0x3300 
+  // read at address 0x3300 
   if (read_device(device, buffer, 4, 0x3300) < 0 ) { 
     // Error!
     exit;
   }
-  // Otherwise we have a successfull read.
+  // Otherwise we have a successful read.
 
   close_device(device);  
-  /* This last call is an unnecessary call since the api library handles the closing automatically.  However, if the pool of 8 devices is already empty, this will release a device to be opened/enabled anew via the get_new_device function.  Normally, readout code will set up devices at the beginning of the run so it doesn't need to be done multiple times. */
+  /* This last call is an unnecessary call since the API library handles the closing automatically.  However, if the pool of 8 devices is already empty, this will release a device to be opened/enabled anew via the get_new_device function.  Normally, readout code will set up devices at the beginning of the run so it doesn't need to be done multiple times. */
 
 				\end{lstlisting}
 			\item Perform a DMA transfer:
 				\begin{lstlisting}
-  // Set this if this dma does not auto-increment the address.
+  // Set this if this DMA does not auto-increment the address.
   set_dma_no_increment(true); 
   // Set up a DMA transfer, A32, D32 BLT, beginning at address 0x2101000
   TUVMEDevice* device = get_dma_device(0x2101000, 0xB, 4); 
@@ -399,7 +399,7 @@ similar to usage of the C framework and examples are provided here:
   // Otherwise we have a successfull read.
 
   gMgr->CloseDevice(device);  
-  /* This last call is an unnecessary call since the api library handles the closing automatically.  However, if the pool of 8 devices is already empty, this will release a device to be opened/enabled anew via the get_new_device function.  Normally, readout code will set up devices at the beginning of the run so it doesn't need to be done multiple times. */
+  /* This last call is an unnecessary call since the API library handles the closing automatically.  However, if the pool of 8 devices is already empty, this will release a device to be opened/enabled anew via the get_new_device function.  Normally, readout code will set up devices at the beginning of the run so it doesn't need to be done multiple times. */
 
 				\end{lstlisting}
 			\item Perform a DMA transfer:
@@ -452,7 +452,7 @@ through register settings, etc.  The fast readout would then be handled by the
 SBC to take advantage of the speed of being directly coupled to the bus.  The
 SBC would read out the cards on the bus and fill a circular buffer with their
 data.  This circular buffer would then be read out asynchronously by the ORCA
-program in large chunkcs over a TCP socket.  This type of setup is most useful
+program in large chunks over a TCP socket.  This type of setup is most useful
 given the high bandwidth yet high latency of Gigabit ethernet.  A schematic of
 the fast readout is shown in Figure~\ref{fig:SBCReadout}. 
 

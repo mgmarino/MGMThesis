@@ -183,18 +183,6 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 	
 % FixME, move comparison plot around?
 
-			%%%%\begin{figure}
-			%%%%	\centering
-			%%%%	\subfigure[Pulser sigma, $\sigma$, vs.~time.]{
-			%%%%		\includegraphics[width=0.45\textwidth]{PulserSigmaVsTime}
-			%%%%	}
-			%%%%	\subfigure[Pulser mean, $\mu$, vs.~time.]{
-			%%%%		\includegraphics[width=0.45\textwidth]{PulserMeanVsTime}
-			%%%%	}						
-			%%%%	\caption{Measured $\mu$ and $\sigma$ of pulser versus run start time.}
-			%%%%	\label{fig:PPC2PulserVsTime}
-			%%%%\end{figure}
-
 
 
 		    	\subsubsection{Trigger Efficiency}
@@ -206,7 +194,6 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 					f_{eff}(E) = \frac{1}{2} - \frac{1}{2} \operatorname{erf} \left( s ( E-\rho ) \right)
 					\label{eqn:TriggerEfficiency}
 				\end{equation}
-				
 with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\rho$, in keV.  An example of a fit to this data is given in Figure~\ref{fig:PPC2TriggeringEfficiencyExample}.  Some results of the trigger tests over time are given in Figure~\ref{fig:PPC2AllPlotCompare}, comparing them to other detector parameters.  The offset parameter, $\rho$, was largely stable but increased before the transition from I$\to$II and again during region III.  $\rho$ returned to a lower value during region II.  The scaling, $s$, was largely insensitive to any change in reset rate, though it exhibited slight deviations low in transitions between regions I and II.  
 
 				\begin{figure}
@@ -237,7 +224,7 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 		    	\subsubsection{Pulser Data}
 			\label{sec:DeploymentPPC2SoudanAnalysisPulserData}    
 
-	Pulses from the Agilent waveform generator were input into the test input at a rate of 1~Hz and at low energy: $\sim2.5$~keV.  These events underwent analysis equivalent to every other waveform and were selected by finding all waveforms which arrived in coincidence with the pulser synchronization signal.  Each hour-long run yielded a data set of $\sim3600$ events; the calculated amplitudes (energies) of these events were histogrammed and fit to a gaussian to extract the mean, $\mu$, and the sigma, $\sigma$, of the pulser signal for each run.  Results of these fits are plotted versus run number in Figure~\ref{fig:PPC2AllPlotCompare}.  It is clear that the width of the noise ($\sigma$) did not significantly alter for reset rates below 15~Hz.  However, the mean ($\mu$) of the pulser demonstrated three clear transition regions an example of which has been labeled `I', `II', and `III' in Figure~\ref{fig:PPC2AllPlotCompare}: from reset rates 3$\to$7~Hz (region I labeled in the plot), the mean increased, transitioned to lower values for reset rates 7$\to$11~HZ (region II), and then returned for rates above 11~Hz (region III).  The absolute cause of this behavior was not determined, but it is possibly due to a modification of operating parameters of the front-end crystal electronics (e.g.~the FET) by the increasing leakage current.  
+	Pulses from the Agilent waveform generator were input into the test input at a rate of 1~Hz and at low energy: $\sim2.5$~keV.  These events underwent analysis equivalent to every other waveform and were selected by finding all waveforms which arrived in coincidence with the pulser synchronization signal.  Each hour-long run yielded a data set of $\sim3600$ events; the calculated amplitudes (energies) of these events were histogrammed and fit to a Gaussian to extract the mean, $\mu$, and the sigma, $\sigma$, of the pulser signal for each run.  Results of these fits are plotted versus run number in Figure~\ref{fig:PPC2AllPlotCompare}.  It is clear that the width of the noise ($\sigma$) did not significantly alter for reset rates below 15~Hz.  However, the mean ($\mu$) of the pulser demonstrated three clear transition regions an example of which has been labeled `I', `II', and `III' in Figure~\ref{fig:PPC2AllPlotCompare}: from reset rates 3$\to$7~Hz (region I labeled in the plot), the mean increased, transitioned to lower values for reset rates 7$\to$11~HZ (region II), and then returned for rates above 11~Hz (region III).  The absolute cause of this behavior was not determined, but it is possibly due to a modification of operating parameters of the front-end crystal electronics (e.g.~the FET) by the increasing leakage current.  
 			
 				\begin{figure}
 					\centering
@@ -279,7 +266,7 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 	Reset pulse waveforms had distinct qualities (positive clipping whereas energy pulses were negative-going) which allowed the waveforms to be removed online from the data stream while retaining the timing information of the event.  The offline timing cut introduced a veto window of 1~ms following a reset event.  Given the average reset rate ($\sim$10~Hz), this introduced a $\sim$1\% correction to the live-time.  
 
 			\subsubsection{Baseline Cut}	
-	The baselines of the traces were monitored on an event-by-event basis by calculating a 1st-degree polynomial fit to the first 3.5~$\mu$s of each preamp trace.  From this information, an average baseline was calculated for each run to generate a cut based upon significant deviations from these average values.  In a stable system, the baseline will be gaussian distributed around a central value according to the magnitude of the noise.  The integrated-counts-per-run in particular energy windows (0.6-10~keV and 10-70~keV) were monitored as well to observe deviations from expectation assuming Poisson statistics.  This second cut relied upon the fact that spurious events from increases in environmental noise and microphonics arrive in bursts, see e.g.~\cite{Morales1992410}).  
+	The baselines of the traces were monitored on an event-by-event basis by calculating a 1st-degree polynomial fit to the first 3.5~$\mu$s of each preamp trace.  From this information, an average baseline was calculated for each run to generate a cut based upon significant deviations from these average values.  In a stable system, the baseline will be Gaussian distributed around a central value according to the magnitude of the noise.  The integrated-counts-per-run in particular energy windows (0.6-10~keV and 10-70~keV) were monitored as well to observe deviations from expectation assuming Poisson statistics.  This second cut relied upon the fact that spurious events from increases in environmental noise and microphonics arrive in bursts, see e.g.~\cite{Morales1992410}).  
 	
 	The average baseline per run shifted in a way systematically correlated
 with a shift in the measured inhibit rate, shown in
@@ -291,7 +278,7 @@ baseline could affect the dynamic (energy) range of a digitizer channel because
 it would allow fewer ADC values for the (negative-going) pulses before
 clipping.  To generate a cut on this value, the values of the baseline for each
 event with an energy greater than 0.4~keV during a run were histogrammed and
-fit to a gaussian.  (The integrated counts in this energy range for an
+fit to a Gaussian.  (The integrated counts in this energy range for an
 hour-long run was $\sim$4000.)  A cut was then generated based upon the results
 of this fit: rejecting events outside the range $\mu\pm3\sigma$ for a 99.7\%
 acceptance.  An example of one of these fits is shown
@@ -310,7 +297,7 @@ impossible.  Runs during these transition times were cut from the data set.
 					\centering
 					\includegraphics[width=0.7\textwidth]{BaselineExample}
 					\caption[An example of a fit to the baseline for one hour-long run]
-					{An example of a fit to the baseline for one hour-long run.  Line is a gaussian fit to the data.}
+					{An example of a fit to the baseline for one hour-long run.  Line is a Gaussian fit to the data.}
 					\label{fig:PPC2BaselineCuts}
 				\end{figure}
 				
@@ -355,7 +342,7 @@ At low energy in the high-gain channel, one does not expect to see a significant
 						\label{fig:PPC2RisetimeCalculationsHigh}
 					}	
 					\caption[Rise-time measurements for high- and low-gain channels]
-					{Risetime measurements for both high- and low-gain channels given in time from 10\%$\to$90\% 
+					{Rise-time measurements for both high- and low-gain channels given in time from 10\%$\to$90\% 
 					pulse amplitude.}
 					\label{fig:PPC2RisetimeCalculations}
 				\end{figure}		
@@ -465,7 +452,7 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 				
 				\end{table}
 	
-	The calibration of the low-energy channel was refined using the \gersixeight~and \znsixfive~K-capture lines plus the non-overlapping x-ray lines from Pb and Bi (see the observed energy spectra in Figure~\ref{fig:PPC2EnergySpectra}).  The final maximum likelihood fits to these lines, means and sigmas and their expected value, are given in Table~\ref{tab:PPCLowEnergyLines}.  The x-ray lines from Pb and Bi come from the $\beta$-decays of $^{208}$Tl and $^{214}$Pb in the $^{232}$Th and $^{238}$U decay chains.  The two lines at $\sim$73~keV were fit with one gaussian which generated a wider width.  
+	The calibration of the low-energy channel was refined using the \gersixeight~and \znsixfive~K-capture lines plus the non-overlapping x-ray lines from Pb and Bi (see the observed energy spectra in Figure~\ref{fig:PPC2EnergySpectra}).  The final maximum likelihood fits to these lines, means and sigmas and their expected value, are given in Table~\ref{tab:PPCLowEnergyLines}.  The x-ray lines from Pb and Bi come from the $\beta$-decays of $^{208}$Tl and $^{214}$Pb in the $^{232}$Th and $^{238}$U decay chains.  The two lines at $\sim$73~keV were fit with one Gaussian which generated a wider width.  
 				\begin{table}
 					\caption[Lines in the low-energy channel of \ppc2.]
 					{Lines in the low-energy channel of \ppc2.}
@@ -601,7 +588,7 @@ matter signals, two important results from the data were made including a
 measurement of rise-time versus energy for low-energy pulses and an estimation
 of \gersixeight~surface activation in natural germanium.  The measurement of
 the former determined a potential source of background for applications such as
-the \MJ~\minmod~using PPCs for direct dark matter detection.  Results from this
+the \MJ~\minmod~using {\ppc}s for direct dark matter detection.  Results from this
 deployment reaffirmed conclusions made in Appendix~\ref{chap:DAQDevel}, namely
 that the trigger efficiency and electronic noise measured with this system were
 insufficient for dark matter searches or for sensitivity to the L-capture line

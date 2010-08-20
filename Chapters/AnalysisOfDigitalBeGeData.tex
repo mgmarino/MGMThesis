@@ -27,7 +27,7 @@ The detector was placed in the same shield as described in Section~\ref{sec:Depl
 				\end{tabular}
 			\end{table}
 
-This chapter presents results from data taken with the BeGE detector underground from the time period beginning 4 December 2009 until 15 May 2010 for a total live-time of 150.6~days.  During this time, there were two main gaps in run time, including a roughly 5-day shutdown period during a planned power outage at the lab and another 6-day period during which parameter settings for the DAQ were modified.  Results from a parallel analysis of a previous subset of the data occupying about 2 months of live-time have been presented in~\cite{Aalseth:2010aa}.
+This chapter presents results from data taken with the modified-\bege~detector underground from the time period beginning 4 December 2009 until 15 May 2010 for a total live-time of 150.6~days.  During this time, there were two main gaps in run time, including a roughly 5-day shutdown period during a planned power outage at the lab and another 6-day period during which parameter settings for the DAQ were modified.  Results from a parallel analysis of a previous subset of the data occupying about 2 months of live-time have been presented in~\cite{Aalseth:2010aa}.
 
 	\section{Data Acquisition and Processing}
 	\label{sec:BeGeDAQProcessing}
@@ -100,7 +100,6 @@ The muon-veto channel digitized the logic output from a muon veto.  To process t
 					\exp\left(-\frac{(E - \mu_{i})^{2}}{2 \sigma_{i}^{2}}\right)
 				\label{eqn:InitialFitEqn}
 			\end{equation}
-
 where $b_{1}$, $b_{2}$ and $b_{3}$ are the exponential, flat, and low-energy (erf) flat background amplitudes respectively, $c_{1}$ is the exponential constant and the sum is over the x-ray lines present in the fit (see Table~\ref{tab:XRayLines} for a list).  The amplitudes of all components ($a_{i}$, $b_{1}$, $b_{2}$, $b_{3}$) and the exponential constant were allowed to float independently.  This equation does not explicitly include normalization terms, but each component was appropriately normalized automatically by RooFit so that the amplitudes corresponded to counts present in each fit component simplifying the interpretation of fit results.  The parameters ($\mu_{i}$ and $\sigma_{i}$) of the x-ray lines were allowed to float in a small range around their theoretical values.  The float range was determined so that the final fit value was not near a range boundary.
 
 The error function parameterizes the `plateau' below the Ge K-capture peak present in the data due to partial charge collection as indicated by previous results~\cite{Barbeau:2009fk}.  To summarize, another measurement using a \ppc~observed the decay of \gersevenone~(11.4~day half-life) in three separate regions: the Ge K-capture line (10.367~keV), the Ge L-capture line (1.3~keV), and the flat region in between ($2\to6$~keV).  The results found that the decay of count rate in the flat region matched the decays of count rates in the L- and K-capture regions, suggesting partial energy deposition from the \gersevenone~decay below 10.367~keV.  In general, sets of these error functions should be included for each prominent x-ray line, but since the Ge K-capture line dominates, only one error function centered on the Ge K-capture line was included.  The parameters for the error function, $\mu_{Ge}$ and $\sigma_{Ge}$, were defined as 10.367~keV and 0.1~keV, respectively.  
@@ -141,7 +140,7 @@ where $V$ is in volts, $s$ is a scaling parameter and $\sigma$ is a position par
 
 			\begin{figure}
 				\centering
-				\includegraphics[width=0.9\textwidth]{energy_efficiency_bege}
+				\includegraphics[width=0.9\textwidth]{energy_efficiency}
 				\caption[Modified-\bege~triggering efficiency measured with a pulser]
 				{Modified-\bege~triggering efficiency measured with a pulser.  Error bars are binomial and the fit is to the error function in
 				Equation~\ref{eqn:TrigEfficiency}.}
@@ -155,17 +154,16 @@ Energy calibration at low energies is complicated by several factors.  In partic
 			\[
 			E_{ion} (keV) = a V + b
 			\]  
-
 with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.  These results were applied to both the low- and low-gain channels.  An example of a typical fit spectrum is shown in Figure~\ref{fig:BeGeResFit} and in other figures throughout the remainder of the chapter.
 
 		\subsection{Resolution of Results}
 
-The resolution of the detector was determined by measuring the intrinsic electronic noise using a pulser and by measuring the widths of x-ray lines.  These widths are measured by performing a simultaneous fit to prominent x-ray lines.  The fitting function is a combination of gaussians for each x-ray line, a flat background component, and a second `plateau' background component below the x-ray lines parameterized by an error function equivalent to Equation~\ref{eqn:InitialFitEqn} described earlier in Section~\ref{sec:BeGeSpecFit}.  The fit is shown in Figure~\ref{fig:BeGeResFit}.  
+The resolution of the detector was determined by measuring the intrinsic electronic noise using a pulser and by measuring the widths of x-ray lines.  These widths are measured by performing a simultaneous fit to prominent x-ray lines.  The fitting function is a combination of Gaussians for each x-ray line, a flat background component, and a second `plateau' background component below the x-ray lines parameterized by an error function equivalent to Equation~\ref{eqn:InitialFitEqn} described earlier in Section~\ref{sec:BeGeSpecFit}.  The fit is shown in Figure~\ref{fig:BeGeResFit}.  
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.8\textwidth]{FitResolutionPlot}
 				\caption[Estimate of modified-\bege~resolution]
-				{Fit to estimate the resolution of the modified \bege, including gaussian fits to some of the prominent lines listed in Table~\ref{tab:XRayLines}.}
+				{Fit to estimate the resolution of the modified \bege, including Gaussian fits to some of the prominent lines listed in Table~\ref{tab:XRayLines}.}
 				\label{fig:BeGeResFit}
 			\end{figure}
 The results of these measurements were folded into the following equation:
@@ -174,14 +172,13 @@ The results of these measurements were folded into the following equation:
 				\sigma = \sqrt{\sigma_{elec}^{2} + E \eta F}
 				\label{eqn:SigmaEqn}
 			\end{equation}
-
 to determine the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fano factor $F$.  $E$ is the energy in keV, $\eta$ the amount of energy required to generate an electron-hole pair (2.96 eV).  $\sigma_{elec}$ was found to be $70.48\pm0.54$~eV and $F$ was estimated as $0.241\pm0.013$.  Results are shown in Figure~\ref{fig:BeGeResPlot}.  As expected, the electronic noise measured with a pulser is independent of energy.  The scatter of the x-ray measurements is larger than statistically expected, in particular the \znsixfive~and \galsixeight~exhibit $\sigma$s well away from the best-fit line.  This is most likely due to insufficient bit depth of the digitizer and that this resolution is not properly included in the error bars\footnote{The resolution due to the bit depth of the digitizer (i.e.~keV/ADC count) should be small compared to the resolution of the measured process and so a future DAQ upgrade would benefit from such an improvement.}.  The low-gain channel has an intrinsic resolution of 1.95~mV/ADC, or $\sim125$~eV/ADC.  The actual resolution of the measurements estimating the amplitudes of pulses is better due to the fact that many samples are averaged together for that calculation.  However, the main purpose of this equation is to estimate the resolution of the x-ray lines at low-energy, around 1~keV, and it is clear that small deviations to this measurement do not significantly affect results in this region.
 
 			\begin{figure}
 				\centering
 				\includegraphics[width=0.8\textwidth]{resolution_plot}
-				\caption[Modifed \bege~resolution versus energy]
-				{Modifed \bege~resolution versus energy.  Red dashed line is measured and fit intrinsic electronic noise, 
+				\caption[Modified \bege~resolution versus energy]
+				{Modified \bege~resolution versus energy.  Red dashed line is measured and fit intrinsic electronic noise, 
 				black points are measured resolution from x-ray lines, black line is a fit to Eqn.~\ref{eqn:SigmaEqn}.}
 				\label{fig:BeGeResPlot}
 			\end{figure}
@@ -223,7 +220,7 @@ a source or a pulser at low amplitudes; in a setup where the amplification of
 the two shaped channels is nearly equivalent, the expectation value of the ratio
 is close to 1.  
 	
-	In this application, a pulser was used to train the microphonics cut by taking high-statistics pulser runs at several discrete amplitudes near the threshold.  At these discrete amplitudes, the ratios of the two channels were histogrammed and fit to a gaussian.  The cut points were then determined by taking the values $\mu \pm 3 \sigma$ to accept 99.7\% of the pulser events.  Since these cut points were estimated at discrete amplitudes, a 4th-order polynomial was fit to them to interpolate between the points.  The results of this are shown in Figure~\ref{fig:RatioOfShapedChannels}.  To avoid errors from the interpolation, the cut was softened forcing the upper limit to be greater than 1, and the lower limit to be no less than 0.8.  The final cut is then shown in Figure~\ref{fig:RatioOfShapedChannelsFinal} which shows an overlay of the calculated cut on data from a scanned pulser run (Figure~\ref{fig:RatioScannedPulser} and from the run data (Figure~\ref{fig:RatioData}).  Interesting to note is how the run data and the scanned pulser data follow a different distribution at energies above 1~keV, in particular that the scanned pulser data is centered around a ratio of 0.9 and the run data is centered at a lower value.  This suggests that the difference between a pulser and an actual crystal event become more significant at these energies: future calibrations should use a source instead of a pulser to ensure complete consistency.  Interestingly, it appears that there may exist a crescent-shaped distribution of events that runs through the low-energy acceptance region (beginning below threshold at high ratios and ending from $1\to2$~keV at low ratios).  Whether or not such a distribution really exists has not been determined, but will be considered as a possible background in this low-energy region.  
+	In this application, a pulser was used to train the microphonics cut by taking high-statistics pulser runs at several discrete amplitudes near the threshold.  At these discrete amplitudes, the ratios of the two channels were histogrammed and fit to a Gaussian.  The cut points were then determined by taking the values $\mu \pm 3 \sigma$ to accept 99.7\% of the pulser events.  Since these cut points were estimated at discrete amplitudes, a 4th-order polynomial was fit to them to interpolate between the points.  The results of this are shown in Figure~\ref{fig:RatioOfShapedChannels}.  To avoid errors from the interpolation, the cut was softened forcing the upper limit to be greater than 1, and the lower limit to be no less than 0.8.  The final cut is then shown in Figure~\ref{fig:RatioOfShapedChannelsFinal} which shows an overlay of the calculated cut on data from a scanned pulser run (Figure~\ref{fig:RatioScannedPulser} and from the run data (Figure~\ref{fig:RatioData}).  Interesting to note is how the run data and the scanned pulser data follow a different distribution at energies above 1~keV, in particular that the scanned pulser data is centered around a ratio of 0.9 and the run data is centered at a lower value.  This suggests that the difference between a pulser and an actual crystal event become more significant at these energies: future calibrations should use a source instead of a pulser to ensure complete consistency.  Interestingly, it appears that there may exist a crescent-shaped distribution of events that runs through the low-energy acceptance region (beginning below threshold at high ratios and ending from $1\to2$~keV at low ratios).  Whether or not such a distribution really exists has not been determined, but will be considered as a possible background in this low-energy region.  
 
 			\begin{figure}
 				\centering
@@ -394,7 +391,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\label{fig:SimWaveformExample}
 				\end{figure}
 	
-	The electronic noise of the detector was measured by looking at the baseline of all pulses and taking the average of power spectra for each preamp trace channel.  Once the average power spectrum was determined, it was possible to use this to add noise to the simulated pulse through the techniques outlined in~\cite{WanThesis08} by Wan Chan Tseung.  Essentially, a measurement of an average power spectrum, $\Omega = X^{2} + Y^{2}$ where $X$ and $Y$ are the real and imaginary components of the Fourier Transform, gives you an average value $\mu_{i}$ at a frequency bin $i$.  If there is no phase information in the noise (i.e.~$\tan^{-1} (X_{i}/Y_{i})$ is flatly distributed), $X_{i}$ and $Y_{i}$ are gaussian-distributed variables around 0 with the same standard deviation, $\sigma_{i}$, which is related to the average value of bin $i$ via  $\mu_{i} = 2 \sigma_{i}^{2}$.  Therefore, for each simulated pulse, a noise waveform was generated in frequency space, transformed to the time domain using a discrete inverse Fourier Transform, and added to the original simulated pulse.  
+	The electronic noise of the detector was measured by looking at the baseline of all pulses and taking the average of power spectra for each preamp trace channel.  Once the average power spectrum was determined, it was possible to use this to add noise to the simulated pulse through the techniques outlined in~\cite{WanThesis08} by Wan Chan Tseung.  Essentially, a measurement of an average power spectrum, $\Omega = X^{2} + Y^{2}$ where $X$ and $Y$ are the real and imaginary components of the Fourier Transform, gives you an average value $\mu_{i}$ at a frequency bin $i$.  If there is no phase information in the noise (i.e.~$\tan^{-1} (X_{i}/Y_{i})$ is flatly distributed), $X_{i}$ and $Y_{i}$ are Gaussian-distributed variables around 0 with the same standard deviation, $\sigma_{i}$, which is related to the average value of bin $i$ via  $\mu_{i} = 2 \sigma_{i}^{2}$.  Therefore, for each simulated pulse, a noise waveform was generated in frequency space, transformed to the time domain using a discrete inverse Fourier Transform, and added to the original simulated pulse.  
 	
 	Since the energy of each event was determined using the amplitude of shaped pulses, it was necessary to determine a relationship between amplitudes of the shaped and unshaped low-gain channels (channel 2 and channel 5) and the amplitudes of the shaped and unshaped high-gain channels (channel 1 and channel 4).  This was done by fitting the relationship from data, an example of which is shown in Figure~\ref{fig:Risetimechan2vschan4}.  Additionally, the waveforms' position in the trace window exhibited a dependence on the energy of the event: for events of smaller amplitude the trigger tended to arrive later, so that the waveform moved left in the trace window.  This dependence was measured by tracking the start of the pulse in the trace window versus amplitude and fitting it to an empirical polynomial (see Figure~\ref{fig:TriggerPositionDependence}).  This information was folded back into the simulation to control the starting point of the pulse given its amplitude.
 	
@@ -404,7 +401,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 						\caption[Unshaped amplitudes vs.~shaped amplitudes in the modified \bege]
 						{Comparison between the amplitudes in the unshaped channel 4 and shaped channel 1.  											The line is a linear fit to the data.  The spectroscopy amplifier
 						output positive-going pulses whereas the preamplifier output negative-going pulses which explains why the slope 
-						is negative.  The voltage ranges on both the x and y axis have been made large enough to include events from the
+						is negative.  The voltage ranges on both the x and y axes have been made large enough to include events from the
 						entire energy range.}
 						\label{fig:Risetimechan2vschan4}.
 					\end{figure}
@@ -537,16 +534,16 @@ It is possible that the same mechanism which generates the partial charge collec
 								\cmidrule[1pt]{2-14} 
 								Cut & \multicolumn{2}{c}{$^{65}$Zn (8.98 keV)} & \multicolumn{2}{c}{$^{68}$Ga (9.66 keV)} & \multicolumn{2}{c}{$^{68}$Ge (10.37 keV)} & \multicolumn{2}{c}{$^{73}$As (11.1 keV)} & \multicolumn{2}{c}{Erf bkgd} & \multicolumn{2}{c}{Exp bkgd} & \multicolumn{2}{c}{Flat bkgd}  \\
 								\midrule
-							        	 Risetime 20\% & 264.9 & 17.9 & 52.8 & 8.9 & 681.3 & 26.8 & 29.9 & 7.9 & 302.9 & 44.7 & 31.8 & 12.1 & 520.1 & 47.8  \\
-									 Risetime 30\% & 345.9 & 20.3 & 82.4 & 10.9 & 828.9 & 29.5 & 39.8 & 9.8 & 425.5 & 48.8 & 69.1 & 15.3 & 555.8 & 51.7  \\
-									 Risetime 40\% & 413.2 & 22.1 & 90.4 & 11.5 & 976.0 & 32.0 & 45.7 & 10.5 & 510.3 & 51.9 & 109.1 & 17.7 & 604.1 & 54.6  \\
-									 Risetime 50\% & 465.6 & 23.4 & 103.2 & 12.2 & 1102.8 & 34.0 & 49.6 & 9.5 & 573.9 & 52.1 & 145.3 & 20.5 & 628.9 & 52.7  \\
-									 Risetime 60\% & 537.4 & 25.0 & 115.2 & 13.0 & 1232.4 & 35.9 & 55.1 & 9.8 & 638.9 & 53.8 & 183.9 & 22.3 & 665.0 & 53.8  \\
-									 Risetime 70\% & 583.8 & 26.1 & 125.9 & 13.5 & 1417.7 & 38.4 & 61.3 & 10.7 & 728.9 & 55.6 & 219.5 & 23.8 & 664.9 & 55.3  \\
-									 Risetime 80\% & 666.0 & 27.7 & 140.7 & 14.2 & 1559.8 & 40.3 & 66.2 & 10.8 & 793.1 & 57.2 & 268.5 & 25.6 & 697.3 & 56.3  \\
-									 Risetime 90\% & 698.2 & 28.4 & 153.9 & 14.8 & 1706.7 & 42.1 & 76.0 & 11.7 & 877.5 & 59.2 & 340.1 & 29.1 & 707.8 & 57.7  \\
-									 Risetime 95\% & 724.7 & 28.9 & 162.5 & 15.1 & 1796.9 & 43.2 & 77.0 & 11.6 & 919.0 & 59.6 & 403.3 & 31.2 & 718.2 & 57.3  \\
-									 Risetime 99\% & 749.8 & 29.5 & 168.7 & 15.5 & 1903.4 & 44.4 & 84.2 & 12.2 & 999.9 & 61.9 & 491.2 & 35.5 & 724.2 & 58.6  \\
+							        	 Rise-time 20\% & 264.9 & 17.9 & 52.8 & 8.9 & 681.3 & 26.8 & 29.9 & 7.9 & 302.9 & 44.7 & 31.8 & 12.1 & 520.1 & 47.8  \\
+									 Rise-time 30\% & 345.9 & 20.3 & 82.4 & 10.9 & 828.9 & 29.5 & 39.8 & 9.8 & 425.5 & 48.8 & 69.1 & 15.3 & 555.8 & 51.7  \\
+									 Rise-time 40\% & 413.2 & 22.1 & 90.4 & 11.5 & 976.0 & 32.0 & 45.7 & 10.5 & 510.3 & 51.9 & 109.1 & 17.7 & 604.1 & 54.6  \\
+									 Rise-time 50\% & 465.6 & 23.4 & 103.2 & 12.2 & 1102.8 & 34.0 & 49.6 & 9.5 & 573.9 & 52.1 & 145.3 & 20.5 & 628.9 & 52.7  \\
+									 Rise-time 60\% & 537.4 & 25.0 & 115.2 & 13.0 & 1232.4 & 35.9 & 55.1 & 9.8 & 638.9 & 53.8 & 183.9 & 22.3 & 665.0 & 53.8  \\
+									 Rise-time 70\% & 583.8 & 26.1 & 125.9 & 13.5 & 1417.7 & 38.4 & 61.3 & 10.7 & 728.9 & 55.6 & 219.5 & 23.8 & 664.9 & 55.3  \\
+									 Rise-time 80\% & 666.0 & 27.7 & 140.7 & 14.2 & 1559.8 & 40.3 & 66.2 & 10.8 & 793.1 & 57.2 & 268.5 & 25.6 & 697.3 & 56.3  \\
+									 Rise-time 90\% & 698.2 & 28.4 & 153.9 & 14.8 & 1706.7 & 42.1 & 76.0 & 11.7 & 877.5 & 59.2 & 340.1 & 29.1 & 707.8 & 57.7  \\
+									 Rise-time 95\% & 724.7 & 28.9 & 162.5 & 15.1 & 1796.9 & 43.2 & 77.0 & 11.6 & 919.0 & 59.6 & 403.3 & 31.2 & 718.2 & 57.3  \\
+									 Rise-time 99\% & 749.8 & 29.5 & 168.7 & 15.5 & 1903.4 & 44.4 & 84.2 & 12.2 & 999.9 & 61.9 & 491.2 & 35.5 & 724.2 & 58.6  \\
 									 LN + micro & 745.1 & 30.4 & 167.6 & 16.3 & 1935.5 & 45.2 & 95.9 & 14.2 & 1467.7 & 85.7 & 818.1 & 57.2 & 1112.4 & 72.9  \\
 								 
 								\bottomrule
@@ -667,16 +664,16 @@ This is not unexpected, since as the signal-to-noise of the pulse reduces de-noi
 								\cmidrule[1pt]{2-8} 
 								Cut & \multicolumn{2}{c}{$^{65}$Zn (1.1 keV)} & \multicolumn{2}{c}{$^{68}$Ge (1.3 keV)} & \multicolumn{2}{c}{Exp bkgd} & \multicolumn{2}{c}{Flat bkgd}  \\
 								\midrule
-							        	 Risetime 20\% & 18.3 & 7.7 & 21.0 & 7.4 & 83.2 & 26.4 & 125.5 & 25.3  \\
-									 Risetime 30\% & 34.7 & 9.8 & 42.8 & 9.3 & 67.7 & 17.1 & 203.8 & 19.1  \\
-									 Risetime 40\% & 45.4 & 11.0 & 70.7 & 11.1 & 103.3 & 19.1 & 234.5 & 20.5  \\
-									 Risetime 50\% & 47.5 & 11.9 & 104.1 & 12.9 & 132.5 & 21.5 & 263.9 & 21.9  \\
-									 Risetime 60\% & 47.7 & 12.5 & 133.6 & 14.3 & 170.8 & 23.2 & 283.8 & 22.7  \\
-									 Risetime 70\% & 64.0 & 13.8 & 157.2 & 15.4 & 205.1 & 25.0 & 308.7 & 23.8  \\
-									 Risetime 80\% & 75.5 & 14.7 & 174.3 & 16.2 & 249.7 & 26.2 & 337.5 & 24.5  \\
-									 Risetime 90\% & 80.2 & 15.8 & 187.1 & 17.1 & 315.0 & 29.5 & 367.7 & 26.1  \\
-									 Risetime 95\% & 78.2 & 16.2 & 201.1 & 17.7 & 377.7 & 31.7 & 379.0 & 26.7  \\
-									 Risetime 99\% & 81.9 & 17.2 & 205.4 & 18.4 & 450.5 & 36.5 & 419.3 & 29.6  \\
+							        	 Rise-time 20\% & 18.3 & 7.7 & 21.0 & 7.4 & 83.2 & 26.4 & 125.5 & 25.3  \\
+									 Rise-time 30\% & 34.7 & 9.8 & 42.8 & 9.3 & 67.7 & 17.1 & 203.8 & 19.1  \\
+									 Rise-time 40\% & 45.4 & 11.0 & 70.7 & 11.1 & 103.3 & 19.1 & 234.5 & 20.5  \\
+									 Rise-time 50\% & 47.5 & 11.9 & 104.1 & 12.9 & 132.5 & 21.5 & 263.9 & 21.9  \\
+									 Rise-time 60\% & 47.7 & 12.5 & 133.6 & 14.3 & 170.8 & 23.2 & 283.8 & 22.7  \\
+									 Rise-time 70\% & 64.0 & 13.8 & 157.2 & 15.4 & 205.1 & 25.0 & 308.7 & 23.8  \\
+									 Rise-time 80\% & 75.5 & 14.7 & 174.3 & 16.2 & 249.7 & 26.2 & 337.5 & 24.5  \\
+									 Rise-time 90\% & 80.2 & 15.8 & 187.1 & 17.1 & 315.0 & 29.5 & 367.7 & 26.1  \\
+									 Rise-time 95\% & 78.2 & 16.2 & 201.1 & 17.7 & 377.7 & 31.7 & 379.0 & 26.7  \\
+									 Rise-time 99\% & 81.9 & 17.2 & 205.4 & 18.4 & 450.5 & 36.5 & 419.3 & 29.6  \\
 									 LN + micro & 80.6 & 19.4 & 206.7 & 21.2 & 568.4 & 74.5 & 777.7 & 63.7  \\
 								 
 								\bottomrule
@@ -763,9 +760,9 @@ where $f_{Trigger}(E)$ is the trigger efficiency defined in Equation~\ref{eqn:Tr
 
 	In contrast to the previous data run with \ppc2, fewer parameters were tracked during the lifetime of the experiment (see Section~\ref{sec:PPC2DetParsVsTime}).  In particular, due to limited channels in the DAQ electronics the trigger efficiency was not monitored with automated tests nor was the rate of the reset electronics recorded.  In general, both these parameters are important to catalogue since they could affect the signal region near threshold.  However, due to the strong correlation of the reset rate on  the measured baseline in unshaped pulses seen in the results of Section~\ref{sec:PPC2DetParsVsTime}, the baseline can be used as a proxy to ensure that the reset rate did not change significantly.  Similarly, it was possible to monitor the noise by using the measured RMS of the baseline to determine whether it changed significantly over time.  
 	
-	The baselines of two channels were tracked, channel 1 (shaped) and channel 5 (unshaped preamp trace).  For every day of run-time, the calculated baselines were binned and fit to a gaussian.  
+	The baselines of two channels were tracked, channel 1 (shaped) and channel 5 (unshaped preamp trace).  For every day of run-time, the calculated baselines were binned and fit to a Gaussian.  
 %As discussed before in Section~\ref{sec:BeGeBaseline}, 
-The binned baseline data included outliers in one direction which were attributed to having come from the return of the baseline to its nominal value following a reset event in the preamplifier.  Since these outliers were a low percentage of the total events, only one gaussian was fit to the binned baseline data.  From these fits, the mean and $\sigma$ values were extracted and the relationship of these parameters versus time are plotted in Figure~\ref{fig:BeGeBaselineData}.  An inspection of the results reveals that the $\sigma$ values from both unshaped and shaped channels were stable with time.  In contrast, the mean value of the baseline in the unshaped channel demonstrates variation, but this is not mirrored exactly in the mean of the baseline calculated from the shaped channel.  This is likely due to baseline restoration electronics in the spectroscopy amplifier which render the baseline of the output less sensitive to baseline modulation of the input.  Regardless, it is evident that the noise of the baseline does not change significantly in either the shaped or unshaped channels over the time range of the experiment.  This suggests that the trigger efficiency and electronic noise remained similarly unchanged throughout the time of the experiment.  
+The binned baseline data included outliers in one direction which were attributed to having come from the return of the baseline to its nominal value following a reset event in the preamplifier.  Since these outliers were a low percentage of the total events, only one Gaussian was fit to the binned baseline data.  From these fits, the mean and $\sigma$ values were extracted and the relationship of these parameters versus time are plotted in Figure~\ref{fig:BeGeBaselineData}.  An inspection of the results reveals that the $\sigma$ values from both unshaped and shaped channels were stable with time.  In contrast, the mean value of the baseline in the unshaped channel demonstrates variation, but this is not mirrored exactly in the mean of the baseline calculated from the shaped channel.  This is likely due to baseline restoration electronics in the spectroscopy amplifier which render the baseline of the output less sensitive to baseline modulation of the input.  Regardless, it is evident that the noise of the baseline does not change significantly in either the shaped or unshaped channels over the time range of the experiment.  This suggests that the trigger efficiency and electronic noise remained similarly unchanged throughout the time of the experiment.  
 
 			\begin{sidewaysfigure}
 				\centering
@@ -915,10 +912,6 @@ The binned baseline data included outliers in one direction which were attribute
 					\includegraphics[width=\figwidth]{\plotname_0.5_1}
 					\label{fig:\plotname5to1}
 				}
-				%\subfigure[$1\to2$~keV]{
-				%	\includegraphics[width=\figwidth]{\plotname_1_2}
-				%	\label{fig:\plotname1to2}
-				%}								
 				\subfigure[$3\to8$~keV]{
 					\includegraphics[width=\figwidth]{\plotname_3_8}
 					\label{fig:\plotname3to8}
@@ -961,7 +954,7 @@ The binned baseline data included outliers in one direction which were attribute
 				\toprule
 					Cut & Range (keV) & Triggers & Direction & \multicolumn{2}{c}{Rate (cts/hr)} & $\chi^2$ & NDF & P-value  \\
 				\midrule
-				\multirow{6}{*}{Risetime 50\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{166}	& B & -1.10 & 0.10 & 4.77 & 7 & 0.689\\
+				\multirow{6}{*}{Rise-time 50\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{166}	& B & -1.10 & 0.10 & 4.77 & 7 & 0.689\\
 					& & & F & -0.98 & 0.09 & 2.81 & 7 & 0.902\\
 				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{651}	& B & -1.03 & 0.05 & 19.10 & 18 & 0.386\\
 					& & & F & -0.98 & 0.04 & 13.48 & 20 & 0.856\\
@@ -969,7 +962,7 @@ The binned baseline data included outliers in one direction which were attribute
 					& & & F & -1.07 & 0.03 & 26.00 & 39 & 0.945\\
 				\midrule
 				
-				\multirow{6}{*}{Risetime 60\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{205}	& B & -1.20 & 0.10 & 7.52 & 6 & 0.275\\
+				\multirow{6}{*}{Rise-time 60\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{205}	& B & -1.20 & 0.10 & 7.52 & 6 & 0.275\\
 					& & & F & -1.06 & 0.09 & 2.80 & 7 & 0.902\\
 				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{711}	& B & -1.20 & 0.05 & 23.24 & 18 & 0.182\\
 					& & & F & -1.15 & 0.05 & 30.70 & 19 & 0.044\\
@@ -977,7 +970,7 @@ The binned baseline data included outliers in one direction which were attribute
 					& & & F & -1.18 & 0.04 & 19.85 & 36 & 0.987\\
 				\midrule
 				
-				\multirow{6}{*}{Risetime 70\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{242}	& B & -1.30 & 0.10 & 7.04 & 6 & 0.317\\
+				\multirow{6}{*}{Rise-time 70\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{242}	& B & -1.30 & 0.10 & 7.04 & 6 & 0.317\\
 					& & & F & -1.17 & 0.09 & 3.23 & 7 & 0.863\\
 				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{769}	& B & -1.32 & 0.05 & 14.98 & 17 & 0.597\\
 					& & & F & -1.24 & 0.05 & 24.93 & 18 & 0.127\\
@@ -985,7 +978,7 @@ The binned baseline data included outliers in one direction which were attribute
 					& & & F & -1.31 & 0.04 & 28.13 & 36 & 0.823\\
 				\midrule
 				
-				\multirow{6}{*}{Risetime 80\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{293}	& B & -1.31 & 0.10 & 3.56 & 5 & 0.615\\
+				\multirow{6}{*}{Rise-time 80\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{293}	& B & -1.31 & 0.10 & 3.56 & 5 & 0.615\\
 					& & & F & -1.29 & 0.09 & 4.38 & 8 & 0.821\\
 				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{824}	& B & -1.43 & 0.05 & 11.13 & 15 & 0.744\\
 					& & & F & -1.38 & 0.06 & 22.71 & 16 & 0.122\\
@@ -993,7 +986,7 @@ The binned baseline data included outliers in one direction which were attribute
 					& & & F & -1.44 & 0.04 & 26.58 & 34 & 0.814\\
 				\midrule
 				
-				\multirow{6}{*}{Risetime 90\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{350}	& B & -1.54 & 0.10 & 1.89 & 4 & 0.756\\
+				\multirow{6}{*}{Rise-time 90\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{350}	& B & -1.54 & 0.10 & 1.89 & 4 & 0.756\\
 					& & & F & -1.46 & 0.09 & 4.15 & 7 & 0.762\\
 				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{884}	& B & -1.60 & 0.06 & 9.95 & 15 & 0.823\\
 					& & & F & -1.52 & 0.06 & 27.90 & 15 & 0.022\\
@@ -1001,7 +994,7 @@ The binned baseline data included outliers in one direction which were attribute
 					& & & F & -1.59 & 0.04 & 24.89 & 30 & 0.730\\
 				\midrule
 				
-				\multirow{6}{*}{Risetime 95\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{402}	& B & -1.69 & 0.09 & 2.74 & 4 & 0.602\\
+				\multirow{6}{*}{Rise-time 95\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{402}	& B & -1.69 & 0.09 & 2.74 & 4 & 0.602\\
 					& & & F & -1.56 & 0.09 & 3.80 & 6 & 0.704\\
 				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{914}	& B & -1.70 & 0.06 & 10.25 & 14 & 0.744\\
 					& & & F & -1.62 & 0.07 & 30.54 & 15 & 0.010\\
@@ -1009,7 +1002,7 @@ The binned baseline data included outliers in one direction which were attribute
 					& & & F & -1.69 & 0.04 & 23.45 & 27 & 0.661\\
 				\midrule
 				
-				\multirow{6}{*}{Risetime 99\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{457}	& B & -1.94 & 0.10 & 5.89 & 4 & 0.207\\
+				\multirow{6}{*}{Rise-time 99\%}& \multirow{2}{*}{$0.5~\to~1$} & \multirow{2}{*}{457}	& B & -1.94 & 0.10 & 5.89 & 4 & 0.207\\
 					& & & F & -1.69 & 0.09 & 1.94 & 5 & 0.858\\
 				& \multirow{2}{*}{$2~\to~8$} & \multirow{2}{*}{976}	& B & -1.84 & 0.06 & 11.25 & 13 & 0.590\\
 					& & & F & -1.77 & 0.07 & 24.01 & 14 & 0.046\\
@@ -1041,7 +1034,7 @@ The binned baseline data included outliers in one direction which were attribute
 				\centering
 				\includegraphics[width=0.7\textwidth]{GeCorrelationHighEnergy4}
 				\caption[Time-energy correlation triggering on \gersixeight~decays.]
-				{Time-energy correlation triggering on \gersixeight~decays (2211~triggers), z-axis is in counts.  The region intensity centered at 9.7~keV between 0 and 2~hours post trigger arises from the K-capture decay of the 
+				{Time-energy correlation triggering on \gersixeight~decays (2211~triggers), z axis is in counts.  The region intensity centered at 9.7~keV between 0 and 2~hours post trigger arises from the K-capture decay of the 
 				\galsixeight~daughter.}
 				\label{fig:BeGeGeCorrelation}
 			\end{figure}	
