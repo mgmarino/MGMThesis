@@ -7,7 +7,7 @@
 % since this is relevant to the characterization studies.  I imagine these
 % generally will occupy appendices.
 
-\chapter{Development of a digital data acquisition system for p-type point-contact detectors}
+\chapter{Development of a Digital Data Acquisition System for P-Type Point-Contact Detectors}
 \label{chap:DAQDevel}
 	\section{Introduction} 
 	
@@ -27,7 +27,7 @@ but does not detail the development of all the hardware and software to run most
 
 	Because P-type Point Contact detectors will be used in the \MJ~\minmod, it was necessary to use such a detector for some of these tests.  A \ppc~detector (henceforth referred to as \ppc2) was procured by PNNL in January 2008 to be used in studies aimed at more clearly understanding the detector technology~\cite{Orr2007}.  Initial tests took place in the laboratory, focusing on basic operation and pulse-shape analysis techniques relevant for background reduction in the $\nonubb$ region-of-interest and for Dark Matter searches~\cite{Orr2008}.  Some of these results are presented here (see Section~\ref{sec:HeadToHeadCompare}).  Following these tests, in November 2008 the detector was deployed underground at Soudan National Laboratory at a depth of 2100~m.w.e.~to investigate both the low-energy performance and operational stability.
 	   
-	\section{Baseline DAQ system}
+	\section{Baseline DAQ System}
 
 	The baseline system for development used the Gretina Mark IV digitizer
 designed by the GRETA collaboration~\cite{Anderson:2009p1293}.  This
@@ -37,7 +37,7 @@ developed at the University of Washington and at the University of North
 Carolina~\cite{Howe04,Howe08,ORCA}.%, see also
 %Appendix~\ref{app:ORCASoftwareChapter}).  
 	
-	\section{Digitizer comparison tests}
+	\section{Digitizer Comparison Tests}
      	\label{sec:HeadToHeadCompare}
      	% Comparison between 100 MS/s and other cards.
 	
@@ -118,8 +118,8 @@ Carolina~\cite{Howe04,Howe08,ORCA}.%, see also
 		% Reference Ren's paper, a lot of work that has been done there, understanding that this 
 		% is a very simple technique applied to data.     
 
-	\section{Development and testing of the Gretina Mark IV digitizer}
-		\subsection{Trigger design and tests}
+	\section{Development and Testing of the Gretina Mark IV Digitizer}
+		\subsection{Trigger Design and Tests}
 		\label{sec:DeploymentPPC2SoudanTriggerDesign}     
 			
 	Before deployment of the DAQ system underground in Soudan, triggering tests were performed to determine the optimum conditions for minimizing the energy threshold of the electronics.  The goal of these initial measurements was also to develop an automated set of tests to perform regularly on \ppc2 \emph{in situ}.  Triggering efficiency refers to the probability of inducing a trigger at a particular signal amplitude.  It should be 1 well above threshold and decrease to 0 as the amplitude of the signal reduces below threshold.  The basic technique to measure the trigger efficiency of a detector system is to inject a pulse of known amplitude into the test port of the electronics and complete a series of measurements, adjusting the amplitude of the pulse to sample around the threshold.  One can determine the probability of detecting a pulse by either knowing the rate of the injected pulse and performing the test for a known period of time, or by having an independent measure of the the timing of the injected pulse (i.e.~a synchronization pulse) and performing a coincidence measurement.  For these tests, the latter method was chosen as it was deemed a cleaner technique to extract both the trigger efficiency given a certain pulse amplitude as well as the false trigger rate at a particular threshold setting.  
@@ -137,7 +137,7 @@ Carolina~\cite{Howe04,Howe08,ORCA}.%, see also
 				\label{fig:PPC2TriggeringEfficiencyTests}
 			\end{figure}
 
-		\subsection{Measured electronic noise}
+		\subsection{Measured Electronic Noise}
 		\label{sec:DeploymentPPC2SoudanAnalysisElectronicNoise}    
 	
 	The electronic noise was measured by injecting a pulse from the waveform generator and calculating the FWHM of the width of the peak.  Since this calculation was performed offline, the parameters of the trapezoidal filter (i.e. integration time and collection time) could be varied over the same data set to determine the values which would yield the best resolution.  The trace length of the waveform was limited to 10~$\mu$s and, since the rising edge of the waveform was positioned in the middle of the digitization window, the offline filter integration length was limited to less than 5~$\mu$s.  In practice, the limitation on the integration time was closer to 3.5~$\mu$s to account for variations in the position of the rising edge of the pulse with different pulse amplitudes.  Results, shown in Figure~\ref{fig:PPC2NoiseVsIntegrationTime}, indicate that the best resolution comes at the longest shaping time and also suggest that the minimum resolution could not be achieved with this setup.  The minimum value measured in this test, 225~eV, was larger than the value measured with an analog electronics system, 180~eV, but it is expected that this difference would shrink if longer integration times were available.

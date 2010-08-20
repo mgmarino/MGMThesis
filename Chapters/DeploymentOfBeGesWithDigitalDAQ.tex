@@ -1,5 +1,5 @@
 
-\chapter{Deployment of a digital data acquisition system (DAQ) for a \ppc~detector at the Soudan Underground Laboratory}
+\chapter{Deployment of a Digital Data Acquisition System (DAQ) for a \ppc~Detector at the Soudan Underground Laboratory}
 \label{chap:DeploymentPPC2Soudan}
 	\section{Introduction}
 	\label{sec:DeploymentPPC2SoudanIntro}
@@ -51,7 +51,7 @@ with all components in Figure~\ref{fig:PPC2Shield}.  Relevant characteristics of
 				\end{tabular}
 			\end{table}
 	
-	\section{Description of DAQ system}
+	\section{Description of DAQ System}
 	\label{sec:DeploymentPPC2SoudanDAQSystem}
 	
 	The DAQ system was designed as a single-channel prototype for the
@@ -112,12 +112,12 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 				\label{fig:PPC2DAQSetup}
 			\end{sidewaysfigure}
 		     			
-	\section{Analysis and results}
+	\section{Analysis and Results}
 	\label{sec:DeploymentPPC2SoudanAnalysis}
 	
 	After a few months of commissioning and calibration tests, counting runs were begun on 3 May 2009.  Runs were cycled every hour, and data were automatically synchronized with a server at the University of Washington.  On 10 June 2009, automatic trigger efficiency tests were begun in between runs to monitor the stability of the trigger over time.  Counting runs ended on 24 July 2009, yielding a total live-time of 70.4 days.  A \couchdb~database~\cite{CouchDB} was used to store both metadata (e.g.~timing, configuration, file names, etc.) as well as analysis parameters (e.g.~average baseline, trigger efficiency, measured electronic noise) from each run.  This database was also used to facilitate the analysis chain described in the following section.    
 
-		\subsection{Data processing}
+		\subsection{Data Processing}
 		\label{sec:DeploymentPPC2DataProcessing}	
 	
 	All data were handled in a tiered reduction scheme.  The analysis process was automated and made significant use of the ROOT analysis framework~\cite{Bru97} as well as waveform analysis tools (MGDO, see Appendix~\ref{app:MGDO} for more information) developed for the \MJ~experiment.  An outline of the tiered data-flow process is given:
@@ -130,7 +130,7 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 		
 	This process was tracked using a \couchdb~database.  The Tier~$0\to1$ conversion process took the raw binary data and converted it into MGDO \cpp~objects which could then be serialized to disk in ROOT TFiles.  The Tier~$1\to2$ processing calculated several parameters from the waveform data, including baseline, extrema (maximum and minimum), and rise-time and determined the amplitude of the waveform using a trapezoidal filter\footnote{The Gretina digitizer included an on-board trapezoidal filter, but it was chosen to use an offline filter for greater flexibility.}~\cite{Jor94}.  More information regarding the baseline and rise-time calculations are given in Sections~\ref{sec:DeploymentPPC2SoudanAnalysisCuts} and~\ref{sec:DeploymentPPC2SoudanAnalysisRisetime}.  Additionally, at this stage coincidences between events in different channels were calculated using the timing information from the digitizer card, defining events within $1~\mu$s of each other as concurrent.   Finally, the Tier~$2\to3$ processing reduced the data size, removing noise events (i.e.~events well below energy threshold) and splitting the two signal channels 0 and 8 into separate file groups.  The Tier~3 files were used directly in analysis and made available to others in the \MJ~collaboration through a cloud-based file system (Dropbox\footnote{See the Dropbox website: \url{https://www.dropbox.com} for more information.}).
 	
-		\subsection{Initial calibration}
+		\subsection{Initial Calibration}
 		\label{sec:DeploymentPPC2SoudanAnalysisCalibration}    
 			
 	The system was initially calibrated with a $^{133}$Ba source using peaks detailed in Table~\ref{tab:Ba133Peaks}.  The high- and low-gain channels were calibrated independently and spectra for each channel are shown in Figure~\ref{fig:PPC2Calibration}.  The two channels exhibited an energy range up to $\sim100$~keV and $\sim 2.6$~MeV, respectively, though the range of the low-gain channel is discussed in more detail in Section~\ref{sec:DeploymentPPC2SoudanAnalysisEnergySpectra} .  These initial calibrations were used for commissioning tests such as trigger efficiency and electronic noise measurements and were later refined using prominent peaks from backgrounds e.g.~in the U and Th chains, $^{40}$K, and x-ray lines from \gersixeight~and \znsixfive~electron capture decays (see Section~\ref{sec:DeploymentPPC2SoudanAnalysisEnergySpectra}).  During the counting runs, regular calibration runs were not made; instead we monitored the behavior of the detector using an injected pulser.  
@@ -176,7 +176,7 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 					\label{fig:PPC2Calibration}
 				\end{figure}
 
-		\subsection{Detector parameters vs.~time}	
+		\subsection{Detector Parameters vs.~Time}	
 		\label{sec:PPC2DetParsVsTime}
 		
 	Several parameters of the system were tracked over time, including the trigger efficiency and the electronic noise of the system.  The former was tested by performing efficiency tests every hour in between run cycles; the latter by looking at the recorded data of the input pulser pulses (1~Hz) versus time.  Several other parameters, including the baseline of the waveforms and the number of events in a certain energy ranges, were tracked as well: these results are presented in Section~\ref{sec:DeploymentPPC2SoudanAnalysisCuts}.  In addition to these specific parameters being tracked, the rates of each channel were tracked.  While tracking these rates, it was determined that the reset rate of the preamp increased towards the end of an LN fill cycle.  Higher values of inhibit rate (lower baseline values) occurred as LN in the dewar boiled off, with sharp returns when the dewar was refilled.  The interpretation of this was that as the level of LN in the dewar fell, the temperature of the front-end detector electronics (and possibly the crystal) would increase which would increase the detector leakage current.  An increase in leakage current would cause the preamp to reset more often to clear the charge more quickly accumulating on the feedback capacitor.  It was not determined precisely what caused this temperature sensitivity; however, it was likely due to insufficient thermal coupling between the detector and the liquid nitrogen.  During installation of the detector within the Pb shield, an extension had to be added to the dewar end of the cold finger.  It is possible that this extension didn't properly thermally couple to the cold finger and thus didn't cool the detector and/or the internal electronics as effectively.  The change of the reset rate over time had implications for other parameters as discussed in the following sections.  A summary of comparisons between detector parameters is shown later in the section in Figure~\ref{fig:PPC2AllPlotCompare}.  In this figure, LN fills occurred around runs~1590, 1665, and 1750.  The average values of the parameters in the following sections is given in Table~\ref{tab:PPC2AvgPars}.
@@ -197,7 +197,7 @@ The DAQ system was fully deployed underground at the beginning of April 2009.
 
 
 
-		    	\subsubsection{Trigger efficiency}
+		    	\subsubsection{Trigger Efficiency}
 			\label{sec:DeploymentPPC2SoudanAnalysisTriggerEfficiency}    
 			
 	Trigger efficiency was measured as described in Section~\ref{sec:DeploymentPPC2SoudanTriggerDesign}.  Initial tests were performed during the commissioning period (i.e.~before counting runs began) and automatic tests were run after every hour-long cycle beginning 38~days into the counting run period.  The goal of these tests was to investigate how the trigger threshold behaved over time, tracking any changes that might occur due to shifts in environmental conditions or because of other unforeseen phenomena.  To parameterize the efficiency, the data were fit to an error function, $f_{eff}(E)$, in the form:
@@ -234,7 +234,7 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 			%%%%\end{figure}
 
 
-		    	\subsubsection{Pulser data}
+		    	\subsubsection{Pulser Data}
 			\label{sec:DeploymentPPC2SoudanAnalysisPulserData}    
 
 	Pulses from the Agilent waveform generator were input into the test input at a rate of 1~Hz and at low energy: $\sim2.5$~keV.  These events underwent analysis equivalent to every other waveform and were selected by finding all waveforms which arrived in coincidence with the pulser synchronization signal.  Each hour-long run yielded a data set of $\sim3600$ events; the calculated amplitudes (energies) of these events were histogrammed and fit to a gaussian to extract the mean, $\mu$, and the sigma, $\sigma$, of the pulser signal for each run.  Results of these fits are plotted versus run number in Figure~\ref{fig:PPC2AllPlotCompare}.  It is clear that the width of the noise ($\sigma$) did not significantly alter for reset rates below 15~Hz.  However, the mean ($\mu$) of the pulser demonstrated three clear transition regions an example of which has been labeled `I', `II', and `III' in Figure~\ref{fig:PPC2AllPlotCompare}: from reset rates 3$\to$7~Hz (region I labeled in the plot), the mean increased, transitioned to lower values for reset rates 7$\to$11~HZ (region II), and then returned for rates above 11~Hz (region III).  The absolute cause of this behavior was not determined, but it is possibly due to a modification of operating parameters of the front-end crystal electronics (e.g.~the FET) by the increasing leakage current.  
@@ -275,10 +275,10 @@ with energy, $E$, in keV; scaling parameter, $s$, in keV$^{-1}$; and offset, $\r
 			
 	Cuts were introduced to clean the data with the goal of removing spurious events from, for example, noise, microphonics and reset-pulse events.  These consisted of (1) a timing cut for removing reset pulse events, and (2) a baseline cut and (3) an integrated-counts-per-run cut for removing noise and microphonics-induced events.  The first two cuts were applied on an event-by-event basis, whereas the last cut removed an entire hour-long run. 
 	
-			\subsubsection{Reset-pulse timing cut}
+			\subsubsection{Reset-pulse Timing Cut}
 	Reset pulse waveforms had distinct qualities (positive clipping whereas energy pulses were negative-going) which allowed the waveforms to be removed online from the data stream while retaining the timing information of the event.  The offline timing cut introduced a veto window of 1~ms following a reset event.  Given the average reset rate ($\sim$10~Hz), this introduced a $\sim$1\% correction to the live-time.  
 
-			\subsubsection{Baseline cut}	
+			\subsubsection{Baseline Cut}	
 	The baselines of the traces were monitored on an event-by-event basis by calculating a 1st-degree polynomial fit to the first 3.5~$\mu$s of each preamp trace.  From this information, an average baseline was calculated for each run to generate a cut based upon significant deviations from these average values.  In a stable system, the baseline will be gaussian distributed around a central value according to the magnitude of the noise.  The integrated-counts-per-run in particular energy windows (0.6-10~keV and 10-70~keV) were monitored as well to observe deviations from expectation assuming Poisson statistics.  This second cut relied upon the fact that spurious events from increases in environmental noise and microphonics arrive in bursts, see e.g.~\cite{Morales1992410}).  
 	
 	The average baseline per run shifted in a way systematically correlated
@@ -314,7 +314,7 @@ impossible.  Runs during these transition times were cut from the data set.
 					\label{fig:PPC2BaselineCuts}
 				\end{figure}
 				
-			\subsubsection{Integrated-counts-per-run cut}
+			\subsubsection{Integrated-counts-per-run Cut}
 	To determine the integrated-counts-per-run cut, counts in a designated energy window for each run were calculated and histogrammed.  The resulting data were then fit to a Poisson distribution and a cut was generated based upon 99.99\% acceptance using the fit distribution.  Results of this calculation are shown in Figure~\ref{fig:PPC2NoiseCuts}.  All runs with $\leq29$~counts between 0.6 and 10~keV were accepted.  
 	
 	All of these cuts were applied to the data to obtain a cleaned data set and all results described in the following sections use data after cuts.
@@ -328,7 +328,7 @@ impossible.  Runs during these transition times were cut from the data set.
 					\label{fig:PPC2NoiseCuts}
 				\end{figure}
 	
-	    	\subsection{Rise-time calculations}
+	    	\subsection{Rise-time Calculations}
 		\label{sec:DeploymentPPC2SoudanAnalysisRisetime}    
 	
 			
@@ -375,7 +375,7 @@ At low energy in the high-gain channel, one does not expect to see a significant
 					\label{fig:PPC2RisetimeExamplePulses}
 				\end{figure}		
 			
-	    	\subsection{Energy spectra}
+	    	\subsection{Energy Spectra}
 		\label{sec:DeploymentPPC2SoudanAnalysisEnergySpectra}    	
 			
 	Studies on the high-energy channel were performed by A.~Schubert to identify peaks and study the resolution of the detector with higher energy gamma lines~\cite{Schubert:2009ff}.  The spectrum was calibrated using prominent peaks in the spectra.  The resolution was fit to a second-order polynomial function of energy and determined to be:
@@ -483,7 +483,7 @@ with $E$, energy in keV.  It was found that the 2614.5~keV peak of the $^{208}$T
 					\end{tabular}
 				\end{table}
 
-	\section{Estimate of \texorpdfstring{\gersixeight}{68Ge}~surface production}       
+	\section{Estimate of \texorpdfstring{\gersixeight}{68Ge}~Surface Production}       
 	\label{sec:Ge68ProdPPC}
 	
        \gersixeight~is a cosmogenically-produced isotope inside germanium detectors which is a well-known background to $\nonubb$ (see e.g.~\cite{Ceb06aa}) due to the fact that the decays of its \galsixeight~daughters can deposit energy in the $\nonubb$ region-of-interest.  A schematic of the decay chain is shown in Figure~\ref{fig:GE68Decay}.  The decay of \gersixeight~proceeds via electron-capture with a half-life of 271~days to \galsixeight, which subsequently decays to $^{68}$Zn with a half-life of 68~minutes.  The latter decay has a Q-value of 2921~keV which could deposit energy at 2039~keV, the $\nonubb$ Q-value.  This background can be reduced two ways: (1) an analysis cut which tags the initial decay of \gersixeight~and vetoes the detector for a specified multiple of \galsixeight~half-lives, and/or (2) reduce the intrinsic \gersixeight~content in germanium detectors by either storing them in a low-cosmic-ray-flux environment (i.e.~underground) and waiting or by actively removing \gersixeight~through isotopic depletion.  Because \gersixeight~decays inside the detector, the total energy emitted through Auger electrons and x-rays is summed to lines of the K-, L-, or M-electron binding energy of the daughter nuclei (see Table~\ref{tab:GE68decayinfo}).  These lines can then be used to tag events likely to belong to a \gersixeight~decay.  Tagging the \gersixeight~decays to reduce the \galsixeight~background is dependent on the decay rate of \gersixeight, $\lambda^{(^{68}Ge)}$, and is not a viable solution until $\lambda^{(^{68}Ge)} \tau_{1/2}^{(^{68}Ga)} \ll 1$.   Estimations of the \gersixeight~activation rate at the earth's surface in both natural and enriched (86\% $^{76}$Ge) have been performed previously (see e.g.~\cite{Avi92,Elliott:2009cw,Mei2009417}). 

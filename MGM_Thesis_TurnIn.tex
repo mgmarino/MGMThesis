@@ -46,7 +46,7 @@
 
 % \usepackage{newcent}
 
-\setcounter{tocdepth}{1}  % Print the chapter and sections to the toc
+\setcounter{tocdepth}{2}  % Print the chapter and sections to the toc
  
 
 % ==========   Local defs and mods
@@ -110,7 +110,8 @@
 \input{commands}
 % --- end MGM include ---
 
-
+\newcommand{\texorpdfstring}[2]{#1}
+\usepackage{url}
 \graphicspath{
 {Figures/}
 {Figures/Introduction/}

@@ -1,6 +1,6 @@
-\chapter{Deployment and analysis of a low-background modified-\bege~detector}
+\chapter{Deployment and Analysis of a Low-background Modified-\bege~Detector}
 \label{chap:AnalysisBeGe}
-	\section{Experimental setup}
+	\section{Experimental Setup}
 	\label{sec:BeGeExperimentalSetup}
 
 A 440~g \ppc~modified \textbf{B}road-\textbf{E}nergy \textbf{G}ermanium (\bege) detector manufactured by Canberra Industries was deployed underground on 24~August~2009 in the Soudan Underground Laboratory in Soudan, MN.  The purpose of the deployment of this detector was to obtain low-threshold, low-background counting data to seek improved limits on WIMPs in the low-mass range ($\lesssim10$~GeV).  The design of this detector included several custom modifications to address backgrounds seen with a previous \ppc~used to obtain dark matter limits~\cite{Aalseth:2008aa}, including several internal mounting components replaced by ones constructed with cleaner materials by J.~Collar at the University of Chicago.  A summary of relevant geometrical aspects of the detector is provided in Table~\ref{tab:BEGeCharacteristics}.
@@ -29,7 +29,7 @@ The detector was placed in the same shield as described in Section~\ref{sec:Depl
 
 This chapter presents results from data taken with the BeGE detector underground from the time period beginning 4 December 2009 until 15 May 2010 for a total live-time of 150.6~days.  During this time, there were two main gaps in run time, including a roughly 5-day shutdown period during a planned power outage at the lab and another 6-day period during which parameter settings for the DAQ were modified.  Results from a parallel analysis of a previous subset of the data occupying about 2 months of live-time have been presented in~\cite{Aalseth:2010aa}.
 
-	\section{Data acquisition and processing}
+	\section{Data Acquisition and Processing}
 	\label{sec:BeGeDAQProcessing}
 	
 The DAQ system used was similar to the one used in~\cite{Aalseth:2008aa}.  The preamp of the modified \bege~included 2~signal outputs, an inhibit output generating a logic signal when the reset circuitry of the preamp was active, and a test input for waveform generator pulses.  The initial system was set up without the ability to digitize raw preamp traces, but a later upgrade on 1~Dec~2009 introduced additional hardware to take this data.  The readout system was a PCI-based National Instruments digitizer with 6~channels, sampling at 20~MS/s with a resolution of 8~bits.  This digitizer allowed selectable voltage ranges, enabling higher resolution at lower energies.  The acquisition software used was a Windows- and Labview-based program designed by J.~Collar.  
@@ -68,28 +68,28 @@ A 1~ms veto following the pulse reset then produces a less than 0.3\% reduction 
 		\end{enumerate}
 Details on the waveform processing are given in the following Sections: \ref{sec:BegeShapedProc}, \ref{sec:UnshapedWFProc}, and~\ref{sec:MuonProc}.  For more details regarding the MGDO objects and the framework of the analysis chain, see Appendix~\ref{app:MGDO}.
 	
-		\subsection{Shaped channel processing}
+		\subsection{Shaped Channel Processing}
 		\label{sec:BegeShapedProc}
 
 The shaped channels (0, 1, and 2) were processed to extract amplitude information of the pulses.  These traces were first run through a 100~kHz low-bandpass filter to remove high-frequency noise and artifacts from the limited bit-depth of the digitizer.  Both extrema values, maximum and minimum, of each waveform were recorded and the baseline of each waveform was calculated by averaging the first 280 $\mu$s (5600 samples).  Maxima were calculated both before and after the bandpass filter and both values saved; the minimum value was found on the unfiltered waveform.  The amplitude could then be calculated as the difference between the baseline and the maximum measured on the filtered waveform.  The minimum was saved to analyze pulse health later.
 
-		\subsection{Unshaped channel processing}
+		\subsection{Unshaped Channel Processing}
 		\label{sec:UnshapedWFProc}
 
 The unshaped channels (4 and 5) were processed to extract information on the characteristics of the waveform, including baseline, extrema values, and rise-time information.    The baseline was calculated using the first 5600 samples and the maximum and minimum were found for each pulse.  Calculating the rise-time of each pulse required de-noising using a time-invariant stationary wavelet transformation (SWT).  This process is described later in Section~\ref{sec:RisetimeCuts}.  Extracting the extrema values -- the maximum and minimum of the waveform -- required running the waveform through a 100~kHz low-bandpass filter.  The filter was run on an unmodified waveform and \emph{before} any other de-noising was done.  After the application of this filter, the maximum and minimum values and positions were recorded.  
 
-		\subsection{Muon-veto channel}
+		\subsection{Muon-Veto Channel}
 		\label{sec:MuonProc}
 
 The muon-veto channel digitized the logic output from a muon veto.  To process these waveforms, all the regions of each trace were found when the veto was logic positive.  Saving this information enabled any cut based upon the muon veto to be performed further down the analysis chain, retaining flexibility in determining parameters for such a cut.  However, due to the high count rate of the muon veto and the reduction in live-time any cut from this veto would create, it was decided to not use any cuts based upon results from this channel in the analysis.  For example, the muon veto fired at a rate of 6200~Hz -- the threshold was set to trigger on single photon events -- and would therefore generate a reduction in live-time given by $1-\exp(- [6200~\text{Hz}]\tau_{veto})$ where $\tau_{veto}$ is the length of time to reject after a muon veto.  Assuming $\tau_{veto}=100~\mu$s, the reduction would be 46\%.
 
 
-	\section{Data analysis}
+	\section{Data Analysis}
 	\label{sec:BeGeDataAnalysis}
 	
 	The results of several key measurements were used throughout the analysis process, in particular energy calibration, the resolution of the detector versus energy, and the efficiency of the trigger.  Additionally, the fitting of the energy spectrum -- fitting function described in following section -- was key to the extraction of several parameters of interest.  These results and procedures are detailed in the following section and referred to throughout the remainder of the chapter.
 	
-		\subsection{Fitting energy spectra}
+		\subsection{Fitting Energy Spectra}
 		\label{sec:BeGeSpecFit}	
 
 	Many of the results required fitting the energy spectrum of the data to measure a particular parameter or set of values.  To accomplish this, the RooFit toolkit~\cite{ver03aa} was used to develop a general PDF which could be consistently used.  The RooFit toolkit has the advantage of allowing the creation of general PDFs which may be fit to data using both binned and unbinned maximum likelihood fits, or by the minimization of the $\chi^{2}$ function.  The spectral fitting was performed using either binned or unbinned maximum likelihood.  The general PDF for the data was constructed:
@@ -128,7 +128,7 @@ Since some applications of this PDF would not require a fit over the entire enti
 				\end{tabular}	
 			\end{table}	
 	
-		\subsection{Triggering efficiency}
+		\subsection{Triggering Efficiency}
 		\label{sec:BeGeTrigEff}
 
 The trigger efficiency of the DAQ system was measured by scanning a pulser of known amplitude across the threshold.  %FixME rephrase?
@@ -148,7 +148,7 @@ where $V$ is in volts, $s$ is a scaling parameter and $\sigma$ is a position par
 				\label{fig:BeGeTriggeringEfficiency}
 			\end{figure}
 
-		\subsection{Energy calibration}
+		\subsection{Energy Calibration}
 
 Energy calibration at low energies is complicated by several factors.  In particular, low-energy x-ray peaks ($<10$~keV) from any source will be heavily attenuated by the source itself as well as materials between the source and the crystal, including the outer cryostat, mounting components, and the crystal dead layer.  Higher energy x-rays have a larger probability to interact in the crystal, but these are unsuitable for calibration because of their distance from the signal energy region which, in the case of dark matter, is close to threshold.  However, internal cosmogenic isotopes provide excellent candidates for calibration since there are several with characteristic lines near or below 11~keV.  Therefore, the energy calibration was determined by fitting the low-gain channel simultaneously to the peaks listed in Table~\ref{tab:XRayLines} yielding a linear equation:
 
@@ -158,7 +158,7 @@ Energy calibration at low energies is complicated by several factors.  In partic
 
 with $a = 63.81\pm0.25$~(keV/V) and $b = -0.014551\pm0.016$~keV.  These results were applied to both the low- and low-gain channels.  An example of a typical fit spectrum is shown in Figure~\ref{fig:BeGeResFit} and in other figures throughout the remainder of the chapter.
 
-		\subsection{Resolution of results}
+		\subsection{Resolution of Results}
 
 The resolution of the detector was determined by measuring the intrinsic electronic noise using a pulser and by measuring the widths of x-ray lines.  These widths are measured by performing a simultaneous fit to prominent x-ray lines.  The fitting function is a combination of gaussians for each x-ray line, a flat background component, and a second `plateau' background component below the x-ray lines parameterized by an error function equivalent to Equation~\ref{eqn:InitialFitEqn} described earlier in Section~\ref{sec:BeGeSpecFit}.  The fit is shown in Figure~\ref{fig:BeGeResFit}.  
 			\begin{figure}
@@ -193,12 +193,12 @@ to determine the intrinsic electronic noise $\sigma_{elec}$ and estimate the Fan
 %Describe the baseline versus energy and the features we see in the data set.  Maybe not?
 
 
-	\section{Data cleaning and cuts}
+	\section{Data Cleaning and Cuts}
 	\label{sec:BeGeCuts}	
 	
 	Several cuts were employed to clean the data, removing spurious events from electronics noise or microphonics.  Additionally, other cuts were employed to remove events with slow rise-time.  This section discusses the implementation and results of \emph{all} cuts performed on the data set.  
 	
-		\subsection{Microphonics and noise cuts}
+		\subsection{Microphonics and Noise Cuts}
 	     	\label{sec:MicroCuts}	
 	
 	Vibrations in detector components at different electric potentials, such as the cryostat, cold-finger, or crystal mount, can induce electronic signals due to the changing capacitance created by the movement.  These electronic deviations can generate extra noise at low energies (threshold to a few keV) possibly obscuring any signals in that region.  During LN filling of the dewar, vibrations due to the filling generate a significant amount of additional microphonics noise from vibration caused by the influx of new liquid nitrogen.  See Figure~\ref{fig:BeGeLNExample} for an energy spectrum of events occurring during an LN fill.  
@@ -252,7 +252,7 @@ is close to 1.
 			\end{figure}
 	
 	
-		\subsection{Electronics cuts}
+		\subsection{Electronics Cuts}
 		\label{sec:BeGeElecCuts}
 	
 	This class of cuts was intended to remove events coming from spurious electronic events which were distinctly not signal events.  Only two electronics cuts were applied: the first to remove negative-going pulses including uncaught reset events that don't trigger the active veto, the second to remove noise pulses that were found to occur during a particular interval of the run time between 15 February 2010 and 15 March 2010.  
@@ -303,12 +303,12 @@ is close to 1.
 				%FixME: do analysis on only the bad pulses.
 			\end{figure}
 				
-		\subsection{Rise-time cuts}
+		\subsection{Rise-time Cuts}
 	     	\label{sec:RisetimeCuts}	
 
 	Pulses of slow rise-time were found during the deployment of \ppc2 (see Section~\ref{sec:DeploymentPPC2SoudanAnalysisRisetime}).  These pulses were predominately at low energy near threshold which meant that they could compose a possible background to any signal in this region.  This section studies the methods developed to measure the rise-times at low signal-to-noise ratios against threshold and explores systematics related to a cut on this quantity.  Additionally, the likely origin of these pulses and possible tests for further exploration are discussed. 
 	
-			\subsubsection{Wavelet de-noising}
+			\subsubsection{Wavelet De-noising}
 		     	\label{sec:RisetimeCutsWaveletDenoise}
 					
 	As the amplitude-to-noise ratio of waveforms shrinks at low energies, calculating the rise-time becomes more sensitive to the magnitude of the noise (i.e.~the electronic fluctuation of the signal) due to the reduction in signal-to-noise.   De-noising via a simple bandpass filter is undesirable when both signal and noise are distributed across similar frequency bands as the signal-to-noise ratio will not be enhanced by removing particular frequencies.  When calculating the rise-time of a pulse, a bandpass filter can greatly attenuate the high frequencies present in the rising edge of the pulse.  Wavelet shrinkage provides methodology to reduce noise on a generic function (see e.g.~\cite{Don95bb,Don95aa}) when the function and noise occupy the same frequency space.  The algorithm follows:
@@ -366,7 +366,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\label{fig:RisetimeCutsWaveletDecompositionOfPulse}
 				\end{figure}					
 
-			\subsubsection{Rise-time calculation}
+			\subsubsection{Rise-time Calculation}
 			\label{sec:RisetimeCalculation}
 	The de-noising process ensured that the waveforms be ready for rise-time calculations.  After de-noising, the smoothed derivative of the waveform was generated using a Savitzky-Golay derivative filter~\cite{Sav64aa}.  The extremum of the derivative - in this case the minimum since the pulse was negative-going - was then found and used to determine the middle of the rising edge, $p_{m}$.  The full-width at half maximum (FWHM) was calculated and used to estimate the beginning and end of the rise of the waveform: the beginning, $p_{b} = p_{m} - 1.5\times$FWHM and the end, $p_{e} = p_{m} + 1.5\times$FWHM.  The baseline and amplitude of the pulse were each found by averaging over 1~$\mu$s (20~samples) beginning at $p_{b} - (1~\mu$s) and $p_{e}$, respectively.  These values were used to estimate the amount of time it took the pulse to rise 10\%$\to$90\% in amplitude.  Linear interpolation was used to refine the time values which came between digitization points.  An example of this calculation, employing the same pulse used to generate the wavelet decomposition in Figure~\ref{fig:RisetimeCutsWaveletDecompositionOfPulse}, is shown in Figure~\ref{fig:RisetimeCutsExampleOfPulse}.  
 		
@@ -381,7 +381,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\label{fig:RisetimeCutsExampleOfPulse}
 				\end{figure}					
 
-			\subsubsection{Rise-time simulation}
+			\subsubsection{Rise-time Simulation}
 			\label{sec:RisetimeSimulation}
 	
 	To investigate how a cut based upon rise-time affected the spectrum, it was necessary to perform a simulation of the rise-time calculation on waveforms similar to the data.  The idea was to produce waveforms with similar characteristics (i.e. rise-time, noise) as seen in the detector and run them through the same algorithm used to analyze the detector data.  The waveform was generated by taking a tail pulse of 0~rise-time and running it through a digital low-pass RC filter.  The RC constant in the filter was tuned to reproduce the rise-time of ``fast'' pulses seen in the data.  In general this would not precisely reproduce all the characteristics of the detected pulses, but since the only parameter of interest was the rise-time it was reasonable to choose such a simple pulse construction.  An example of a simulated pulse before noise was added is given in Figure~\ref{fig:SimWaveformExample}
@@ -447,7 +447,7 @@ Noise reduction was implemented by applying hard thresholding to each set of det
 					\label{fig:RisetimeDataVsCut}
 				\end{figure}	
 	
-		\subsubsection{Rise-time systematic tests}
+		\subsubsection{Rise-time Systematic Tests}
 		\label{sec:RisetimeSystematicTests}	
 	
 	Systematic tests of the cuts were performed to verify the simulation performed adequately and that the cuts behaved as expected.  To do this, cuts of different acceptance were applied to the data set, and unbinned extended maximum likelihood fits to the cut data sets were performed to measure how the cut affected different features in the data.  The fit function used in this analysis is described earlier in Section~\ref{sec:BeGeSpecFit}.  These fits were performed for data sets with different cuts applied as noted:
@@ -686,7 +686,7 @@ This is not unexpected, since as the signal-to-noise of the pulse reduces de-noi
 						\end{sidewaystable}
 
 		
-		\subsubsection{Conclusions and discussion}
+		\subsubsection{Conclusions and Discussion}
 		\label{sec:RTBeGeConclusions}
 		
 Evidence from past results~\cite{Strauss196780,Sakai:1971ff} and recent results presented in~\cite{Aalseth:2010aa} suggest that slow pulses can arise due to poor charge collection from weak electric fields in the dead layer of the n$^{+}$ Li contact.  These results also suggest that energy information of the initiating event is lost so that these slow pulses can comprise a background at low energy, though one of not-yet-precisely-determined distribution.  The conclusions from these references were determined by scanning a source of low-energy gammas (\amtwofourone, 59.5~keV gamma) around the outside n$^{+}$ contact of the detector (the detector geometries varied in the references) and determining the distribution of rise-times for recorded events.  The low energy of the americium source ensured that a majority of the gammas deposited energy in or near the outer contact.  The resulting rise-time measurements demonstrated a substantial distribution of slow rise-time pulses, supporting the conclusion that at least a component of these slow-rise-time events come from energy deposition at or near the outer contact.  
@@ -698,7 +698,7 @@ Whereas it is likely that a component of these slow pulses is arising from charg
 Whatever the origin of these slow-pulse events, it is clear that they can produce a background to low-energy signals.  If the majority of these slow pulses arise from energy deposition near the outer surface, a cut on rise-time would effectively generate a cut on the fiducial volume and mass of the detector.  Understanding the active fiducial volume of the detector is critical for experiments sensitive to mass exposure times, such as those searching for $\nonubb$ or dark matter.  For double-beta decay, even though $\qval$ is around 2~MeV, the decay is internal to the detector and energy is deposited by two electrons summing to $\qval$.  The range of electrons at this energy is on the order of 1~mm, so it is expected that poor charge collection in an outer layer of the detector could still have an effect on a fiducial mass for $\nonubb$ results.  
 
 
-	\subsection{Behavior of energy spectrum with cuts applied}
+	\subsection{Behavior of Energy Spectrum with Cuts Applied}
 	\label{sec:RTBeGeBehaviorOfCuts}
 It is useful to look at the behavior of the energy spectrum as cuts are subsequently applied to check for deviations or irregularities (e.g.~strong peaks or valleys) that may be indicative
 of a problem with the analysis.  The results of this are shown in Figure~\ref{fig:BehaviorOfCuts} where in all cases the base or reference data set was with LN fill events and electronic noise events (see Section~\ref{sec:BeGeElecCuts}) removed.
@@ -724,7 +724,7 @@ as the signal-to-noise ratio diminishes.
 				\end{figure}			
 		
 
-	\subsection{Extracting or looking for signals in cut data}
+	\subsection{Extracting or Looking for Signals in Cut Data}
 	\label{sec:BeGeLowEnergyFeatures}
 	
 	The ultimate goal of introducing a cut to a data set is to remove events to enhance the signal-to-noise ratio of the data set.  In this particular analysis, work focused on removing `noise' events that might populate the energy region near threshold because this energy region is critical for deriving exclusion limits for dark matter.  With many analyses, it is common to study cuts by choosing in parameter space a background region or set of regions and a background+signal region, preferably bookending the background+signal area with background-only regions to avoid any sort of boundary effects.   This analysis explored rise-time cuts in a similar manner: calculate what you should see when you take a cut and see if the result matches your expectations.  For higher-rise-time-cut acceptances, the calculation proved a sufficient model.  
@@ -753,12 +753,12 @@ as the signal-to-noise ratio diminishes.
 		\end{equation}
 where $f_{Trigger}(E)$ is the trigger efficiency defined in Equation~\ref{eqn:TrigEfficiency}, and the product is over all cuts taken.  The efficiency of the microphonics cut was estimated as $f_{micro} = 0.997$ and the rise-time efficiencies are estimated as equivalent to the acceptance percentage.  This assumption is valid for higher rise-time acceptances, $\ge80$\%, and conservative for lower percentages.  The efficiency function is used to determine the weight of an event at a particular energy, given by $w(E) = 1/f_{eff}(E)$.
 
-	\section{Time correlations and systematics}
+	\section{Time Correlations and Systematics}
 	\label{sec:BeGeTimeCorrelations}
 
 	Searching for time dependence of parameters and any possible time correlation of events provides a powerful systematic test of the data.  Small deviations in detector health (e.g.~noise, baseline shifting, etc.) can have a more marked effect on events near threshold.  For example, a change in noise or a shift in baseline could affect the triggering efficiency, modifying the collection probability for events near threshold.  Additionally, searching for time correlations provides a metric for ensuring that data collection is behaving appropriately and as expected.  In addition to tracking detector health parameters, it is important to analyze event rates and times between events to look for any deviation from Poisson statistics.  Such deviations could arise from environmental changes or events.  For example, nearby work in the experimental hall generating additional vibration could increase microphonics events, or an introduction of a hot source in the shared lab space could increase count rates.  Finally, it is possible to perform tests in combined energy-time space looking to see if classes of events (e.g.~events in a certain energy range) have correlations \emph{outside} their class region.  An obvious example of this is a decay chain, in which an initial energy deposition from a parent is correlated in time with another event at different energies from the decay of the daughter.  Whereas these types of correlations between decay chains should show up in the data, the discovery of other correlations of unknown origin could point to a potential source of event contamination.  
 	
-		\subsection{Detector health versus time}
+		\subsection{Detector Health versus Time}
 		\label{sec:BeGeParsVsTime}
 
 	In contrast to the previous data run with \ppc2, fewer parameters were tracked during the lifetime of the experiment (see Section~\ref{sec:PPC2DetParsVsTime}).  In particular, due to limited channels in the DAQ electronics the trigger efficiency was not monitored with automated tests nor was the rate of the reset electronics recorded.  In general, both these parameters are important to catalogue since they could affect the signal region near threshold.  However, due to the strong correlation of the reset rate on  the measured baseline in unshaped pulses seen in the results of Section~\ref{sec:PPC2DetParsVsTime}, the baseline can be used as a proxy to ensure that the reset rate did not change significantly.  Similarly, it was possible to monitor the noise by using the measured RMS of the baseline to determine whether it changed significantly over time.  
@@ -792,7 +792,7 @@ The binned baseline data included outliers in one direction which were attribute
 				\label{fig:BeGeBaselineData}
 			\end{sidewaysfigure}
 	
-		\subsection{Rates in energy regions}
+		\subsection{Rates in Energy Regions}
 		\label{sec:BeGeRate}	
 		
 		Several tests can be performed to analyze the Poisson nature of the data: (1) event rate in an energy region; (2) time difference between events in an energy region; and (3) forward and backward time difference between events occurring in an energy region and \emph{any} other events.  All of these tests should be made with different cuts applied (see Section~\ref{sec:BeGeCuts} for a description of the cuts) since an analysis cut may preferentially remove a portion or an entire population of correlated events.  Therefore, for these tests several cuts were used including the minimal cut (LN fill cut), microphonics cuts and rise-time cuts of varying acceptances.  To perform all these tests, events were selected in particular energy regions: $0.45\to0.55$ keV, $0.5\to1$ keV, $1\to2$ keV, $3\to8$ keV, and $10\to10.76$ keV.  The first two regions tested around and just above threshold, the next two tested regions not significantly populated with $\epsilon$ decays, and the final examined a region symmetric around the mean of the Ge K-capture x-ray (10.367~keV).
@@ -1029,7 +1029,7 @@ The binned baseline data included outliers in one direction which were attribute
 
 			\end{table}
 
-		\subsection{Time-energy correlations}
+		\subsection{Time-energy Correlations}
 		\label{sec:BeGeTimeEnergyCor}
 
 	Two-dimensional energy-time correlations were calculated by analyzing a time window around events occurring in a selected region.  As before, a set of events were selected within an energy range to be used as `trigger' events.  Given the time of a trigger event as a reference point, a two-dimensional energy vs.~time histogram was generated for all events occurring within a time window forwards and backwards around the reference.  The 2-d histograms for each trigger were then added together, producing a final intensity plot.  Any strong correlation between events in energy-time space should show up as having significant intensity in these figures.  The data used for this analysis had only LN fill cuts applied to avoid removing correlating events from the data set.
@@ -1095,7 +1095,7 @@ The binned baseline data included outliers in one direction which were attribute
 	
 	%It should be noted that all these tests except the time difference measurement were insensitive to time correlations beyond their time windows (e.g.~8, 24~hours).    More powerful time-series analyses such as a Fourier or wavelet analysis could provide additional insight into the arrival information of events, 
 
-	\section{Systematic error summary}
+	\section{Systematic Error Summary}
 	\label{sec:BeGeSysError}
 	
 	The previous sections have discussed possible systematic errors in detail.  To summarize, systematic errors may arise from the following:

@@ -2,10 +2,10 @@
 % Touch on development of the Gretina card, SBC,
 % ORCA, etc.
 
-\chapter{Development of DAQ hardware for \MJ}
+\chapter{Development of DAQ Hardware for \MJ}
 \label{app:ORCASoftwareChapter}
 
-	\section{Tundra Universe IID PCI-VME bridge driver}
+	\section{Tundra Universe IID PCI-VME Bridge Driver}
 	\label{sec:TundraUniverse}
 
 This section describes a Linux driver for PCI-VME Tundra Universe II bridge chip.  This
@@ -30,7 +30,7 @@ are given in the code package, so those details are not covered here.
 			   breaklines=true,
 			   showtabs=false,
 			   captionpos=t}
-		\subsection{Char driver}
+		\subsection{Char Driver}
 
 The linux driver package installs a kernel-space driver and installs several devices in 
 \lstinline!/dev!, including:
@@ -433,7 +433,7 @@ similar to usage of the C framework and examples are provided here:
 	%\section{Gretina Mark IV Digitizer}
 	%\section{Struck 3302 Digitizer}
 
-	\section{Single-board computers (SBCs)}
+	\section{Single-board Computers (SBCs)}
 
 	This section briefly describes the framework of the development of
 Single-board computers (SBCs) for the \MJ~experiment and related test stands.
@@ -469,7 +469,7 @@ the fast readout is shown in Figure~\ref{fig:SBCReadout}.
 			\label{fig:SBCReadout}
 		\end{figure}
 
-		\subsection{SBC card software design}	
+		\subsection{SBC Card Software Design}	
 
 \cpp-based software was designed to handle the fast readout of cards on the bus.  A virtual interface was
 designed so that a single management program could be created to handle cards of various form factors and designs. 
@@ -555,7 +555,7 @@ class ORVVmeCard : public ORVCard
 };
 			\end{lstlisting}
 
-		\subsection{SBC management, fast readout design}	
+		\subsection{SBC Management, Fast Readout Design}	
 
 	By designing the code using abstracted functionality, the development of the readout code was simple and is described
 fully in the following pythonic pseudocode:
